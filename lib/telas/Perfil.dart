@@ -4,15 +4,16 @@ import 'package:flutter/widgets.dart';
 
 import 'package:ariel_app/telas/Template.dart';
 
-class TelaInicial extends StatelessWidget {
-  const TelaInicial({Key? key}) : super(key: key);
+class Perfil extends StatelessWidget {
+  const Perfil({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //var now = DateTime.parse("2021-12-30 20:18:04Z");
+    int index = 2;
 
-    return const TemplateApp(
-      tela: Text("Tela 2: Perfil"),
+    return TemplateApp(
+      menu_index: index,
+      tela: const Text("Tela 3: Perfil"),
     );
   }
 }

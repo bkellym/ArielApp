@@ -12,9 +12,10 @@ class TelaInicial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //var now = DateTime.parse("2021-12-30 20:18:04Z");
+    int index = 0;
 
     return TemplateApp(
+      menu_index: index,
       tela: ListView(
         children: <Widget>[
           Container(

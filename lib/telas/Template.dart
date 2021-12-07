@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,8 +7,10 @@ import '../componentes/menu_navegacao.dart';
 
 class TemplateApp extends StatelessWidget {
   final Widget tela;
+  final int menu_index;
 
-  const TemplateApp({Key? key, required this.tela}) : super(key: key);
+  const TemplateApp({Key? key, required this.tela, this.menu_index = 0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,9 @@ class TemplateApp extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       extendBody: true,
-      bottomNavigationBar: const MenuNavegacao(),
+      bottomNavigationBar: MenuNavegacao(
+        selectedIndex: menu_index,
+      ),
     );
   }
 }
