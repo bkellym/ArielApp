@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'TelaInicial.dart';
+import '../telas/TelaInicial.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class ArielApp extends StatefulWidget {
