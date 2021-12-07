@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class CardClaro extends StatelessWidget {
+class CardLembrete extends StatelessWidget {
   final String titulo;
   final String descricao;
   final IconData iconeReferencia;
@@ -12,7 +12,7 @@ class CardClaro extends StatelessWidget {
     color: Color(0xFF1B569C),
   );
 
-  const CardClaro({
+  const CardLembrete({
     Key? key,
     required this.titulo,
     required this.descricao,
@@ -22,6 +22,7 @@ class CardClaro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: const EdgeInsets.only(bottom: 12, left: 4, right: 4),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(15),
