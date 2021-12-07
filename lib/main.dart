@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:ariel_app/telas/Template.dart';
 import 'package:ariel_app/telas/TelaInicial.dart';
 
 //Chamada da main para o aplicativo
@@ -16,9 +15,7 @@ class ArielApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: TemplateApp(
-        tela: TelaInicial(),
-      ),
+      home: TelaInicial(),
     );
   }
 }
