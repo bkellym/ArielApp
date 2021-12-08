@@ -27,7 +27,7 @@ class CardDataAtual extends StatelessWidget {
                 now.day.toString(),
                 style: const TextStyle(
                   color: Color(0xFF1B569C),
-                  fontSize: 30,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -40,7 +40,7 @@ class CardDataAtual extends StatelessWidget {
                     DatasEnums.getDiaSemana(now),
                     style: const TextStyle(
                       color: Color(0xFF1B569C),
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -50,7 +50,7 @@ class CardDataAtual extends StatelessWidget {
                     DatasEnums.getMesAno(now),
                     style: const TextStyle(
                       color: Color(0xFF1B569C),
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
                   ),
                 ),

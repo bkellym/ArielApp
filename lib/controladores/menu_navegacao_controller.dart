@@ -50,8 +50,8 @@ class NavigationController {
                 color: isSelected ? Colors.white : const Color(0xFFA0A3B1),
               ),
             ),
-            width: 40,
-            height: 40,
+            width: 35,
+            height: 35,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 4),

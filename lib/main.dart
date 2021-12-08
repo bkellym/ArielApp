@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:ariel_app/telas/TelaInicial.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 //Chamada da main para o aplicativo
 void main() => runApp(const ArielApp());
@@ -14,8 +15,11 @@ class ArielApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: TelaInicial(),
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: GoogleFonts.poppins().fontFamily,
+      ),
+      home: const TelaInicial(),
     );
   }
 }
