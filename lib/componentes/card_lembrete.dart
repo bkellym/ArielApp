@@ -42,6 +42,7 @@ class CardLembrete extends StatelessWidget {
           descricao,
           style: const TextStyle(
             color: Color(0xFF656565),
+            fontSize: 12,
           ),
         ),
         trailing: const Icon(

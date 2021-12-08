@@ -48,7 +48,7 @@ class Timeline extends StatelessWidget {
               style: TextStyle(
                 color: Color(0xFF1B569C),
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
             Padding(
@@ -58,6 +58,7 @@ class Timeline extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF1B569C),
+                  fontSize: 12,
                 ),
               ),
             ),
