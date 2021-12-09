@@ -41,7 +41,7 @@ class TelaInicial extends StatelessWidget {
               ],
             ),
           ),
-          const Expanded(
+          Expanded(
             child: Timeline(),
           )
         ],

@@ -2,10 +2,10 @@ import 'package:ariel_app/enums/datas_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:ariel_app/models/item_timeline.dart';
+import 'package:ariel_app/models/evento.dart';
 
 class CardTimeline extends StatelessWidget {
-  final ItemTimeline item;
+  final Evento item;
 
   const CardTimeline({
     Key? key,
