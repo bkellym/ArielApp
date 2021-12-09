@@ -53,7 +53,8 @@ class CardTimeline extends StatelessWidget {
         subtitle: Text(
           item.descricao,
           style: TextStyle(
-            color: item.dark ? Colors.white : const Color(0xFF1B569C),
+            color: item.dark ? Colors.white : const Color(0xFF656565),
+            fontSize: 12,
           ),
         ),
         trailing: Icon(
