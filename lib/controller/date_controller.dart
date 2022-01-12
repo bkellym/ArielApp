@@ -1,4 +1,4 @@
-class DatasEnums {
+class DateController {
   static String getDiaSemana(DateTime data) {
     if (data.weekday == 0) return 'Domingo';
     if (data.weekday == 1) return 'Segunda-feira';

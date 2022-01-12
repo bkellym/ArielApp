@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class BotaoNotificacoes extends StatelessWidget {
-  const BotaoNotificacoes({Key? key}) : super(key: key);
+class NotificationButton extends StatelessWidget {
+  const NotificationButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-package com.example.ariel_app
+package br.com.ariel.ariel_app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,11 +1,11 @@
-class Evento {
+class Event {
   final String titulo;
   final String descricao;
   final DateTime data;
   final bool dark;
   final bool alto;
 
-  Evento({
+  Event({
     required this.titulo,
     required this.descricao,
     required this.data,

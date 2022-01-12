@@ -1,32 +1,25 @@
+import 'package:ariel_app/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-import 'package:ariel_app/models/item_navegacao.dart';
-
-import 'package:ariel_app/telas/TelaInicial.dart';
-import 'package:ariel_app/telas/Calendario.dart';
-import 'package:ariel_app/telas/Perfil.dart';
+import 'package:ariel_app/models/button_menu.dart';
 
 class NavigationController {
-  List<ItemNavegacao> itens = [
-    ItemNavegacao(
+  List<NavigationButton> itens = [
+    NavigationButton(
       const Icon(Icons.home),
       "Inicio",
-      const TelaInicial(),
     ),
-    ItemNavegacao(
+    NavigationButton(
       const Icon(Icons.calendar_today),
       "Calendario",
-      const Calendario(),
     ),
-    ItemNavegacao(
+    NavigationButton(
       const Icon(Icons.perm_identity),
       "Perfil",
-      const Perfil(),
     )
   ];
 
-  Widget buildItem(ItemNavegacao item, bool isSelected) {
+  Widget buildItem(NavigationButton item, bool isSelected) {
     return Container(
       width: 96,
       height: double.maxFinite,
@@ -37,8 +30,8 @@ class NavigationController {
             duration: const Duration(milliseconds: 270),
             decoration: BoxDecoration(
               color: isSelected
-                  ? const Color(0xFF3A89E9)
-                  : const Color(0x003A89E9),
+                  ? ArielColors.buttonSelected
+                  : ArielColors.buttonUnselected,
               borderRadius: const BorderRadius.all(
                 Radius.circular(8),
               ),
@@ -58,10 +51,11 @@ class NavigationController {
             child: Text(
               item.titulo,
               style: TextStyle(
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                  color: isSelected
-                      ? const Color(0xFF3A89E9)
-                      : const Color(0xFFA0A3B1)),
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                color: isSelected
+                    ? const Color(0xFF3A89E9)
+                    : const Color(0xFFA0A3B1),
+              ),
             ),
           ),
         ],

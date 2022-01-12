@@ -1,11 +1,10 @@
-import 'package:ariel_app/enums/datas_enums.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-import 'package:ariel_app/models/evento.dart';
+import 'package:ariel_app/models/event.dart';
+import 'package:ariel_app/controller/date_controller.dart';
 
 class CardTimeline extends StatelessWidget {
-  final Evento item;
+  final Event item;
 
   const CardTimeline({
     Key? key,
@@ -34,7 +33,7 @@ class CardTimeline extends StatelessWidget {
               ),
             ),
             Text(
-              DatasEnums.getMesAbreviado(item.data),
+              DateController.getMesAbreviado(item.data),
               style: TextStyle(
                 color: item.dark ? Colors.white : const Color(0xFF1B569C),
                 fontWeight: FontWeight.bold,
@@ -68,7 +67,7 @@ class CardTimeline extends StatelessWidget {
         ),
         isThreeLine: item.alto,
         tileColor:
-            item.dark ? const Color(0xFF1B569C) : const Color(0xFFE2EDFF),
+        item.dark ? const Color(0xFF1B569C) : const Color(0xFFE2EDFF),
       ),
     );
   }
