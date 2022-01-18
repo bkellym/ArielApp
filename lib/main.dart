@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ariel_app/screens/homepage.dart';
+import 'package:ariel_app/screens/calendar.dart';
 
 void main() {
   runApp(const ArielApp());
@@ -13,7 +14,7 @@ class ArielApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ariel',
-      home: const HomePage(),
+      home: const Calendar(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

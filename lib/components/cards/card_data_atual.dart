@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:ariel_app/controller/date_controller.dart';
 
 class CardDataAtual extends StatelessWidget {
-  const CardDataAtual({Key? key}) : super(key: key);
+  bool isDark;
+  CardDataAtual({Key? key, this.isDark = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +14,8 @@ class CardDataAtual extends StatelessWidget {
     return Container(
         height: 64,
         margin: const EdgeInsets.only(top: 16),
-        decoration: const BoxDecoration(
-          color: ArielColors.cardBackground,
+        decoration: BoxDecoration(
+          color: isDark? ArielColors.primaryDark : ArielColors.cardBackground,
           borderRadius: BorderRadius.all(
             Radius.circular(16),
           ),
@@ -25,8 +26,8 @@ class CardDataAtual extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16),
               child: Text(
                 now.day.toString(),
-                style: const TextStyle(
-                  color: ArielColors.primaryDark,
+                style: TextStyle(
+                  color: isDark ? Colors.white : ArielColors.primaryDark,
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
@@ -38,8 +39,8 @@ class CardDataAtual extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
                     DateController.getDiaSemana(now),
-                    style: const TextStyle(
-                      color: ArielColors.primaryDark,
+                    style:  TextStyle(
+                      color: isDark ? Colors.white : ArielColors.primaryDark,
                       fontSize: 18,
                     ),
                   ),
@@ -48,8 +49,8 @@ class CardDataAtual extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Text(
                     DateController.getMesAno(now),
-                    style: const TextStyle(
-                      color: ArielColors.primaryDark,
+                    style: TextStyle(
+                      color: isDark ? Colors.white : ArielColors.primaryDark,
                       fontSize: 18,
                     ),
                   ),

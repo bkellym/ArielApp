@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ariel_app/colors.dart';
 import 'package:ariel_app/components/cards/card_data_atual.dart';
 import 'package:ariel_app/components/cards/card_notifications.dart';
-import 'package:flutter/services.dart';
 
 class PanelShootDays extends StatelessWidget {
   const PanelShootDays({Key? key}) : super(key: key);
@@ -27,9 +26,9 @@ class PanelShootDays extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
+            children: <Widget>[
               CardDataAtual(),
-              NotificationButton(),
+              NotificationButton(isDark: false,),
             ],
           ),
         ),
