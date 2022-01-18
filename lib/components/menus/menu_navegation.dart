@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:ariel_app/controller/menu_controller.dart';
 
 class MenuNavegacao extends StatefulWidget {
-  const MenuNavegacao({Key? key}) : super(key: key);
+  int selectedIndex;
+
+  MenuNavegacao({Key? key, required this.selectedIndex}) : super(key: key);
 
   @override
   _MenuNavegacaoState createState() => _MenuNavegacaoState();
 }
 
 class _MenuNavegacaoState extends State<MenuNavegacao> {
+
   @override
   Widget build(BuildContext context) {
     NavigationController controller = NavigationController();
-    var selectedIndex = 0;
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(
@@ -30,7 +32,7 @@ class _MenuNavegacaoState extends State<MenuNavegacao> {
             var itemIndex = controller.itens.indexOf(item);
             return GestureDetector(
               onTap: () {},
-              child: controller.buildItem(item, itemIndex == selectedIndex),
+              child: controller.buildItem(item, itemIndex == widget.selectedIndex),
             );
           }).toList(),
         ),
