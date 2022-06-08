@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "145414915671",
+    "project_id": "ariel-transapp",
+    "storage_bucket": "ariel-transapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145414915671:android:5af592d153e691b0754512",
+        "android_client_info": {
+          "package_name": "br.com.ariel.ariel_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145414915671-pt5ipbua5nsegkmvm2a9ptnqq4t3t188.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6OMcfXZq2SwTMxjUTQJTIDb-5b63ceXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145414915671-pt5ipbua5nsegkmvm2a9ptnqq4t3t188.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "145414915671-ibs3815k0u2okeji9vojhuikro2t44qe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.ariel.arielApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
