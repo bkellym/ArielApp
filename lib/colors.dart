@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
-class ArielColors{
-  static const Color primary = Color(0xFF64A9F7);
-  static const Color primaryLight = Color(0xFFC6E1FF);
+class ArielColors {
+  static const Color primary = Color(0xFF1DCBE0);
+  static const Color primaryLight = Color(0xFF1DD7D0);
   static const Color primaryDark = Color(0xFF1B569C);
 
   static const Color cardBackground = Color(0xFFE2EDFF);
