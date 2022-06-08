@@ -1,7 +1,9 @@
 import 'package:ariel_app/colors.dart';
+import 'package:ariel_app/components/botoes/botao_texto.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'components/botoes/botao_padrao.dart';
 import 'firebase_options.dart';
 
 import 'package:ariel_app/screens/homepage.dart';
@@ -54,54 +56,14 @@ class TesteApp extends StatelessWidget {
         children: <Widget>[
           Image.asset('assets/images/introduction.png'),
           Carrossel(),
-          Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(
-              top: 24,
-              bottom: 16,
-            ),
-            child: Column(children: [
-              DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: <Color>[
-                        ArielColors.primary,
-                        ArielColors.primaryLight,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.transparent,
-                        onSurface: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        elevation: 0,
-                      ),
-                      onPressed: () {
-                        print("You pressed Elevated Button");
-                      },
-                      child: const Padding(
-                        padding: EdgeInsets.only(
-                          top: 8,
-                          bottom: 8,
-                          left: 64,
-                          right: 64,
-                        ),
-                        child: Text("REGISTRE-SE"),
-                      )))
-            ]),
-          ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor:
-                  MaterialStateProperty.all(const Color(0xFF666666)),
-            ),
+          BotaoPadrao(
             onPressed: () {},
-            child: const Text('Já tenho uma conta'),
+            label: "REGISTRE",
           ),
+          BotaoTexto(
+            onPressed: () {},
+            label: "Já tenho uma conta",
+          )
         ],
       ),
     );
