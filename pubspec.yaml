@@ -26,7 +26,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/next_shoot.png
+    - assets/images/
     - assets/fonts/
 
   fonts:
@@ -38,6 +38,8 @@ flutter:
           weight: 400
         - asset: assets/fonts/OpenSans-Medium.ttf
           weight: 500
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+          weight: 600
         - asset: assets/fonts/OpenSans-Bold.ttf
           weight: 700
         - asset: assets/fonts/OpenSans-ExtraBold.ttf

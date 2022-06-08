@@ -26,7 +26,6 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             Container(
               child: const PanelShootDays(),
-              height: 280,
               margin: const EdgeInsets.only(top: 8),
               alignment: Alignment.topLeft,
               decoration: const BoxDecoration(
