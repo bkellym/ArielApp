@@ -10,16 +10,22 @@ class ArielColors {
     surfaceTintColor: Colors.transparent,
   );
 
-  static const Color primary = Color(0xFF1DCBE0);
-  static const Color primaryLight = Color(0xFF1DD7D0);
-  static const Color primaryDark = Color(0xFF1B569C);
+  // Cores utilizadas para gradiente (fundo, botões, etc...) / "cor" primária
+  static const Color gradientLight = Color(0xFF1CE8B4);
+  static const Color gradientDark = Color(0xFF1CC2EB);
 
-  static const Color labelTextButton = Color(0xFF666666);
+  static const Color disabledGradientLight = Color(0xFFC7C7C7);
+  static const Color disabledGradientDark = Color(0xFFA5A5A5);
 
-  static const Color cardBackground = Color(0xFFE2EDFF);
+  // Cores bases
+  static const Color textPrimary = Color(0xFF666666);
+  static const Color secundary = Color(0xFF905CED);
+  static const Color baseDark = Color(0xFFCCCCCC);
+  static const Color baseLight = Color(0xFFFFFFFF);
 
-  static const Color buttonSelected = Color(0xFF3A89E9);
-  static const Color buttonUnselected = Color(0x003A89E9);
+  // Cores externas
+  static const Color googleRed = Color(0xFFDD4B39);
+  static const Color facebookBlue = Color(0xFF3B5998);
 
   static const Color transparent = Colors.transparent;
 }

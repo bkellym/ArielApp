@@ -4,30 +4,43 @@ import 'package:ariel_app/colors.dart';
 import 'package:flutter/material.dart';
 
 class BotaoPadrao extends StatefulWidget {
-  final VoidCallback? onPressed;
+  final bool disabled;
   final String label;
+  final VoidCallback? onPressed;
+  final double internalPadding;
 
   BotaoPadrao({
     Key? key,
-    required this.onPressed,
     required this.label,
+    required this.onPressed,
+    this.disabled = false,
+    this.internalPadding = 32,
   }) : super(key: key);
 
   final LinearGradient gradient = const LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
     colors: <Color>[
-      ArielColors.primary,
-      ArielColors.primaryLight,
+      ArielColors.gradientLight,
+      ArielColors.gradientDark,
+    ],
+  );
+
+  final LinearGradient disabledgradient = const LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: <Color>[
+      ArielColors.disabledGradientLight,
+      ArielColors.disabledGradientDark,
     ],
   );
 
   final ButtonStyle buttontheme = ElevatedButton.styleFrom(
-    primary: Colors.transparent,
-    onPrimary: Colors.white,
-    onSurface: Colors.transparent,
-    shadowColor: Colors.transparent,
-    surfaceTintColor: Colors.transparent,
+    primary: ArielColors.transparent,
+    onPrimary: ArielColors.baseLight,
+    onSurface: ArielColors.transparent,
+    shadowColor: ArielColors.transparent,
+    surfaceTintColor: ArielColors.transparent,
     elevation: 0,
     textStyle: const TextStyle(
       fontFamily: 'OpenSans',
@@ -50,18 +63,18 @@ class _BotaoPadraoState extends State<BotaoPadrao> {
       ),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: widget.gradient,
+          gradient: widget.disabled ? widget.disabledgradient : widget.gradient,
           borderRadius: BorderRadius.circular(5),
         ),
         child: ElevatedButton(
           style: widget.buttontheme,
           onPressed: widget.onPressed,
           child: Padding(
-            padding: const EdgeInsets.only(
+            padding: EdgeInsets.only(
               top: 8,
               bottom: 8,
-              left: 64,
-              right: 64,
+              left: widget.internalPadding,
+              right: widget.internalPadding,
             ),
             child: Text(widget.label),
           ),

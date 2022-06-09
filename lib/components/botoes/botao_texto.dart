@@ -27,7 +27,7 @@ class _BotaoTextoState extends State<BotaoTexto> {
         style: const TextStyle(
           fontFamily: 'OpenSans',
           fontWeight: FontWeight.w600,
-          color: ArielColors.labelTextButton,
+          color: ArielColors.textPrimary,
         ),
       ),
     );

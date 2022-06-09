@@ -45,7 +45,7 @@ class PanelShootDays extends StatelessWidget {
                 const Text(
                   "Faltam",
                   style: TextStyle(
-                    color: ArielColors.primaryDark,
+                    color: ArielColors.baseDark,
                     fontWeight: FontWeight.bold,
                     fontSize: 32.0,
                   ),
@@ -53,7 +53,7 @@ class PanelShootDays extends StatelessWidget {
                 Text(
                   dayString,
                   style: const TextStyle(
-                    color: ArielColors.primaryDark,
+                    color: ArielColors.baseDark,
                     fontWeight: FontWeight.bold,
                     fontSize: 48.0,
                   ),
@@ -61,7 +61,7 @@ class PanelShootDays extends StatelessWidget {
                 const Text(
                   "para a sua próxima aplicação",
                   style: TextStyle(
-                    color: ArielColors.primaryDark,
+                    color: ArielColors.baseDark,
                     fontWeight: FontWeight.bold,
                     fontSize: 16.0,
                   ),

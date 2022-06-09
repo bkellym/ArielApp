@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:ariel_app/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -58,7 +59,7 @@ class _CarrosselState extends State<Carrossel> {
                         item,
                         style: const TextStyle(
                           fontFamily: 'OpenSans',
-                          color: Color(0xFF905CED),
+                          color: ArielColors.secundary,
                           fontWeight: FontWeight.w800,
                           fontSize: 20.0,
                         ),
@@ -73,7 +74,7 @@ class _CarrosselState extends State<Carrossel> {
                         widget.descList[_currentIndex],
                         style: const TextStyle(
                           fontFamily: 'OpenSans',
-                          color: Color(0xFF666666),
+                          color: ArielColors.textPrimary,
                           fontWeight: FontWeight.normal,
                           fontSize: 14.0,
                         ),
@@ -97,8 +98,8 @@ class _CarrosselState extends State<Carrossel> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: _currentIndex == index
-                    ? const Color(0xff905CED)
-                    : const Color.fromRGBO(0, 0, 0, 0.3),
+                    ? ArielColors.secundary
+                    : ArielColors.baseDark,
               ),
             );
           }).toList(),
