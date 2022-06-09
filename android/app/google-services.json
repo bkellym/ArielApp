@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "145414915671",
+    "firebase_url": "https://ariel-transapp-default-rtdb.firebaseio.com",
     "project_id": "ariel-transapp",
     "storage_bucket": "ariel-transapp.appspot.com"
   },
