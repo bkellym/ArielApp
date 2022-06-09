@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:145414915671:android:5af592d153e691b0754512',
     messagingSenderId: '145414915671',
     projectId: 'ariel-transapp',
+    databaseURL: 'https://ariel-transapp-default-rtdb.firebaseio.com',
     storageBucket: 'ariel-transapp.appspot.com',
   );
 
@@ -62,6 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:145414915671:ios:213026fd668d79a6754512',
     messagingSenderId: '145414915671',
     projectId: 'ariel-transapp',
+    databaseURL: 'https://ariel-transapp-default-rtdb.firebaseio.com',
     storageBucket: 'ariel-transapp.appspot.com',
     iosClientId: '145414915671-ibs3815k0u2okeji9vojhuikro2t44qe.apps.googleusercontent.com',
     iosBundleId: 'br.com.ariel.arielApp',
