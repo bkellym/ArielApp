@@ -4,21 +4,32 @@ import 'package:ariel_app/colors.dart';
 import 'package:flutter/material.dart';
 
 class BotaoPadrao extends StatefulWidget {
-  final VoidCallback? onPressed;
+  final bool disabled;
   final String label;
+  final VoidCallback? onPressed;
 
   BotaoPadrao({
     Key? key,
-    required this.onPressed,
     required this.label,
+    required this.onPressed,
+    this.disabled = false,
   }) : super(key: key);
 
   final LinearGradient gradient = const LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
     colors: <Color>[
       ArielColors.gradientLight,
       ArielColors.gradientDark,
+    ],
+  );
+
+  final LinearGradient disabledgradient = const LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: <Color>[
+      ArielColors.disabledGradientLight,
+      ArielColors.disabledGradientDark,
     ],
   );
 
@@ -50,7 +61,7 @@ class _BotaoPadraoState extends State<BotaoPadrao> {
       ),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: widget.gradient,
+          gradient: widget.disabled ? widget.disabledgradient : widget.gradient,
           borderRadius: BorderRadius.circular(5),
         ),
         child: ElevatedButton(
