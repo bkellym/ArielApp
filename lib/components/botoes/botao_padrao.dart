@@ -7,12 +7,14 @@ class BotaoPadrao extends StatefulWidget {
   final bool disabled;
   final String label;
   final VoidCallback? onPressed;
+  final double internalPadding;
 
   BotaoPadrao({
     Key? key,
     required this.label,
     required this.onPressed,
     this.disabled = false,
+    this.internalPadding = 32,
   }) : super(key: key);
 
   final LinearGradient gradient = const LinearGradient(
@@ -68,11 +70,11 @@ class _BotaoPadraoState extends State<BotaoPadrao> {
           style: widget.buttontheme,
           onPressed: widget.onPressed,
           child: Padding(
-            padding: const EdgeInsets.only(
+            padding: EdgeInsets.only(
               top: 8,
               bottom: 8,
-              left: 64,
-              right: 64,
+              left: widget.internalPadding,
+              right: widget.internalPadding,
             ),
             child: Text(widget.label),
           ),
