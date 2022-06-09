@@ -17,17 +17,17 @@ class BotaoPadrao extends StatefulWidget {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: <Color>[
-      ArielColors.primary,
-      ArielColors.primaryLight,
+      ArielColors.gradientLight,
+      ArielColors.gradientDark,
     ],
   );
 
   final ButtonStyle buttontheme = ElevatedButton.styleFrom(
-    primary: Colors.transparent,
-    onPrimary: Colors.white,
-    onSurface: Colors.transparent,
-    shadowColor: Colors.transparent,
-    surfaceTintColor: Colors.transparent,
+    primary: ArielColors.transparent,
+    onPrimary: ArielColors.baseLight,
+    onSurface: ArielColors.transparent,
+    shadowColor: ArielColors.transparent,
+    surfaceTintColor: ArielColors.transparent,
     elevation: 0,
     textStyle: const TextStyle(
       fontFamily: 'OpenSans',

@@ -30,8 +30,8 @@ class NavigationController {
             duration: const Duration(milliseconds: 270),
             decoration: BoxDecoration(
               color: isSelected
-                  ? ArielColors.buttonSelected
-                  : ArielColors.buttonUnselected,
+                  ? ArielColors.gradientLight
+                  : ArielColors.gradientDark,
               borderRadius: const BorderRadius.all(
                 Radius.circular(8),
               ),

@@ -12,7 +12,7 @@ class NotificationButton extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 16, left: 16),
         decoration: BoxDecoration(
-          color: isDark ? ArielColors.primaryDark : ArielColors.cardBackground,
+          color: ArielColors.baseLight,
           borderRadius: const BorderRadius.all(
             Radius.circular(16),
           ),
@@ -21,7 +21,7 @@ class NotificationButton extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Icon(
             Icons.notifications_none_rounded,
-            color: isDark ? Colors.white : ArielColors.primaryDark,
+            color: ArielColors.baseDark,
             size: 32,
           ),
         ),

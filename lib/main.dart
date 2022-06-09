@@ -1,3 +1,5 @@
+import 'package:ariel_app/screens/autenticacao/auth_cadastro.dart';
+import 'package:ariel_app/screens/autenticacao/auth_login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -20,10 +22,15 @@ class ArielApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ariel',
-      home: const Introducao(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Introducao(),
+        '/login': (context) => const Login(),
+        '/cadastro': (context) => const Cadastro(),
+      },
     );
   }
 }

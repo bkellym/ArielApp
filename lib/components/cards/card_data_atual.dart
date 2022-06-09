@@ -15,7 +15,7 @@ class CardDataAtual extends StatelessWidget {
         height: 64,
         margin: const EdgeInsets.only(top: 16),
         decoration: BoxDecoration(
-          color: isDark? ArielColors.primaryDark : ArielColors.cardBackground,
+          color: ArielColors.baseLight,
           borderRadius: BorderRadius.all(
             Radius.circular(16),
           ),
@@ -27,7 +27,7 @@ class CardDataAtual extends StatelessWidget {
               child: Text(
                 now.day.toString(),
                 style: TextStyle(
-                  color: isDark ? Colors.white : ArielColors.primaryDark,
+                  color: ArielColors.baseDark,
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
@@ -39,8 +39,8 @@ class CardDataAtual extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
                     DateController.getDiaSemana(now),
-                    style:  TextStyle(
-                      color: isDark ? Colors.white : ArielColors.primaryDark,
+                    style: TextStyle(
+                      color: ArielColors.baseDark,
                       fontSize: 18,
                     ),
                   ),
@@ -50,7 +50,7 @@ class CardDataAtual extends StatelessWidget {
                   child: Text(
                     DateController.getMesAno(now),
                     style: TextStyle(
-                      color: isDark ? Colors.white : ArielColors.primaryDark,
+                      color: ArielColors.baseDark,
                       fontSize: 18,
                     ),
                   ),

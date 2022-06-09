@@ -17,11 +17,15 @@ class Introducao extends StatelessWidget {
           Image.asset('assets/images/introduction.png'),
           Carrossel(),
           BotaoPadrao(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/cadastro');
+            },
             label: "REGISTRE",
           ),
           BotaoTexto(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            },
             label: "Já tenho uma conta",
           )
         ],
