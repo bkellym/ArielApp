@@ -11,11 +11,18 @@ class Cadastro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BaseAuth(
-      login: false,
+    goToLogin() {
+      Navigator.pushNamed(context, '/login');
+    }
+
+    return BaseAuth(
       titleBold: "CRIE ",
       titleRegular: "SUA CONTA",
-      child: Material(
+      bottomText: "Já tem uma conta?",
+      bottomLabel: "Conecte-se",
+      function: goToLogin,
+      child: const Material(
+        color: ArielColors.baseLight,
         child: _FormAuthCadastro(),
       ),
     );
