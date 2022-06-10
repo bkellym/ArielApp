@@ -33,18 +33,19 @@ class _CampoextoState extends State<CampoTexto> {
       child: TextFormField(
         style: const TextStyle(
           color: ArielColors.textPrimary,
-          fontFamily: 'OpenSans',
           fontWeight: FontWeight.normal,
           fontSize: 12,
+          decoration: TextDecoration.none,
         ),
         decoration: InputDecoration(
           isDense: true,
           contentPadding: const EdgeInsets.all(10),
           hintText: widget.label,
           hintStyle: const TextStyle(
-              color: ArielColors.baseDark,
-              fontFamily: 'OpenSans',
-              fontWeight: FontWeight.normal),
+            color: ArielColors.baseDark,
+            fontWeight: FontWeight.normal,
+            decoration: TextDecoration.none,
+          ),
           fillColor: ArielColors.baseLight,
           border: const OutlineInputBorder(
             borderSide: BorderSide(color: ArielColors.baseDark),

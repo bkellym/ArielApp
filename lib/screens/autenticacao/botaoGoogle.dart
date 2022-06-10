@@ -22,7 +22,7 @@ class BotaoGoogle extends StatelessWidget {
       ),
       label: const Text(
         "Google",
-        style: TextStyle(fontSize: 12),
+        style: TextStyle(fontSize: 12, decoration: TextDecoration.none),
       ),
     );
   }
