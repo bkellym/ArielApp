@@ -1,7 +1,10 @@
+import 'package:ariel_app/models/evento_model.dart';
 import 'package:flutter/material.dart';
 
 import '../colors.dart';
-import '../components/texto.dart';
+import '../components/divisoria.dart';
+import '../components/evento.dart';
+import '../texto.dart';
 
 class Inicio extends StatelessWidget {
   const Inicio({Key? key}) : super(key: key);
@@ -116,6 +119,24 @@ class Inicio extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          Spacer(),
+          Evento(
+            evento: EventoModel(
+                titulo: "Próximo Exame",
+                tipo: "Exame de Sangue",
+                data: DateTime.utc(2022, 07, 9),
+                descricao:
+                    "Dosagem de T3, dosagem de T4, creatinina, uréia, hemograma completo",
+                cor: 0xFFFF6D7C),
+          ),
+          Evento(
+            evento: EventoModel(
+                titulo: "Próxima Consulta",
+                tipo: "Endocrinologista",
+                data: DateTime.utc(2022, 07, 10),
+                descricao: "Dr. Alberto de Sá, Clínica Dionísio Torres",
+                cor: 0xFF1DCBE0),
           ),
         ],
       ),

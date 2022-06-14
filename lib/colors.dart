@@ -22,6 +22,7 @@ class ArielColors {
   static const Color secundary = Color(0xFF905CED);
   static const Color baseDark = Color(0xFFCCCCCC);
   static const Color baseLight = Color(0xFFFFFFFF);
+  static const Color arielRed = Color(0xFFFF6D7C);
 
   // Cores externas
   static const Color googleRed = Color(0xFFDD4B39);
