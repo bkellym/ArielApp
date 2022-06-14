@@ -33,7 +33,7 @@ class ArielApp extends StatelessWidget {
         '/': (context) => const Introducao(),
         '/login': (context) => const Login(),
         '/cadastro': (context) => const Cadastro(),
-        '/inicio': (context) => const Inicio(),
+        '/inicio': (context) => Inicio(),
       },
     );
   }
