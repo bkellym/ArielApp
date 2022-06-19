@@ -30,6 +30,7 @@ class CardDataAtual extends StatelessWidget {
                   color: ArielColors.baseDark,
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.none,
                 ),
               ),
             ),
@@ -42,6 +43,7 @@ class CardDataAtual extends StatelessWidget {
                     style: TextStyle(
                       color: ArielColors.baseDark,
                       fontSize: 18,
+                      decoration: TextDecoration.none,
                     ),
                   ),
                 ),
@@ -52,6 +54,7 @@ class CardDataAtual extends StatelessWidget {
                     style: TextStyle(
                       color: ArielColors.baseDark,
                       fontSize: 18,
+                      decoration: TextDecoration.none,
                     ),
                   ),
                 ),

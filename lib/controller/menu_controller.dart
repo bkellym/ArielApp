@@ -55,6 +55,7 @@ class NavigationController {
                 color: isSelected
                     ? const Color(0xFF3A89E9)
                     : const Color(0xFFA0A3B1),
+                decoration: TextDecoration.none,
               ),
             ),
           ),

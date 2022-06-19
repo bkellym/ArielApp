@@ -22,7 +22,7 @@ class BotaoFacebook extends StatelessWidget {
       ),
       label: const Text(
         "Facebook",
-        style: TextStyle(fontSize: 12),
+        style: TextStyle(fontSize: 12, decoration: TextDecoration.none),
       ),
     );
   }

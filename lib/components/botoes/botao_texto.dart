@@ -25,9 +25,9 @@ class _BotaoTextoState extends State<BotaoTexto> {
       child: Text(
         widget.label,
         style: const TextStyle(
-          fontFamily: 'OpenSans',
           fontWeight: FontWeight.w600,
           color: ArielColors.textPrimary,
+          decoration: TextDecoration.none,
         ),
       ),
     );

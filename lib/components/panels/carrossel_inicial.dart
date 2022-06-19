@@ -58,10 +58,10 @@ class _CarrosselState extends State<Carrossel> {
                       child: Text(
                         item,
                         style: const TextStyle(
-                          fontFamily: 'OpenSans',
                           color: ArielColors.secundary,
                           fontWeight: FontWeight.w800,
                           fontSize: 20.0,
+                          decoration: TextDecoration.none,
                         ),
                       ),
                     ),
@@ -73,10 +73,10 @@ class _CarrosselState extends State<Carrossel> {
                       child: Text(
                         widget.descList[_currentIndex],
                         style: const TextStyle(
-                          fontFamily: 'OpenSans',
                           color: ArielColors.textPrimary,
                           fontWeight: FontWeight.normal,
                           fontSize: 14.0,
+                          decoration: TextDecoration.none,
                         ),
                         textAlign: TextAlign.center,
                       ),

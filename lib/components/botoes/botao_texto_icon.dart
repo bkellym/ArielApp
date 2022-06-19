@@ -32,10 +32,10 @@ class _BotaoTextoIconState extends State<BotaoTextoIcon> {
       label: Text(
         widget.label,
         style: const TextStyle(
-          fontFamily: 'OpenSans',
           fontWeight: FontWeight.normal,
           color: ArielColors.textPrimary,
           fontSize: 10,
+          decoration: TextDecoration.none,
         ),
       ),
     );
