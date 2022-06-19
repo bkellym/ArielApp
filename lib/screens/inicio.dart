@@ -1,10 +1,12 @@
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
+import 'package:ariel_app/components/grafico_principal.dart';
+import 'package:ariel_app/components/data_atual.dart';
+import 'package:ariel_app/components/destaque.dart';
 import 'package:ariel_app/models/evento_model.dart';
-import 'package:ariel_app/colors.dart';
-import 'package:ariel_app/components/divisoria.dart';
 import 'package:ariel_app/components/evento.dart';
+import 'package:ariel_app/colors.dart';
 import 'package:ariel_app/texto.dart';
 
 class Inicio extends StatelessWidget {
@@ -72,7 +74,9 @@ class Inicio extends StatelessWidget {
                           color: ArielColors.baseLight,
                         ),
                         Texto.semiBold(
-                          data: "Visto em 6 de junho de 2022",
+                          data: DateFormat(
+                                  "'Visto em 'd' de 'MMMM' de 'y", "pt_BR")
+                              .format(DateTime.parse("2022-01-18")),
                           size: 9,
                           color: ArielColors.baseLight,
                         ),
@@ -80,45 +84,7 @@ class Inicio extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      right: 16,
-                      bottom: 18,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: Texto.semiBold(
-                                data: "08",
-                                size: 34,
-                                color: ArielColors.baseLight,
-                              ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Texto.bold(
-                                  data: "JUNHO",
-                                  size: 19,
-                                  color: ArielColors.baseLight,
-                                ),
-                                Texto.semiBold(
-                                  data: "QUARTA | 2022",
-                                  size: 9,
-                                  color: ArielColors.baseLight,
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  DataAtual(),
                 ],
               ),
             ),
@@ -127,186 +93,29 @@ class Inicio extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.50,
-                child: SfCircularChart(
-                  annotations: <CircularChartAnnotation>[
-                    CircularChartAnnotation(
-                        widget: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 8,
-                          ),
-                          child: Text(
-                            'Deposteron\n2mg',
-                            style: TextStyle(
-                              color: ArielColors.textPrimary,
-                              fontSize: 8,
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 8,
-                          ),
-                          child: Text(
-                            'Faltam\n10 dias',
-                            style: TextStyle(
-                              color: ArielColors.textPrimary,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.none,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Text(
-                          'Para a próxima\naplicação',
-                          style: TextStyle(
-                            color: ArielColors.textPrimary,
-                            fontSize: 8,
-                            fontWeight: FontWeight.w500,
-                            decoration: TextDecoration.none,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ))
-                  ],
-                  series: <CircularSeries>[
-                    DoughnutSeries<double, String>(
-                      radius: '100%',
-                      innerRadius: '85%',
-                      strokeWidth: 3,
-                      strokeColor: Colors.white,
-                      dataSource: chartData,
-                      xValueMapper: (double data, _) => data.toString(),
-                      yValueMapper: (double data, _) => 1,
-                      pointColorMapper: (double data, _) => data > 0
-                          ? ArielColors.arielGreen
-                          : ArielColors.disabledGradientLight,
-                    ),
-                  ],
-                ),
+              GraficoPrincipal(
+                hormonio: "Deposteron 2mg",
+                proxAplicacao: DateTime.parse("2022-06-20"),
+                chartData: chartData,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16, top: 64),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Fase do Ciclo",
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: ArielColors.arielGreen,
-                        decoration: TextDecoration.none,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    const Destaque(
+                      titulo: "Fase do Ciclo",
+                      valor: "1ª aplicação de 6",
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8, bottom: 8),
-                      child: Row(
-                        children: const [
-                          Text(
-                            "| ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: ArielColors.arielGreen,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          Text(
-                            "1ª Aplicação de 6",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: ArielColors.textPrimary,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
-                      ),
+                    Destaque(
+                      titulo: "Próxima aplicação",
+                      valor: DateFormat("dd/MM/y", "pt_BR")
+                          .format(DateTime.parse("2022-06-20")),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8),
-                      child: Text(
-                        "Próxima aplicação",
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: ArielColors.arielGreen,
-                          decoration: TextDecoration.none,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8, bottom: 8),
-                      child: Row(
-                        children: const [
-                          Text(
-                            "| ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: ArielColors.arielGreen,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          Text(
-                            "20/06/2022",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: ArielColors.textPrimary,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8),
-                      child: Text(
-                        "Ultima aplicação",
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: ArielColors.arielGreen,
-                          decoration: TextDecoration.none,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 8),
-                      child: Row(
-                        children: const [
-                          Text(
-                            "| ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: ArielColors.arielGreen,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          Text(
-                            "04/06/2022",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: ArielColors.textPrimary,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
-                      ),
+                    Destaque(
+                      titulo: "Ultima aplicação",
+                      valor: DateFormat("dd/MM/y", "pt_BR")
+                          .format(DateTime.parse("2022-06-04")),
                     ),
                   ],
                 ),
