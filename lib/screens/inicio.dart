@@ -9,6 +9,8 @@ import 'package:ariel_app/components/evento.dart';
 import 'package:ariel_app/colors.dart';
 import 'package:ariel_app/texto.dart';
 
+import '../components/menus/menu_navegation.dart';
+
 class Inicio extends StatelessWidget {
   Inicio({Key? key}) : super(key: key);
 
@@ -140,6 +142,7 @@ class Inicio extends StatelessWidget {
                 descricao: "Dr. Alberto de Sá, Clínica Dionísio Torres",
                 cor: 0xFF1DCBE0),
           ),
+          MenuNavegacao(1)
         ],
       ),
     );
