@@ -30,6 +30,7 @@ class CardTimeline extends StatelessWidget {
                 color: item.dark ? Colors.white : const Color(0xFF1B569C),
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+                decoration: TextDecoration.none,
               ),
             ),
             Text(
@@ -38,6 +39,7 @@ class CardTimeline extends StatelessWidget {
                 color: item.dark ? Colors.white : const Color(0xFF1B569C),
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+                decoration: TextDecoration.none,
               ),
             )
           ],
@@ -47,6 +49,7 @@ class CardTimeline extends StatelessWidget {
           style: TextStyle(
             color: item.dark ? Colors.white : const Color(0xFF1B569C),
             fontWeight: FontWeight.bold,
+            decoration: TextDecoration.none,
           ),
         ),
         subtitle: Text(
@@ -54,6 +57,7 @@ class CardTimeline extends StatelessWidget {
           style: TextStyle(
             color: item.dark ? Colors.white : const Color(0xFF656565),
             fontSize: 12,
+            decoration: TextDecoration.none,
           ),
         ),
         trailing: Icon(
@@ -67,7 +71,7 @@ class CardTimeline extends StatelessWidget {
         ),
         isThreeLine: item.alto,
         tileColor:
-        item.dark ? const Color(0xFF1B569C) : const Color(0xFFE2EDFF),
+            item.dark ? const Color(0xFF1B569C) : const Color(0xFFE2EDFF),
       ),
     );
   }

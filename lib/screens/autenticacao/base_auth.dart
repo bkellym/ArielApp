@@ -12,7 +12,6 @@ class _TitleStyle extends TextStyle {
   const _TitleStyle({
     required this.weight,
   }) : super(
-          fontFamily: 'OpenSans',
           color: ArielColors.secundary,
           fontWeight: weight,
           fontSize: 18.0,
@@ -139,10 +138,11 @@ class BaseAuth extends StatelessWidget {
                       child: Text(
                         "ou",
                         style: TextStyle(
-                            color: ArielColors.textPrimary,
-                            fontSize: 12,
-                            fontFamily: 'OpenSans',
-                            fontWeight: FontWeight.w600),
+                          color: ArielColors.textPrimary,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          decoration: TextDecoration.none,
+                        ),
                       ),
                     ),
                     child,
@@ -158,10 +158,10 @@ class BaseAuth extends StatelessWidget {
                           Text(
                             bottomText,
                             style: const TextStyle(
-                              fontFamily: 'OpenSans',
                               fontWeight: FontWeight.normal,
                               color: ArielColors.textPrimary,
                               fontSize: 14,
+                              decoration: TextDecoration.none,
                             ),
                           ),
                           BotaoTexto(

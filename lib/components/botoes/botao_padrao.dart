@@ -43,8 +43,8 @@ class BotaoPadrao extends StatefulWidget {
     surfaceTintColor: ArielColors.transparent,
     elevation: 0,
     textStyle: const TextStyle(
-      fontFamily: 'OpenSans',
       fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none,
     ),
   );
 

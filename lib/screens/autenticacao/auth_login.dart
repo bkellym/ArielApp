@@ -55,7 +55,9 @@ class _FormAuthLoginState extends State<_FormAuthLogin> {
             rightPadding: 24,
           ),
           BotaoPadrao(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/inicio');
+            },
             label: "ENTRAR",
           ),
           BotaoTexto(
