@@ -1,4 +1,4 @@
-import 'package:ariel_app/colors.dart';
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ariel_app/models/button_menu.dart';

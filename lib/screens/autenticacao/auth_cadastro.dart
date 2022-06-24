@@ -1,4 +1,4 @@
-import 'package:ariel_app/colors.dart';
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/components/botoes/botao_padrao.dart';
 import 'package:ariel_app/main.dart';
 import 'package:flutter/material.dart';

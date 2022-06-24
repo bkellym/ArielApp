@@ -6,10 +6,11 @@ import 'package:ariel_app/components/data_atual.dart';
 import 'package:ariel_app/components/destaque.dart';
 import 'package:ariel_app/models/evento_model.dart';
 import 'package:ariel_app/components/evento.dart';
-import 'package:ariel_app/colors.dart';
-import 'package:ariel_app/texto.dart';
+import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/texto.dart';
 
 import '../components/menus/menu_navegation.dart';
+import '../core/util/size_config.dart';
 
 class Inicio extends StatelessWidget {
   Inicio({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class Inicio extends StatelessWidget {
               ),
             ),
             child: SizedBox(
-              height: 110,
+              height: SizeConfig.of(context).dynamicScaleSize(size: 100),
               child: Row(
                 children: [
                   Padding(
@@ -70,17 +71,21 @@ class Inicio extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Texto.bold(
-                          data: "Keller",
+                        const Texto(
+                          "Keller",
                           size: 18,
                           color: ArielColors.baseLight,
+                          fontWeight: Weight.bold,
                         ),
-                        Texto.semiBold(
-                          data: DateFormat(
-                                  "'Visto em 'd' de 'MMMM' de 'y", "pt_BR")
-                              .format(DateTime.parse("2022-01-18")),
-                          size: 9,
-                          color: ArielColors.baseLight,
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.33,
+                          child: Texto(
+                            DateFormat("'Visto em 'd' de 'MMMM' de 'y", "pt_BR")
+                                .format(DateTime.parse("2022-01-18")),
+                            size: 9,
+                            color: ArielColors.baseLight,
+                            fontWeight: Weight.bold,
+                          ),
                         ),
                       ],
                     ),
@@ -101,7 +106,7 @@ class Inicio extends StatelessWidget {
                 chartData: chartData,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 16, top: 64),
+                padding: const EdgeInsets.only(left: 16, top: 32),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:ariel_app/texto.dart';
-import 'package:ariel_app/colors.dart';
+import 'package:ariel_app/core/util/texto.dart';
+import 'package:ariel_app/core/util/colors.dart';
 
 class DataAtual extends StatelessWidget {
   final DateTime now = DateTime.now();
@@ -26,26 +26,28 @@ class DataAtual extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: Texto.semiBold(
-                  data: now.day.toString(),
-                  size: 34,
+                child: Texto(
+                  now.day.toString(),
+                  size: 32,
                   color: ArielColors.baseLight,
+                  fontWeight: Weight.semibold,
                 ),
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Texto.bold(
-                    data: DateFormat("MMMM", "pt_BR").format(now).toUpperCase(),
+                  Texto(
+                    DateFormat("MMMM", "pt_BR").format(now).toUpperCase(),
                     size: 19,
                     color: ArielColors.baseLight,
+                    fontWeight: Weight.bold,
                   ),
-                  Texto.semiBold(
-                    data: DateFormat("EEEE | y", "pt_BR")
-                        .format(now)
-                        .toUpperCase(),
+                  Texto(
+                    DateFormat("E | y", "pt_BR").format(now).toUpperCase(),
                     size: 9,
                     color: ArielColors.baseLight,
+                    fontWeight: Weight.semibold,
                   ),
                 ],
               )

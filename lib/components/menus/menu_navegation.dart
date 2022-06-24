@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:ariel_app/controller/menu_controller.dart';
 
+import '../../core/util/size_config.dart';
+
 class MenuNavegacao extends StatefulWidget {
   final int selectedIndex;
 
@@ -26,16 +28,17 @@ class _MenuNavegacaoState extends State<MenuNavegacao> {
           right: 12,
         ),
         decoration: const BoxDecoration(color: Colors.white),
-        height: 80,
+        height: SizeConfig.of(context).dynamicScaleSize(size: 70),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Container(child:
             BotaoMenu(
               icon: const Icon(Icons.home_outlined),
               label: "Início",
               disabled: widget.selectedIndex != 1,
               onPressed: () {},
-            ),
+            ),),
             BotaoMenu(
               icon: const Icon(Icons.sync_outlined),
               label: "Ciclos",
