@@ -61,7 +61,9 @@ class _FormAuthCadastroState extends State<_FormAuthCadastro> {
             rightPadding: 24,
           ),
           BotaoPadrao(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/cadastroCompleto');
+            },
             label: "CRIAR CONTA",
           ),
         ],

@@ -1,10 +1,12 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'firebase_options.dart';
 
 import 'package:ariel_app/screens/autenticacao/auth_cadastro.dart';
 import 'package:ariel_app/screens/autenticacao/auth_login.dart';
+import 'package:ariel_app/screens/cadastro_completo.dart';
 import 'package:ariel_app/screens/introducao.dart';
 import 'package:ariel_app/screens/inicio.dart';
 
