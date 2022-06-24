@@ -1,3 +1,4 @@
+import 'package:ariel_app/screens/cadastro_completo.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:ariel_app/screens/autenticacao/auth_cadastro.dart';
@@ -11,5 +12,6 @@ class ArielAppRoutes {
     '/login': (context) => const Login(),
     '/cadastro': (context) => const Cadastro(),
     '/inicio': (context) => Inicio(),
+    '/CadastroCompleto': (context) => const CadastroCompleto()
   };
 }

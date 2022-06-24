@@ -8,12 +8,16 @@ class CampoTexto extends StatefulWidget {
   final double leftPadding;
   final double rightPadding;
   final double bottomPadding;
+  final bool obscureText;
+  final TextEditingController? controller;
 
   const CampoTexto({
     Key? key,
     required this.label,
+    required this.controller,
     this.leftPadding = 8,
     this.rightPadding = 8,
+    this.obscureText = false,
     this.bottomPadding = 16,
   }) : super(key: key);
 
@@ -31,6 +35,8 @@ class _CampoextoState extends State<CampoTexto> {
         bottom: widget.bottomPadding,
       ),
       child: TextFormField(
+        controller: widget.controller,
+        obscureText: widget.obscureText,
         style: const TextStyle(
           color: ArielColors.textPrimary,
           fontWeight: FontWeight.normal,

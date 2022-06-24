@@ -53,10 +53,9 @@ class _FormAuthLoginState extends State<_FormAuthLogin> {
       final user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: senha);
       if(user != null){
         _senha.text = "";
-        final currentuser = FirebaseAuth.instance.currentUser;
         Navigator.pushNamed(context, '/inicio');
       }
-      print("Login com sucesso! Uid: ${user.user?.uid}, Nome: user.");
+      print("Login com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");
     } catch (e) {
       print('Error: ${e.toString()}');
       final snackBar = SnackBar(
@@ -80,70 +79,18 @@ class _FormAuthLoginState extends State<_FormAuthLogin> {
       key: _formKey,
       child: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 24,
-              right: 24,
-              bottom: 16
-            ),
-            child: TextFormField(
-              controller: _email,
-              style: const TextStyle(
-                color: ArielColors.textPrimary,
-                fontWeight: FontWeight.normal,
-                fontSize: 12,
-                decoration: TextDecoration.none,
-              ),
-              decoration: const InputDecoration(
-                isDense: true,
-                contentPadding: EdgeInsets.all(10),
-                hintText: "Email",
-                hintStyle: TextStyle(
-                  color: ArielColors.baseDark,
-                  fontWeight: FontWeight.normal,
-                  decoration: TextDecoration.none,
-                ),
-                fillColor: ArielColors.baseLight,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: ArielColors.baseDark),
-                ),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: ArielColors.secundary)),
-              ),
-            ),
+          CampoTexto(
+            controller: _email,
+            label: 'Email',
+            leftPadding: 24,
+            rightPadding: 24,
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 24,
-                right: 24,
-                bottom: 16
-            ),
-            child: TextFormField(
-              controller: _senha,
-              obscureText: true,
-              style: const TextStyle(
-                color: ArielColors.textPrimary,
-                fontWeight: FontWeight.normal,
-                fontSize: 12,
-                decoration: TextDecoration.none,
-              ),
-              decoration: const InputDecoration(
-                isDense: true,
-                contentPadding: EdgeInsets.all(10),
-                hintText: "Senha",
-                hintStyle: TextStyle(
-                  color: ArielColors.baseDark,
-                  fontWeight: FontWeight.normal,
-                  decoration: TextDecoration.none,
-                ),
-                fillColor: ArielColors.baseLight,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: ArielColors.baseDark),
-                ),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: ArielColors.secundary)),
-              ),
-            ),
+          CampoTexto(
+            controller: _senha,
+            obscureText: true,
+            label: 'Senha',
+            leftPadding: 24,
+            rightPadding: 24,
           ),
           BotaoPadrao(
             onPressed: () {
