@@ -16,10 +16,9 @@ class DataAtual extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(
         right: 16,
-        bottom: 18,
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
