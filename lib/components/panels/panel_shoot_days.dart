@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:ariel_app/colors.dart';
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/components/cards/card_data_atual.dart';
 import 'package:ariel_app/components/cards/card_notifications.dart';
 

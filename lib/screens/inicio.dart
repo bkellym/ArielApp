@@ -1,20 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
+import 'package:ariel_app/components/menus/menu_navegation.dart';
 import 'package:ariel_app/components/grafico_principal.dart';
 import 'package:ariel_app/components/data_atual.dart';
+import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/components/destaque.dart';
 import 'package:ariel_app/models/evento_model.dart';
 import 'package:ariel_app/components/evento.dart';
-import 'package:ariel_app/colors.dart';
-import 'package:ariel_app/texto.dart';
-
-import '../components/menus/menu_navegation.dart';
+import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/texto.dart';
 
 class Inicio extends StatelessWidget {
   Inicio({Key? key}) : super(key: key);
 
-  final List<double> chartData = [1, 0, 0, 0, 0, 0];
+  final List<double> chartData = [1, 1, 0, 0, 0, 0];
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +38,14 @@ class Inicio extends StatelessWidget {
               ),
             ),
             child: SizedBox(
-              height: 110,
+              height: SizeConfig.of(context).dynamicScaleSize(size: 100),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 16, bottom: 16),
+                    padding: const EdgeInsets.only(left: 16),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           width: 48.0,
@@ -65,22 +68,16 @@ class Inicio extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8, bottom: 24),
+                    padding: const EdgeInsets.only(left: 16),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Texto.bold(
-                          data: "Keller",
+                        Texto(
+                          user?.displayName ?? "",
                           size: 18,
                           color: ArielColors.baseLight,
-                        ),
-                        Texto.semiBold(
-                          data: DateFormat(
-                                  "'Visto em 'd' de 'MMMM' de 'y", "pt_BR")
-                              .format(DateTime.parse("2022-01-18")),
-                          size: 9,
-                          color: ArielColors.baseLight,
+                          fontWeight: Weight.bold,
                         ),
                       ],
                     ),
@@ -97,27 +94,27 @@ class Inicio extends StatelessWidget {
             children: [
               GraficoPrincipal(
                 hormonio: "Deposteron 2mg",
-                proxAplicacao: DateTime.parse("2022-06-20"),
+                proxAplicacao: DateTime.parse("2022-07-11"),
                 chartData: chartData,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 16, top: 64),
+                padding: const EdgeInsets.only(left: 16, top: 32),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Destaque(
                       titulo: "Fase do Ciclo",
-                      valor: "1ª aplicação de 6",
+                      valor: "2ª aplicação de 6",
                     ),
                     Destaque(
                       titulo: "Próxima aplicação",
                       valor: DateFormat("dd/MM/y", "pt_BR")
-                          .format(DateTime.parse("2022-06-20")),
+                          .format(DateTime.parse("2022-07-11")),
                     ),
                     Destaque(
                       titulo: "Ultima aplicação",
                       valor: DateFormat("dd/MM/y", "pt_BR")
-                          .format(DateTime.parse("2022-06-04")),
+                          .format(DateTime.parse("2022-06-20")),
                     ),
                   ],
                 ),

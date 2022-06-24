@@ -4,9 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:ariel_app/models/evento_model.dart';
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../core/util/colors.dart';
 import '../components/divisoria.dart';
-import '../texto.dart';
+import '../core/util/texto.dart';
 import 'botoes/botao_sec_preenchido.dart';
 
 class Evento extends StatelessWidget {
@@ -26,10 +26,11 @@ class Evento extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 8),
-            child: Texto.bold(
-              data: evento.titulo.toUpperCase(),
+            child: Texto(
+              evento.titulo.toUpperCase(),
               size: 11,
               color: Color(evento.cor),
+              fontWeight: Weight.bold,
             ),
           ),
           Divisoria(cor: Color(evento.cor)),
@@ -54,14 +55,16 @@ class Evento extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Texto.bold(
-                                data: "Tipo",
+                              Texto(
+                                "Tipo",
                                 size: 9,
                                 color: Color(evento.cor),
+                                fontWeight: Weight.bold,
                               ),
-                              Texto.bold(
-                                data: evento.tipo,
+                              Texto(
+                                evento.tipo,
                                 size: 9,
+                                fontWeight: Weight.bold,
                               ),
                             ],
                           ),
@@ -71,16 +74,18 @@ class Evento extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Texto.bold(
-                                data: "Data",
+                              Texto(
+                                "Data",
                                 size: 9,
                                 color: Color(evento.cor),
+                                fontWeight: Weight.bold,
                               ),
-                              Texto.bold(
-                                data: DateFormat("'|' dd/MM/yyyy")
+                              Texto(
+                                DateFormat("'|' dd/MM/yyyy")
                                     .format(evento.data)
                                     .toString(),
                                 size: 9,
+                                fontWeight: Weight.bold,
                               ),
                             ],
                           ),
@@ -90,14 +95,16 @@ class Evento extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Texto.bold(
-                                data: "Horário",
+                              Texto(
+                                "Horário",
                                 size: 9,
                                 color: Color(evento.cor),
+                                fontWeight: Weight.bold,
                               ),
-                              Texto.bold(
-                                data: "| 08:00h",
+                              const Texto(
+                                "| 08:00h",
                                 size: 9,
+                                fontWeight: Weight.bold,
                               ),
                             ],
                           ),
@@ -111,9 +118,10 @@ class Evento extends StatelessWidget {
                       color: Color(evento.cor - 0xDD000000),
                       padding: const EdgeInsets.all(5),
                       width: MediaQuery.of(context).size.width * 0.58,
-                      child: Texto.regular(
-                        data: evento.descricao,
+                      child: Texto(
+                        evento.descricao,
                         size: 9,
+                        fontWeight: Weight.regular,
                       ),
                     ),
                   ),

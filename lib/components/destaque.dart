@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:ariel_app/colors.dart';
+import 'package:ariel_app/core/util/colors.dart';
 
 class Destaque extends StatelessWidget {
   final String titulo;

@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "firebase": "^9.8.2"
+  },
+  "devDependencies": {
+    "gradle": "^1.2.4"
   }
 }

@@ -2,7 +2,7 @@ import 'package:ariel_app/components/botoes/botao_texto.dart';
 import 'package:ariel_app/screens/autenticacao/botaoFacebook.dart';
 import 'package:flutter/material.dart';
 
-import '../../colors.dart';
+import '../../core/util/colors.dart';
 import '../../components/botoes/botao_texto_icon.dart';
 import 'botaoGoogle.dart';
 
