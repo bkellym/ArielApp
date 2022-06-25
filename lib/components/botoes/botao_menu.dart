@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:ariel_app/colors.dart';
+import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/texto.dart';
 import 'package:flutter/material.dart';
 
 class BotaoMenu extends StatefulWidget {
@@ -16,7 +17,7 @@ class BotaoMenu extends StatefulWidget {
     required this.label,
     required this.onPressed,
     this.disabled = false,
-    this.internalPadding = 0,
+    this.internalPadding = 8,
   }) : super(key: key);
 
   final LinearGradient gradient = const LinearGradient(
@@ -81,7 +82,7 @@ class _BotaoMenuState extends State<BotaoMenu> {
                   left: widget.internalPadding,
                   right: widget.internalPadding,
                 ),
-                child: Text(widget.label),
+                child: Texto(widget.label, size: 11, color: ArielColors.baseLight,),
               ),
             ],
           ),

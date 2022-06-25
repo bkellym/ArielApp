@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:ariel_app/controller/menu_controller.dart';
 
+import '../../core/util/size_config.dart';
+
 class MenuNavegacao extends StatefulWidget {
   final int selectedIndex;
 
@@ -19,6 +21,8 @@ class MenuNavegacao extends StatefulWidget {
 class _MenuNavegacaoState extends State<MenuNavegacao> {
   @override
   Widget build(BuildContext context) {
+    final altura = SizeConfig.of(context).dynamicScaleSize(size: 70);
+
     return ClipRRect(
       child: Container(
         padding: const EdgeInsets.only(
@@ -26,33 +30,42 @@ class _MenuNavegacaoState extends State<MenuNavegacao> {
           right: 12,
         ),
         decoration: const BoxDecoration(color: Colors.white),
-        height: 80,
+        height: altura,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            BotaoMenu(
-              icon: const Icon(Icons.home_outlined),
-              label: "Início",
-              disabled: widget.selectedIndex != 1,
-              onPressed: () {},
+            Container(
+              height: altura * (widget.selectedIndex == 1 ? 1 : 0.9),
+              child: BotaoMenu(
+                icon: const Icon(Icons.home_outlined),
+                label: "Início",
+                onPressed: () {},
+              ),
             ),
-            BotaoMenu(
-              icon: const Icon(Icons.sync_outlined),
-              label: "Ciclos",
-              disabled: widget.selectedIndex != 2,
-              onPressed: () {},
+            Container(
+              height: altura * (widget.selectedIndex == 2 ? 1 : 0.9),
+              child: BotaoMenu(
+                icon: const Icon(Icons.sync_outlined),
+                label: "Ciclos",
+                onPressed: () {},
+              ),
             ),
-            BotaoMenu(
-              icon: const Icon(Icons.bookmarks_outlined),
-              label: "Exames e\nConsultas",
-              disabled: widget.selectedIndex != 3,
-              onPressed: () {},
+            Container(
+              height: altura * (widget.selectedIndex == 3 ? 1 : 0.9),
+              child: BotaoMenu(
+                icon: const Icon(Icons.bookmarks_outlined),
+                label: "Exames e\nConsultas",
+                onPressed: () {},
+              ),
             ),
-            BotaoMenu(
-              icon: const Icon(Icons.person),
-              label: "Perfil",
-              disabled: widget.selectedIndex != 4,
-              onPressed: () {},
+            Container(
+              height: altura * (widget.selectedIndex == 4 ? 1 : 0.9),
+              child: BotaoMenu(
+                icon: const Icon(Icons.person),
+                label: "Perfil",
+                onPressed: () {},
+              ),
             ),
           ],
         ),

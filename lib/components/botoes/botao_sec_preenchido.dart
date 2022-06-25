@@ -2,7 +2,7 @@
 
 import 'dart:collection';
 
-import 'package:ariel_app/colors.dart';
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class BtSecPreenchido extends StatefulWidget {
