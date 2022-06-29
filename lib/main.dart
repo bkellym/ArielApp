@@ -10,6 +10,8 @@ import 'package:ariel_app/screens/introducao.dart';
 import 'package:ariel_app/ariel_app_routes.dart';
 import 'package:ariel_app/screens/inicio.dart';
 
+final Locale myLocale = new Locale("pt", "BR");
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -34,9 +36,10 @@ class ArielApp extends StatelessWidget {
       routes: ArielAppRoutes.routes,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('pt', 'BR')],
+      supportedLocales: [myLocale],
       debugShowCheckedModeBanner: false,
     );
   }

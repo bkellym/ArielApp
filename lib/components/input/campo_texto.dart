@@ -4,7 +4,7 @@ import 'package:ariel_app/core/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class CampoTexto extends StatefulWidget {
-  final String label;
+  final String? label;
   final double leftPadding;
   final double rightPadding;
   final double bottomPadding;
@@ -13,8 +13,8 @@ class CampoTexto extends StatefulWidget {
 
   const CampoTexto({
     Key? key,
-    required this.label,
     required this.controller,
+    this.label,
     this.leftPadding = 8,
     this.rightPadding = 8,
     this.obscureText = false,

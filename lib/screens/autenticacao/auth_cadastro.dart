@@ -50,10 +50,10 @@ class _FormAuthCadastroState extends State<_FormAuthCadastro> {
 
   void doCadastro(BuildContext context) async{
     try{
-      final user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: senha);
+      var user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: senha);
       if(user != null) {
         _senha.text = "";
-        user.user?.updateDisplayName(nome);
+        await user.user?.updateDisplayName(nome);
         Navigator.pushNamed(context, '/CadastroCompleto');
       }
       print("Cadastro com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");

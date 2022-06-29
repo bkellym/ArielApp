@@ -12,6 +12,6 @@ class ArielAppRoutes {
     '/login': (context) => const Login(),
     '/cadastro': (context) => const Cadastro(),
     '/inicio': (context) => Inicio(),
-    '/CadastroCompleto': (context) => const CadastroCompleto()
+    '/CadastroCompleto': (context) => CadastroCompleto()
   };
 }

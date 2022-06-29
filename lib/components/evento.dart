@@ -101,7 +101,7 @@ class Evento extends StatelessWidget {
                                 color: Color(evento.cor),
                                 fontWeight: Weight.bold,
                               ),
-                              const Texto(
+                              Texto(
                                 "| 08:00h",
                                 size: 9,
                                 fontWeight: Weight.bold,

@@ -17,7 +17,6 @@ class Inicio extends StatelessWidget {
 
   final List<double> chartData = [1, 1, 0, 0, 0, 0];
   final user = FirebaseAuth.instance.currentUser;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -58,8 +57,8 @@ class Inicio extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: Image.asset(
-                                'assets/images/foto.jpg',
+                              image: Image.network(
+                                user?.photoURL! ?? "",
                               ).image,
                             ),
                           ),
