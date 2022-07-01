@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CampoTexto extends StatefulWidget {
@@ -11,6 +12,7 @@ class CampoTexto extends StatefulWidget {
   final bool obscureText;
   final int maxLines;
   final TextEditingController? controller;
+  final TextInputType? textInputType;
 
   const CampoTexto({
     Key? key,
@@ -21,6 +23,7 @@ class CampoTexto extends StatefulWidget {
     this.obscureText = false,
     this.bottomPadding = 16,
     this.maxLines = 1,
+    this.textInputType = TextInputType.text,
   }) : super(key: key);
 
   @override
@@ -32,23 +35,27 @@ class _CampoextoState extends State<CampoTexto> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: widget.leftPadding,
-        right: widget.rightPadding,
-        bottom: widget.bottomPadding,
+        left: SizeConfig.of(context).dynamicScaleSize(size: widget.leftPadding),
+        right:
+            SizeConfig.of(context).dynamicScaleSize(size: widget.rightPadding),
+        bottom:
+            SizeConfig.of(context).dynamicScaleSize(size: widget.bottomPadding),
       ),
       child: TextFormField(
+        keyboardType: widget.textInputType,
         maxLines: widget.maxLines,
         controller: widget.controller,
         obscureText: widget.obscureText,
-        style: const TextStyle(
+        style: TextStyle(
           color: ArielColors.textPrimary,
           fontWeight: FontWeight.normal,
-          fontSize: 12,
+          fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
           decoration: TextDecoration.none,
         ),
         decoration: InputDecoration(
           isDense: true,
-          contentPadding: const EdgeInsets.all(10),
+          contentPadding:
+              EdgeInsets.all(SizeConfig.of(context).dynamicScaleSize(size: 10)),
           hintText: widget.label,
           hintStyle: const TextStyle(
             color: ArielColors.baseDark,

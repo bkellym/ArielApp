@@ -41,31 +41,49 @@ class Inicio extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
+                  user?.photoURL != null && user?.photoURL != ""
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 48.0,
+                                height: 48.0,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: ArielColors.baseLight,
+                                    width: 3.0,
+                                  ),
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: Image.network(
+                                      user?.photoURL! ?? "",
+                                    ).image,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container(
                           width: 48.0,
                           height: 48.0,
                           decoration: BoxDecoration(
+                            color: ArielColors.arielGreen,
                             border: Border.all(
-                              color: ArielColors.baseLight,
-                              width: 3.0,
-                            ),
+                                width: 3.0, color: ArielColors.baseLight),
                             shape: BoxShape.circle,
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: Image.network(
-                                user?.photoURL! ?? "",
-                              ).image,
+                          ),
+                          child: Center(
+                            child: Texto(
+                              user?.displayName?.substring(0, 1) ?? "",
+                              color: ArielColors.baseLight,
+                              size: 20,
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16),
                     child: Column(
