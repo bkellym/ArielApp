@@ -2,8 +2,6 @@
 import 'package:ariel_app/components/botoes/botao_menu.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ariel_app/controller/menu_controller.dart';
-
 import '../../core/util/size_config.dart';
 
 class MenuNavegacao extends StatefulWidget {

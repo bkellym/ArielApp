@@ -67,20 +67,25 @@ class Inicio extends StatelessWidget {
                             ],
                           ),
                         )
-                      : Container(
-                          width: 48.0,
-                          height: 48.0,
-                          decoration: BoxDecoration(
-                            color: ArielColors.arielGreen,
-                            border: Border.all(
-                                width: 3.0, color: ArielColors.baseLight),
-                            shape: BoxShape.circle,
+                      : Padding(
+                          padding: EdgeInsets.only(
+                            left: 16,
                           ),
-                          child: Center(
-                            child: Texto(
-                              user?.displayName?.substring(0, 1) ?? "",
-                              color: ArielColors.baseLight,
-                              size: 20,
+                          child: Container(
+                            width: 48.0,
+                            height: 48.0,
+                            decoration: BoxDecoration(
+                              color: ArielColors.arielGreen,
+                              border: Border.all(
+                                  width: 3.0, color: ArielColors.baseLight),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: Texto(
+                                user?.displayName?.substring(0, 1) ?? "",
+                                color: ArielColors.baseLight,
+                                size: 20,
+                              ),
                             ),
                           ),
                         ),

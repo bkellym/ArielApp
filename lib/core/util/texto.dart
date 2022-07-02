@@ -22,6 +22,7 @@ class Texto extends StatelessWidget {
     return Text(
       data,
       style: TextStyle(
+        letterSpacing: 0,
         fontWeight: fontWeight,
         decoration: TextDecoration.none,
         color: color,

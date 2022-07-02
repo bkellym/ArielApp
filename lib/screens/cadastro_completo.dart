@@ -7,6 +7,7 @@ import 'package:ariel_app/components/input/campo_imagem.dart';
 import 'package:ariel_app/components/input/campo_radio.dart';
 import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:ariel_app/components/mensagem_erro.dart';
+import 'package:ariel_app/controller/resultado_exame_controller.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -42,9 +43,8 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
   final TextEditingController _apresentacao = TextEditingController();
   final TextEditingController _qtd_ciclo = TextEditingController();
   final TextEditingController _ult_aplicacao = TextEditingController();
-  final TextEditingController _tipExame = TextEditingController();
-  final TextEditingController _dosagemExam = TextEditingController();
-  final TextEditingController _nomeExam = TextEditingController();
+
+  final resultExame = ResultadoExameController();
 
   String date = "Not set";
   DateTime selectedDate = DateTime.now();
@@ -428,7 +428,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           CampoTexto(
-                            controller: _medicamento,
+                            controller: resultExame.nome,
                             label: '',
                             leftPadding: 24,
                             rightPadding: 24,
@@ -462,7 +462,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                           width: SizeConfig.of(context)
                                               .dynamicScaleSize(size: 90),
                                           child: CampoTexto(
-                                            controller: _medicamento,
+                                            controller: resultExame.dosagem,
                                             textInputType: TextInputType.number,
                                             label: '',
                                             leftPadding: 0,
@@ -491,7 +491,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                         bottom: 8,
                                       ),
                                       child: Texto(
-                                        "DATA DA ÚLTIMA APLICAÇÃO",
+                                        "DATA DO EXAME",
                                         size: 12,
                                         color: ArielColors.secundary,
                                         fontWeight: Weight.regular,
@@ -504,7 +504,9 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                         bottom: 8,
                                       ),
                                       onSaved: (val) {
-                                        _dataNascimento.text = val!;
+                                        print("Data do Exame: VAL = $val");
+                                        resultExame.data = val;
+                                        print("Data do Exame: Data Exame = ${resultExame.data.text}");
                                       },
                                     ),
                                   ],
@@ -518,11 +520,12 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               var urlImage = await uploadFile();
                               widget.user?.updatePhotoURL(urlImage);
                               widget.user?.updateDisplayName(_nome.text);
-
                               await ref.set({
                                 "genero": _genero.text,
                                 "data_de_nascimento": _dataNascimento.text,
                               });
+
+                              resultExame.salvar();
 
                               Navigator.pushNamed(context, '/inicio');
                             },
@@ -538,17 +541,5 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
         ),
       ),
     );
-  }
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: widget.selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != widget.selectedDate)
-      setState(() {
-        widget.selectedDate = picked;
-      });
   }
 }

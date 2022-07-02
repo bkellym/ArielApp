@@ -38,7 +38,7 @@ class _CampoDataState extends State<CampoData> {
         ),
         decoration: const InputDecoration(
           suffixIcon: Icon(
-            Icons.keyboard_arrow_down,
+            Icons.calendar_month,
             color: ArielColors.secundary,
           ),
           isDense: true,
@@ -50,7 +50,9 @@ class _CampoDataState extends State<CampoData> {
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: ArielColors.secundary)),
         ),
-        onSaved: widget.onSaved,
+        onChanged: (val) {
+          widget.onSaved!(val);
+        },
       ),
     );
   }
