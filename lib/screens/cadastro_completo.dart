@@ -7,6 +7,7 @@ import 'package:ariel_app/components/input/campo_imagem.dart';
 import 'package:ariel_app/components/input/campo_radio.dart';
 import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:ariel_app/components/mensagem_erro.dart';
+import 'package:ariel_app/controller/ciclo_controller.dart';
 import 'package:ariel_app/controller/resultado_exame_controller.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
@@ -45,6 +46,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
   final TextEditingController _ult_aplicacao = TextEditingController();
 
   final resultExame = ResultadoExameController();
+  final ciclo = CicloController();
 
   String date = "Not set";
   DateTime selectedDate = DateTime.now();
@@ -73,6 +75,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
     _nome.text = widget.user?.displayName ?? "";
     _email.text = widget.user?.email ?? "";
     _dataNascimento.text = selectedDate.toString();
+    _ult_aplicacao.text = DateTime.parse('2000-01-01').toString();
 
     List<Map> generos = [
       {'id': 'M', 'titulo': 'Masculino'},
@@ -80,15 +83,15 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
       {'id': 'N', 'titulo': 'Não-Binário'},
     ];
 
-    return Expanded(
-      child: Material(
-        color: ArielColors.baseLight,
-        child: ListView(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                color: ArielColors.baseLight,
-              ),
+    return Material(
+      color: ArielColors.baseLight,
+      child: ListView(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              color: ArielColors.baseLight,
+            ),
+            child: Expanded(
               child: Column(
                 children: [
                   DecoratedBox(
@@ -167,7 +170,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               "NOME",
                               size: 12,
                               color: ArielColors.secundary,
-                              fontWeight: Weight.regular,
+                              fontWeight: Weight.semibold,
                             ),
                           ),
                           CampoTexto(
@@ -185,7 +188,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               "E-MAIL",
                               size: 12,
                               color: ArielColors.secundary,
-                              fontWeight: Weight.regular,
+                              fontWeight: Weight.semibold,
                             ),
                           ),
                           CampoTexto(
@@ -203,18 +206,16 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               "DATA DE NASCIMENTO",
                               size: 12,
                               color: ArielColors.secundary,
-                              fontWeight: Weight.regular,
+                              fontWeight: Weight.semibold,
                             ),
                           ),
                           CampoData(
+                            controller: _ult_aplicacao,
                             padding: const EdgeInsets.only(
                               left: 24,
                               right: 24,
                               bottom: 8,
                             ),
-                            onSaved: (val) {
-                              _dataNascimento.text = val!;
-                            },
                           ),
                           CampoRadio(
                             valores: generos,
@@ -231,7 +232,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               "SUA HISTÓRIA",
                               size: 12,
                               color: ArielColors.secundary,
-                              fontWeight: Weight.regular,
+                              fontWeight: Weight.semibold,
                             ),
                           ),
                           const CampoTexto(
@@ -261,44 +262,85 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               "MEDICAMENTO UTILIZADO",
                               size: 12,
                               color: ArielColors.secundary,
-                              fontWeight: Weight.regular,
+                              fontWeight: Weight.semibold,
                             ),
                           ),
                           CampoTexto(
-                            controller: _medicamento,
+                            controller: ciclo.medicamento,
                             label: '',
                             leftPadding: 24,
                             rightPadding: 24,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              bottom: 8,
-                            ),
-                            child: Texto(
-                              "DATA DE INÍCIO DO TRATAMENTO",
-                              size: 12,
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.regular,
-                            ),
-                          ),
-                          CampoData(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              right: 24,
-                              bottom: 8,
-                            ),
-                            onSaved: (val) {
-                              _dataNascimento.text = val!;
-                            },
-                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
                                 padding: EdgeInsets.zero,
-                                width: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 90),
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 24,
+                                        bottom: 8,
+                                      ),
+                                      child: Texto(
+                                        "DATA DE INÍCIO",
+                                        size: 12,
+                                        color: ArielColors.secundary,
+                                        fontWeight: Weight.semibold,
+                                      ),
+                                    ),
+                                    CampoData(
+                                      controller: ciclo.dataIncio,
+                                      padding: const EdgeInsets.only(
+                                        left: 24,
+                                        right: 8,
+                                        bottom: 8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.zero,
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        right: 24,
+                                        bottom: 8,
+                                      ),
+                                      child: Texto(
+                                        "INTERVALO",
+                                        size: 12,
+                                        color: ArielColors.secundary,
+                                        fontWeight: Weight.semibold,
+                                      ),
+                                    ),
+                                    CampoTexto(
+                                      rightPadding: 24,
+                                      bottomPadding: 8,
+                                      controller: ciclo.intervalo,
+                                      textInputType: TextInputType.number,
+                                      label: '',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.zero,
+                                width: MediaQuery.of(context).size.width * 0.3,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -311,11 +353,11 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                         "DOSAGEM",
                                         size: 12,
                                         color: ArielColors.secundary,
-                                        fontWeight: Weight.regular,
+                                        fontWeight: Weight.semibold,
                                       ),
                                     ),
                                     CampoTexto(
-                                      controller: _medicamento,
+                                      controller: ciclo.dosagem,
                                       label: '',
                                       leftPadding: 24,
                                     ),
@@ -324,26 +366,24 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                               Container(
                                 padding: EdgeInsets.zero,
-                                width: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 166),
+                                width: MediaQuery.of(context).size.width * 0.35,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
+                                        left: 8,
                                         bottom: 8,
                                       ),
                                       child: Texto(
                                         "APRESENTAÇÃO",
                                         size: 12,
                                         color: ArielColors.secundary,
-                                        fontWeight: Weight.regular,
+                                        fontWeight: Weight.semibold,
                                       ),
                                     ),
                                     CampoTexto(
-                                      rightPadding: 50,
-                                      leftPadding: 0,
-                                      controller: _medicamento,
+                                      controller: ciclo.apresentacao,
                                       label: '',
                                     ),
                                   ],
@@ -351,8 +391,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                               Container(
                                 padding: EdgeInsets.zero,
-                                width: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 128),
+                                width: MediaQuery.of(context).size.width * 0.35,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
@@ -365,13 +404,12 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                         "QTD. POR CICLO",
                                         size: 12,
                                         color: ArielColors.secundary,
-                                        fontWeight: Weight.regular,
+                                        fontWeight: Weight.semibold,
                                       ),
                                     ),
                                     CampoTexto(
                                       rightPadding: 24,
-                                      leftPadding: 32,
-                                      controller: _medicamento,
+                                      controller: ciclo.numAplicacoes,
                                       textInputType: TextInputType.number,
                                       label: '',
                                     ),
@@ -389,18 +427,16 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               "DATA DA ÚLTIMA APLICAÇÃO / TOMADA",
                               size: 12,
                               color: ArielColors.secundary,
-                              fontWeight: Weight.regular,
+                              fontWeight: Weight.semibold,
                             ),
                           ),
                           CampoData(
+                            controller: _ult_aplicacao,
                             padding: const EdgeInsets.only(
                               left: 24,
                               right: 24,
                               bottom: 8,
                             ),
-                            onSaved: (val) {
-                              _dataNascimento.text = val!;
-                            },
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -424,7 +460,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               "TIPO DE EXAME",
                               size: 12,
                               color: ArielColors.secundary,
-                              fontWeight: Weight.regular,
+                              fontWeight: Weight.semibold,
                             ),
                           ),
                           CampoTexto(
@@ -434,11 +470,12 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             rightPadding: 24,
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
-                                width: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 128),
+                                width: MediaQuery.of(context).size.width * 0.4,
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -449,7 +486,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                         "DOSAGEM SÉRICA",
                                         size: 12,
                                         color: ArielColors.secundary,
-                                        fontWeight: Weight.regular,
+                                        fontWeight: Weight.semibold,
                                       ),
                                     ),
                                     Row(
@@ -459,9 +496,12 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                             left: SizeConfig.of(context)
                                                 .dynamicScaleSize(size: 24),
                                           ),
-                                          width: SizeConfig.of(context)
-                                              .dynamicScaleSize(size: 90),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.3,
                                           child: CampoTexto(
+                                            bottomPadding: 8,
                                             controller: resultExame.dosagem,
                                             textInputType: TextInputType.number,
                                             label: '',
@@ -472,7 +512,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                           "ng/dl",
                                           size: 12,
                                           color: ArielColors.secundary,
-                                          fontWeight: Weight.regular,
+                                          fontWeight: Weight.semibold,
                                         ),
                                       ],
                                     ),
@@ -480,34 +520,30 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                 ),
                               ),
                               Container(
-                                width: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 240),
+                                width: MediaQuery.of(context).size.width * 0.6,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                        left: 0,
+                                        top: 0,
+                                        right: 24,
                                         bottom: 8,
                                       ),
                                       child: Texto(
                                         "DATA DO EXAME",
                                         size: 12,
                                         color: ArielColors.secundary,
-                                        fontWeight: Weight.regular,
+                                        fontWeight: Weight.semibold,
                                       ),
                                     ),
                                     CampoData(
                                       padding: const EdgeInsets.only(
                                         left: 24,
-                                        right: 0,
+                                        right: 24,
                                         bottom: 8,
                                       ),
-                                      onSaved: (val) {
-                                        print("Data do Exame: VAL = $val");
-                                        resultExame.data = val;
-                                        print("Data do Exame: Data Exame = ${resultExame.data.text}");
-                                      },
+                                      controller: resultExame.data,
                                     ),
                                   ],
                                 ),
@@ -525,7 +561,8 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                 "data_de_nascimento": _dataNascimento.text,
                               });
 
-                              resultExame.salvar();
+                              ciclo.cadastrar();
+                              resultExame.cadastrar();
 
                               Navigator.pushNamed(context, '/inicio');
                             },
@@ -537,8 +574,8 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
