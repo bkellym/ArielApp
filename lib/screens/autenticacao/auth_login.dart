@@ -1,4 +1,5 @@
 import 'package:ariel_app/components/botoes/botao_texto.dart';
+import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:flutter/material.dart';
 import '../../core/util/colors.dart';
 import '../../components/botoes/botao_padrao.dart';
@@ -58,17 +59,7 @@ class _FormAuthLoginState extends State<_FormAuthLogin> {
       print("Login com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");
     } catch (e) {
       print('Error: ${e.toString()}');
-      final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: Colors.transparent.withOpacity(0),
-          elevation: 0,
-          content: Container(
-            decoration: BoxDecoration(
-                color: ArielColors.arielRed.withOpacity(0.95),
-                borderRadius: BorderRadius.all(Radius.circular(8))),
-            padding: EdgeInsets.all(16),
-            child: Text('Não foi possível realizar login'),)
-      );
+      final snackBar = MensagemErro(mensagem: 'Não foi possível realizar login');
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

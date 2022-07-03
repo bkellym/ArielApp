@@ -1,3 +1,4 @@
+import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -50,26 +51,16 @@ class _FormAuthCadastroState extends State<_FormAuthCadastro> {
 
   void doCadastro(BuildContext context) async{
     try{
-      final user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: senha);
+      var user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: senha);
       if(user != null) {
         _senha.text = "";
-        user.user?.updateDisplayName(nome);
+        await user.user?.updateDisplayName(nome);
         Navigator.pushNamed(context, '/CadastroCompleto');
       }
       print("Cadastro com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");
     } catch (e) {
       print('Error: ${e.toString()}');
-      final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: Colors.transparent.withOpacity(0),
-          elevation: 0,
-          content: Container(
-            decoration: BoxDecoration(
-                color: ArielColors.arielRed.withOpacity(0.95),
-                borderRadius: BorderRadius.all(Radius.circular(8))),
-            padding: EdgeInsets.all(16),
-            child: Text('Não foi possível realizar o cadastro'),)
-      );
+      final snackBar = MensagemErro(mensagem: 'Não foi possível realizar o cadastro');
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

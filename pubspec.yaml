@@ -13,15 +13,19 @@ dependencies:
   flutter:
     sdk: flutter
 
+  path: ^1.8.0
+  intl: ^0.17.0
+  image_picker: ^0.8.4
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.1.1
   firebase_core: ^1.17.1
   firebase_database: ^9.0.15
-  intl: ^0.17.0
   flutter_localizations:
     sdk: flutter
   syncfusion_flutter_charts: ^20.1.59
   firebase_auth: ^3.3.20
+  firebase_storage: ^10.0.2
+  date_time_picker: ^2.1.0
 
 dev_dependencies:
   flutter_test:
