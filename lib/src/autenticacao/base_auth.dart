@@ -1,10 +1,9 @@
-import 'package:ariel_app/components/botoes/botao_texto.dart';
-import 'package:ariel_app/screens/autenticacao/botaoFacebook.dart';
 import 'package:flutter/material.dart';
-
-import '../../core/util/colors.dart';
-import '../../components/botoes/botao_texto_icon.dart';
-import 'botaoGoogle.dart';
+import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/components/botoes/botaoFacebook.dart';
+import 'package:ariel_app/components/botoes/botaoGoogle.dart';
+import 'package:ariel_app/components/botoes/botao_texto.dart';
+import 'package:ariel_app/components/botoes/botao_texto_icon.dart';
 
 class _TitleStyle extends TextStyle {
   final FontWeight weight;

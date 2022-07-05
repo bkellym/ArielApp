@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../components/botoes/botao_padrao.dart';
-import '../components/botoes/botao_texto.dart';
-import '../components/panels/carrossel_inicial.dart';
+import 'package:ariel_app/components/botoes/botao_padrao.dart';
+import 'package:ariel_app/components/botoes/botao_texto.dart';
+import 'package:ariel_app/components/panels/carrossel_inicial.dart';
 
 class Introducao extends StatelessWidget {
   const Introducao({Key? key}) : super(key: key);
