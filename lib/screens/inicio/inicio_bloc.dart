@@ -1,4 +1,5 @@
-import 'package:ariel_app/inicio/widgets/user_foto.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -8,8 +9,7 @@ import 'package:ariel_app/models/user_model.dart';
 import 'package:ariel_app/controller/aplicacao_controller.dart';
 import 'package:ariel_app/controller/ciclo_controller.dart';
 import 'package:ariel_app/controller/user_info_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:ariel_app/screens/inicio/widgets/user_foto.dart';
 
 class InicioBloc extends BlocBase {
   UserInfoController userController =
@@ -32,7 +32,7 @@ class InicioBloc extends BlocBase {
 
     if (cicloUid != null) {
       aplicacoes = (await aplicacaoController.buscar(cicloUid));
-      proxAplicacao = (proxAplicacao == null  ? proxAplicacao : await aplicacaoController.buscarProx(aplicacoes));
+      proxAplicacao = (await aplicacaoController.buscarProx(aplicacoes));
     }
     return chartData;
   }

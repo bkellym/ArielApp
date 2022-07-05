@@ -1,25 +1,24 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
+import 'package:ariel_app/models/botaoMenuModel.dart';
 import 'package:flutter/material.dart';
 
 class BotaoMenu extends StatefulWidget {
   final bool disabled;
-  final String label;
-  final Icon icon;
-  final VoidCallback? onPressed;
+  final BotaoMenuModel model;
+  final Function? onPressed;
   final double internalPadding;
   final bool selected;
 
   BotaoMenu({
     Key? key,
     required this.selected,
-    required this.icon,
-    required this.label,
     required this.onPressed,
     this.disabled = false,
-    this.internalPadding = 8,
+    this.internalPadding = 8, required this.model,
   }) : super(key: key);
 
   final LinearGradient selectedGradient = const LinearGradient(
@@ -55,6 +54,7 @@ class BotaoMenu extends StatefulWidget {
     onSurface: ArielColors.transparent,
     shadowColor: ArielColors.transparent,
     surfaceTintColor: ArielColors.transparent,
+    enableFeedback: false,
     elevation: 0,
     textStyle: const TextStyle(
       fontWeight: FontWeight.bold,
@@ -71,30 +71,45 @@ class _BotaoMenuState extends State<BotaoMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(0),
       alignment: Alignment.center,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: widget.selected ? null : ArielColors.secundary,
-          gradient: widget.disabled ? widget.disabledgradient : widget.selected? widget.gradient : null,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(8),
-            topRight: Radius.circular(8),
-          ),
+          color: widget.selected ? null : Colors.white,
+          gradient: widget.disabled
+              ? widget.disabledgradient
+              : widget.selected
+                  ? widget.gradient
+                  : null,
         ),
         child: ElevatedButton(
           style: widget.buttontheme,
-          onPressed: widget.onPressed,
+          onPressed: (){
+            widget.onPressed!(widget.model.index);
+          },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              widget.icon,
+              Icon(
+                widget.model.icon,
+                color: widget.selected
+                    ? ArielColors.baseLight
+                    : ArielColors.gradientLight,
+              ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: 6,
+                  top: SizeConfig.of(context).dynamicScaleSize(size: 6),
                   left: widget.internalPadding,
                   right: widget.internalPadding,
                 ),
-                child: Texto(widget.label, size: 11, color: ArielColors.baseLight,),
+                child: Texto(
+                  widget.model.titulo,
+                  fontWeight: Weight.bold,
+                  size: SizeConfig.of(context).dynamicScaleSize(size: 11),
+                  color: widget.selected
+                      ? ArielColors.baseLight
+                      : ArielColors.gradientLight,
+                ),
               ),
             ],
           ),

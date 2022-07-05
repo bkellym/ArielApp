@@ -1,9 +1,9 @@
 import 'package:ariel_app/components/botoes/botao_texto.dart';
 import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:flutter/material.dart';
-import '../../core/util/colors.dart';
-import '../../components/botoes/botao_padrao.dart';
-import '../../components/input/campo_texto.dart';
+import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/components/botoes/botao_padrao.dart';
+import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'base_auth.dart';
 
@@ -16,20 +16,22 @@ class Login extends StatelessWidget {
       Navigator.pushNamed(context, '/cadastro');
     }
 
-    return
-      Scaffold(body: SizedBox(
+    return Scaffold(
+      body: SizedBox(
         width: double.infinity,
-        child:
-      BaseAuth(
-      titleBold: "ENTRE ",
-      titleRegular: "NA SUA CONTA",
-      bottomText: "Não tem uma conta?",
-      bottomLabel: "Registre-se",
-      function: goToCadastro,
-      child: const Material(
-        color: ArielColors.baseLight,
-        child: _FormAuthLogin(),
-      ),),),);
+        child: BaseAuth(
+          titleBold: "ENTRE ",
+          titleRegular: "NA SUA CONTA",
+          bottomText: "Não tem uma conta?",
+          bottomLabel: "Registre-se",
+          function: goToCadastro,
+          child: const Material(
+            color: ArielColors.baseLight,
+            child: _FormAuthLogin(),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -47,19 +49,23 @@ class _FormAuthLoginState extends State<_FormAuthLogin> {
   static final TextEditingController _senha = new TextEditingController();
 
   String get email => _email.text;
+
   String get senha => _senha.text;
 
-  void doLogin(BuildContext context) async{
-    try{
-      final user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: senha);
-      if(user != null){
+  void doLogin(BuildContext context) async {
+    try {
+      final user = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: senha);
+      if (user != null) {
         _senha.text = "";
         Navigator.pushNamed(context, '/inicio');
       }
-      print("Login com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");
+      print(
+          "Login com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");
     } catch (e) {
       print('Error: ${e.toString()}');
-      final snackBar = MensagemErro(mensagem: 'Não foi possível realizar login');
+      final snackBar =
+          MensagemErro(mensagem: 'Não foi possível realizar login');
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
