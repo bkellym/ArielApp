@@ -8,6 +8,7 @@ class GraficoPrincipal extends StatelessWidget {
   final List<double> chartData;
   final DateTime proxAplicacao;
   final String hormonio;
+  final String dosagem;
   late final int daysRemaining;
 
   GraficoPrincipal({
@@ -15,6 +16,7 @@ class GraficoPrincipal extends StatelessWidget {
     required this.proxAplicacao,
     required this.chartData,
     required this.hormonio,
+    required this.dosagem,
   }) : super(key: key) {
     daysRemaining = proxAplicacao.difference(now).inDays + 1;
   }
@@ -33,42 +35,65 @@ class GraficoPrincipal extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8,
+                Text(
+                  hormonio.toUpperCase(),
+                  style: const TextStyle(
+                    color: ArielColors.textLight,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                    decoration: TextDecoration.none,
                   ),
-                  child: Text(
-                    hormonio,
-                    style: const TextStyle(
-                      color: ArielColors.textPrimary,
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
                     bottom: 8,
                   ),
                   child: Text(
-                    '${daysRemaining > 1 ? 'Faltam' : 'Falta'}\n$daysRemaining ${daysRemaining > 1 ? 'dias' : 'dia'}',
+                    dosagem.toLowerCase(),
                     style: const TextStyle(
-                      color: ArielColors.textPrimary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: ArielColors.textLight,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
                       decoration: TextDecoration.none,
                     ),
                     textAlign: TextAlign.center,
+                    maxLines: 2,
                   ),
                 ),
-                const Text(
-                  'Para a próxima\naplicação',
-                  style: TextStyle(
+                Text(
+                  (daysRemaining > 1 ? 'Faltam' : 'Falta').toUpperCase(),
+                  style: const TextStyle(
                     color: ArielColors.textPrimary,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    decoration: TextDecoration.none,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    '$daysRemaining ${daysRemaining > 1 ? 'dias' : 'dia'}'
+                        .toUpperCase(),
+                    style: const TextStyle(
+                      color: ArielColors.textPrimary,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
+                      decoration: TextDecoration.none,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Text(
+                  'Para a próxima\naplicação'.toUpperCase(),
+                  style: const TextStyle(
+                    color: ArielColors.textPrimary,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
                     decoration: TextDecoration.none,
                   ),
                   textAlign: TextAlign.center,
@@ -87,7 +112,7 @@ class GraficoPrincipal extends StatelessWidget {
               yValueMapper: (double data, _) => 1,
               pointColorMapper: (double data, _) => data > 0
                   ? ArielColors.arielGreen
-                  : ArielColors.disabledGradientLight,
+                  : ArielColors.disable,
             ),
           ],
         ),

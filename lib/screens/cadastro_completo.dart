@@ -537,7 +537,8 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                           BotaoPadrao(
                             label: "Salvar Perfil",
                             onPressed: () async {
-                              widget.userInfo.cadastrar();
+                              String? Stringfoto = await _uploadFile();
+                              widget.userInfo.cadastrar(Stringfoto);
                               widget.ciclo.cadastrar();
                               widget.resultExame.cadastrar();
 
@@ -555,5 +556,21 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
         ],
       ),
     );
+  }
+
+  Future<String?> _uploadFile() async {
+    if (widget.userInfo.foto == null) return null;
+    final fileName = basename(widget.userInfo.foto!.path);
+    final destination = 'files/$fileName';
+
+    try {
+      final ref = firebase_storage.FirebaseStorage.instance
+          .ref(destination)
+          .child('file/');
+      await ref.putFile(widget.userInfo.foto!);
+      return await ref.getDownloadURL();
+    } catch (e) {
+      MensagemErro(mensagem: 'Não foi possível carregar a imagem');
+    }
   }
 }

@@ -1,19 +1,38 @@
-class UserModel {
-  final String nome;
-  final String email;
-  final String foto;
-  final String genero;
-  final String dtNascimento;
-  final String? historia;
-  final String? dtUltAplicacao;
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-  UserModel({
-    required this.nome,
-    required this.email,
-    required this.foto,
-    required this.genero,
-    required this.dtNascimento,
-    this.historia,
-    this.dtUltAplicacao,
-  });
+class UserModel {
+  late final String nome;
+  late final String email;
+  late final String foto;
+  late final String genero;
+  late final String dtNascimento;
+  late final String _historia;
+  late final String _dtUltAplicacao;
+
+  String? get historia => _historia;
+  String? get dtUltAplicacao => _dtUltAplicacao;
+
+  set historia(String? value) {
+    _historia = value ?? "";
+  }
+
+  set dtUltAplicacao(String? value) {
+    _dtUltAplicacao = value ?? "";
+  }
+
+  UserModel(User? user) {
+    nome = user?.displayName! ?? "";
+    email = user?.email! ?? "";
+    foto = user?.photoURL ?? "";
+  }
+
+  UserModel.fromSnapshot(DataSnapshot snapshot) {
+    Map snapshotMap = snapshot as Map;
+
+    genero  = snapshotMap['genero'];
+    dtNascimento  = snapshotMap['dtNascimento'];
+    _historia  = snapshotMap['historia'];
+    _dtUltAplicacao  = snapshotMap['dtUltAplicacao'];
+  }
 }

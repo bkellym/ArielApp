@@ -10,15 +10,26 @@ class BotaoMenu extends StatefulWidget {
   final Icon icon;
   final VoidCallback? onPressed;
   final double internalPadding;
+  final bool selected;
 
   BotaoMenu({
     Key? key,
+    required this.selected,
     required this.icon,
     required this.label,
     required this.onPressed,
     this.disabled = false,
     this.internalPadding = 8,
   }) : super(key: key);
+
+  final LinearGradient selectedGradient = const LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: <Color>[
+      ArielColors.gradientLight,
+      ArielColors.secundary,
+    ],
+  );
 
   final LinearGradient gradient = const LinearGradient(
     begin: Alignment.centerLeft,
@@ -63,7 +74,8 @@ class _BotaoMenuState extends State<BotaoMenu> {
       alignment: Alignment.center,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: widget.disabled ? widget.disabledgradient : widget.gradient,
+          color: widget.selected ? null : ArielColors.secundary,
+          gradient: widget.disabled ? widget.disabledgradient : widget.selected? widget.gradient : null,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(8),
             topRight: Radius.circular(8),

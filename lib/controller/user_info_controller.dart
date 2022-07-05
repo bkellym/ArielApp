@@ -13,7 +13,8 @@ class UserInfoController {
   final AplicacaoController controller = AplicacaoController();
   UserDAO dao = UserDAO();
 
-  File? foto;
+  User? _user;
+  File? _foto;
   final TextEditingController _nome = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _genero = TextEditingController();
@@ -21,11 +22,15 @@ class UserInfoController {
   final TextEditingController _historia = TextEditingController();
   final TextEditingController _dtUltAplicacao = TextEditingController();
 
-  UserInfoController(User? user) {
-    nome = user?.displayName! ?? "";
-    email = user?.email! ?? "";
+  UserInfoController(this._user) {
+    nome = _user?.displayName! ?? "";
+    email = _user?.email! ?? "";
     dtNascimento = DateTime.parse("2000-01-01").toString();
     dtUltAplicacao = DateTime.now().toString();
+  }
+
+  File? get foto {
+    return _foto;
   }
 
   TextEditingController get nome {
@@ -76,19 +81,24 @@ class UserInfoController {
     _dtUltAplicacao.text = dtUltAplicacao;
   }
 
-  void cadastrar() async {
-    String? fotoString = await _uploadFile();
-    UserModel model = UserModel(
-      nome: nome.text,
-      email: email.text,
-      foto: fotoString ?? "",
-      genero: genero.text,
-      dtNascimento: dtNascimento.text,
-      historia: historia.text,
-      dtUltAplicacao: dtUltAplicacao.text,
-    );
+  set foto(foto) {
+    _foto = foto;
+  }
 
-    dao.cadastrar(model);
+  Future<UserModel?> buscar() {
+    Future<UserModel?> model = dao.buscar(_user);
+    return model;
+  }
+
+  void cadastrar(String? fotoString) async {
+    UserModel model = UserModel(_user);
+
+    model.historia = _historia.text;
+    model.genero = _genero.text;
+    model.dtNascimento = _dtNascimento.text;
+    model.dtUltAplicacao = _dtUltAplicacao.text;
+
+    dao.cadastrar(model, _user);
   }
 
   Future<String?> _uploadFile() async {
@@ -107,4 +117,3 @@ class UserInfoController {
     }
   }
 }
-

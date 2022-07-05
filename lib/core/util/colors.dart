@@ -19,9 +19,11 @@ class ArielColors {
 
   // Cores bases
   static const Color textPrimary = Color(0xFF666666);
+  static const Color textLight= Color(0xFF999999);
   static const Color secundary = Color(0xFF905CED);
   static const Color baseDark = Color(0xFFCCCCCC);
   static const Color baseLight = Color(0xFFFFFFFF);
+  static const Color disable = Color(0xFFE6E6E6);
   static const Color arielRed = Color(0xFFFF6D7C);
   static const Color arielGreen = Color(0xFF1CDBC6);
 
