@@ -1,26 +1,23 @@
-import 'package:ariel_app/inicio/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../core/util/size_config.dart';
+import 'inicio_bloc.dart';
 
-import 'package:ariel_app/inicio/widgets/data_atual.dart';
+import 'package:ariel_app/screens/inicio/widgets/destaque.dart';
+import 'package:ariel_app/screens/inicio/widgets/grafico_principal.dart';
+import 'package:ariel_app/screens/inicio/widgets/header.dart';
 import 'package:ariel_app/components/evento.dart';
-import 'package:ariel_app/components/menus/menu_navegation.dart';
 import 'package:ariel_app/core/util/colors.dart';
-import 'package:ariel_app/core/util/size_config.dart';
-import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/inicio/inicio_bloc.dart';
-import 'package:ariel_app/inicio/widgets/destaque.dart';
-import 'package:ariel_app/inicio/widgets/grafico_principal.dart';
 import 'package:ariel_app/models/evento_model.dart';
 
-class Inicio extends StatefulWidget {
-  Inicio({Key? key}) : super(key: key);
+class InicioPage extends StatefulWidget {
+  const InicioPage({Key? key}) : super(key: key);
 
   @override
-  State<Inicio> createState() => _InicioState();
+  State<InicioPage> createState() => _InicioPageState();
 }
 
-class _InicioState extends State<Inicio> {
+class _InicioPageState extends State<InicioPage> {
   final InicioBloc _bloc = InicioBloc();
 
   @override
@@ -93,7 +90,6 @@ class _InicioState extends State<Inicio> {
                       descricao: "Dr. Alberto de Sá, Clínica Dionísio Torres",
                       cor: 0xFF1DCBE0),
                 ),
-                MenuNavegacao(1)
               ],
             ),
           );
