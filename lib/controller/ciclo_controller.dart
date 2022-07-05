@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ariel_app/DAO/ciclo_dao.dart';
@@ -67,16 +69,33 @@ class CicloController {
     _intervalo.text = intervalo;
   }
 
-  void cadastrar()  async {
-    CicloModel model = CicloModel(
-        apresentacao: _apresentacao.text,
-        dataIncio: _dataIncio.text,
-        medicamento: _medicamento.text,
-        dosagem: _dosagem.text);
-    String? cicloId = await dao.cadastrar(model);
+  Future<CicloModel?> buscar() async {
+    CicloModel model;
 
-    if(cicloId != null){
-      controller.cadastrar(cicloId, int.parse(numAplicacoes.text), int.parse(_intervalo.text), model);
+    DataSnapshot snapshot = await dao.buscar();
+    Iterable<DataSnapshot> ciclos = snapshot.children;
+
+    for(DataSnapshot ciclo in ciclos){
+      model = CicloModel.fromSnapshot(ciclo);
+      if(model.atual){
+        return model;
+      }
+    }
+
+    return null;
+  }
+
+  void cadastrar()  async {
+    CicloModel model = CicloModel();
+    model.atual = true;
+    model.apresentacao = _apresentacao.text;
+    model.dataIncio =  _dataIncio.text;
+    model.medicamento =  _medicamento.text;
+    model.dosagem =  _dosagem.text;
+    model.uid =  (await dao.cadastrar(model))!;
+
+    if(model.uid != null){
+      controller.cadastrar(model.uid, int.parse(numAplicacoes.text), int.parse(_intervalo.text), model);
     }
   }
 }

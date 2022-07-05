@@ -34,32 +34,32 @@ class _MenuNavegacaoState extends State<MenuNavegacao> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              height: altura * (widget.selectedIndex == 1 ? 1 : 0.9),
               child: BotaoMenu(
+                selected: widget.selectedIndex == 1,
                 icon: const Icon(Icons.home_outlined),
                 label: "Início",
                 onPressed: () {},
               ),
             ),
             Container(
-              height: altura * (widget.selectedIndex == 2 ? 1 : 0.9),
               child: BotaoMenu(
+                selected: widget.selectedIndex == 2,
                 icon: const Icon(Icons.sync_outlined),
                 label: "Ciclos",
                 onPressed: () {},
               ),
             ),
             Container(
-              height: altura * (widget.selectedIndex == 3 ? 1 : 0.9),
               child: BotaoMenu(
+                selected: widget.selectedIndex == 3,
                 icon: const Icon(Icons.bookmarks_outlined),
                 label: "Exames e\nConsultas",
                 onPressed: () {},
               ),
             ),
             Container(
-              height: altura * (widget.selectedIndex == 4 ? 1 : 0.9),
               child: BotaoMenu(
+                selected: widget.selectedIndex == 4,
                 icon: const Icon(Icons.person),
                 label: "Perfil",
                 onPressed: () {},

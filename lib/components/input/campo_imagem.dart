@@ -32,6 +32,7 @@ class _CampoImagemState extends State<CampoImagem> {
       if (pickedFile != null) {
         widget.photo = File(pickedFile.path);
       } else {
+        print('Não foi possível carregar a imagem');
         MensagemErro(mensagem: 'Não foi possível carregar a imagem');
       }
     });
@@ -45,6 +46,7 @@ class _CampoImagemState extends State<CampoImagem> {
       if (pickedFile != null) {
         widget.photo = File(pickedFile.path);
       } else {
+        print('Não foi possível carregar a imagem');
         MensagemErro(mensagem: 'Não foi possível carregar a imagem');
       }
     });

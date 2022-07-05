@@ -9,6 +9,7 @@ import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:ariel_app/controller/ciclo_controller.dart';
 import 'package:ariel_app/controller/resultado_exame_controller.dart';
+import 'package:ariel_app/controller/user_info_controller.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -22,61 +23,21 @@ class CadastroCompleto extends StatefulWidget {
   final firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  final user = FirebaseAuth.instance.currentUser;
-
-  File? photo;
+  final ciclo = CicloController();
+  final userInfo = UserInfoController(FirebaseAuth.instance.currentUser);
+  final resultExame = ResultadoExameController();
 
   CadastroCompleto({Key? key}) : super(key: key);
-  DateTime selectedDate = DateTime.now();
 
   @override
-  State<CadastroCompleto> createState() => _FormCadastroCompleto();
+  State<CadastroCompleto> createState() {
+    return _FormCadastroCompleto();
+  }
 }
 
 class _FormCadastroCompleto extends State<CadastroCompleto> {
-  final TextEditingController _nome = TextEditingController();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _dataNascimento = TextEditingController();
-  final TextEditingController _genero = TextEditingController();
-  final TextEditingController _medicamento = TextEditingController();
-  final TextEditingController _inicioTratamento = TextEditingController();
-  final TextEditingController _dosagem = TextEditingController();
-  final TextEditingController _apresentacao = TextEditingController();
-  final TextEditingController _qtd_ciclo = TextEditingController();
-  final TextEditingController _ult_aplicacao = TextEditingController();
-
-  final resultExame = ResultadoExameController();
-  final ciclo = CicloController();
-
-  String date = "Not set";
-  DateTime selectedDate = DateTime.now();
-
-  Future<String?> uploadFile() async {
-    if (widget.photo == null) return null;
-    final fileName = basename(widget.photo!.path);
-    final destination = 'files/$fileName';
-
-    try {
-      final ref = firebase_storage.FirebaseStorage.instance
-          .ref(destination)
-          .child('file/');
-      await ref.putFile(widget.photo!);
-      return await ref.getDownloadURL();
-    } catch (e) {
-      MensagemErro(mensagem: 'Não foi possível carregar a imagem');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    DatabaseReference ref =
-        FirebaseDatabase.instance.ref("user_info/${widget.user?.uid ?? ""}");
-
-    _nome.text = widget.user?.displayName ?? "";
-    _email.text = widget.user?.email ?? "";
-    _dataNascimento.text = selectedDate.toString();
-    _ult_aplicacao.text = DateTime.parse('2000-01-01').toString();
-
     List<Map> generos = [
       {'id': 'M', 'titulo': 'Masculino'},
       {'id': 'F', 'titulo': 'Feminino'},
@@ -121,7 +82,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Texto(
-                                  "Olá ${widget.user?.displayName ?? ""}!",
+                                  "Olá ${widget.userInfo.nome.text}",
                                   size: 22,
                                   color: ArielColors.baseLight,
                                 ),
@@ -155,7 +116,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                       ),
                       const DivisoriaDecorada(cor: ArielColors.secundary),
                       CampoImagem(
-                        photo: widget.photo,
+                        photo: widget.userInfo.foto,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -174,7 +135,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           CampoTexto(
-                            controller: _nome,
+                            controller: widget.userInfo.nome,
                             label: '',
                             leftPadding: 24,
                             rightPadding: 24,
@@ -192,7 +153,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           CampoTexto(
-                            controller: _email,
+                            controller: widget.userInfo.email,
                             label: '',
                             leftPadding: 24,
                             rightPadding: 24,
@@ -210,7 +171,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           CampoData(
-                            controller: _ult_aplicacao,
+                            controller: widget.userInfo.dtNascimento,
                             padding: const EdgeInsets.only(
                               left: 24,
                               right: 24,
@@ -220,7 +181,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                           CampoRadio(
                             valores: generos,
                             onChange: (val) {
-                              _genero.text = val!;
+                              widget.userInfo.genero = val!;
                             },
                           ),
                           Padding(
@@ -235,7 +196,8 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               fontWeight: Weight.semibold,
                             ),
                           ),
-                          const CampoTexto(
+                          CampoTexto(
+                            controller: widget.userInfo.historia,
                             maxLines: 8,
                             leftPadding: 24,
                             rightPadding: 24,
@@ -266,7 +228,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           CampoTexto(
-                            controller: ciclo.medicamento,
+                            controller: widget.ciclo.medicamento,
                             label: '',
                             leftPadding: 24,
                             rightPadding: 24,
@@ -277,7 +239,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             children: [
                               Container(
                                 padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.7,
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.7,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -294,7 +259,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                       ),
                                     ),
                                     CampoData(
-                                      controller: ciclo.dataIncio,
+                                      controller: widget.ciclo.dataIncio,
                                       padding: const EdgeInsets.only(
                                         left: 24,
                                         right: 8,
@@ -306,7 +271,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                               Container(
                                 padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.3,
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.3,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
@@ -325,7 +293,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                     CampoTexto(
                                       rightPadding: 24,
                                       bottomPadding: 8,
-                                      controller: ciclo.intervalo,
+                                      controller: widget.ciclo.intervalo,
                                       textInputType: TextInputType.number,
                                       label: '',
                                     ),
@@ -340,7 +308,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             children: [
                               Container(
                                 padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.3,
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.3,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -357,7 +328,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                       ),
                                     ),
                                     CampoTexto(
-                                      controller: ciclo.dosagem,
+                                      controller: widget.ciclo.dosagem,
                                       label: '',
                                       leftPadding: 24,
                                     ),
@@ -366,7 +337,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                               Container(
                                 padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.35,
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.35,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -383,7 +357,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                       ),
                                     ),
                                     CampoTexto(
-                                      controller: ciclo.apresentacao,
+                                      controller: widget.ciclo.apresentacao,
                                       label: '',
                                     ),
                                   ],
@@ -391,7 +365,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                               Container(
                                 padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.35,
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.35,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
@@ -409,7 +386,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                     ),
                                     CampoTexto(
                                       rightPadding: 24,
-                                      controller: ciclo.numAplicacoes,
+                                      controller: widget.ciclo.numAplicacoes,
                                       textInputType: TextInputType.number,
                                       label: '',
                                     ),
@@ -431,7 +408,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           CampoData(
-                            controller: _ult_aplicacao,
+                            controller: widget.userInfo.dtUltAplicacao,
                             padding: const EdgeInsets.only(
                               left: 24,
                               right: 24,
@@ -464,7 +441,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           CampoTexto(
-                            controller: resultExame.nome,
+                            controller: widget.resultExame.nome,
                             label: '',
                             leftPadding: 24,
                             rightPadding: 24,
@@ -473,7 +450,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.4,
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.4,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -496,13 +476,14 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                             left: SizeConfig.of(context)
                                                 .dynamicScaleSize(size: 24),
                                           ),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
+                                          width: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width *
                                               0.3,
                                           child: CampoTexto(
                                             bottomPadding: 8,
-                                            controller: resultExame.dosagem,
+                                            controller: widget.resultExame.dosagem,
                                             textInputType: TextInputType.number,
                                             label: '',
                                             leftPadding: 0,
@@ -520,7 +501,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.6,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
@@ -543,7 +527,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                         right: 24,
                                         bottom: 8,
                                       ),
-                                      controller: resultExame.data,
+                                      controller: widget.resultExame.data,
                                     ),
                                   ],
                                 ),
@@ -553,16 +537,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                           BotaoPadrao(
                             label: "Salvar Perfil",
                             onPressed: () async {
-                              var urlImage = await uploadFile();
-                              widget.user?.updatePhotoURL(urlImage);
-                              widget.user?.updateDisplayName(_nome.text);
-                              await ref.set({
-                                "genero": _genero.text,
-                                "data_de_nascimento": _dataNascimento.text,
-                              });
-
-                              ciclo.cadastrar();
-                              resultExame.cadastrar();
+                              String? Stringfoto = await _uploadFile();
+                              widget.userInfo.cadastrar(Stringfoto);
+                              widget.ciclo.cadastrar();
+                              widget.resultExame.cadastrar();
 
                               Navigator.pushNamed(context, '/inicio');
                             },
@@ -578,5 +556,21 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
         ],
       ),
     );
+  }
+
+  Future<String?> _uploadFile() async {
+    if (widget.userInfo.foto == null) return null;
+    final fileName = basename(widget.userInfo.foto!.path);
+    final destination = 'files/$fileName';
+
+    try {
+      final ref = firebase_storage.FirebaseStorage.instance
+          .ref(destination)
+          .child('file/');
+      await ref.putFile(widget.userInfo.foto!);
+      return await ref.getDownloadURL();
+    } catch (e) {
+      MensagemErro(mensagem: 'Não foi possível carregar a imagem');
+    }
   }
 }
