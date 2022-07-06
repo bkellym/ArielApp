@@ -8,6 +8,7 @@ class Texto extends StatelessWidget {
   double size;
   FontWeight fontWeight;
   Color color;
+  EdgeInsetsGeometry? padding;
 
   Texto(
     this.data, {
@@ -15,18 +16,23 @@ class Texto extends StatelessWidget {
     required this.size,
     this.fontWeight = Weight.regular,
     this.color = ArielColors.textPrimary,
+    this.padding,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      data,
-      style: TextStyle(
-        letterSpacing: 0,
-        fontWeight: fontWeight,
-        decoration: TextDecoration.none,
-        color: color,
-        fontSize: SizeConfig.of(context).dynamicScaleSize(size: size),
+    return Container(
+      padding: padding,
+      child: Text(
+        data,
+        style: TextStyle(
+          height: 0,
+          letterSpacing: 0,
+          fontWeight: fontWeight,
+          decoration: TextDecoration.none,
+          color: color,
+          fontSize: SizeConfig.of(context).dynamicScaleSize(size: size),
+        ),
       ),
     );
   }
