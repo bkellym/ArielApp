@@ -1,31 +1,27 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/botoes/botao_sec_contorno.dart';
-import 'package:ariel_app/components/botoes/botao_sec_preenchido.dart';
-import 'package:ariel_app/components/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/evento_model.dart';
+import 'package:ariel_app/models/aplicacao_model.dart';
+import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class CicloWidget extends StatefulWidget {
-  const CicloWidget({Key? key}) : super(key: key);
+  final CicloModel model;
+
+  const CicloWidget({Key? key, required this.model}) : super(key: key);
 
   @override
   State<CicloWidget> createState() => _CicloWidgetState();
 }
 
 class _CicloWidgetState extends State<CicloWidget> {
-  bool ativo = true;
 
-  EventoModel evento = EventoModel(
-      titulo: "Próxima Consulta",
-      tipo: "Endocrinologista",
-      data: DateTime.utc(2022, 07, 10),
-      descricao: "Dr. Alberto de Sá, Clínica Dionísio Torres",
-      cor: 0xFF1DCBE0);
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +59,7 @@ class _CicloWidgetState extends State<CicloWidget> {
                             color: ArielColors.cicloColor,
                           ),
                           Texto(
-                            "Deposteron",
+                            widget.model.medicamento,
                             size: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 11),
                             fontWeight: Weight.bold,
@@ -98,7 +94,9 @@ class _CicloWidgetState extends State<CicloWidget> {
                         ),
                       ),
                       Texto(
-                        DateFormat("dd/MM/yyyy").format(evento.data).toString(),
+                        DateFormat("dd/MM/yyyy")
+                            .format(DateTime.parse(widget.model.dataIncio))
+                            .toString(),
                         size: SizeConfig.of(context).dynamicScaleSize(size: 11),
                         fontWeight: Weight.medium,
                         padding: EdgeInsets.only(
@@ -125,13 +123,16 @@ class _CicloWidgetState extends State<CicloWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Texto(
-                                  "2",
+                                  widget.model.statusAplicacoes
+                                      .where((element) => element == 1)
+                                      .length
+                                      .toString(),
                                   fontWeight: Weight.bold,
                                   size: SizeConfig.of(context)
                                       .dynamicScaleSize(size: 20),
                                 ),
                                 Texto(
-                                  "/6",
+                                  "/${widget.model.statusAplicacoes.length}",
                                   color: ArielColors.cicloColor,
                                   fontWeight: Weight.bold,
                                   size: SizeConfig.of(context)
@@ -147,7 +148,7 @@ class _CicloWidgetState extends State<CicloWidget> {
                             innerRadius: '84%',
                             strokeWidth: 1,
                             strokeColor: Colors.white,
-                            dataSource: const [1, 1, 0, 0, 0, 0],
+                            dataSource: widget.model.statusAplicacoes,
                             xValueMapper: (double data, _) => data.toString(),
                             yValueMapper: (double data, _) => 1,
                             pointColorMapper: (double data, _) => data > 0
@@ -168,7 +169,7 @@ class _CicloWidgetState extends State<CicloWidget> {
               Padding(
                 padding: EdgeInsets.only(
                     left: SizeConfig.of(context).dynamicScaleSize(size: 32)),
-                child: ElevatedButton(
+                child: widget.model.atual ? ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                         horizontal:
@@ -183,7 +184,7 @@ class _CicloWidgetState extends State<CicloWidget> {
                     fontWeight: Weight.bold,
                     padding: EdgeInsets.all(0),
                   ),
-                ),
+                ) : SizedBox.shrink(),
               ),
               Padding(
                 padding: EdgeInsets.only(
@@ -199,7 +200,9 @@ class _CicloWidgetState extends State<CicloWidget> {
                   ),
                   onPressed: () {},
                   child: Texto(
-                    ativo ? "Editar".toUpperCase() : "Detalhes".toUpperCase(),
+                    widget.model.atual
+                        ? "Editar".toUpperCase()
+                        : "Detalhes".toUpperCase(),
                     size: SizeConfig.of(context).dynamicScaleSize(size: 11),
                     color: ArielColors.cicloColor,
                     fontWeight: Weight.bold,

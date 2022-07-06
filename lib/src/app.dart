@@ -4,8 +4,8 @@ import 'package:ariel_app/core/ariel_app_routes.dart';
 
 const Locale myLocale = Locale("pt", "BR");
 
-class ArielApp extends StatelessWidget {
-  const ArielApp({Key? key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

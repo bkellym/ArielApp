@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class UserModel {
+  late final String uid;
   late final String nome;
   late final String email;
   late final String foto;
@@ -30,6 +31,7 @@ class UserModel {
   UserModel.fromSnapshot(DataSnapshot snapshot) {
     Map snapshotMap = snapshot as Map;
 
+    uid = snapshot.key!;
     genero  = snapshotMap['genero'];
     dtNascimento  = snapshotMap['dtNascimento'];
     _historia  = snapshotMap['historia'];

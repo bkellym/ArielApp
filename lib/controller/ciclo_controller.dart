@@ -8,6 +8,7 @@ import 'package:ariel_app/controller/aplicacao_controller.dart';
 
 class CicloController {
   final AplicacaoController controller = AplicacaoController();
+  AplicacaoController aplicacoesController = AplicacaoController();
   CicloDAO dao = CicloDAO();
 
   final TextEditingController _apresentacao = TextEditingController();
@@ -17,7 +18,7 @@ class CicloController {
   final TextEditingController _numAplicacoes = TextEditingController();
   final TextEditingController _intervalo = TextEditingController();
 
-  CicloController(){
+  CicloController() {
     _dataIncio.text = DateTime.now().toString();
   }
 
@@ -69,15 +70,28 @@ class CicloController {
     _intervalo.text = intervalo;
   }
 
-  Future<CicloModel?> buscar() async {
-    CicloModel model;
-
-    DataSnapshot snapshot = await dao.buscar();
+  Future<List<CicloModel>> buscarTodos(String userUid) async {
+    List<CicloModel> lista = [];
+    DataSnapshot snapshot = await dao.buscarTodos(userUid);
     Iterable<DataSnapshot> ciclos = snapshot.children;
 
-    for(DataSnapshot ciclo in ciclos){
+    for (DataSnapshot ciclo in ciclos) {
+      CicloModel model = CicloModel.fromSnapshot(ciclo);
+      lista.add(model);
+    }
+
+    return lista;
+  }
+
+  Future<CicloModel?> buscarCicloAtual() async {
+    CicloModel model;
+
+    DataSnapshot snapshot = await dao.buscarCicloAtual();
+    Iterable<DataSnapshot> ciclos = snapshot.children;
+
+    for (DataSnapshot ciclo in ciclos) {
       model = CicloModel.fromSnapshot(ciclo);
-      if(model.atual){
+      if (model.atual) {
         return model;
       }
     }
@@ -85,17 +99,18 @@ class CicloController {
     return null;
   }
 
-  void cadastrar()  async {
+  void cadastrar() async {
     CicloModel model = CicloModel();
     model.atual = true;
     model.apresentacao = _apresentacao.text;
-    model.dataIncio =  _dataIncio.text;
-    model.medicamento =  _medicamento.text;
-    model.dosagem =  _dosagem.text;
-    model.uid =  (await dao.cadastrar(model))!;
+    model.dataIncio = _dataIncio.text;
+    model.medicamento = _medicamento.text;
+    model.dosagem = _dosagem.text;
+    model.uid = (await dao.cadastrar(model))!;
 
-    if(model.uid != null){
-      controller.cadastrar(model.uid, int.parse(numAplicacoes.text), int.parse(_intervalo.text), model);
+    if (model.uid != null) {
+      controller.cadastrar(model.uid, int.parse(numAplicacoes.text),
+          int.parse(_intervalo.text), model);
     }
   }
 }
