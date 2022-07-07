@@ -1,12 +1,9 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
 import 'package:ariel_app/components/botoes/botao_texto_icon.dart';
-import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/screens/ariel_app.dart';
 import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DetalheCiclo extends StatefulWidget {
   final int widgetIndex;

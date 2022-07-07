@@ -1,7 +1,6 @@
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-
-import 'package:ariel_app/core/util/colors.dart';
 
 class GraficoPrincipal extends StatelessWidget {
   final DateTime now = DateTime.now();

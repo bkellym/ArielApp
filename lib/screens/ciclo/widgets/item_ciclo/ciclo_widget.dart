@@ -1,7 +1,6 @@
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/aplicacao_model.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo.dart';
 import 'package:flutter/material.dart';

@@ -1,10 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ariel_app/DAO/ciclo_dao.dart';
+import 'package:ariel_app/controller/aplicacao_controller.dart';
+import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
-import 'package:ariel_app/DAO/ciclo_dao.dart';
-import 'package:ariel_app/models/ciclo_model.dart';
-import 'package:ariel_app/controller/aplicacao_controller.dart';
 
 class CicloController {
   final AplicacaoController controller = AplicacaoController();

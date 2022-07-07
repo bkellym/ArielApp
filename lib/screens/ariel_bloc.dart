@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:ariel_app/models/user_model.dart';
 import 'package:ariel_app/controller/user_info_controller.dart';
+import 'package:ariel_app/models/user_model.dart';
 import 'package:ariel_app/screens/ciclo/ciclo_page.dart';
 import 'package:ariel_app/screens/exames_consultas/exames_consultas_page.dart';
 import 'package:ariel_app/screens/inicio/inicio_page.dart';
 import 'package:ariel_app/screens/perfil/perfil_page.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class ArielBloc extends BlocBase {
   UserModel? user;

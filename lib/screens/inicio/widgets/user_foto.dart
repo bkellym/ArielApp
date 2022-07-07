@@ -1,7 +1,6 @@
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:flutter/material.dart';
-
-import 'package:ariel_app/core/util/colors.dart';
 
 class UserFoto extends StatelessWidget {
   final String? foto;

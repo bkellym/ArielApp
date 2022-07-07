@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/size_config.dart';
+import 'package:flutter/material.dart';
 
 class Texto extends StatelessWidget {
   String data;

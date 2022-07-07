@@ -1,10 +1,8 @@
 import 'package:ariel_app/components/botoes/botao_sec_contorno.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:intl/intl.dart';
 import 'package:ariel_app/models/evento_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-import '../core/util/colors.dart';
 import '../components/divisoria.dart';
 import '../core/util/texto.dart';
 import 'botoes/botao_sec_preenchido.dart';

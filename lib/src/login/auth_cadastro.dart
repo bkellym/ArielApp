@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-
+import 'package:ariel_app/components/botoes/botao_padrao.dart';
+import 'package:ariel_app/components/input/campo_texto.dart';
+import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/src/login/base_auth.dart';
-import 'package:ariel_app/components/mensagem_erro.dart';
-import 'package:ariel_app/components/input/campo_texto.dart';
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class Cadastro extends StatelessWidget {
   const Cadastro({Key? key}) : super(key: key);

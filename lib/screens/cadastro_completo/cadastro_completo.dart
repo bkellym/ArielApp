@@ -1,8 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-
 import 'package:ariel_app/components/botoes/botao_padrao.dart';
 import 'package:ariel_app/components/divisoria_decorada.dart';
 import 'package:ariel_app/components/input/campo_data.dart';
@@ -16,6 +11,10 @@ import 'package:ariel_app/controller/user_info_controller.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 class CadastroCompleto extends StatefulWidget {
   final firebase_storage.FirebaseStorage storage =
