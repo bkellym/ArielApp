@@ -51,9 +51,9 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
           Capsule(
             icon: Icons.circle,
             title: "NOVO EXAME",
-            iconColor: const Color(0xFFFFC153),
+            iconColor: ArielColors.exameColor,
             bubbleColor: Colors.white,
-            titleStyle: const TextStyle(fontSize: 10, color: Color(0xFFFFC153)),
+            titleStyle: const TextStyle(fontSize: 10, color: ArielColors.exameColor),
             onPress: () {
               Navigator.push(
                   context,
@@ -66,98 +66,96 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
           Capsule(
             icon: Icons.circle,
             title: "NOVA CONSULTA",
-            iconColor: Color(0xFF1DC5E9),
+            iconColor: ArielColors.consultaColor,
             bubbleColor: Colors.white,
-            titleStyle: const TextStyle(fontSize: 10, color: Color(0xFF1DC5E9)),
+            titleStyle: const TextStyle(fontSize: 10, color: ArielColors.consultaColor),
             onPress: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const DetalheConsulta(
-                        widgetIndex: 1,
-                      )));
+                            widgetIndex: 1,
+                          )));
             },
           ),
         ],
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image:
-                        Image.asset('assets/images/header_exames_consultas.png')
-                            .image,
-                    fit: BoxFit.cover,
+      body: Column(children: [
+        Expanded(
+          child: Column(
+              children: [
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: Image.asset(
+                              'assets/images/header_exames_consultas.png')
+                          .image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: SizedBox(
+                    height: 110,
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 24),
+                              bottom: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 8),
+                            ),
+                            child: Texto(
+                              "EXAMES E\nCONSULTAS",
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 26),
+                              color: Colors.white,
+                              fontWeight: Weight.bold,
+                            ),
+                          ),
+                        ]),
                   ),
                 ),
-                child: SizedBox(
-                  height: 110,
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
+                Expanded(
+                  child: ListView(
+                    children: [
+                      Texto(
+                        "EXAMES",
+                        size: SizeConfig.of(context).dynamicScaleSize(size: 11),
+                        color: ArielColors.exameColor,
+                        fontWeight: Weight.bold,
+                        padding: EdgeInsets.only(
                             left: SizeConfig.of(context)
+                                .dynamicScaleSize(size: 24)),
+                      ),
+                      const DivisoriaDecorada(cor: ArielColors.exameColor),
+                      const ItemWidget(
+                        isExame: true,
+                        color: ArielColors.exameColor,
+                      ),
+                      Texto(
+                        "CONSULTAS",
+                        size: SizeConfig.of(context).dynamicScaleSize(size: 11),
+                        color: ArielColors.consultaColor,
+                        fontWeight: Weight.bold,
+                        padding: EdgeInsets.only(
+                            top: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 24),
-                            bottom: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 8),
-                          ),
-                          child: Texto(
-                            "EXAMES E\nCONSULTAS",
-                            size: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 26),
-                            color: Colors.white,
-                            fontWeight: Weight.bold,
-                          ),
-                        ),
-                      ]),
+                            left: SizeConfig.of(context)
+                                .dynamicScaleSize(size: 24)),
+                      ),
+                      const DivisoriaDecorada(cor: ArielColors.consultaColor),
+                      const ItemWidget(
+                        isExame: false,
+                        color: ArielColors.consultaColor,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ]),
-            Expanded(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Texto(
-                      "EXAMES",
-                      size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                      color: ArielColors.exameColor,
-                      fontWeight: Weight.bold,
-                      padding: EdgeInsets.only(
-                          top:
-                              SizeConfig.of(context).dynamicScaleSize(size: 24),
-                          left: SizeConfig.of(context)
-                              .dynamicScaleSize(size: 24)),
-                    ),
-                    const DivisoriaDecorada(cor: ArielColors.exameColor),
-                    const ItemWidget(
-                      isExame: true,
-                      color: ArielColors.exameColor,
-                    ),
-                    Texto(
-                      "CONSULTAS",
-                      size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                      color: ArielColors.cicloColor,
-                      fontWeight: Weight.bold,
-                      padding: EdgeInsets.only(
-                          top:
-                              SizeConfig.of(context).dynamicScaleSize(size: 24),
-                          left: SizeConfig.of(context)
-                              .dynamicScaleSize(size: 24)),
-                    ),
-                    const DivisoriaDecorada(cor: ArielColors.cicloColor),
-                    const ItemWidget(
-                      isExame: false,
-                      color: ArielColors.cicloColor,
-                    ),
-                  ]),
-            ),
-          ]),
+              ]),
+        ),
+      ]),
     );
   }
 }

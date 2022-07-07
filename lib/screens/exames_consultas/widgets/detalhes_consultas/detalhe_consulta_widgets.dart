@@ -25,13 +25,13 @@ class Detalhe extends StatelessWidget {
             Texto(
               "DETALHES",
               size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-              color: ArielColors.cicloColor,
+              color: ArielColors.consultaColor,
               fontWeight: Weight.bold,
             ),
             Texto(
               " DA CONSULTA",
               size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-              color: ArielColors.cicloColor,
+              color: ArielColors.consultaColor,
               fontWeight: Weight.regular,
             ),
           ],
@@ -43,7 +43,7 @@ class Detalhe extends StatelessWidget {
             Texto(
               "ESPECIALIDADE",
               size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-              color: ArielColors.cicloColor,
+              color: ArielColors.consultaColor,
               fontWeight: Weight.bold,
               padding: EdgeInsets.only(
                   left: SizeConfig.of(context)
@@ -64,8 +64,8 @@ class Detalhe extends StatelessWidget {
               titulo: "MÉDICO",
               valor: "05/04/2020",
               leftPadding: leftPadding,
-              color: ArielColors.cicloColor,
-              lineColor: ArielColors.cicloColor,
+              color: ArielColors.consultaColor,
+              lineColor: ArielColors.consultaColor,
             ),
           ],
         ),
@@ -75,15 +75,15 @@ class Detalhe extends StatelessWidget {
               titulo: "DATA DO EXAME",
               valor: "05/04/2020",
               leftPadding: leftPadding,
-              color: ArielColors.cicloColor,
-              lineColor: ArielColors.cicloColor,
+              color: ArielColors.consultaColor,
+              lineColor: ArielColors.consultaColor,
             ),
             CampoDetalhe(
               titulo: "HORARIO",
               valor: "1ª aplicação de 4",
               leftPadding: leftPadding,
-              color: ArielColors.cicloColor,
-              lineColor: ArielColors.cicloColor,
+              color: ArielColors.consultaColor,
+              lineColor: ArielColors.consultaColor,
             ),
           ],
         ),
@@ -91,15 +91,15 @@ class Detalhe extends StatelessWidget {
           titulo: "LOCAL",
           valor: "05/04/2020",
           leftPadding: leftPadding,
-          color: ArielColors.cicloColor,
-          lineColor: ArielColors.cicloColor,
+          color: ArielColors.consultaColor,
+          lineColor: ArielColors.consultaColor,
         ),
         CampoDetalhe(
           titulo: "RECOMENDAÇÕES",
           valor: "09/09/2020",
           leftPadding: leftPadding,
-          color: ArielColors.cicloColor,
-          lineColor: ArielColors.cicloColor,
+          color: ArielColors.consultaColor,
+          lineColor: ArielColors.consultaColor,
         ),
         const Divider(
           height: 16,
@@ -145,13 +145,13 @@ class CadastrarOuEditar extends StatelessWidget {
               Texto(
                 "NOVA",
                 size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-                color: ArielColors.cicloColor,
+                color: ArielColors.consultaColor,
                 fontWeight: Weight.bold,
               ),
               Texto(
                 " CONSULTA",
                 size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-                color: ArielColors.cicloColor,
+                color: ArielColors.consultaColor,
                 fontWeight: Weight.regular,
               ),
             ],
@@ -162,7 +162,7 @@ class CadastrarOuEditar extends StatelessWidget {
           ),
           Texto(
             "MÉDICO",
-            color: ArielColors.cicloColor,
+            color: ArielColors.consultaColor,
             fontWeight: Weight.semibold,
             size: SizeConfig.of(context).dynamicScaleSize(size: 9),
             padding: EdgeInsets.only(
@@ -180,7 +180,7 @@ class CadastrarOuEditar extends StatelessWidget {
           ),
           Texto(
             "ESPECIALIDADE",
-            color: ArielColors.cicloColor,
+            color: ArielColors.consultaColor,
             fontWeight: Weight.semibold,
             size: SizeConfig.of(context).dynamicScaleSize(size: 9),
             padding: EdgeInsets.only(
@@ -212,7 +212,7 @@ class CadastrarOuEditar extends StatelessWidget {
                     children: [
                       Texto(
                         "DATA DA CONSULTA",
-                        color: ArielColors.cicloColor,
+                        color: ArielColors.consultaColor,
                         fontWeight: Weight.semibold,
                         size: SizeConfig.of(context).dynamicScaleSize(size: 9),
                         padding: EdgeInsets.only(
@@ -222,7 +222,7 @@ class CadastrarOuEditar extends StatelessWidget {
                         ),
                       ),
                       CampoData(
-                        color: ArielColors.cicloColor,
+                        color: ArielColors.consultaColor,
                         controller: dtInicio,
                         padding: EdgeInsets.only(
                           right: 0,
@@ -241,7 +241,7 @@ class CadastrarOuEditar extends StatelessWidget {
                     children: [
                       Texto(
                         "HORÁRIO",
-                        color: ArielColors.cicloColor,
+                        color: ArielColors.consultaColor,
                         fontWeight: Weight.semibold,
                         size: SizeConfig.of(context).dynamicScaleSize(size: 9),
                         padding: EdgeInsets.only(
@@ -266,7 +266,7 @@ class CadastrarOuEditar extends StatelessWidget {
           ),
           Texto(
             "LOCAL",
-            color: ArielColors.cicloColor,
+            color: ArielColors.consultaColor,
             fontWeight: Weight.semibold,
             size: SizeConfig.of(context).dynamicScaleSize(size: 9),
             padding: EdgeInsets.only(
@@ -284,7 +284,7 @@ class CadastrarOuEditar extends StatelessWidget {
           ),
           Texto(
             "RECOMENDAÇÕES",
-            color: ArielColors.cicloColor,
+            color: ArielColors.consultaColor,
             fontWeight: Weight.semibold,
             size: SizeConfig.of(context).dynamicScaleSize(size: 9),
             padding: EdgeInsets.only(
