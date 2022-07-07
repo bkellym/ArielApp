@@ -1,16 +1,13 @@
 import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
 import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/models/user_model.dart';
 import 'package:ariel_app/screens/ciclo/ciclo_bloc.dart';
-import 'package:ariel_app/screens/ciclo/widgets/lista_ciclos.dart';
+import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo.dart';
+import 'package:ariel_app/screens/ciclo/widgets/item_ciclo/lista_ciclos.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets/ciclo_widget.dart';
 
 class CicloPage extends StatefulWidget {
   final UserModel user;
@@ -63,21 +60,35 @@ class _CicloPageState extends State<CicloPage>
                     title: "NOVO CICLO",
                     iconColor: ArielColors.cicloColor,
                     bubbleColor: Colors.white,
-                    titleStyle:
-                        const TextStyle(fontSize: 10, color: ArielColors.cicloColor, fontWeight: FontWeight.w700),
+                    titleStyle: const TextStyle(
+                        fontSize: 10,
+                        color: ArielColors.cicloColor,
+                        fontWeight: FontWeight.w700),
                     onPress: () {
-                      _animationController.reverse();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const DetalheCiclo(widgetIndex: 1)),
+                      );
                     },
                   ),
                   Capsule(
                     icon: Icons.circle,
-                    title: "NOVA APLICAÇÃO",
+                    title: "REGISTRAR APLICAÇÃO",
                     iconColor: ArielColors.cicloColor,
                     bubbleColor: Colors.white,
-                    titleStyle:
-                        const TextStyle(fontSize: 10, color: ArielColors.cicloColor, fontWeight: FontWeight.w700),
+                    titleStyle: const TextStyle(
+                        fontSize: 10,
+                        color: ArielColors.cicloColor,
+                        fontWeight: FontWeight.w700),
                     onPress: () {
-                      _animationController.reverse();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const DetalheCiclo(widgetIndex: 2)),
+                      );
                     },
                   ),
                 ],
@@ -98,7 +109,8 @@ class _CicloPageState extends State<CicloPage>
                             ),
                           ),
                           child: SizedBox(
-                            height: 110,
+                            height: SizeConfig.of(context)
+                                .dynamicScaleSize(size: 110),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.start,

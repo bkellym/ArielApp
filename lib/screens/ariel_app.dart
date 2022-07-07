@@ -4,7 +4,8 @@ import 'package:ariel_app/screens/ariel_bloc.dart';
 import 'package:flutter/material.dart';
 
 class ArielApp extends StatefulWidget {
-  const ArielApp({Key? key}) : super(key: key);
+  final int? tela;
+  const ArielApp({Key? key, this.tela}) : super(key: key);
 
   @override
   State<ArielApp> createState() => _ArielAppState();
@@ -16,7 +17,7 @@ class _ArielAppState extends State<ArielApp> {
 
   @override
   void initState() {
-    buscarUsuario = _bloc.buscarDadosUsuario();
+    buscarUsuario = _bloc.buscarDadosUsuario(widget.tela);
     super.initState();
   }
 

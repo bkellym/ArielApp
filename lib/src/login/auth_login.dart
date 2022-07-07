@@ -1,5 +1,6 @@
 import 'package:ariel_app/components/botoes/botao_texto.dart';
 import 'package:ariel_app/components/mensagem_erro.dart';
+import 'package:ariel_app/screens/ariel_app.dart';
 import 'package:flutter/material.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/components/botoes/botao_padrao.dart';
@@ -45,8 +46,8 @@ class _FormAuthLogin extends StatefulWidget {
 class _FormAuthLoginState extends State<_FormAuthLogin> {
   final _formKey = GlobalKey<FormState>();
 
-  static final TextEditingController _email = new TextEditingController();
-  static final TextEditingController _senha = new TextEditingController();
+  static final TextEditingController _email = TextEditingController();
+  static final TextEditingController _senha = TextEditingController();
 
   String get email => _email.text;
 
@@ -54,16 +55,18 @@ class _FormAuthLoginState extends State<_FormAuthLogin> {
 
   void doLogin(BuildContext context) async {
     try {
-      final user = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: senha);
-      if (user != null) {
+      final UserCredential user = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: senha)
+          .then((value) {
         _senha.text = "";
-        Navigator.pushNamed(context, '/inicio');
-      }
-      print(
-          "Login com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const ArielApp()),
+            (Route<dynamic> route) => false);
+
+        return value;
+      });
     } catch (e) {
-      print('Error: ${e.toString()}');
       final snackBar =
           MensagemErro(mensagem: 'Não foi possível realizar login');
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

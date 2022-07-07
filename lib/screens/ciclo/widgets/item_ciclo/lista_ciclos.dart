@@ -3,7 +3,7 @@ import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
-import 'package:ariel_app/screens/ciclo/widgets/ciclo_widget.dart';
+import 'package:ariel_app/screens/ciclo/widgets/item_ciclo/ciclo_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListaCiclos extends StatelessWidget {

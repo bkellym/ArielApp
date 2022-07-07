@@ -28,6 +28,7 @@ class _BotaoTextoIconState extends State<BotaoTextoIcon> {
       icon: Icon(
         widget.icon,
         size: 16.0,
+        color: ArielColors.gradientLight,
       ),
       label: Text(
         widget.label,

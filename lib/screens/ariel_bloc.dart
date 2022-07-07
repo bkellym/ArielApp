@@ -17,7 +17,8 @@ class ArielBloc extends BlocBase {
   UserInfoController userController =
       UserInfoController(FirebaseAuth.instance.currentUser);
 
-  buscarDadosUsuario() async {
+  buscarDadosUsuario(int? tela) async {
+    selectedIndex = tela ?? selectedIndex;
     user = await userController.buscar().then((value) {
       widgetOptions = <Widget>[
         InicioPage(user: value!),

@@ -3,6 +3,7 @@ import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/models/aplicacao_model.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
+import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -17,7 +18,6 @@ class CicloWidget extends StatefulWidget {
 }
 
 class _CicloWidgetState extends State<CicloWidget> {
-
   @override
   void initState() {
     super.initState();
@@ -169,22 +169,25 @@ class _CicloWidgetState extends State<CicloWidget> {
               Padding(
                 padding: EdgeInsets.only(
                     left: SizeConfig.of(context).dynamicScaleSize(size: 32)),
-                child: widget.model.atual ? ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
-                        horizontal:
-                            SizeConfig.of(context).dynamicScaleSize(size: 24)),
-                    primary: ArielColors.cicloColor,
-                  ),
-                  onPressed: () {},
-                  child: Texto(
-                    "Nova Aplicação".toUpperCase(),
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                    color: Colors.white,
-                    fontWeight: Weight.bold,
-                    padding: EdgeInsets.all(0),
-                  ),
-                ) : SizedBox.shrink(),
+                child: widget.model.atual
+                    ? ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 24)),
+                          primary: ArielColors.cicloColor,
+                        ),
+                        onPressed: () {},
+                        child: Texto(
+                          "Nova Aplicação".toUpperCase(),
+                          size:
+                              SizeConfig.of(context).dynamicScaleSize(size: 11),
+                          color: Colors.white,
+                          fontWeight: Weight.bold,
+                          padding: const EdgeInsets.all(0),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
               ),
               Padding(
                 padding: EdgeInsets.only(
@@ -198,7 +201,12 @@ class _CicloWidgetState extends State<CicloWidget> {
                       width: 1.5,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const DetalheCiclo(widgetIndex: 0)),
+                    );
+                  },
                   child: Texto(
                     widget.model.atual
                         ? "Editar".toUpperCase()
@@ -206,7 +214,7 @@ class _CicloWidgetState extends State<CicloWidget> {
                     size: SizeConfig.of(context).dynamicScaleSize(size: 11),
                     color: ArielColors.cicloColor,
                     fontWeight: Weight.bold,
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                   ),
                 ),
               ),

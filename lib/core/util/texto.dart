@@ -26,6 +26,7 @@ class Texto extends StatelessWidget {
       child: Text(
         data,
         style: TextStyle(
+          fontFamily: 'OpenSans',
           height: 0,
           letterSpacing: 0,
           fontWeight: fontWeight,
