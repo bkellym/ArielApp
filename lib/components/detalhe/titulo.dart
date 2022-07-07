@@ -16,19 +16,22 @@ class Titulo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: SizeConfig.of(context).dynamicScaleSize(size: 110),
-      child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        Texto(
-          label.toUpperCase(),
-          padding: EdgeInsets.only(
-            left: SizeConfig.of(context).dynamicScaleSize(
-                size: MediaQuery.of(context).size.width * 0.1),
-            bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Texto(
+            label.toUpperCase(),
+            padding: EdgeInsets.only(
+              left: SizeConfig.of(context).dynamicScaleSize(
+                  size: MediaQuery.of(context).size.width * 0.1),
+              bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
+            ),
+            size: SizeConfig.of(context).dynamicScaleSize(size: fontSize),
+            color: Colors.white,
+            fontWeight: Weight.bold,
           ),
-          size: SizeConfig.of(context).dynamicScaleSize(size: fontSize),
-          color: Colors.white,
-          fontWeight: Weight.bold,
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

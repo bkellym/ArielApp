@@ -4,7 +4,7 @@ class AplicacaoModel {
   late String uid;
   late final String cicloId;
   late final DateTime data;
-  late final bool feito;
+  late bool feito;
 
   AplicacaoModel({
     required this.cicloId,

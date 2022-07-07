@@ -15,6 +15,7 @@ class CicloBloc extends BlocBase {
     ciclos.sort((a, b) =>
         DateTime.parse(a.dataIncio).compareTo(DateTime.parse(b.dataIncio)));
     for (CicloModel ciclo in ciclos) {
+      ciclo.userUid = userUid;
       if (ciclo.atual) {
         ciclosAtuais.add(ciclo);
       } else {

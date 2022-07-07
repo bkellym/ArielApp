@@ -8,6 +8,7 @@ class Texto extends StatelessWidget {
   FontWeight fontWeight;
   Color color;
   EdgeInsetsGeometry? padding;
+  TextAlign? textAlign;
 
   Texto(
     this.data, {
@@ -15,7 +16,7 @@ class Texto extends StatelessWidget {
     required this.size,
     this.fontWeight = Weight.regular,
     this.color = ArielColors.textPrimary,
-    this.padding,
+    this.padding, this.textAlign = TextAlign.start
   }) : super(key: key);
 
   @override
@@ -24,6 +25,7 @@ class Texto extends StatelessWidget {
       padding: padding,
       child: Text(
         data,
+        textAlign: textAlign,
         style: TextStyle(
           fontFamily: 'OpenSans',
           height: 0,

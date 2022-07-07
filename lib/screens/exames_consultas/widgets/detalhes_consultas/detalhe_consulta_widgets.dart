@@ -1,5 +1,5 @@
-import 'package:ariel_app/components/CampoDetalhe.dart';
 import 'package:ariel_app/components/botoes/botao_padrao.dart';
+import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/components/input/campo_data.dart';
 import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';

@@ -11,13 +11,19 @@ class CicloController {
 
   final TextEditingController _apresentacao = TextEditingController();
   final TextEditingController _dataIncio = TextEditingController();
+  final TextEditingController _dataUltAplicacao = TextEditingController();
   final TextEditingController _dosagem = TextEditingController();
   final TextEditingController _medicamento = TextEditingController();
   final TextEditingController _numAplicacoes = TextEditingController();
   final TextEditingController _intervalo = TextEditingController();
 
-  CicloController() {
-    _dataIncio.text = DateTime.now().toString();
+  dispose(){
+    _apresentacao.dispose();
+    _dataIncio.dispose();
+    _dosagem.dispose();
+    _medicamento.dispose();
+    _numAplicacoes.dispose();
+    _intervalo.dispose();
   }
 
   TextEditingController get apresentacao {
@@ -26,6 +32,10 @@ class CicloController {
 
   TextEditingController get dataIncio {
     return _dataIncio;
+  }
+
+  TextEditingController get dataUltAplicacao {
+    return _dataUltAplicacao;
   }
 
   TextEditingController get dosagem {
@@ -50,6 +60,10 @@ class CicloController {
 
   set data(dataIncio) {
     _dataIncio.text = dataIncio;
+  }
+
+  set dataUltAplicacao(dataUltAplicacao) {
+    _dataUltAplicacao.text = dataUltAplicacao;
   }
 
   set dosagem(dosagem) {
@@ -108,7 +122,11 @@ class CicloController {
 
     if (model.uid != null) {
       controller.cadastrar(model.uid, int.parse(numAplicacoes.text),
-          int.parse(_intervalo.text), model);
+          int.parse(_intervalo.text), model, DateTime.parse(_dataUltAplicacao.text));
     }
+  }
+
+  void alterar(String cicloUid){
+
   }
 }

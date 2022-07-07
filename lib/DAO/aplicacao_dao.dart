@@ -28,7 +28,7 @@ class AplicacaoDAO {
     DatabaseReference listRef = ref.push();
     listRef.set({
       "data": DateFormat("y-MM-dd", "pt_BR").format(model.data),
-      "feito": model.data.isBefore(DateTime.now())
+      "feito": model.feito,
     });
   }
 }

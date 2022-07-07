@@ -45,11 +45,15 @@ class AplicacaoController {
   }
 
   cadastrar(
-      String cicloId, int numAplicacoes, int intervalo, CicloModel ciclo) {
+      String cicloId, int numAplicacoes, int intervalo, CicloModel ciclo, DateTime? dtUltimaAplicacao) {
     DateTime data = DateTime.parse(ciclo.dataIncio);
     for (int i = 0; i < numAplicacoes; i++) {
-      String dataString = DateFormat("dd/MM/y", "pt_BR").format(data);
       AplicacaoModel model = AplicacaoModel(cicloId: cicloId, data: data);
+
+      if(dtUltimaAplicacao != null){
+        model.feito = model.data.isBefore(dtUltimaAplicacao);
+      }
+
       dao.cadastrar(model);
       data = data.add(Duration(days: intervalo));
     }

@@ -2,7 +2,8 @@ import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
-import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo.dart';
+import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo_widget.dart';
+import 'package:ariel_app/screens/ciclo/widgets/registroAplicacao/registro_aplicacao_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -176,7 +177,12 @@ class _CicloWidgetState extends State<CicloWidget> {
                                   .dynamicScaleSize(size: 24)),
                           primary: ArielColors.cicloColor,
                         ),
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const RegistroAplicacaoWidget()),
+                        ),
                         child: Texto(
                           "Nova Aplicação".toUpperCase(),
                           size:
@@ -200,16 +206,14 @@ class _CicloWidgetState extends State<CicloWidget> {
                       width: 1.5,
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const DetalheCiclo(widgetIndex: 0)),
-                    );
-                  },
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            DetalheCicloWidget(model: widget.model)),
+                  ),
                   child: Texto(
-                    widget.model.atual
-                        ? "Editar".toUpperCase()
-                        : "Detalhes".toUpperCase(),
+                    "DETALHES",
                     size: SizeConfig.of(context).dynamicScaleSize(size: 11),
                     color: ArielColors.cicloColor,
                     fontWeight: Weight.bold,
