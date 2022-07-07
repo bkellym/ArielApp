@@ -8,12 +8,18 @@ class CicloDAO {
   final user = FirebaseAuth.instance.currentUser;
   late DatabaseReference ref = FirebaseDatabase.instance.ref();
 
-  Future<dynamic> buscar() async {
+  Future<dynamic> buscarTodos(String userUid) async {
+    Query ciclosRef = ref.child("ciclo_info").child(userUid).orderByChild("data");
+    DatabaseEvent event = await ciclosRef.once();
+    return event.snapshot;
+  }
+
+  Future<dynamic> buscarCicloAtual() async {
     String? uid = user?.uid;
     if (uid == null) return null;
 
-    DatabaseReference ciclosRef = ref.child("ciclo_info").child(uid);
-    DatabaseEvent event = await ciclosRef.once();
+    Query ciclosRef = ref.child("ciclo_info").child(uid).orderByChild("atual").equalTo(true).limitToFirst(1);
+    DatabaseEvent event = await ciclosRef.ref.once();
     return event.snapshot;
   }
 

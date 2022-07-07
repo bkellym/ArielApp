@@ -14,6 +14,7 @@ class UserDAO {
     DatabaseEvent event = await userRef.once();
 
     final data = event.snapshot.value as Map;
+    model.uid = event.snapshot.key!;
     model.genero = data['genero'];
     model.dtNascimento = data['data_de_nascimento'];
     model.historia = data['historia'];

@@ -1,33 +1,28 @@
-import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:ariel_app/controller/aplicacao_controller.dart';
+import 'package:ariel_app/controller/ciclo_controller.dart';
 import 'package:ariel_app/models/aplicacao_model.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:ariel_app/models/user_model.dart';
-import 'package:ariel_app/controller/aplicacao_controller.dart';
-import 'package:ariel_app/controller/ciclo_controller.dart';
-import 'package:ariel_app/controller/user_info_controller.dart';
 import 'package:ariel_app/screens/inicio/widgets/user_foto.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class InicioBloc extends BlocBase {
-  UserInfoController userController =
-      UserInfoController(FirebaseAuth.instance.currentUser);
-  CicloController cicloController = CicloController();
-  AplicacaoController aplicacaoController = AplicacaoController();
+  late UserModel user;
+  CicloModel? ciclo;
+  DateTime? proxAplicacao;
 
   List<double> chartData = [];
   List<AplicacaoModel> aplicacoes = [];
-  UserModel? user;
-  CicloModel? ciclo;
 
-  DateTime? proxAplicacao;
+  CicloController cicloController = CicloController();
+  AplicacaoController aplicacaoController = AplicacaoController();
 
-  buscarDadosUsuario() async {
+  buscarDadosUsuario(UserModel user) async {
+    this.user = user;
     chartData = [];
-    user = (await userController.buscar());
-    ciclo = (await cicloController.buscar());
+    ciclo = (await cicloController.buscarCicloAtual());
     var cicloUid = ciclo?.uid;
 
     if (cicloUid != null) {
@@ -38,8 +33,8 @@ class InicioBloc extends BlocBase {
   }
 
   Widget getFotoUsuario() => UserFoto(
-        foto: user?.foto,
-        inicialNome: user?.nome.substring(0, 1) ?? "",
+        foto: user.foto,
+        inicialNome: user.nome.substring(0, 1),
       );
 
   List<double> getCharData() {

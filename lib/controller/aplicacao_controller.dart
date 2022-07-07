@@ -7,6 +7,16 @@ import 'package:ariel_app/models/ciclo_model.dart';
 class AplicacaoController {
   AplicacaoDAO dao = AplicacaoDAO();
 
+  Future<List<double>> buscarStatusAplicacoes(cicloUid) async{
+    List<double> lista = [];
+    await buscar(cicloUid).then((value) {
+      for (AplicacaoModel val in value) {
+        lista.add((val.feito ? 1 : 0));
+      }
+    });
+    return lista;
+  }
+
   Future<DateTime> buscarProx(List<AplicacaoModel> listAplicacoes) async {
     List<AplicacaoModel> filtrado = listAplicacoes.where((element) => element.feito == false).toList();
     filtrado.sort((a,b) {

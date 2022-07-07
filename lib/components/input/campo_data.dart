@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:ariel_app/core/util/colors.dart';
-import 'package:ariel_app/app.dart';
+import 'package:ariel_app/src/app.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 

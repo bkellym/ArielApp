@@ -4,16 +4,18 @@ import '../core/util/colors.dart';
 
 class DivisoriaDecorada extends StatelessWidget {
   final Color cor;
+  final EdgeInsetsGeometry? padding;
 
   const DivisoriaDecorada({
     Key? key,
     required this.cor,
+    this.padding,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+    return Container(
+      padding: padding,
       child: Stack(
         alignment: Alignment.centerRight,
         children: [
@@ -25,8 +27,7 @@ class DivisoriaDecorada extends StatelessWidget {
           Container(
             width: 10.0,
             height: 10.0,
-            margin:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+            margin: const EdgeInsets.symmetric(horizontal: 24.0),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: cor,

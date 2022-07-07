@@ -6,15 +6,24 @@ import 'package:flutter/material.dart';
 class BotaoPadrao extends StatefulWidget {
   final bool disabled;
   final String label;
+  final double? height;
   final VoidCallback? onPressed;
+  final EdgeInsets? padding;
+  final TextStyle? textStyle;
   final double internalPadding;
 
   BotaoPadrao({
     Key? key,
     required this.label,
     required this.onPressed,
+    this.textStyle,
+    this.height,
     this.disabled = false,
     this.internalPadding = 32,
+    this.padding = const EdgeInsets.only(
+      top: 24,
+      bottom: 16,
+    ),
   }) : super(key: key);
 
   final LinearGradient gradient = const LinearGradient(
@@ -56,11 +65,9 @@ class _BotaoPadraoState extends State<BotaoPadrao> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: widget.height,
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(
-        top: 24,
-        bottom: 16,
-      ),
+      padding: widget.padding,
       child: DecoratedBox(
         decoration: BoxDecoration(
           gradient: widget.disabled ? widget.disabledgradient : widget.gradient,
@@ -71,12 +78,13 @@ class _BotaoPadraoState extends State<BotaoPadrao> {
           onPressed: widget.onPressed,
           child: Padding(
             padding: EdgeInsets.only(
-              top: 8,
-              bottom: 8,
               left: widget.internalPadding,
               right: widget.internalPadding,
             ),
-            child: Text(widget.label),
+            child: Text(
+              widget.label,
+              style: widget.textStyle,
+            ),
           ),
         ),
       ),

@@ -1,17 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import '../../core/util/size_config.dart';
-import 'inicio_bloc.dart';
-
-import 'package:ariel_app/screens/inicio/widgets/destaque.dart';
-import 'package:ariel_app/screens/inicio/widgets/grafico_principal.dart';
-import 'package:ariel_app/screens/inicio/widgets/header.dart';
 import 'package:ariel_app/components/evento.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/models/evento_model.dart';
+import 'package:ariel_app/models/user_model.dart';
+import 'package:ariel_app/screens/inicio/widgets/destaque.dart';
+import 'package:ariel_app/screens/inicio/widgets/grafico_principal.dart';
+import 'package:ariel_app/screens/inicio/widgets/header.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import 'inicio_bloc.dart';
 
 class InicioPage extends StatefulWidget {
-  const InicioPage({Key? key}) : super(key: key);
+  final UserModel user;
+
+  const InicioPage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<InicioPage> createState() => _InicioPageState();
@@ -23,7 +25,7 @@ class _InicioPageState extends State<InicioPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _bloc.buscarDadosUsuario(),
+      future: _bloc.buscarDadosUsuario(widget.user),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Container(
@@ -33,7 +35,7 @@ class _InicioPageState extends State<InicioPage> {
             child: Column(
               children: [
                 Header(
-                  nome: _bloc.user?.nome ?? "",
+                  nome: _bloc.user.nome,
                   foto: _bloc.getFotoUsuario(),
                 ),
                 Row(
@@ -65,7 +67,7 @@ class _InicioPageState extends State<InicioPage> {
                             titulo: "Ultima aplicação",
                             valor: DateFormat("dd/MM/y", "pt_BR").format(
                                 DateTime.parse(
-                                    _bloc.user?.dtUltAplicacao ?? "")),
+                                    _bloc.user.dtUltAplicacao ?? "")),
                           ),
                         ],
                       ),
