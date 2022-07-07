@@ -1,13 +1,16 @@
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/detalhe_exame/detalhe_exame.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ItemWidget extends StatefulWidget {
   final Color color;
+  final bool isExame;
 
-  const ItemWidget({Key? key, required this.color}) : super(key: key);
+  const ItemWidget({Key? key, required this.color, required this.isExame})
+      : super(key: key);
 
   @override
   State<ItemWidget> createState() => _ItemWidgetState();
@@ -147,32 +150,37 @@ class _ItemWidgetState extends State<ItemWidget> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: SizeConfig.of(context).dynamicScaleSize(size: 32)),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: SizeConfig.of(context)
-                              .dynamicScaleSize(size: 24)),
-                      primary: widget.color,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const DetalheExame(widgetIndex: 2)),
-                      );
-                    },
-                    child: Texto(
-                      "inserir resultados".toUpperCase(),
-                      size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                      color: Colors.white,
-                      fontWeight: Weight.bold,
-                      padding: const EdgeInsets.all(0),
-                    ),
-                  )),
+              widget.isExame
+                  ? Padding(
+                      padding: EdgeInsets.only(
+                          left: SizeConfig.of(context)
+                              .dynamicScaleSize(size: 32)),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 24)),
+                          primary: widget.color,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const DetalheExame(widgetIndex: 2)),
+                          );
+                        },
+                        child: Texto(
+                          "inserir resultados".toUpperCase(),
+                          size:
+                              SizeConfig.of(context).dynamicScaleSize(size: 11),
+                          color: Colors.white,
+                          fontWeight: Weight.bold,
+                          padding: const EdgeInsets.all(0),
+                        ),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
               Padding(
                 padding: EdgeInsets.only(
                     right: SizeConfig.of(context).dynamicScaleSize(size: 32)),
@@ -186,11 +194,18 @@ class _ItemWidgetState extends State<ItemWidget> {
                     ),
                   ),
                   onPressed: () {
+                    widget.isExame
+                        ?
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
                               const DetalheExame(widgetIndex: 0)),
+                    ) : Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                          const DetalheConsulta(widgetIndex: 0)),
                     );
                   },
                   child: Texto(

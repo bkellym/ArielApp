@@ -1,5 +1,6 @@
 import 'package:ariel_app/components/divisoria_decorada.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/detalhe_exame/detalhe_exame.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/item.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +51,7 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
           Capsule(
             icon: Icons.circle,
             title: "NOVO EXAME",
-            iconColor: Color(0xFFFFC153),
+            iconColor: const Color(0xFFFFC153),
             bubbleColor: Colors.white,
             titleStyle: const TextStyle(fontSize: 10, color: Color(0xFFFFC153)),
             onPress: () {
@@ -69,7 +70,12 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
             bubbleColor: Colors.white,
             titleStyle: const TextStyle(fontSize: 10, color: Color(0xFF1DC5E9)),
             onPress: () {
-              _animationController.reverse();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DetalheConsulta(
+                        widgetIndex: 1,
+                      )));
             },
           ),
         ],
@@ -130,6 +136,7 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                     ),
                     const DivisoriaDecorada(cor: ArielColors.exameColor),
                     const ItemWidget(
+                      isExame: true,
                       color: ArielColors.exameColor,
                     ),
                     Texto(
@@ -145,6 +152,7 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                     ),
                     const DivisoriaDecorada(cor: ArielColors.cicloColor),
                     const ItemWidget(
+                      isExame: false,
                       color: ArielColors.cicloColor,
                     ),
                   ]),

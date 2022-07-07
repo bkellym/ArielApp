@@ -6,6 +6,7 @@ import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/detalhe_exame/detalhe_exame.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
 import 'package:flutter/material.dart';
 
 class Detalhe extends StatelessWidget {
@@ -24,13 +25,13 @@ class Detalhe extends StatelessWidget {
             Texto(
               "DETALHES",
               size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-              color: ArielColors.exameColor,
+              color: ArielColors.cicloColor,
               fontWeight: Weight.bold,
             ),
             Texto(
-              " DO EXAME",
+              " DA CONSULTA",
               size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-              color: ArielColors.exameColor,
+              color: ArielColors.cicloColor,
               fontWeight: Weight.regular,
             ),
           ],
@@ -40,9 +41,9 @@ class Detalhe extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Texto(
-              "EXAME",
+              "ESPECIALIDADE",
               size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-              color: ArielColors.exameColor,
+              color: ArielColors.cicloColor,
               fontWeight: Weight.bold,
               padding: EdgeInsets.only(
                   left: SizeConfig.of(context)
@@ -59,6 +60,13 @@ class Detalhe extends StatelessWidget {
                 bottom: SizeConfig.of(context).dynamicScaleSize(size: 12),
               ),
             ),
+            CampoDetalhe(
+              titulo: "MÉDICO",
+              valor: "05/04/2020",
+              leftPadding: leftPadding,
+              color: ArielColors.cicloColor,
+              lineColor: ArielColors.cicloColor,
+            ),
           ],
         ),
         Row(
@@ -67,15 +75,15 @@ class Detalhe extends StatelessWidget {
               titulo: "DATA DO EXAME",
               valor: "05/04/2020",
               leftPadding: leftPadding,
-              color: ArielColors.exameColor,
-              lineColor: ArielColors.exameColor,
+              color: ArielColors.cicloColor,
+              lineColor: ArielColors.cicloColor,
             ),
             CampoDetalhe(
               titulo: "HORARIO",
               valor: "1ª aplicação de 4",
               leftPadding: leftPadding,
-              color: ArielColors.exameColor,
-              lineColor: ArielColors.exameColor,
+              color: ArielColors.cicloColor,
+              lineColor: ArielColors.cicloColor,
             ),
           ],
         ),
@@ -83,54 +91,34 @@ class Detalhe extends StatelessWidget {
           titulo: "LOCAL",
           valor: "05/04/2020",
           leftPadding: leftPadding,
-          color: ArielColors.exameColor,
-          lineColor: ArielColors.exameColor,
+          color: ArielColors.cicloColor,
+          lineColor: ArielColors.cicloColor,
         ),
         CampoDetalhe(
           titulo: "RECOMENDAÇÕES",
           valor: "09/09/2020",
           leftPadding: leftPadding,
-          color: ArielColors.exameColor,
-          lineColor: ArielColors.exameColor,
+          color: ArielColors.cicloColor,
+          lineColor: ArielColors.cicloColor,
         ),
         const Divider(
           height: 16,
           color: Color(0x00FFFFFF),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BotaoPadrao(
-              label: "INSERIR RESULTADO",
-              height: 40,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const DetalheExame(widgetIndex: 2)),
-                );
-              },
-              internalPadding: 0,
-              padding: const EdgeInsets.only(left: 32),
-              textStyle: const TextStyle(fontSize: 10),
-            ),
-            BotaoPadrao(
-              label: "EDITAR EXAME",
-              height: 40,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const DetalheExame(widgetIndex: 1)),
-                );
-              },
-              internalPadding: 6,
-              padding: EdgeInsets.only(
-                  right: SizeConfig.of(context).dynamicScaleSize(size: 32)),
-              textStyle: TextStyle(
-                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 9)),
-            )
-          ],
+        BotaoPadrao(
+          label: "EDITAR CONSULTA",
+          height: 40,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const DetalheConsulta(widgetIndex: 1)),
+            );
+          },
+          internalPadding: 6,
+          padding: const EdgeInsets.all(0),
+          textStyle: TextStyle(
+              fontSize: SizeConfig.of(context).dynamicScaleSize(size: 9)),
         )
       ],
     );
@@ -155,15 +143,15 @@ class CadastrarOuEditar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Texto(
-                "CADASTRAR",
+                "NOVA",
                 size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-                color: ArielColors.exameColor,
+                color: ArielColors.cicloColor,
                 fontWeight: Weight.bold,
               ),
               Texto(
-                " EXAME",
+                " CONSULTA",
                 size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-                color: ArielColors.exameColor,
+                color: ArielColors.cicloColor,
                 fontWeight: Weight.regular,
               ),
             ],
@@ -173,8 +161,26 @@ class CadastrarOuEditar extends StatelessWidget {
             color: Color(0x00FFFFFF),
           ),
           Texto(
-            "TIPO DE EXAME",
-            color: ArielColors.exameColor,
+            "MÉDICO",
+            color: ArielColors.cicloColor,
+            fontWeight: Weight.semibold,
+            size: SizeConfig.of(context).dynamicScaleSize(size: 9),
+            padding: EdgeInsets.only(
+              left: SizeConfig.of(context).dynamicScaleSize(
+                size: leftPadding,
+              ),
+              bottom: SizeConfig.of(context).dynamicScaleSize(
+                size: 4,
+              ),
+            ),
+          ),
+          CampoTexto(
+            leftPadding: leftPadding,
+            rightPadding: leftPadding,
+          ),
+          Texto(
+            "ESPECIALIDADE",
+            color: ArielColors.cicloColor,
             fontWeight: Weight.semibold,
             size: SizeConfig.of(context).dynamicScaleSize(size: 9),
             padding: EdgeInsets.only(
@@ -205,8 +211,8 @@ class CadastrarOuEditar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Texto(
-                        "DATA DO EXAME",
-                        color: ArielColors.exameColor,
+                        "DATA DA CONSULTA",
+                        color: ArielColors.cicloColor,
                         fontWeight: Weight.semibold,
                         size: SizeConfig.of(context).dynamicScaleSize(size: 9),
                         padding: EdgeInsets.only(
@@ -216,7 +222,7 @@ class CadastrarOuEditar extends StatelessWidget {
                         ),
                       ),
                       CampoData(
-                        color: ArielColors.exameColor,
+                        color: ArielColors.cicloColor,
                         controller: dtInicio,
                         padding: EdgeInsets.only(
                           right: 0,
@@ -235,7 +241,7 @@ class CadastrarOuEditar extends StatelessWidget {
                     children: [
                       Texto(
                         "HORÁRIO",
-                        color: ArielColors.exameColor,
+                        color: ArielColors.cicloColor,
                         fontWeight: Weight.semibold,
                         size: SizeConfig.of(context).dynamicScaleSize(size: 9),
                         padding: EdgeInsets.only(
@@ -260,7 +266,7 @@ class CadastrarOuEditar extends StatelessWidget {
           ),
           Texto(
             "LOCAL",
-            color: ArielColors.exameColor,
+            color: ArielColors.cicloColor,
             fontWeight: Weight.semibold,
             size: SizeConfig.of(context).dynamicScaleSize(size: 9),
             padding: EdgeInsets.only(
@@ -277,8 +283,8 @@ class CadastrarOuEditar extends StatelessWidget {
             rightPadding: leftPadding,
           ),
           Texto(
-            "DETALHES E RECOMENDAÇÕES",
-            color: ArielColors.exameColor,
+            "RECOMENDAÇÕES",
+            color: ArielColors.cicloColor,
             fontWeight: Weight.semibold,
             size: SizeConfig.of(context).dynamicScaleSize(size: 9),
             padding: EdgeInsets.only(
@@ -297,164 +303,7 @@ class CadastrarOuEditar extends StatelessWidget {
           ),
           const Divider(height: 32, color: Color(0x00FFFFFF)),
           BotaoPadrao(
-              label: "SALVAR EXAME",
-              height: SizeConfig.of(context).dynamicScaleSize(size: 40),
-              padding: EdgeInsets.all(0),
-              textStyle: TextStyle(
-                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
-                  fontWeight: Weight.bold),
-              internalPadding: SizeConfig.of(context).dynamicScaleSize(size: 8),
-              onPressed: () {}),
-        ],
-      ),
-    );
-  }
-}
-
-class InserirResultados extends StatelessWidget {
-  InserirResultados({Key? key}) : super(key: key);
-
-  final double leftPadding = 32;
-  final TextEditingController dtInicio = TextEditingController();
-  final TextEditingController dtUltimaAplicacao = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Texto(
-                "RESULTADO",
-                size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-                color: ArielColors.exameColor,
-                fontWeight: Weight.bold,
-              ),
-              Texto(
-                " DO EXAME",
-                size: SizeConfig.of(context).dynamicScaleSize(size: 18),
-                color: ArielColors.exameColor,
-                fontWeight: Weight.regular,
-              ),
-            ],
-          ),
-          const Divider(
-            height: 16,
-            color: Color(0x00FFFFFF),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Texto(
-                "EXAME",
-                size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                color: ArielColors.exameColor,
-                fontWeight: Weight.bold,
-                padding: EdgeInsets.only(
-                    left: SizeConfig.of(context)
-                        .dynamicScaleSize(size: leftPadding),
-                    bottom: SizeConfig.of(context).dynamicScaleSize(size: 6)),
-              ),
-              Texto(
-                "teste",
-                size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                fontWeight: Weight.bold,
-                padding: EdgeInsets.only(
-                  left: SizeConfig.of(context)
-                      .dynamicScaleSize(size: leftPadding),
-                  bottom: SizeConfig.of(context).dynamicScaleSize(size: 12),
-                ),
-              ),
-            ],
-          ),
-          const Divider(
-            height: 16,
-            color: Color(0x00FFFFFF),
-          ),
-          Row(
-            children: [
-              CampoDetalhe(
-                titulo: "DATA DO EXAME",
-                valor: "09/09/2020",
-                leftPadding: leftPadding,
-                color: ArielColors.exameColor,
-                lineColor: ArielColors.exameColor,
-              ),
-              CampoDetalhe(
-                titulo: "HORÁRIO",
-                valor: "09/09/2020",
-                leftPadding: leftPadding,
-                color: ArielColors.exameColor,
-                lineColor: ArielColors.exameColor,
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: SizeConfig.of(context).dynamicScaleSize(size: 8),
-              right: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
-              left: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Texto(
-                        "PARAMETRO",
-                        color: ArielColors.exameColor,
-                        fontWeight: Weight.semibold,
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                        padding: EdgeInsets.only(
-                          bottom: SizeConfig.of(context).dynamicScaleSize(
-                            size: 4,
-                          ),
-                        ),
-                      ),
-                      const CampoTexto(
-                        leftPadding: 0,
-                        rightPadding: 12,
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Texto(
-                        "DOSAGEM",
-                        color: ArielColors.exameColor,
-                        fontWeight: Weight.semibold,
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                        padding: EdgeInsets.only(
-                          left: 0,
-                          bottom: SizeConfig.of(context).dynamicScaleSize(
-                            size: 4,
-                          ),
-                        ),
-                      ),
-                      const CampoTexto(
-                        leftPadding: 0,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Divider(height: 32, color: Color(0x00FFFFFF)),
-          BotaoPadrao(
-              label: "SALVAR ALTERAÇÕES",
+              label: "SALVAR CONSULTA",
               height: SizeConfig.of(context).dynamicScaleSize(size: 40),
               padding: EdgeInsets.all(0),
               textStyle: TextStyle(
