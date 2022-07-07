@@ -8,12 +8,13 @@ import 'package:flutter/material.dart';
 class CampoData extends StatefulWidget {
   final EdgeInsetsGeometry padding;
   final TextEditingController controller;
+  final Color? color;
   DateTime selectedDate = DateTime.now();
 
   CampoData({
     Key? key,
     required this.padding,
-    required this.controller,
+    required this.controller, this.color = ArielColors.secundary,
   }) : super(key: key);
 
   @override
@@ -39,18 +40,18 @@ class _CampoDataState extends State<CampoData> {
             fontSize: 12,
             decoration: TextDecoration.none,
           ),
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             suffixIcon: Icon(
               Icons.calendar_month,
-              color: ArielColors.secundary,
+              color: widget.color,
             ),
             isDense: true,
-            contentPadding: EdgeInsets.all(10),
+            contentPadding: const EdgeInsets.all(10),
             fillColor: ArielColors.baseLight,
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
               borderSide: BorderSide(color: ArielColors.baseDark),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: ArielColors.secundary)),
           ),
         ),

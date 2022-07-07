@@ -96,9 +96,9 @@ class _CicloPageState extends State<CicloPage>
               body: Column(
                 children: [
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                         DecoratedBox(
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -134,21 +134,26 @@ class _CicloPageState extends State<CicloPage>
                             ),
                           ),
                         ),
-                        _bloc.ciclosAtuais.isNotEmpty
-                            ? ListaCiclos(
-                                titulo: "ciclos ativos",
-                                lista: _bloc.ciclosAtuais,
-                              )
-                            : const SizedBox.shrink(),
-                        _bloc.historicoCiclos.isNotEmpty
-                            ? ListaCiclos(
-                                titulo: "Histórico de ciclos",
-                                lista: _bloc.historicoCiclos,
-                              )
-                            : const SizedBox.shrink(),
-                      ],
-                    ),
-                  ),
+                        Expanded(
+                          child: ListView(
+                            padding: const EdgeInsets.all(8),
+                            children: [
+                              _bloc.ciclosAtuais.isNotEmpty
+                                  ? ListaCiclos(
+                                      titulo: "ciclos ativos",
+                                      lista: _bloc.ciclosAtuais,
+                                    )
+                                  : const SizedBox.shrink(),
+                              _bloc.historicoCiclos.isNotEmpty
+                                  ? ListaCiclos(
+                                      titulo: "Histórico de ciclos",
+                                      lista: _bloc.historicoCiclos,
+                                    )
+                                  : const SizedBox.shrink(),
+                            ],
+                          ),
+                        ),
+                      ])),
                 ],
               ),
             );

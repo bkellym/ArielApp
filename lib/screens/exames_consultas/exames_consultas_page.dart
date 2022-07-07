@@ -1,3 +1,7 @@
+import 'package:ariel_app/components/divisoria_decorada.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/detalhe_exame/detalhe_exame.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/item.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
@@ -5,7 +9,6 @@ import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsu
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-
 
 class ExamesConsultasPage extends StatefulWidget {
   const ExamesConsultasPage({Key? key}) : super(key: key);
@@ -48,62 +51,109 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
           Capsule(
             icon: Icons.circle,
             title: "NOVO EXAME",
-            iconColor: Color(0xFFFFC153),
+            iconColor: ArielColors.exameColor,
             bubbleColor: Colors.white,
-            titleStyle: const TextStyle(fontSize: 10, color: Color(0xFFFFC153)),
+            titleStyle: const TextStyle(fontSize: 10, color: ArielColors.exameColor),
             onPress: () {
-              _animationController.reverse();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DetalheExame(
+                            widgetIndex: 1,
+                          )));
             },
           ),
           Capsule(
             icon: Icons.circle,
             title: "NOVA CONSULTA",
-            iconColor: Color(0xFF1DC5E9),
+            iconColor: ArielColors.consultaColor,
             bubbleColor: Colors.white,
-            titleStyle: const TextStyle(fontSize: 10, color: Color(0xFF1DC5E9)),
+            titleStyle: const TextStyle(fontSize: 10, color: ArielColors.consultaColor),
             onPress: () {
-              _animationController.reverse();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DetalheConsulta(
+                            widgetIndex: 1,
+                          )));
             },
           ),
         ],
       ),
       body: Column(children: [
         Expanded(
-          child: Column(children: [
-            DecoratedBox(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image:
-                      Image.asset('assets/images/header_exames_consultas.png')
+          child: Column(
+              children: [
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: Image.asset(
+                              'assets/images/header_exames_consultas.png')
                           .image,
-                  fit: BoxFit.cover,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: SizedBox(
+                    height: 110,
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 24),
+                              bottom: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 8),
+                            ),
+                            child: Texto(
+                              "EXAMES E\nCONSULTAS",
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 26),
+                              color: Colors.white,
+                              fontWeight: Weight.bold,
+                            ),
+                          ),
+                        ]),
+                  ),
                 ),
-              ),
-              child: SizedBox(
-                height: 110,
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                Expanded(
+                  child: ListView(
                     children: [
-                      Padding(
+                      Texto(
+                        "EXAMES",
+                        size: SizeConfig.of(context).dynamicScaleSize(size: 11),
+                        color: ArielColors.exameColor,
+                        fontWeight: Weight.bold,
                         padding: EdgeInsets.only(
-                          left:
-                              SizeConfig.of(context).dynamicScaleSize(size: 24),
-                          bottom:
-                              SizeConfig.of(context).dynamicScaleSize(size: 8),
-                        ),
-                        child: Texto(
-                          "EXAMES E\nCONSULTAS",
-                          size:
-                              SizeConfig.of(context).dynamicScaleSize(size: 26),
-                          color: Colors.white,
-                          fontWeight: Weight.bold,
-                        ),
+                            left: SizeConfig.of(context)
+                                .dynamicScaleSize(size: 24)),
                       ),
-                    ]),
-              ),
-            ),
-          ]),
+                      const DivisoriaDecorada(cor: ArielColors.exameColor),
+                      const ItemWidget(
+                        isExame: true,
+                        color: ArielColors.exameColor,
+                      ),
+                      Texto(
+                        "CONSULTAS",
+                        size: SizeConfig.of(context).dynamicScaleSize(size: 11),
+                        color: ArielColors.consultaColor,
+                        fontWeight: Weight.bold,
+                        padding: EdgeInsets.only(
+                            top: SizeConfig.of(context)
+                                .dynamicScaleSize(size: 24),
+                            left: SizeConfig.of(context)
+                                .dynamicScaleSize(size: 24)),
+                      ),
+                      const DivisoriaDecorada(cor: ArielColors.consultaColor),
+                      const ItemWidget(
+                        isExame: false,
+                        color: ArielColors.consultaColor,
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
         ),
       ]),
     );
