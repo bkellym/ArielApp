@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../core/util/colors.dart';
-
 class Divisoria extends StatelessWidget {
   final Color cor;
 

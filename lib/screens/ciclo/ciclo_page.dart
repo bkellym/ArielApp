@@ -5,8 +5,9 @@ import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/models/user_model.dart';
 import 'package:ariel_app/screens/ciclo/ciclo_bloc.dart';
-import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo.dart';
+import 'package:ariel_app/screens/ciclo/widgets/cadastroEdicao/cadastro_edicao_widget.dart';
 import 'package:ariel_app/screens/ciclo/widgets/item_ciclo/lista_ciclos.dart';
+import 'package:ariel_app/screens/ciclo/widgets/registroAplicacao/registro_aplicacao_widget.dart';
 import 'package:flutter/material.dart';
 
 class CicloPage extends StatefulWidget {
@@ -56,41 +57,42 @@ class _CicloPageState extends State<CicloPage>
                     : _animationController.forward(),
                 items: <Capsule>[
                   Capsule(
-                    icon: Icons.circle,
-                    title: "NOVO CICLO",
-                    iconColor: ArielColors.cicloColor,
-                    bubbleColor: Colors.white,
-                    titleStyle: const TextStyle(
-                        fontSize: 10,
-                        color: ArielColors.cicloColor,
-                        fontWeight: FontWeight.w700),
-                    onPress: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const DetalheCiclo(widgetIndex: 1)),
-                      );
-                    },
-                  ),
+                      icon: Icons.circle,
+                      title: "NOVO CICLO",
+                      iconColor: ArielColors.cicloColor,
+                      bubbleColor: Colors.white,
+                      titleStyle: const TextStyle(
+                          fontSize: 10,
+                          color: ArielColors.cicloColor,
+                          fontWeight: FontWeight.w700),
+                      onPress: () {
+                        _animationController.reverse();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CadastroEdicaoCiclo(
+                                    userUid: widget.user.uid,
+                                  )),
+                        );
+                      }),
                   Capsule(
-                    icon: Icons.circle,
-                    title: "REGISTRAR APLICAÇÃO",
-                    iconColor: ArielColors.cicloColor,
-                    bubbleColor: Colors.white,
-                    titleStyle: const TextStyle(
-                        fontSize: 10,
-                        color: ArielColors.cicloColor,
-                        fontWeight: FontWeight.w700),
-                    onPress: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const DetalheCiclo(widgetIndex: 2)),
-                      );
-                    },
-                  ),
+                      icon: Icons.circle,
+                      title: "REGISTRAR APLICAÇÃO",
+                      iconColor: ArielColors.cicloColor,
+                      bubbleColor: Colors.white,
+                      titleStyle: const TextStyle(
+                          fontSize: 10,
+                          color: ArielColors.cicloColor,
+                          fontWeight: FontWeight.w700),
+                      onPress: () {
+                        _animationController.reverse();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegistroAplicacaoWidget(
+                                  model: _bloc.ciclosAtuais.first)),
+                        );
+                      }),
                 ],
               ),
               body: Column(

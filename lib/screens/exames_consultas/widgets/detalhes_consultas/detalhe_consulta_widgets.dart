@@ -1,11 +1,10 @@
-import 'package:ariel_app/components/CampoDetalhe.dart';
 import 'package:ariel_app/components/botoes/botao_padrao.dart';
+import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/components/input/campo_data.dart';
 import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/detalhe_exame/detalhe_exame.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
 import 'package:flutter/material.dart';
 

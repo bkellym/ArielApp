@@ -1,14 +1,13 @@
+import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
+import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
 import 'package:ariel_app/components/divisoria_decorada.dart';
+import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/size_config.dart';
+import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/detalhe_exame/detalhe_exame.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/item.dart';
 import 'package:flutter/material.dart';
-
-import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
-import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
-import 'package:ariel_app/core/util/colors.dart';
-import 'package:ariel_app/core/util/size_config.dart';
-import 'package:ariel_app/core/util/texto.dart';
 
 class ExamesConsultasPage extends StatefulWidget {
   const ExamesConsultasPage({Key? key}) : super(key: key);

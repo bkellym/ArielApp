@@ -1,6 +1,6 @@
+import 'package:ariel_app/core/ariel_app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:ariel_app/core/ariel_app_routes.dart';
 
 const Locale myLocale = Locale("pt", "BR");
 

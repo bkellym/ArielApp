@@ -1,10 +1,11 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class AplicacaoModel {
-  late String uid;
-  late final String cicloId;
-  late final DateTime data;
-  late final bool feito;
+  late String? uid;
+  late String cicloId;
+  late DateTime data;
+  late DateTime dataFeito;
+  late bool feito;
 
   AplicacaoModel({
     required this.cicloId,

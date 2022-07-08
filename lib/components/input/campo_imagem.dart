@@ -1,11 +1,10 @@
 import 'dart:io';
-import 'package:ariel_app/components/mensagem_erro.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
+import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:ariel_app/core/util/colors.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 
 class CampoImagem extends StatefulWidget {
   final firebase_storage.FirebaseStorage storage =

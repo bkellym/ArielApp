@@ -1,7 +1,6 @@
+import 'package:ariel_app/models/resultado_exame_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-
-import 'package:ariel_app/models/resultado_exame_model.dart';
 
 class ResultadoExameDAO {
   final user = FirebaseAuth.instance.currentUser;

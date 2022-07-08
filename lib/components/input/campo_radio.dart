@@ -3,8 +3,6 @@
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:flutter/material.dart';
 
-import 'campo_radio.dart';
-
 class CampoRadio extends StatefulWidget {
   final List<Map> valores;
   final void Function(dynamic)? onChange;

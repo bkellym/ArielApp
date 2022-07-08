@@ -1,13 +1,13 @@
 import 'dart:io';
-import 'package:ariel_app/components/mensagem_erro.dart';
-import 'package:ariel_app/models/user_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:path/path.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 import 'package:ariel_app/DAO/user_dao.dart';
+import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:ariel_app/controller/aplicacao_controller.dart';
+import 'package:ariel_app/models/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 class UserInfoController {
   final AplicacaoController controller = AplicacaoController();

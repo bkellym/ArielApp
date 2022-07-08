@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:ariel_app/core/util/colors.dart';
+import 'package:flutter/material.dart';
 
 class Destaque extends StatelessWidget {
   final String titulo;
@@ -58,7 +57,7 @@ class Destaque extends StatelessWidget {
         ],
       );
     } else {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
   }
 }
