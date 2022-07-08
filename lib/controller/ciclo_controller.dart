@@ -1,5 +1,6 @@
 import 'package:ariel_app/DAO/ciclo_dao.dart';
 import 'package:ariel_app/controller/aplicacao_controller.dart';
+import 'package:ariel_app/models/aplicacao_model.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class CicloController {
   final TextEditingController _numAplicacoes = TextEditingController();
   final TextEditingController _intervalo = TextEditingController();
 
-  dispose(){
+  dispose() {
     _apresentacao.dispose();
     _dataIncio.dispose();
     _dosagem.dispose();
@@ -54,7 +55,7 @@ class CicloController {
     return _intervalo;
   }
 
-  set nome(apresentacao) {
+  set apresentacao(apresentacao) {
     _apresentacao.text = apresentacao;
   }
 
@@ -107,7 +108,6 @@ class CicloController {
         return model;
       }
     }
-
     return null;
   }
 
@@ -121,12 +121,44 @@ class CicloController {
     model.uid = (await dao.cadastrar(model))!;
 
     if (model.uid != null) {
-      controller.cadastrar(model.uid, int.parse(numAplicacoes.text),
-          int.parse(_intervalo.text), model, DateTime.parse(_dataUltAplicacao.text));
+      controller.cadastrar(
+          model.uid,
+          int.parse(numAplicacoes.text),
+          int.parse(_intervalo.text),
+          model,
+          DateTime.parse(_dataUltAplicacao.text));
     }
   }
 
-  void alterar(String cicloUid){
+  void alterar(CicloModel cicloModel) async {
+    CicloModel model = CicloModel();
+    model.uid = cicloModel.uid;
+    model.userUid = cicloModel.userUid;
+    model.aplicacoes = cicloModel.aplicacoes;
+    model.atual = true;
+    model.apresentacao = _apresentacao.text;
+    model.dataIncio = _dataIncio.text;
+    model.medicamento = _medicamento.text;
+    model.dosagem = _dosagem.text;
 
+    dao.alterar(model);
+
+    DateTime? ultAplicacao = _dataUltAplicacao.text != ""
+        ? DateTime.parse(_dataUltAplicacao.text)
+        : null;
+    controller.alterarAplicacoesCiclo(
+        cicloModel,
+        int.parse(_numAplicacoes.text),
+        int.parse(_intervalo.text),
+        ultAplicacao);
+
+    controller.buscar(model.uid).then((value) {
+      List<AplicacaoModel> restantes =
+          value.where((element) => element.feito == false).toList();
+      if (restantes.isEmpty) {
+        model.atual = false;
+        dao.alterar(model);
+      }
+    });
   }
 }

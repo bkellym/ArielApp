@@ -4,13 +4,9 @@ import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
-import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:ariel_app/screens/ciclo/widgets/cadastroEdicao/cadastro_edicao_widget.dart';
 import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo_bloc.dart';
-import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/status/atrasado.dart';
-import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/status/hoje.dart';
-import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/status/proximo.dart';
 import 'package:ariel_app/screens/ciclo/widgets/registroAplicacao/registro_aplicacao_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -53,7 +49,8 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                     ),
                     CampoDetalhe(
                       titulo: "qtd por ciclo",
-                      valor: "${widget.model.statusAplicacoes.length.toString()} ${widget.model.apresentacao}",
+                      valor:
+                          "${widget.model.statusAplicacoes.length.toString()} ${widget.model.apresentacao}",
                       leftPadding: leftPadding,
                       color: ArielColors.cicloColor,
                       lineColor: ArielColors.cicloColor,
@@ -104,7 +101,8 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                 CampoDetalhe(
                   titulo: "primeira aplicação",
                   valor: DateFormat("dd/MM/yyyy")
-                      .format(widget.model.aplicacoes.first.data).toString(),
+                      .format(widget.model.aplicacoes.first.data)
+                      .toString(),
                   leftPadding: leftPadding,
                   color: ArielColors.cicloColor,
                   lineColor: ArielColors.cicloColor,
@@ -122,8 +120,11 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
               children: [
                 CampoDetalhe(
                   titulo: "próxima aplicação",
-                  valor: DateFormat("dd/MM/yyyy")
-                      .format(_bloc.getProxAplicacao(widget.model)),
+                  valor: _bloc.getProxAplicacao(widget.model) != null
+                      ? DateFormat("dd/MM/yyyy").format(
+                          _bloc.getProxAplicacao(widget.model) ??
+                              DateTime.now())
+                      : "Completo",
                   leftPadding: leftPadding,
                   color: ArielColors.cicloColor,
                   lineColor: ArielColors.cicloColor,
@@ -149,46 +150,50 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
               height: 16,
               color: Color(0x00FFFFFF),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                BotaoPadrao(
-                  label: "NOVA APLICAÇÃO",
-                  height: 40,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const RegistroAplicacaoWidget()),
-                    );
-                  },
-                  internalPadding: 6,
-                  padding: const EdgeInsets.only(left: 32),
-                  textStyle: const TextStyle(fontSize: 9),
-                ),
-                BotaoPadrao(
-                  label: "EDITAR CICLO",
-                  height: 40,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CadastroEdicaoCiclo(
-                                userUid: widget.model.userUid,
-                                cicloUid: widget.model.uid,
-                              )),
-                    );
-                  },
-                  internalPadding: 6,
-                  padding: EdgeInsets.only(
-                      right: SizeConfig.of(context).dynamicScaleSize(size: 32)),
-                  textStyle: TextStyle(
-                      fontSize:
-                          SizeConfig.of(context).dynamicScaleSize(size: 9)),
-                )
-              ],
-            )
+            widget.model.atual
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BotaoPadrao(
+                        label: "NOVA APLICAÇÃO",
+                        height: 40,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const RegistroAplicacaoWidget()),
+                          );
+                        },
+                        internalPadding: 6,
+                        padding: const EdgeInsets.only(left: 32),
+                        textStyle: const TextStyle(fontSize: 9),
+                      ),
+                      BotaoPadrao(
+                        label: "EDITAR CICLO",
+                        height: 40,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CadastroEdicaoCiclo(
+                                      userUid: widget.model.userUid,
+                                      cicloUid: widget.model.uid,
+                                      ciclo: widget.model,
+                                    )),
+                          );
+                        },
+                        internalPadding: 6,
+                        padding: EdgeInsets.only(
+                            right: SizeConfig.of(context)
+                                .dynamicScaleSize(size: 32)),
+                        textStyle: TextStyle(
+                            fontSize: SizeConfig.of(context)
+                                .dynamicScaleSize(size: 9)),
+                      )
+                    ],
+                  )
+                : const SizedBox.shrink(),
           ],
         ));
   }

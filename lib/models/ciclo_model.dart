@@ -2,15 +2,15 @@ import 'package:ariel_app/models/aplicacao_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class CicloModel {
-  late final String userUid;
-  late final String uid;
-  late final bool atual;
-  late final String apresentacao;
-  late final String dataIncio;
-  late final String dosagem;
-  late final String medicamento;
-  late final List<AplicacaoModel> aplicacoes = [];
-  late final List<double> statusAplicacoes = [];
+  late String userUid;
+  late String uid;
+  late bool atual;
+  late String apresentacao;
+  late String dataIncio;
+  late String dosagem;
+  late String medicamento;
+  late List<AplicacaoModel> aplicacoes = [];
+  late List<double> statusAplicacoes = [];
 
   CicloModel();
 
@@ -33,7 +33,7 @@ class CicloModel {
       var bdate = DateTime.parse(b['data']);
       return adate.compareTo(bdate);
     });
-
+    aplicacoes = [];
     for (var item in listAplicacoes) {
       Map<String, dynamic> modelMap = Map<String, dynamic>.from(item as Map);
       DateTime data = DateTime.parse(modelMap['data']);
