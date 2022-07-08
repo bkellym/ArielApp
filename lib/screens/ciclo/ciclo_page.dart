@@ -89,8 +89,8 @@ class _CicloPageState extends State<CicloPage>
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const RegistroAplicacaoWidget()),
+                              builder: (context) => RegistroAplicacaoWidget(
+                                  model: _bloc.ciclosAtuais.first)),
                         );
                       }),
                 ],

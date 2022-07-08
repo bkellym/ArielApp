@@ -181,7 +181,7 @@ class _CicloWidgetState extends State<CicloWidget> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const RegistroAplicacaoWidget()),
+                                  RegistroAplicacaoWidget(model: widget.model)),
                         ),
                         child: Texto(
                           "Nova Aplicação".toUpperCase(),

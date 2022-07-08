@@ -162,7 +162,7 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const RegistroAplicacaoWidget()),
+                                    RegistroAplicacaoWidget(model: widget.model)),
                           );
                         },
                         internalPadding: 6,

@@ -17,6 +17,7 @@ class CicloController {
   final TextEditingController _medicamento = TextEditingController();
   final TextEditingController _numAplicacoes = TextEditingController();
   final TextEditingController _intervalo = TextEditingController();
+  final TextEditingController _dataAplicacao = TextEditingController();
 
   dispose() {
     _apresentacao.dispose();
@@ -25,6 +26,7 @@ class CicloController {
     _medicamento.dispose();
     _numAplicacoes.dispose();
     _intervalo.dispose();
+    _dataAplicacao.dispose();
   }
 
   TextEditingController get apresentacao {
@@ -55,6 +57,10 @@ class CicloController {
     return _intervalo;
   }
 
+  TextEditingController get dataAplicacao {
+    return _dataAplicacao;
+  }
+
   set apresentacao(apresentacao) {
     _apresentacao.text = apresentacao;
   }
@@ -81,6 +87,10 @@ class CicloController {
 
   set intervalo(intervalo) {
     _intervalo.text = intervalo;
+  }
+
+  set dataAplicacao(dataAplicacao) {
+    _dataAplicacao.text = dataAplicacao;
   }
 
   Future<List<CicloModel>> buscarTodos(String userUid) async {
@@ -120,14 +130,35 @@ class CicloController {
     model.dosagem = _dosagem.text;
     model.uid = (await dao.cadastrar(model))!;
 
+    DateTime? ultAplicacao = _dataUltAplicacao.text != ""
+        ? DateTime.parse(_dataUltAplicacao.text)
+        : null;
+
     if (model.uid != null) {
-      controller.cadastrar(
-          model.uid,
-          int.parse(numAplicacoes.text),
-          int.parse(_intervalo.text),
-          model,
-          DateTime.parse(_dataUltAplicacao.text));
+      controller.cadastrar(model.uid, int.parse(numAplicacoes.text),
+          int.parse(_intervalo.text), model, ultAplicacao);
     }
+  }
+
+  void registraAplicacao(CicloModel cicloModel){
+    List<AplicacaoModel> restantes = cicloModel.aplicacoes
+        .where((element) => element.feito == false)
+        .toList();
+
+    if (restantes.length <= 1) {
+      finalizarCiclo(cicloModel);
+    }
+
+    if (restantes.isNotEmpty) {
+      AplicacaoModel aplicacaoModel = restantes.first;
+      aplicacaoModel.dataFeito = DateTime.parse(_dataAplicacao.text);
+      controller.registrar(aplicacaoModel, cicloModel.userUid);
+    }
+  }
+
+  void finalizarCiclo(CicloModel cicloModel) {
+    cicloModel.atual = false;
+    dao.alterar(cicloModel);
   }
 
   void alterar(CicloModel cicloModel) async {
@@ -156,8 +187,7 @@ class CicloController {
       List<AplicacaoModel> restantes =
           value.where((element) => element.feito == false).toList();
       if (restantes.isEmpty) {
-        model.atual = false;
-        dao.alterar(model);
+        finalizarCiclo(cicloModel);
       }
     });
   }

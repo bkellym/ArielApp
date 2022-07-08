@@ -1,10 +1,17 @@
 import 'package:ariel_app/DAO/aplicacao_dao.dart';
+import 'package:ariel_app/controller/ciclo_controller.dart';
 import 'package:ariel_app/models/aplicacao_model.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 
 class AplicacaoController {
   AplicacaoDAO dao = AplicacaoDAO();
+
+  void registrar(AplicacaoModel aplicacaoModel, userUid) {
+    aplicacaoModel.feito = true;
+    dao.registrarAplicacao(aplicacaoModel, userUid);
+  }
 
   Future<List<double>> buscarStatusAplicacoes(cicloUid) async {
     List<double> lista = [];
@@ -59,8 +66,8 @@ class AplicacaoController {
     }
   }
 
-  void alterarAplicacoesCiclo(CicloModel ciclo, int numAplicacoes, int intervalo,
-      DateTime? dtUltimaAplicacao) {
+  void alterarAplicacoesCiclo(CicloModel ciclo, int numAplicacoes,
+      int intervalo, DateTime? dtUltimaAplicacao) {
     DateTime data = DateTime.parse(ciclo.dataIncio);
 
     if (numAplicacoes == ciclo.aplicacoes.length) {
@@ -75,18 +82,17 @@ class AplicacaoController {
         data = data.add(Duration(days: intervalo));
       }
     } else if (numAplicacoes > ciclo.aplicacoes.length) {
-      int alterado = 0;
       List<AplicacaoModel?> list = ciclo.aplicacoes;
       for (int i = 0; i < numAplicacoes; i++) {
         AplicacaoModel? model;
-        if(i < list.length) {
+        if (i < list.length) {
           model = list[i];
         } else {
           model = AplicacaoModel(cicloId: ciclo.uid, data: data);
           model.uid = dao.getNewUid(ciclo.userUid, ciclo.uid);
         }
 
-        if(model == null) continue;
+        if (model == null) continue;
 
         if (dtUltimaAplicacao != null) {
           model.feito = (model.data.compareTo(dtUltimaAplicacao) <= 0);

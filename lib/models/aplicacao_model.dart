@@ -4,6 +4,7 @@ class AplicacaoModel {
   late String? uid;
   late String cicloId;
   late DateTime data;
+  late DateTime dataFeito;
   late bool feito;
 
   AplicacaoModel({

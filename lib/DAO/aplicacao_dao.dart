@@ -49,11 +49,22 @@ class AplicacaoDAO {
     });
   }
 
-  void deletar(AplicacaoModel model, String userUid ){
+  void deletar(AplicacaoModel model, String userUid){
     ref = FirebaseDatabase.instance
         .ref("ciclo_info/$userUid/${model.cicloId}/aplicacoes/${model.uid}");
 
     ref.remove();
+  }
+
+  void registrarAplicacao(AplicacaoModel model, String userUid){
+    ref = FirebaseDatabase.instance
+        .ref("ciclo_info/$userUid/${model.cicloId}/aplicacoes/${model.uid}");
+
+    ref.update({
+      "data": DateFormat("y-MM-dd", "pt_BR").format(model.data),
+      "data_feito": DateFormat("y-MM-dd", "pt_BR").format(model.dataFeito),
+      "feito": model.feito,
+    });
   }
 
 }
