@@ -1,9 +1,7 @@
 import 'package:ariel_app/DAO/aplicacao_dao.dart';
-import 'package:ariel_app/controller/ciclo_controller.dart';
 import 'package:ariel_app/models/aplicacao_model.dart';
 import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 
 class AplicacaoController {
   AplicacaoDAO dao = AplicacaoDAO();
