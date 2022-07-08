@@ -40,6 +40,7 @@ class CadastroEdicaoCicloState extends State<CadastroEdicaoCiclo> {
                 ' ciclo'
               ],
               color: ArielColors.secundary,
+              imgFundo: Image.asset('assets/images/ciclos.png').image,
               child: Material(
                 color: Colors.white,
                 child: Column(

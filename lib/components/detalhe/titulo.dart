@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Titulo extends StatelessWidget {
   final String label;
-  final double fontSize;
+  final double? fontSize;
 
   const Titulo(
     this.label, {
@@ -26,7 +26,7 @@ class Titulo extends StatelessWidget {
                   size: MediaQuery.of(context).size.width * 0.1),
               bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
             ),
-            size: SizeConfig.of(context).dynamicScaleSize(size: fontSize),
+            size: SizeConfig.of(context).dynamicScaleSize(size: fontSize ?? 36),
             color: Colors.white,
             fontWeight: Weight.bold,
           ),

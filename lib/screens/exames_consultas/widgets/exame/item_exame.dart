@@ -1,22 +1,22 @@
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/detalhe_exame/detalhe_exame.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
+import 'package:ariel_app/models/exame_model.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/exame/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/exame/inserirResultados/inserir_resultado_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ItemWidget extends StatefulWidget {
-  final Color color;
-  final bool isExame;
+class ItemExameWidget extends StatefulWidget {
+  final ExameModel model;
 
-  const ItemWidget({Key? key, required this.color, required this.isExame})
-      : super(key: key);
+  const ItemExameWidget({Key? key, required this.model}) : super(key: key);
 
   @override
-  State<ItemWidget> createState() => _ItemWidgetState();
+  State<ItemExameWidget> createState() => _ItemExameWidgetState();
 }
 
-class _ItemWidgetState extends State<ItemWidget> {
+class _ItemExameWidgetState extends State<ItemExameWidget> {
   @override
   void initState() {
     super.initState();
@@ -42,9 +42,9 @@ class _ItemWidgetState extends State<ItemWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Texto(
-                        "MEDICAMENTO",
+                        "TIPO",
                         size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: widget.color,
+                        color: ArielColors.exameColor,
                         fontWeight: Weight.bold,
                         padding: const EdgeInsets.only(left: 16, bottom: 6),
                       ),
@@ -55,10 +55,10 @@ class _ItemWidgetState extends State<ItemWidget> {
                             Icons.circle,
                             size: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 9),
-                            color: widget.color,
+                            color: ArielColors.exameColor,
                           ),
                           Texto(
-                            "teste",
+                            widget.model.tipo,
                             size: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 11),
                             fontWeight: Weight.bold,
@@ -75,7 +75,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                               .dynamicScaleSize(size: 30)),
                       height: SizeConfig.of(context).dynamicScaleSize(size: 60),
                       child: VerticalDivider(
-                          color: widget.color,
+                          color: ArielColors.exameColor,
                           width:
                               SizeConfig.of(context).dynamicScaleSize(size: 0),
                           thickness: 1)),
@@ -85,7 +85,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                       Texto(
                         "DATA",
                         size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: widget.color,
+                        color: ArielColors.exameColor,
                         fontWeight: Weight.bold,
                         padding: EdgeInsets.only(
                           bottom:
@@ -93,9 +93,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                         ),
                       ),
                       Texto(
-                        DateFormat("dd/MM/yyyy")
-                            .format(DateTime.parse('2022-05-01'))
-                            .toString(),
+                        DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
                         size: SizeConfig.of(context).dynamicScaleSize(size: 11),
                         fontWeight: Weight.medium,
                         padding: EdgeInsets.only(
@@ -112,7 +110,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                               .dynamicScaleSize(size: 30)),
                       height: SizeConfig.of(context).dynamicScaleSize(size: 60),
                       child: VerticalDivider(
-                          color: widget.color,
+                          color: ArielColors.exameColor,
                           width:
                               SizeConfig.of(context).dynamicScaleSize(size: 0),
                           thickness: 1)),
@@ -122,7 +120,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                       Texto(
                         "HORÁRIO",
                         size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: widget.color,
+                        color: ArielColors.exameColor,
                         fontWeight: Weight.bold,
                         padding: EdgeInsets.only(
                           bottom:
@@ -130,9 +128,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                         ),
                       ),
                       Texto(
-                        DateFormat("dd/MM/yyyy")
-                            .format(DateTime.parse('2022-05-01'))
-                            .toString(),
+                        DateFormat("hh:mm a").format(widget.model.dataHora),
                         size: SizeConfig.of(context).dynamicScaleSize(size: 11),
                         fontWeight: Weight.medium,
                         padding: EdgeInsets.only(
@@ -150,68 +146,57 @@ class _ItemWidgetState extends State<ItemWidget> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              widget.isExame
-                  ? Padding(
-                      padding: EdgeInsets.only(
-                          left: SizeConfig.of(context)
-                              .dynamicScaleSize(size: 32)),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: SizeConfig.of(context)
-                                  .dynamicScaleSize(size: 24)),
-                          primary: widget.color,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const DetalheExame(widgetIndex: 2)),
-                          );
-                        },
-                        child: Texto(
-                          "inserir resultados".toUpperCase(),
-                          size:
-                              SizeConfig.of(context).dynamicScaleSize(size: 11),
-                          color: Colors.white,
-                          fontWeight: Weight.bold,
-                          padding: const EdgeInsets.all(0),
-                        ),
-                      ),
-                    )
-                  : const SizedBox.shrink(),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: SizeConfig.of(context).dynamicScaleSize(size: 32)),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            SizeConfig.of(context).dynamicScaleSize(size: 24)),
+                    primary: ArielColors.exameColor,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => InserirResultadoWidget(model: widget.model,)),
+                    );
+                  },
+                  child: Texto(
+                    "inserir resultados".toUpperCase(),
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 11),
+                    color: Colors.white,
+                    fontWeight: Weight.bold,
+                    padding: const EdgeInsets.all(0),
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.only(
                     right: SizeConfig.of(context).dynamicScaleSize(size: 32)),
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     fixedSize: const Size(100, 36),
-                    primary: widget.color,
-                    side: BorderSide(
-                      color: widget.color,
+                    primary: ArielColors.exameColor,
+                    side: const BorderSide(
+                      color: ArielColors.exameColor,
                       width: 1.5,
                     ),
                   ),
                   onPressed: () {
-                    widget.isExame
-                        ?
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const DetalheExame(widgetIndex: 0)),
-                    ) : Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                          const DetalheConsulta(widgetIndex: 0)),
+                          builder: (context) => DetalheExameWidget(
+                                model: widget.model,
+                              )),
                     );
                   },
                   child: Texto(
                     "detalhes".toUpperCase(),
                     size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                    color: widget.color,
+                    color: ArielColors.exameColor,
                     fontWeight: Weight.bold,
                     padding: const EdgeInsets.all(0),
                   ),

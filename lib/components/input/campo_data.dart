@@ -40,18 +40,13 @@ class _CampoDataState extends State<CampoData> {
             fontSize: 12,
             decoration: TextDecoration.none,
           ),
-          decoration: InputDecoration(
-            suffixIcon: Icon(
-              Icons.calendar_month,
-              color: widget.color,
-            ),
-            isDense: true,
+          decoration: const InputDecoration(
             contentPadding: const EdgeInsets.all(10),
             fillColor: ArielColors.baseLight,
-            border: const OutlineInputBorder(
+            border: OutlineInputBorder(
               borderSide: BorderSide(color: ArielColors.baseDark),
             ),
-            focusedBorder: const OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: ArielColors.secundary)),
           ),
         ),

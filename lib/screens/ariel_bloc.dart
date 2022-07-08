@@ -22,7 +22,7 @@ class ArielBloc extends BlocBase {
       widgetOptions = <Widget>[
         InicioPage(user: value!),
         CicloPage(user: value),
-        ExamesConsultasPage(),
+        ExamesConsultasPage(user: value),
         PerfilPage(),
       ];
 
