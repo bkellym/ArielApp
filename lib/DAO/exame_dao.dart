@@ -27,4 +27,16 @@ class ExameDAO {
 
     return exameUid;
   }
+
+  void alterar(ExameModel model) async {
+    DatabaseReference ref =
+    FirebaseDatabase.instance.ref("exames/${model.userUid}/${model.uid}");
+
+    await ref.update({
+      "data_hora": model.dataHora.toString(),
+      "tipo": model.tipo,
+      "local": model.local,
+      "detalhes": model.detalhes,
+    });
+  }
 }

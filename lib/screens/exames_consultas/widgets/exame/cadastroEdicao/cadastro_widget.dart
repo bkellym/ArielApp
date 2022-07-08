@@ -192,7 +192,7 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
                         internalPadding:
                             SizeConfig.of(context).dynamicScaleSize(size: 8),
                         onPressed: () {
-                          _bloc.controller.cadastrar(widget.userUid);
+                          _bloc.cadastrarEditar(widget.userUid, widget.model);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

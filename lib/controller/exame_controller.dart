@@ -78,10 +78,21 @@ class ExameController {
     ExameModel model = ExameModel();
     model.userUid = userUid;
     model.tipo = _tipo.text;
-    model.dataHora = DateTime.parse("${_data.text != "" ? _data.text : ""} ${_hora.text != "" ? "${_hora.text}:00" : ""}");
+    model.dataHora = DateTime.parse(
+        "${_data.text != "" ? _data.text : ""} ${_hora.text != "" ? "${_hora.text}:00" : ""}");
     model.local = _local.text;
     model.detalhes = _detalhes.text;
 
     dao.cadastrar(model);
+  }
+
+  void alterar(ExameModel model) {
+    model.tipo = _tipo.text;
+    model.dataHora = DateTime.parse(
+        "${_data.text != "" ? _data.text : ""} ${_hora.text != "" ? "${_hora.text}:00" : ""}");
+    model.local = _local.text;
+    model.detalhes = _detalhes.text;
+
+    dao.alterar(model);
   }
 }
