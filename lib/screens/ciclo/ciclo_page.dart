@@ -1,9 +1,9 @@
 import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
 import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
+import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/user_model.dart';
 import 'package:ariel_app/screens/ciclo/ciclo_bloc.dart';
 import 'package:ariel_app/screens/ciclo/widgets/cadastroEdicao/cadastro_edicao_widget.dart';
 import 'package:ariel_app/screens/ciclo/widgets/item_ciclo/lista_ciclos.dart';

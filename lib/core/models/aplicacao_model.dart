@@ -14,9 +14,9 @@ class AplicacaoModel {
   });
 
   AplicacaoModel.fromSnapshot(DataSnapshot snapshot) {
-    Map snapshotMap =  Map<String, dynamic>.from(snapshot.value as Map);
+    Map snapshotMap = Map<String, dynamic>.from(snapshot.value as Map);
     uid = snapshot.key!;
     data = DateTime.parse(snapshotMap['data']);
-    feito = snapshotMap.containsKey('feito') ?  snapshotMap['feito'] : false;
+    feito = snapshotMap.containsKey('feito') ? snapshotMap['feito'] : false;
   }
 }

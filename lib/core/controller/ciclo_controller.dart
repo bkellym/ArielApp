@@ -1,7 +1,7 @@
-import 'package:ariel_app/DAO/ciclo_dao.dart';
-import 'package:ariel_app/controller/aplicacao_controller.dart';
-import 'package:ariel_app/models/aplicacao_model.dart';
-import 'package:ariel_app/models/ciclo_model.dart';
+import 'package:ariel_app/core/DAO/ciclo_dao.dart';
+import 'package:ariel_app/core/controller/aplicacao_controller.dart';
+import 'package:ariel_app/core/models/aplicacao_model.dart';
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -140,7 +140,7 @@ class CicloController {
     }
   }
 
-  void registraAplicacao(CicloModel cicloModel){
+  void registraAplicacao(CicloModel cicloModel) {
     List<AplicacaoModel> restantes = cicloModel.aplicacoes
         .where((element) => element.feito == false)
         .toList();

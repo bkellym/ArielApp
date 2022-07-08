@@ -1,7 +1,7 @@
+import 'package:ariel_app/core/models/consulta_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/consulta_model.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/consulta/detalhe/detalhe_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -141,7 +141,7 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
               ),
             ],
           ),
-          const Divider(height: 16, color: Colors.transparent),
+          const Divider(height: 4, color: Colors.transparent),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

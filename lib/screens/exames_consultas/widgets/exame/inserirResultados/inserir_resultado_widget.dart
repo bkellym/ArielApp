@@ -3,10 +3,10 @@ import 'package:ariel_app/components/detalhe/campo_destaque.dart';
 import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/components/input/campo_texto.dart';
+import 'package:ariel_app/core/models/exame_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/exame_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

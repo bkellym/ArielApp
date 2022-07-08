@@ -2,9 +2,9 @@ import 'package:ariel_app/components/botoes/botao_padrao.dart';
 import 'package:ariel_app/components/detalhe/campo_destaque.dart';
 import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
-import 'package:ariel_app/models/ciclo_model.dart';
 import 'package:ariel_app/screens/ciclo/widgets/cadastroEdicao/cadastro_edicao_widget.dart';
 import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo_bloc.dart';
 import 'package:ariel_app/screens/ciclo/widgets/registroAplicacao/registro_aplicacao_widget.dart';
@@ -162,8 +162,8 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    RegistroAplicacaoWidget(model: widget.model)),
+                                builder: (context) => RegistroAplicacaoWidget(
+                                    model: widget.model)),
                           );
                         },
                         internalPadding: 6,

@@ -1,5 +1,4 @@
-import 'package:ariel_app/models/consulta_model.dart';
-import 'package:ariel_app/models/exame_model.dart';
+import 'package:ariel_app/core/models/consulta_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class ConsultaDAO {
@@ -15,7 +14,7 @@ class ConsultaDAO {
 
   Future<String?> cadastrar(ConsultaModel model) async {
     DatabaseReference ref =
-    FirebaseDatabase.instance.ref("consultas/${model.userUid}");
+        FirebaseDatabase.instance.ref("consultas/${model.userUid}");
     DatabaseReference listRef = ref.push();
     String? exameUid = listRef.key;
 
@@ -31,8 +30,8 @@ class ConsultaDAO {
   }
 
   void alterar(ConsultaModel model) async {
-    DatabaseReference ref =
-    FirebaseDatabase.instance.ref("consultas/${model.userUid}/${model.uid}");
+    DatabaseReference ref = FirebaseDatabase.instance
+        .ref("consultas/${model.userUid}/${model.uid}");
 
     await ref.update({
       "data_hora": model.dataHora.toString(),

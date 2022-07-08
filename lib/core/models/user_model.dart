@@ -32,9 +32,9 @@ class UserModel {
     Map snapshotMap = snapshot as Map;
 
     uid = snapshot.key!;
-    genero  = snapshotMap['genero'];
-    dtNascimento  = snapshotMap['dtNascimento'];
-    _historia  = snapshotMap['historia'];
-    _dtUltAplicacao  = snapshotMap['dtUltAplicacao'];
+    genero = snapshotMap['genero'];
+    dtNascimento = snapshotMap['dtNascimento'];
+    _historia = snapshotMap['historia'];
+    _dtUltAplicacao = snapshotMap['dtUltAplicacao'];
   }
 }

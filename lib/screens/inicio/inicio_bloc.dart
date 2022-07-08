@@ -1,8 +1,12 @@
-import 'package:ariel_app/controller/aplicacao_controller.dart';
-import 'package:ariel_app/controller/ciclo_controller.dart';
-import 'package:ariel_app/models/aplicacao_model.dart';
-import 'package:ariel_app/models/ciclo_model.dart';
-import 'package:ariel_app/models/user_model.dart';
+import 'package:ariel_app/core/controller/aplicacao_controller.dart';
+import 'package:ariel_app/core/controller/ciclo_controller.dart';
+import 'package:ariel_app/core/controller/consulta_controller.dart';
+import 'package:ariel_app/core/controller/exame_controller.dart';
+import 'package:ariel_app/core/models/aplicacao_model.dart';
+import 'package:ariel_app/core/models/ciclo_model.dart';
+import 'package:ariel_app/core/models/consulta_model.dart';
+import 'package:ariel_app/core/models/exame_model.dart';
+import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/screens/inicio/widgets/user_foto.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +15,8 @@ import 'package:intl/intl.dart';
 class InicioBloc extends BlocBase {
   late UserModel user;
   CicloModel? ciclo;
+  ExameModel? exame;
+  ConsultaModel? consulta;
   DateTime? proxAplicacao;
 
   List<double> chartData = [];
@@ -18,6 +24,8 @@ class InicioBloc extends BlocBase {
 
   CicloController cicloController = CicloController();
   AplicacaoController aplicacaoController = AplicacaoController();
+  ExameController exameController = ExameController();
+  ConsultaController consultaController = ConsultaController();
 
   buscarDadosUsuario(UserModel user) async {
     this.user = user;
@@ -29,6 +37,10 @@ class InicioBloc extends BlocBase {
       aplicacoes = (await aplicacaoController.buscar(cicloUid));
       proxAplicacao = (await aplicacaoController.buscarProx(aplicacoes));
     }
+
+    exame = await exameController.buscarProxima(user.uid);
+    consulta = await consultaController.buscarProxima(user.uid);
+
     return chartData;
   }
 

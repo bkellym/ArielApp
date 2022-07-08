@@ -1,5 +1,5 @@
-import 'package:ariel_app/controller/user_info_controller.dart';
-import 'package:ariel_app/models/user_model.dart';
+import 'package:ariel_app/core/controller/user_info_controller.dart';
+import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/screens/ciclo/ciclo_page.dart';
 import 'package:ariel_app/screens/exames_consultas/exames_consultas_page.dart';
 import 'package:ariel_app/screens/inicio/inicio_page.dart';
@@ -23,9 +23,8 @@ class ArielBloc extends BlocBase {
         InicioPage(user: value!),
         CicloPage(user: value),
         ExamesConsultasPage(user: value),
-        PerfilPage(),
+        PerfilPage(user: value),
       ];
-
       return value;
     });
   }

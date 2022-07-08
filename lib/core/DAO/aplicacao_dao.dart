@@ -1,4 +1,4 @@
-import 'package:ariel_app/models/aplicacao_model.dart';
+import 'package:ariel_app/core/models/aplicacao_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
@@ -32,7 +32,7 @@ class AplicacaoDAO {
     });
   }
 
-  String? getNewUid(String userUid, String cicloUid){
+  String? getNewUid(String userUid, String cicloUid) {
     ref = FirebaseDatabase.instance
         .ref("ciclo_info/$userUid/$cicloUid/aplicacoes");
 
@@ -49,14 +49,14 @@ class AplicacaoDAO {
     });
   }
 
-  void deletar(AplicacaoModel model, String userUid){
+  void deletar(AplicacaoModel model, String userUid) {
     ref = FirebaseDatabase.instance
         .ref("ciclo_info/$userUid/${model.cicloId}/aplicacoes/${model.uid}");
 
     ref.remove();
   }
 
-  void registrarAplicacao(AplicacaoModel model, String userUid){
+  void registrarAplicacao(AplicacaoModel model, String userUid) {
     ref = FirebaseDatabase.instance
         .ref("ciclo_info/$userUid/${model.cicloId}/aplicacoes/${model.uid}");
 
@@ -66,5 +66,4 @@ class AplicacaoDAO {
       "feito": model.feito,
     });
   }
-
 }

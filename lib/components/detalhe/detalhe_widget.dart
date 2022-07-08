@@ -37,7 +37,10 @@ class DetalheWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Titulo(titulo, fontSize: tituloSize,),
+              Titulo(
+                titulo,
+                fontSize: tituloSize,
+              ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.8,
                 width: MediaQuery.of(context).size.width * 0.8,

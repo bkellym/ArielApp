@@ -1,10 +1,10 @@
 import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
 import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
 import 'package:ariel_app/components/divisoria_decorada.dart';
+import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/user_model.dart';
 import 'package:ariel_app/screens/exames_consultas/exames_consultas_bloc.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/consulta/cadastro_edicao/cadastro_edicao_widget.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/consulta/item_consulta.dart';
@@ -162,8 +162,8 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                           Column(
                             children: _bloc.listaConsultas
                                 .map((item) => ItemConsultaWidget(
-                              model: item,
-                            ))
+                                      model: item,
+                                    ))
                                 .toList(),
                           ),
                         ],

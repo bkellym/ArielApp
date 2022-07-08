@@ -1,5 +1,5 @@
-import 'package:ariel_app/controller/consulta_controller.dart';
-import 'package:ariel_app/models/consulta_model.dart';
+import 'package:ariel_app/core/controller/consulta_controller.dart';
+import 'package:ariel_app/core/models/consulta_model.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:intl/intl.dart';
 

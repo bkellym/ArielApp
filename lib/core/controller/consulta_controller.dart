@@ -1,6 +1,5 @@
-import 'package:ariel_app/DAO/consulta_dao.dart';
-import 'package:ariel_app/models/consulta_model.dart';
-import 'package:ariel_app/models/exame_model.dart';
+import 'package:ariel_app/core/DAO/consulta_dao.dart';
+import 'package:ariel_app/core/models/consulta_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -69,10 +68,20 @@ class ConsultaController {
 
     for (DataSnapshot snapData in listaSnapshots) {
       ConsultaModel model = ConsultaModel.fromSnapshot(snapData);
+      model.userUid = userUid;
       lista.add(model);
     }
 
     return lista;
+  }
+
+  Future<ConsultaModel?> buscarProxima(String userUid) async {
+    List<ConsultaModel> lista = await buscarTodos(userUid);
+
+    if (lista.isEmpty) return null;
+    lista.sort((a, b) => a.dataHora.compareTo(b.dataHora));
+    ConsultaModel model = lista.first;
+    return model;
   }
 
   void cadastrar(String userUid) {

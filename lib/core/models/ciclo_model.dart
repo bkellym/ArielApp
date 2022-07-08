@@ -1,4 +1,4 @@
-import 'package:ariel_app/models/aplicacao_model.dart';
+import 'package:ariel_app/core/models/aplicacao_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class CicloModel {

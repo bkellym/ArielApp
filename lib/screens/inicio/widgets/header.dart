@@ -31,7 +31,8 @@ class Header extends StatelessWidget {
         height: SizeConfig.of(context).dynamicScaleSize(size: 100),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [ foto,
+          children: [
+            foto,
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Column(

@@ -1,6 +1,6 @@
-import 'package:ariel_app/controller/aplicacao_controller.dart';
-import 'package:ariel_app/controller/ciclo_controller.dart';
-import 'package:ariel_app/models/ciclo_model.dart';
+import 'package:ariel_app/core/controller/aplicacao_controller.dart';
+import 'package:ariel_app/core/controller/ciclo_controller.dart';
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 
 class CicloBloc extends BlocBase {

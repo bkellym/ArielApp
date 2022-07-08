@@ -1,6 +1,6 @@
-import 'package:ariel_app/controller/ciclo_controller.dart';
-import 'package:ariel_app/models/aplicacao_model.dart';
-import 'package:ariel_app/models/ciclo_model.dart';
+import 'package:ariel_app/core/controller/ciclo_controller.dart';
+import 'package:ariel_app/core/models/aplicacao_model.dart';
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 
 class CadastroEdicaobloc extends BlocBase {
@@ -27,8 +27,9 @@ class CadastroEdicaobloc extends BlocBase {
   }
 
   getUltimaAplicacao(CicloModel cicloModel) {
-    List<AplicacaoModel> filtrado = cicloModel.aplicacoes.where((
-        element) => element.feito == true).toList();
+    List<AplicacaoModel> filtrado = cicloModel.aplicacoes
+        .where((element) => element.feito == true)
+        .toList();
 
     return filtrado.last.data.toString();
   }

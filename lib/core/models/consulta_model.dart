@@ -1,25 +1,26 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class ExameModel {
+class ConsultaModel {
   late String userUid;
   late String? uid;
   late DateTime dataHora;
-  late String tipo;
-  late String local;
+  late String especialidade;
+  late String medico;
+  late String endereco;
   late String detalhes;
 
-  ExameModel();
+  ConsultaModel();
 
-  ExameModel.fromSnapshot(DataSnapshot snapshot) {
+  ConsultaModel.fromSnapshot(DataSnapshot snapshot) {
     try {
       Map snapshotMap = Map<String, dynamic>.from(snapshot.value as Map);
       uid = snapshot.key!;
       dataHora = DateTime.parse(snapshotMap['data_hora']);
-      tipo = snapshotMap['tipo'];
-      local = snapshotMap['local'];
+      especialidade = snapshotMap['especialidade'];
+      medico = snapshotMap['medico'];
+      endereco = snapshotMap['endereco'];
       detalhes = snapshotMap['detalhes'];
-    }
-    catch (e){
+    } catch (e) {
       print(e.toString());
     }
   }

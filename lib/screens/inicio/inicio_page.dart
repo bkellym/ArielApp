@@ -1,7 +1,10 @@
-import 'package:ariel_app/components/evento.dart';
+import 'package:ariel_app/components/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
-import 'package:ariel_app/models/evento_model.dart';
-import 'package:ariel_app/models/user_model.dart';
+import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/detalhe_ciclo_widget.dart';
+import 'package:ariel_app/screens/ciclo/widgets/registroAplicacao/registro_aplicacao_widget.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/consulta/item_consulta.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/exame/item_exame.dart';
 import 'package:ariel_app/screens/inicio/widgets/destaque.dart';
 import 'package:ariel_app/screens/inicio/widgets/grafico_principal.dart';
 import 'package:ariel_app/screens/inicio/widgets/header.dart';
@@ -74,24 +77,46 @@ class _InicioPageState extends State<InicioPage> {
                     ),
                   ],
                 ),
+                Divider(
+                  height: 24,
+                  color: Colors.transparent,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    BotaoPadrao(
+                      label: "NOVA APLICAÇÃO",
+                      height: 38,
+                      padding: const EdgeInsets.only(left: 32),
+                      internalPadding: 6,
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                RegistroAplicacaoWidget(model: _bloc.ciclo!)),
+                      ),
+                    ),
+                    BotaoPadrao(
+                      label: "VER DETALHES",
+                      height: 38,
+                      padding: const EdgeInsets.only(right: 32),
+                      internalPadding: 6,
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                DetalheCicloWidget(model: _bloc.ciclo!)),
+                      ),
+                    )
+                  ],
+                ),
                 const Spacer(),
-                Evento(
-                  evento: EventoModel(
-                      titulo: "Próximo Exame",
-                      tipo: "Exame de Sangue",
-                      data: DateTime.utc(2022, 07, 9),
-                      descricao:
-                          "Dosagem de T3, dosagem de T4, creatinina, uréia, hemograma completo",
-                      cor: 0xFFFFC153),
-                ),
-                Evento(
-                  evento: EventoModel(
-                      titulo: "Próxima Consulta",
-                      tipo: "Endocrinologista",
-                      data: DateTime.utc(2022, 07, 10),
-                      descricao: "Dr. Alberto de Sá, Clínica Dionísio Torres",
-                      cor: 0xFF1DCBE0),
-                ),
+                _bloc.exame != null
+                    ? ItemExameWidget(model: _bloc.exame!)
+                    : const SizedBox.shrink(),
+                _bloc.consulta != null
+                    ? ItemConsultaWidget(model: _bloc.consulta!)
+                    : const SizedBox.shrink(),
               ],
             ),
           );

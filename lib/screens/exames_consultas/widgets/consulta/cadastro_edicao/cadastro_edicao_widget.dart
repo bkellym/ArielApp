@@ -3,10 +3,10 @@ import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/components/input/campo_data.dart';
 import 'package:ariel_app/components/input/campo_hora.dart';
 import 'package:ariel_app/components/input/campo_texto.dart';
+import 'package:ariel_app/core/models/consulta_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/consulta_model.dart';
 import 'package:ariel_app/screens/ariel_app.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/consulta/cadastro_edicao/cadastro_edicao_bloc.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,10 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
             return DetalheWidget(
               titulo: "Exames \ne Consultas",
               tituloSize: 20,
-              subTitulo: [widget.model != null ? "NOVA" : "EDITAR", " CONSULTA"],
+              subTitulo: [
+                widget.model != null ? "NOVA" : "EDITAR",
+                " CONSULTA"
+              ],
               imgFundo: Image.asset('assets/images/ciclos.png').image,
               color: ArielColors.consultaColor,
               child: Column(

@@ -1,5 +1,5 @@
 import 'package:ariel_app/components/menus/menu_navegation.dart';
-import 'package:ariel_app/models/botaoMenuModel.dart';
+import 'package:ariel_app/core/models/botaoMenuModel.dart';
 import 'package:ariel_app/screens/ariel_bloc.dart';
 import 'package:flutter/material.dart';
 

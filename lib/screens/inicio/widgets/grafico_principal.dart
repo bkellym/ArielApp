@@ -109,9 +109,8 @@ class GraficoPrincipal extends StatelessWidget {
               dataSource: chartData,
               xValueMapper: (double data, _) => data.toString(),
               yValueMapper: (double data, _) => 1,
-              pointColorMapper: (double data, _) => data > 0
-                  ? ArielColors.arielGreen
-                  : ArielColors.disable,
+              pointColorMapper: (double data, _) =>
+                  data > 0 ? ArielColors.arielGreen : ArielColors.disable,
             ),
           ],
         ),

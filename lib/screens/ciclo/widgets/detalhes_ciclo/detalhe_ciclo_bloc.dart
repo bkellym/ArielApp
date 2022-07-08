@@ -1,5 +1,5 @@
-import 'package:ariel_app/models/aplicacao_model.dart';
-import 'package:ariel_app/models/ciclo_model.dart';
+import 'package:ariel_app/core/models/aplicacao_model.dart';
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/status/atrasado.dart';
 import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/status/completo.dart';
 import 'package:ariel_app/screens/ciclo/widgets/detalhes_ciclo/status/hoje.dart';

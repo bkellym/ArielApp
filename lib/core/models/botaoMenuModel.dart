@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BotaoMenuModel{
+class BotaoMenuModel {
   final int index;
   final IconData icon;
   final String titulo;

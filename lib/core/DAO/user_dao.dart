@@ -1,4 +1,4 @@
-import 'package:ariel_app/models/user_model.dart';
+import 'package:ariel_app/core/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 

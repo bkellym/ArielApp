@@ -1,4 +1,4 @@
-import 'package:ariel_app/models/exame_model.dart';
+import 'package:ariel_app/core/models/exame_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class ExameDAO {
@@ -30,7 +30,7 @@ class ExameDAO {
 
   void alterar(ExameModel model) async {
     DatabaseReference ref =
-    FirebaseDatabase.instance.ref("exames/${model.userUid}/${model.uid}");
+        FirebaseDatabase.instance.ref("exames/${model.userUid}/${model.uid}");
 
     await ref.update({
       "data_hora": model.dataHora.toString(),

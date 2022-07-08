@@ -69,7 +69,8 @@ class _CampoextoState extends State<CampoTexto> {
             borderSide: BorderSide(color: ArielColors.baseDark),
           ),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: widget.color ?? ArielColors.secundary)),
+              borderSide:
+                  BorderSide(color: widget.color ?? ArielColors.secundary)),
         ),
       ),
     );

@@ -50,9 +50,7 @@ class UserFoto extends StatelessWidget {
           height: 48.0,
           decoration: BoxDecoration(
             color: ArielColors.arielGreen,
-            border: Border.all(
-                width: 3.0,
-                color: ArielColors.baseLight),
+            border: Border.all(width: 3.0, color: ArielColors.baseLight),
             shape: BoxShape.circle,
           ),
           child: Center(

@@ -1,5 +1,5 @@
 import 'package:ariel_app/components/botoes/botao_sec_contorno.dart';
-import 'package:ariel_app/models/evento_model.dart';
+import 'package:ariel_app/core/models/evento_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

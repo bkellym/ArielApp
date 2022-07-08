@@ -1,4 +1,4 @@
-import 'package:ariel_app/models/ciclo_model.dart';
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 

@@ -2,13 +2,10 @@ import 'package:ariel_app/components/botoes/botao_padrao.dart';
 import 'package:ariel_app/components/detalhe/campo_destaque.dart';
 import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/models/consulta_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
-import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/consulta_model.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/consulta/cadastro_edicao/cadastro_edicao_bloc.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/consulta/cadastro_edicao/cadastro_edicao_widget.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/consulta/detalhe/detalhe_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

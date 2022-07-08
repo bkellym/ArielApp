@@ -1,5 +1,5 @@
-import 'package:ariel_app/DAO/exame_dao.dart';
-import 'package:ariel_app/models/exame_model.dart';
+import 'package:ariel_app/core/DAO/exame_dao.dart';
+import 'package:ariel_app/core/models/exame_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -52,6 +52,15 @@ class ExameController {
     _detalhes.text = detalhes;
   }
 
+  Future<ExameModel?> buscarProxima(String userUid) async {
+    List<ExameModel> lista = await buscarTodos(userUid);
+
+    if (lista.isEmpty) return null;
+    lista.sort((a, b) => a.dataHora.compareTo(b.dataHora));
+    ExameModel model = lista.first;
+    return model;
+  }
+
   Future<List<ExameModel>> buscarTodos(String userUid) async {
     List<ExameModel> lista = [];
     DataSnapshot snapshot = await dao.buscarTodos(userUid);
@@ -59,6 +68,7 @@ class ExameController {
 
     for (DataSnapshot snapData in listaSnapshots) {
       ExameModel model = ExameModel.fromSnapshot(snapData);
+      model.userUid = userUid;
       lista.add(model);
     }
 

@@ -1,9 +1,10 @@
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:flutter/material.dart';
 
-class StatusCompleto extends StatelessWidget {
-  const StatusCompleto({Key? key, required}) : super(key: key);
+class StatusHoje extends StatelessWidget {
+  const StatusHoje({Key? key, required}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,14 +12,16 @@ class StatusCompleto extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Texto(
-          "CICLO",
+          "HOJE É DIA DE",
           fontWeight: Weight.bold,
+          color: ArielColors.cicloColor,
           padding: const EdgeInsets.all(0),
           size: SizeConfig.of(context).dynamicScaleSize(size: 9),
         ),
         Texto(
-          "COMPLETO",
+          "APLICAÇÃO",
           fontWeight: Weight.bold,
+          color: ArielColors.cicloColor,
           padding: const EdgeInsets.all(0),
           size: SizeConfig.of(context).dynamicScaleSize(size: 15),
         ),

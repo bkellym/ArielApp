@@ -1,11 +1,11 @@
-import 'package:ariel_app/DAO/resultado_exame_dao.dart';
-import 'package:ariel_app/models/resultado_exame_model.dart';
+import 'package:ariel_app/core/DAO/resultado_exame_dao.dart';
+import 'package:ariel_app/core/models/resultado_exame_model.dart';
 import 'package:flutter/material.dart';
 
 class ResultadoExameController {
   ResultadoExameDAO dao = ResultadoExameDAO();
 
-  ResultadoExameController(){
+  ResultadoExameController() {
     _data.text = DateTime.now().toString();
   }
 

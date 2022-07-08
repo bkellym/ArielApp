@@ -1,14 +1,18 @@
 import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
 import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
 import 'package:ariel_app/components/divisoria_decorada.dart';
+import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/screens/perfil/conquista/conquista_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PerfilPage extends StatefulWidget {
-  const PerfilPage({Key? key}) : super(key: key);
+  final UserModel user;
+
+  const PerfilPage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<PerfilPage> createState() => _PerfilPageState();
@@ -175,7 +179,7 @@ class _PerfilPageState extends State<PerfilPage>
                           ),
                         ),
                         Texto(
-                          "BERNARDO MACIEL",
+                          widget.user.nome,
                           fontWeight: Weight.regular,
                           size: SizeConfig.of(context).dynamicScaleSize(
                             size: 20,
@@ -275,7 +279,10 @@ class _PerfilPageState extends State<PerfilPage>
                                 width: 8,
                               ),
                               Texto(
-                                "09 DE ABRIL DE 1997",
+                                DateFormat("dd 'de' MMMM 'de' yyyy")
+                                    .format(DateTime.parse(
+                                        widget.user.dtNascimento))
+                                    .toUpperCase(),
                                 fontWeight: Weight.regular,
                                 size: SizeConfig.of(context).dynamicScaleSize(
                                   size: 10,
@@ -326,7 +333,7 @@ class _PerfilPageState extends State<PerfilPage>
                             width: SizeConfig.of(context).dynamicScaleSize(
                                 size: MediaQuery.of(context).size.width * 0.45),
                             child: Texto(
-                              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsumdolor sit amet, consectetuer adipiscing elit ",
+                              widget.user.historia!,
                               fontWeight: Weight.regular,
                               size: SizeConfig.of(context).dynamicScaleSize(
                                 size: 10,
