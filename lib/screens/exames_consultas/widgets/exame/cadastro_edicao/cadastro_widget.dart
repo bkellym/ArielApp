@@ -8,7 +8,7 @@ import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/models/exame_model.dart';
 import 'package:ariel_app/screens/ariel_app.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/exame/cadastroEdicao/cadastro_bloc.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/exame/cadastro_edicao/cadastro_bloc.dart';
 import 'package:flutter/material.dart';
 
 class CadastroExameWidget extends StatefulWidget {
@@ -184,7 +184,7 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
                         label: "SALVAR EXAME",
                         height:
                             SizeConfig.of(context).dynamicScaleSize(size: 40),
-                        padding: EdgeInsets.all(0),
+                        padding: const EdgeInsets.all(0),
                         textStyle: TextStyle(
                             fontSize: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 12),

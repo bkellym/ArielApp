@@ -1,20 +1,15 @@
+import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
+import 'package:ariel_app/models/consulta_model.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/consulta/detalhe/detalhe_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ItemConsultaWidget extends StatefulWidget {
-  final Color color;
-  final bool isExame;
-  final String userUid;
+  final ConsultaModel model;
 
-  const ItemConsultaWidget(
-      {Key? key,
-      required this.color,
-      required this.isExame,
-      required this.userUid})
-      : super(key: key);
+  const ItemConsultaWidget({Key? key, required this.model}) : super(key: key);
 
   @override
   State<ItemConsultaWidget> createState() => _ItemConsultaWidgetState();
@@ -46,9 +41,9 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Texto(
-                        "MEDICAMENTO",
+                        "ESPECIALIDADE",
                         size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: widget.color,
+                        color: ArielColors.consultaColor,
                         fontWeight: Weight.bold,
                         padding: const EdgeInsets.only(left: 16, bottom: 6),
                       ),
@@ -59,10 +54,10 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                             Icons.circle,
                             size: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 9),
-                            color: widget.color,
+                            color: ArielColors.consultaColor,
                           ),
                           Texto(
-                            "teste",
+                            widget.model.especialidade,
                             size: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 11),
                             fontWeight: Weight.bold,
@@ -79,7 +74,7 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                               .dynamicScaleSize(size: 30)),
                       height: SizeConfig.of(context).dynamicScaleSize(size: 60),
                       child: VerticalDivider(
-                          color: widget.color,
+                          color: ArielColors.consultaColor,
                           width:
                               SizeConfig.of(context).dynamicScaleSize(size: 0),
                           thickness: 1)),
@@ -89,7 +84,7 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                       Texto(
                         "DATA",
                         size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: widget.color,
+                        color: ArielColors.consultaColor,
                         fontWeight: Weight.bold,
                         padding: EdgeInsets.only(
                           bottom:
@@ -97,9 +92,7 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                         ),
                       ),
                       Texto(
-                        DateFormat("dd/MM/yyyy")
-                            .format(DateTime.parse('2022-05-01'))
-                            .toString(),
+                        DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
                         size: SizeConfig.of(context).dynamicScaleSize(size: 11),
                         fontWeight: Weight.medium,
                         padding: EdgeInsets.only(
@@ -116,7 +109,7 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                               .dynamicScaleSize(size: 30)),
                       height: SizeConfig.of(context).dynamicScaleSize(size: 60),
                       child: VerticalDivider(
-                          color: widget.color,
+                          color: ArielColors.consultaColor,
                           width:
                               SizeConfig.of(context).dynamicScaleSize(size: 0),
                           thickness: 1)),
@@ -126,7 +119,7 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                       Texto(
                         "HORÁRIO",
                         size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: widget.color,
+                        color: ArielColors.consultaColor,
                         fontWeight: Weight.bold,
                         padding: EdgeInsets.only(
                           bottom:
@@ -134,9 +127,7 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                         ),
                       ),
                       Texto(
-                        DateFormat("dd/MM/yyyy")
-                            .format(DateTime.parse('2022-05-01'))
-                            .toString(),
+                        DateFormat("hh:mm a").format(widget.model.dataHora),
                         size: SizeConfig.of(context).dynamicScaleSize(size: 11),
                         fontWeight: Weight.medium,
                         padding: EdgeInsets.only(
@@ -160,9 +151,9 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     fixedSize: const Size(100, 36),
-                    primary: widget.color,
-                    side: BorderSide(
-                      color: widget.color,
+                    primary: ArielColors.consultaColor,
+                    side: const BorderSide(
+                      color: ArielColors.consultaColor,
                       width: 1.5,
                     ),
                   ),
@@ -170,14 +161,15 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const DetalheConsulta(widgetIndex: 0)),
+                          builder: (context) => DetalheConsulta(
+                                model: widget.model,
+                              )),
                     );
                   },
                   child: Texto(
                     "detalhes".toUpperCase(),
                     size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                    color: widget.color,
+                    color: ArielColors.consultaColor,
                     fontWeight: Weight.bold,
                     padding: const EdgeInsets.all(0),
                   ),

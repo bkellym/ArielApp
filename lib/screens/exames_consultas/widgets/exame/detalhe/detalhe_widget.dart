@@ -5,7 +5,7 @@ import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/models/exame_model.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/exame/cadastroEdicao/cadastro_widget.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/exame/cadastro_edicao/cadastro_widget.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/exame/inserirResultados/inserir_resultado_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -84,7 +84,9 @@ class DetalheExameWidgetState extends State<DetalheExameWidget> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => InserirResultadoWidget(model: widget.model,)),
+                        builder: (context) => InserirResultadoWidget(
+                              model: widget.model,
+                            )),
                   );
                 },
                 internalPadding: 0,
@@ -98,8 +100,10 @@ class DetalheExameWidgetState extends State<DetalheExameWidget> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            CadastroExameWidget(userUid: widget.model.userUid, model: widget.model,)),
+                        builder: (context) => CadastroExameWidget(
+                              userUid: widget.model.userUid,
+                              model: widget.model,
+                            )),
                   );
                 },
                 internalPadding: 6,

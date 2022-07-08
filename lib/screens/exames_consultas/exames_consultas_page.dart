@@ -6,10 +6,10 @@ import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/models/user_model.dart';
 import 'package:ariel_app/screens/exames_consultas/exames_consultas_bloc.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/detalhes_consultas/detalhe_consulta.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/exame/cadastroEdicao/cadastro_widget.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/consulta/cadastro_edicao/cadastro_edicao_widget.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/consulta/item_consulta.dart';
+import 'package:ariel_app/screens/exames_consultas/widgets/exame/cadastro_edicao/cadastro_widget.dart';
 import 'package:ariel_app/screens/exames_consultas/widgets/exame/item_exame.dart';
-import 'package:ariel_app/screens/exames_consultas/widgets/item_consulta.dart';
 import 'package:flutter/material.dart';
 
 class ExamesConsultasPage extends StatefulWidget {
@@ -83,9 +83,8 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const DetalheConsulta(
-                                    widgetIndex: 1,
-                                  )));
+                              builder: (context) => CadastroEdicaoConsulta(
+                                  userUid: widget.user.uid)));
                     },
                   ),
                 ],
@@ -160,14 +159,12 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                           ),
                           const DivisoriaDecorada(
                               cor: ArielColors.consultaColor),
-                          ItemConsultaWidget(
-                            userUid: widget.user.uid,
-                            isExame: true,
-                            color: ArielColors.consultaColor,
-                          ),
-                          const Divider(
-                            height: 24,
-                            color: Colors.transparent,
+                          Column(
+                            children: _bloc.listaConsultas
+                                .map((item) => ItemConsultaWidget(
+                              model: item,
+                            ))
+                                .toList(),
                           ),
                         ],
                       ),

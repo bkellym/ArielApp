@@ -1,19 +1,21 @@
-import 'package:ariel_app/DAO/exame_dao.dart';
+import 'package:ariel_app/DAO/consulta_dao.dart';
+import 'package:ariel_app/models/consulta_model.dart';
 import 'package:ariel_app/models/exame_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-class ExameController {
-  ExameDAO dao = ExameDAO();
+class ConsultaController {
+  ConsultaDAO dao = ConsultaDAO();
 
-  final TextEditingController _tipo = TextEditingController();
+  final TextEditingController _especialidade = TextEditingController();
   final TextEditingController _data = TextEditingController();
   final TextEditingController _hora = TextEditingController();
-  final TextEditingController _local = TextEditingController();
+  final TextEditingController _medico = TextEditingController();
+  final TextEditingController _endereco = TextEditingController();
   final TextEditingController _detalhes = TextEditingController();
 
-  TextEditingController get tipo {
-    return _tipo;
+  TextEditingController get especialidade {
+    return _especialidade;
   }
 
   TextEditingController get data {
@@ -24,16 +26,20 @@ class ExameController {
     return _hora;
   }
 
-  TextEditingController get local {
-    return _local;
+  TextEditingController get medico {
+    return _medico;
+  }
+
+  TextEditingController get endereco {
+    return _endereco;
   }
 
   TextEditingController get detalhes {
     return _detalhes;
   }
 
-  set tipo(tipo) {
-    _tipo.text = tipo;
+  set especialidade(especialidade) {
+    _especialidade.text = especialidade;
   }
 
   set data(data) {
@@ -44,21 +50,25 @@ class ExameController {
     _hora.text = hora;
   }
 
-  set local(local) {
-    _local.text = local;
+  set medico(medico) {
+    _medico.text = medico;
+  }
+
+  set endereco(endereco) {
+    _endereco.text = endereco;
   }
 
   set detalhes(detalhes) {
     _detalhes.text = detalhes;
   }
 
-  Future<List<ExameModel>> buscarTodos(String userUid) async {
-    List<ExameModel> lista = [];
+  Future<List<ConsultaModel>> buscarTodos(String userUid) async {
+    List<ConsultaModel> lista = [];
     DataSnapshot snapshot = await dao.buscarTodos(userUid);
     Iterable<DataSnapshot> listaSnapshots = snapshot.children;
 
     for (DataSnapshot snapData in listaSnapshots) {
-      ExameModel model = ExameModel.fromSnapshot(snapData);
+      ConsultaModel model = ConsultaModel.fromSnapshot(snapData);
       lista.add(model);
     }
 
@@ -66,22 +76,24 @@ class ExameController {
   }
 
   void cadastrar(String userUid) {
-    ExameModel model = ExameModel();
+    ConsultaModel model = ConsultaModel();
     model.userUid = userUid;
-    model.tipo = _tipo.text;
+    model.especialidade = _especialidade.text;
     model.dataHora = DateTime.parse(
         "${_data.text != "" ? _data.text : ""} ${_hora.text != "" ? "${_hora.text}:00" : ""}");
-    model.local = _local.text;
+    model.medico = _medico.text;
+    model.endereco = _endereco.text;
     model.detalhes = _detalhes.text;
 
     dao.cadastrar(model);
   }
 
-  void alterar(ExameModel model) {
-    model.tipo = _tipo.text;
+  void alterar(ConsultaModel model) {
+    model.especialidade = _especialidade.text;
     model.dataHora = DateTime.parse(
         "${_data.text != "" ? _data.text : ""} ${_hora.text != "" ? "${_hora.text}:00" : ""}");
-    model.local = _local.text;
+    model.medico = _medico.text;
+    model.endereco = _endereco.text;
     model.detalhes = _detalhes.text;
 
     dao.alterar(model);
