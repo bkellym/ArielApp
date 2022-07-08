@@ -5,53 +5,58 @@ import 'package:ariel_app/src/app.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 
-class CampoData extends StatefulWidget {
+class CampoHora extends StatefulWidget {
   final EdgeInsetsGeometry padding;
+  final Color? color;
+  final double? height;
+  final TextEditingController? controller;
   final void Function(String?)? onSaved;
 
-  const CampoData({
+  const CampoHora({
     Key? key,
     required this.padding,
     this.onSaved,
+    this.color,
+    this.controller,
+    this.height,
   }) : super(key: key);
 
   @override
-  _CampoDataState createState() => _CampoDataState();
+  _CampoHoraState createState() => _CampoHoraState();
 }
 
-class _CampoDataState extends State<CampoData> {
+class _CampoHoraState extends State<CampoHora> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: widget.padding,
-      child: DateTimePicker(
-        type: DateTimePickerType.time,
-        locale: myLocale,
-        dateMask: "Hm",
-        initialValue: DateTime.now().toString(),
-        firstDate: DateTime(1900),
-        lastDate: DateTime(5000),
-        style: const TextStyle(
-          color: ArielColors.textPrimary,
-          fontWeight: FontWeight.normal,
-          fontSize: 12,
-          decoration: TextDecoration.none,
-        ),
-        decoration: const InputDecoration(
-          suffixIcon: Icon(
-            Icons.keyboard_arrow_down,
-            color: ArielColors.secundary,
+      child: Container(
+        height: widget.height ?? 36,
+        padding: const EdgeInsets.all(0),
+        child: DateTimePicker(
+          type: DateTimePickerType.time,
+          locale: myLocale,
+          dateMask: "Hm",
+          controller: widget.controller,
+          firstDate: DateTime(1900),
+          lastDate: DateTime(5000),
+          style: const TextStyle(
+            color: ArielColors.textPrimary,
+            fontWeight: FontWeight.normal,
+            fontSize: 12,
+            decoration: TextDecoration.none,
           ),
-          isDense: true,
-          contentPadding: EdgeInsets.all(10),
-          fillColor: ArielColors.baseLight,
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: ArielColors.baseDark),
+          decoration: InputDecoration(
+            isDense: false,
+            contentPadding: const EdgeInsets.all(10),
+            fillColor: ArielColors.transparent,
+            border: const OutlineInputBorder(borderSide: BorderSide()),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: widget.color ?? ArielColors.secundary)),
           ),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: ArielColors.secundary)),
+          onSaved: widget.onSaved,
         ),
-        onSaved: widget.onSaved,
       ),
     );
   }

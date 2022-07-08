@@ -36,6 +36,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
     return DetalheWidget(
       titulo: "Ciclos",
       subTitulo: const ["registrar", " aplicação"],
+      imgFundo: Image.asset('assets/images/ciclos.png').image,
       color: ArielColors.secundary,
       child: Material(
         color: Colors.white,

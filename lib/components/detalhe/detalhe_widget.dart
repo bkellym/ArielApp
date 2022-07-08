@@ -9,6 +9,8 @@ class DetalheWidget extends StatelessWidget {
   final Color color;
   final Widget child;
   final double leftPadding = 32;
+  final double? tituloSize;
+  final ImageProvider imgFundo;
 
   const DetalheWidget({
     Key? key,
@@ -16,6 +18,8 @@ class DetalheWidget extends StatelessWidget {
     required this.child,
     required this.subTitulo,
     required this.color,
+    required this.imgFundo,
+    this.tituloSize,
   }) : super(key: key);
 
   @override
@@ -26,14 +30,14 @@ class DetalheWidget extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: Image.asset('assets/images/ciclos.png').image,
+              image: imgFundo,
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Titulo(titulo),
+              Titulo(titulo, fontSize: tituloSize,),
               Container(
                 height: MediaQuery.of(context).size.height * 0.8,
                 width: MediaQuery.of(context).size.width * 0.8,
