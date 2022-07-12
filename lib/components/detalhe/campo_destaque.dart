@@ -27,8 +27,7 @@ class CampoDestaque extends StatelessWidget {
           color: color,
           fontWeight: Weight.bold,
           padding: EdgeInsets.only(
-              left: SizeConfig.of(context)
-                  .dynamicScaleSize(size: leftPadding),
+              left: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
               bottom: SizeConfig.of(context).dynamicScaleSize(size: 6)),
         ),
         Texto(
@@ -36,8 +35,7 @@ class CampoDestaque extends StatelessWidget {
           size: SizeConfig.of(context).dynamicScaleSize(size: 11),
           fontWeight: Weight.bold,
           padding: EdgeInsets.only(
-            left: SizeConfig.of(context)
-                .dynamicScaleSize(size: leftPadding),
+            left: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
             bottom: SizeConfig.of(context).dynamicScaleSize(size: 12),
           ),
         ),

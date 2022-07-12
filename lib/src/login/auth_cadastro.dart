@@ -34,13 +34,12 @@ class _FormAuthCadastro extends StatefulWidget {
 
   @override
   State<_FormAuthCadastro> createState() => _FormAuthCadastroState();
-
 }
 
 class _FormAuthCadastroState extends State<_FormAuthCadastro> {
   final _formKey = GlobalKey<FormState>();
 
-  static  TextEditingController _nome = new TextEditingController();
+  static TextEditingController _nome = new TextEditingController();
   static final TextEditingController _email = new TextEditingController();
   static final TextEditingController _senha = new TextEditingController();
 
@@ -48,18 +47,21 @@ class _FormAuthCadastroState extends State<_FormAuthCadastro> {
   String get email => _email.text;
   String get senha => _senha.text;
 
-  void doCadastro(BuildContext context) async{
-    try{
-      var user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: senha);
-      if(user != null) {
+  void doCadastro(BuildContext context) async {
+    try {
+      var user = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: senha);
+      if (user != null) {
         _senha.text = "";
         await user.user?.updateDisplayName(nome);
         Navigator.pushNamed(context, '/CadastroCompleto');
       }
-      print("Cadastro com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");
+      print(
+          "Cadastro com sucesso! Uid: ${user.user?.uid}, Nome: ${user.user?.displayName}");
     } catch (e) {
       print('Error: ${e.toString()}');
-      final snackBar = MensagemErro(mensagem: 'Não foi possível realizar o cadastro');
+      final snackBar =
+          MensagemErro(mensagem: 'Não foi possível realizar o cadastro');
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

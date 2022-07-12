@@ -12,7 +12,7 @@ class CampoRadio extends StatefulWidget {
     Key? key,
     required this.valores,
     this.onChange,
-  }) : super(key: key){
+  }) : super(key: key) {
     selecionado = valores.first['id'];
   }
   @override
@@ -22,7 +22,6 @@ class CampoRadio extends StatefulWidget {
 class _CampoRadioState extends State<CampoRadio> {
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: <Widget>[
         for (Map valor in widget.valores)
@@ -40,7 +39,7 @@ class _CampoRadioState extends State<CampoRadio> {
               activeColor: ArielColors.secundary,
               value: valor['id'],
               groupValue: widget.selecionado,
-              onChanged: (value){
+              onChanged: (value) {
                 setState(() {
                   widget.selecionado = value;
                 });

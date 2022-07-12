@@ -65,7 +65,8 @@ class DefaultFirebaseOptions {
     projectId: 'ariel-transapp',
     databaseURL: 'https://ariel-transapp-default-rtdb.firebaseio.com',
     storageBucket: 'ariel-transapp.appspot.com',
-    iosClientId: '145414915671-ibs3815k0u2okeji9vojhuikro2t44qe.apps.googleusercontent.com',
+    iosClientId:
+        '145414915671-ibs3815k0u2okeji9vojhuikro2t44qe.apps.googleusercontent.com',
     iosBundleId: 'br.com.ariel.arielApp',
   );
 }

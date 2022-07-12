@@ -22,7 +22,7 @@ class ArielColors {
   static const Color cicloColor = Color(0xFF1DD7D0);
   static const Color consultaColor = Color(0xFF1DC5E9);
   static const Color textPrimary = Color(0xFF666666);
-  static const Color textLight= Color(0xFF999999);
+  static const Color textLight = Color(0xFF999999);
   static const Color secundary = Color(0xFF905CED);
   static const Color baseDark = Color(0xFFCCCCCC);
   static const Color baseLight = Color(0xFFFFFFFF);

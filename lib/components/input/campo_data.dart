@@ -14,7 +14,8 @@ class CampoData extends StatefulWidget {
   CampoData({
     Key? key,
     required this.padding,
-    required this.controller, this.color = ArielColors.secundary,
+    required this.controller,
+    this.color = ArielColors.secundary,
   }) : super(key: key);
 
   @override
@@ -40,14 +41,15 @@ class _CampoDataState extends State<CampoData> {
             fontSize: 12,
             decoration: TextDecoration.none,
           ),
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(10),
             fillColor: ArielColors.baseLight,
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
               borderSide: BorderSide(color: ArielColors.baseDark),
             ),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: ArielColors.secundary)),
+                borderSide:
+                    BorderSide(color: widget.color ?? ArielColors.secundary)),
           ),
         ),
       ),

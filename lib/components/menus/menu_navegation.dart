@@ -1,6 +1,6 @@
 // ignore_for_file: camel_case_types, unnecessary_const, file_names
 import 'package:ariel_app/components/botoes/botao_menu.dart';
-import 'package:ariel_app/models/botaoMenuModel.dart';
+import 'package:ariel_app/core/models/botaoMenuModel.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/util/size_config.dart';

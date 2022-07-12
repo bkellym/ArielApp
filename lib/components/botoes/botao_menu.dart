@@ -1,9 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:ariel_app/core/models/botaoMenuModel.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/models/botaoMenuModel.dart';
 import 'package:flutter/material.dart';
 
 class BotaoMenu extends StatefulWidget {
@@ -18,7 +18,8 @@ class BotaoMenu extends StatefulWidget {
     required this.selected,
     required this.onPressed,
     this.disabled = false,
-    this.internalPadding = 8, required this.model,
+    this.internalPadding = 8,
+    required this.model,
   }) : super(key: key);
 
   final LinearGradient selectedGradient = const LinearGradient(
@@ -84,7 +85,7 @@ class _BotaoMenuState extends State<BotaoMenu> {
         ),
         child: ElevatedButton(
           style: widget.buttontheme,
-          onPressed: (){
+          onPressed: () {
             widget.onPressed!(widget.model.index);
           },
           child: Column(

@@ -14,7 +14,7 @@ class FloatingActionCapsule extends AnimatedWidget {
     this.iconData,
     this.animatedIconData,
   })  : assert((iconData == null && animatedIconData != null) ||
-      (iconData != null && animatedIconData == null)),
+            (iconData != null && animatedIconData == null)),
         super(listenable: animation, key: key);
 
   final List<Capsule> items;
@@ -87,14 +87,14 @@ class FloatingActionCapsule extends AnimatedWidget {
           // only 1 can be null at the time
           child: iconData == null
               ? AnimatedIcon(
-            icon: animatedIconData!,
-            progress: _animation,
-            color: iconColor,
-          )
+                  icon: animatedIconData!,
+                  progress: _animation,
+                  color: iconColor,
+                )
               : Icon(
-            iconData,
-            color: iconColor,
-          ),
+                  iconData,
+                  color: iconColor,
+                ),
         ),
       ],
     );
@@ -107,5 +107,3 @@ class _DefaultHeroTag {
   @override
   String toString() => '<default FloatingActionBubble tag>';
 }
-
-

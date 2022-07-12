@@ -11,6 +11,7 @@ class CampoTexto extends StatefulWidget {
   final double bottomPadding;
   final bool obscureText;
   final int maxLines;
+  final Color? color;
   final TextEditingController? controller;
   final TextInputType? textInputType;
 
@@ -24,6 +25,7 @@ class CampoTexto extends StatefulWidget {
     this.bottomPadding = 16,
     this.maxLines = 1,
     this.textInputType = TextInputType.text,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -66,8 +68,9 @@ class _CampoextoState extends State<CampoTexto> {
           border: const OutlineInputBorder(
             borderSide: BorderSide(color: ArielColors.baseDark),
           ),
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: ArielColors.secundary)),
+          focusedBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: widget.color ?? ArielColors.secundary)),
         ),
       ),
     );

@@ -10,14 +10,14 @@ class Texto extends StatelessWidget {
   EdgeInsetsGeometry? padding;
   TextAlign? textAlign;
 
-  Texto(
-    this.data, {
-    Key? key,
-    required this.size,
-    this.fontWeight = Weight.regular,
-    this.color = ArielColors.textPrimary,
-    this.padding, this.textAlign = TextAlign.start
-  }) : super(key: key);
+  Texto(this.data,
+      {Key? key,
+      required this.size,
+      this.fontWeight = Weight.regular,
+      this.color = ArielColors.textPrimary,
+      this.padding,
+      this.textAlign = TextAlign.start})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
