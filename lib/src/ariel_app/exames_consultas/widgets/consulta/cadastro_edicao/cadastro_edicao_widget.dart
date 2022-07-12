@@ -47,43 +47,35 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Texto(
-                    "MÉDICO",
-                    color: ArielColors.consultaColor,
-                    fontWeight: Weight.semibold,
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                    padding: EdgeInsets.only(
+                  CampoTexto(
+                    label: "MÉDICO",
+                    inputPadding: EdgeInsets.only(
+                      right: SizeConfig.of(context).dynamicScaleSize(
+                        size: leftPadding,
+                      ),
                       left: SizeConfig.of(context).dynamicScaleSize(
                         size: leftPadding,
                       ),
                       bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 4,
+                        size: 12,
                       ),
                     ),
-                  ),
-                  CampoTexto(
-                    leftPadding: leftPadding,
-                    rightPadding: leftPadding,
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.medico,
                   ),
-                  Texto(
-                    "ESPECIALIDADE",
-                    color: ArielColors.consultaColor,
-                    fontWeight: Weight.semibold,
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                    padding: EdgeInsets.only(
+                  CampoTexto(
+                    label: "ESPECIALIDADE",
+                    inputPadding: EdgeInsets.only(
+                      right: SizeConfig.of(context).dynamicScaleSize(
+                        size: leftPadding,
+                      ),
                       left: SizeConfig.of(context).dynamicScaleSize(
                         size: leftPadding,
                       ),
                       bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 4,
+                        size: 12,
                       ),
                     ),
-                  ),
-                  CampoTexto(
-                    leftPadding: leftPadding,
-                    rightPadding: leftPadding,
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.especialidade,
                   ),
@@ -157,44 +149,36 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
                       ],
                     ),
                   ),
-                  Texto(
-                    "LOCAL",
-                    color: ArielColors.consultaColor,
-                    fontWeight: Weight.semibold,
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                    padding: EdgeInsets.only(
+                  CampoTexto(
+                    label: "LOCAL",
+                    inputPadding: EdgeInsets.only(
+                      right: SizeConfig.of(context).dynamicScaleSize(
+                        size: leftPadding,
+                      ),
                       left: SizeConfig.of(context).dynamicScaleSize(
                         size: leftPadding,
                       ),
                       bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 4,
+                        size: 12,
                       ),
                     ),
-                  ),
-                  CampoTexto(
-                    leftPadding: leftPadding,
-                    rightPadding: leftPadding,
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.endereco,
                   ),
-                  Texto(
-                    "RECOMENDAÇÕES",
-                    color: ArielColors.consultaColor,
-                    fontWeight: Weight.semibold,
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                    padding: EdgeInsets.only(
+                  CampoTexto(
+                    label: "RECOMENDAÇÕES",
+                    maxLines: 3,
+                    inputPadding: EdgeInsets.only(
+                      right: SizeConfig.of(context).dynamicScaleSize(
+                        size: leftPadding,
+                      ),
                       left: SizeConfig.of(context).dynamicScaleSize(
                         size: leftPadding,
                       ),
                       bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 4,
+                        size: 12,
                       ),
                     ),
-                  ),
-                  CampoTexto(
-                    maxLines: 3,
-                    leftPadding: leftPadding,
-                    rightPadding: leftPadding,
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.detalhes,
                   ),

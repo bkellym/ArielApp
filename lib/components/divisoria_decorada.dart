@@ -1,3 +1,4 @@
+import 'package:ariel_app/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 
 class DivisoriaDecorada extends StatelessWidget {
@@ -13,26 +14,25 @@ class DivisoriaDecorada extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding,
-      child: Stack(
-        alignment: Alignment.centerRight,
-        children: [
+      padding: padding ?? EdgeInsets.only(bottom: SizeConfig.of(context).dynamicScaleSize(size: 32)),
+      child: Column(children: [
+        Stack(alignment: Alignment.centerRight, children: [
           Divider(
             color: cor,
-            height: 10,
-            thickness: 1.5,
+            height: SizeConfig.of(context).dynamicScaleSize(size: 10),
+            thickness: SizeConfig.of(context).dynamicScaleSize(size: 1.5),
           ),
           Container(
-            width: 10.0,
-            height: 10.0,
-            margin: const EdgeInsets.symmetric(horizontal: 24.0),
+            width: SizeConfig.of(context).dynamicScaleSize(size: 10),
+            height: SizeConfig.of(context).dynamicScaleSize(size: 10),
+            margin: EdgeInsets.symmetric(horizontal: SizeConfig.of(context).dynamicScaleSize(size: 24)),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: cor,
             ),
           ),
-        ],
-      ),
+        ]),
+      ]),
     );
   }
 }

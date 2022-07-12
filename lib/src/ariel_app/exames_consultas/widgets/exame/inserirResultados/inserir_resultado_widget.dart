@@ -78,21 +78,17 @@ class _InserirResultadoWidgetState extends State<InserirResultadoWidget> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Texto(
-                          "PARAMETRO",
+                        CampoTexto(
+                          label: "PARAMETRO",
                           color: ArielColors.exameColor,
-                          fontWeight: Weight.semibold,
-                          size:
-                              SizeConfig.of(context).dynamicScaleSize(size: 9),
-                          padding: EdgeInsets.only(
+                          inputPadding: EdgeInsets.only(
+                            right: SizeConfig.of(context).dynamicScaleSize(
+                              size: 12,
+                            ),
                             bottom: SizeConfig.of(context).dynamicScaleSize(
-                              size: 4,
+                              size: 12,
                             ),
                           ),
-                        ),
-                        const CampoTexto(
-                          leftPadding: 0,
-                          rightPadding: 12,
                         ),
                       ],
                     ),
@@ -102,21 +98,18 @@ class _InserirResultadoWidgetState extends State<InserirResultadoWidget> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Texto(
-                          "DOSAGEM",
+                        CampoTexto(
+                          label: "DOSAGEM",
                           color: ArielColors.exameColor,
-                          fontWeight: Weight.semibold,
-                          size:
-                              SizeConfig.of(context).dynamicScaleSize(size: 9),
-                          padding: EdgeInsets.only(
+                          inputPadding: EdgeInsets.only(
                             left: 0,
+                            right: SizeConfig.of(context).dynamicScaleSize(
+                              size: 8,
+                            ),
                             bottom: SizeConfig.of(context).dynamicScaleSize(
-                              size: 4,
+                              size: 12,
                             ),
                           ),
-                        ),
-                        const CampoTexto(
-                          leftPadding: 0,
                         ),
                       ],
                     ),
@@ -128,7 +121,7 @@ class _InserirResultadoWidgetState extends State<InserirResultadoWidget> {
             BotaoPadrao(
                 label: "SALVAR ALTERAÇÕES",
                 height: SizeConfig.of(context).dynamicScaleSize(size: 40),
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 textStyle: TextStyle(
                     fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
                     fontWeight: Weight.bold),

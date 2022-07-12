@@ -37,7 +37,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
       titulo: "Ciclos",
       subTitulo: const ["registrar", " aplicação"],
       imgFundo: Image.asset('assets/images/ciclos.png').image,
-      color: ArielColors.secundary,
+      color: ArielColors.cicloColor,
       child: Material(
         color: Colors.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -55,7 +55,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
                 valor: widget.model.dosagem,
                 leftPadding: 0,
                 color: ArielColors.cicloColor,
-                lineColor: ArielColors.secundary,
+                lineColor: ArielColors.cicloColor,
               ),
               Padding(
                 padding: EdgeInsets.only(right: leftPadding),
@@ -64,7 +64,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
                   valor: widget.model.aplicacoes.length.toString(),
                   leftPadding: 0,
                   color: ArielColors.cicloColor,
-                  lineColor: ArielColors.secundary,
+                  lineColor: ArielColors.cicloColor,
                 ),
               ),
             ],
@@ -78,7 +78,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
                 valor: widget.model.dataIncio,
                 leftPadding: leftPadding,
                 color: ArielColors.cicloColor,
-                lineColor: ArielColors.secundary,
+                lineColor: ArielColors.cicloColor,
               ),
               Padding(
                 padding: EdgeInsets.only(right: leftPadding),
@@ -87,7 +87,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
                   valor: "Testando",
                   leftPadding: 0,
                   color: ArielColors.cicloColor,
-                  lineColor: ArielColors.secundary,
+                  lineColor: ArielColors.cicloColor,
                 ),
               ),
             ],
@@ -95,7 +95,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
           const Divider(height: 4, color: Color(0x00FFFFFF)),
           Texto(
             "DATA DA APLICAÇÃO",
-            color: ArielColors.secundary,
+            color: ArielColors.cicloColor,
             fontWeight: Weight.semibold,
             size: SizeConfig.of(context).dynamicScaleSize(size: 9),
             padding: EdgeInsets.only(
@@ -109,6 +109,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
           ),
           CampoData(
             controller: _bloc.controller.dataAplicacao,
+            color: ArielColors.cicloColor,
             padding: EdgeInsets.only(
               left: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
               right: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),

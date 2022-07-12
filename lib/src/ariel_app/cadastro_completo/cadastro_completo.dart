@@ -102,41 +102,35 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              bottom: 8,
-                            ),
-                            child: Texto(
-                              "NOME",
-                              size: 12,
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.semibold,
-                            ),
-                          ),
                           CampoTexto(
+                            label: 'NOME',
                             controller: _bloc.userController.nome,
-                            label: '',
-                            leftPadding: 24,
-                            rightPadding: 24,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              bottom: 8,
-                            ),
-                            child: Texto(
-                              "E-MAIL",
-                              size: 12,
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.semibold,
+                            inputPadding: EdgeInsets.only(
+                              left: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              right: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 12,
+                              ),
                             ),
                           ),
                           CampoTexto(
+                            label: 'E-MAIL',
                             controller: _bloc.userController.email,
-                            label: '',
-                            leftPadding: 24,
-                            rightPadding: 24,
+                            inputPadding: EdgeInsets.only(
+                              left: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              right: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 12,
+                              ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -145,7 +139,9 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                             child: Texto(
                               "DATA DE NASCIMENTO",
-                              size: 12,
+                              size: SizeConfig.of(context).dynamicScaleSize(
+                                size: 9,
+                              ),
                               color: ArielColors.secundary,
                               fontWeight: Weight.semibold,
                             ),
@@ -164,23 +160,21 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               _bloc.userController.genero = val!;
                             },
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              bottom: 8,
-                            ),
-                            child: Texto(
-                              "SUA HISTÓRIA",
-                              size: 12,
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.semibold,
-                            ),
-                          ),
                           CampoTexto(
+                            label: "SUA HISTÓRIA",
                             controller: _bloc.userController.historia,
                             maxLines: 8,
-                            leftPadding: 24,
-                            rightPadding: 24,
+                            inputPadding: EdgeInsets.only(
+                              left: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              right: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 12,
+                              ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -195,31 +189,27 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           const DivisoriaDecorada(cor: ArielColors.secundary),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              bottom: 8,
-                            ),
-                            child: Texto(
-                              "MEDICAMENTO UTILIZADO",
-                              size: 12,
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.semibold,
-                            ),
-                          ),
                           CampoTexto(
                             controller: _bloc.cicloController.medicamento,
-                            label: '',
-                            leftPadding: 24,
-                            rightPadding: 24,
+                            label: "MEDICAMENTO UTILIZADO",
+                            inputPadding: EdgeInsets.only(
+                              left: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              right: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 12,
+                              ),
+                            ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Container(
-                                padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.7,
+                              Expanded(
+                                flex: 7,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -230,7 +220,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                       ),
                                       child: Texto(
                                         "DATA DE INÍCIO",
-                                        size: 12,
+                                        size: SizeConfig.of(context)
+                                            .dynamicScaleSize(
+                                          size: 9,
+                                        ),
                                         color: ArielColors.secundary,
                                         fontWeight: Weight.semibold,
                                       ),
@@ -238,6 +231,7 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                     CampoData(
                                       controller:
                                           _bloc.cicloController.dataIncio,
+                                      color: ArielColors.secundary,
                                       padding: const EdgeInsets.only(
                                         left: 24,
                                         right: 8,
@@ -247,33 +241,26 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                   ],
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 24,
-                                        bottom: 8,
-                                      ),
-                                      child: Texto(
-                                        "INTERVALO",
-                                        size: 12,
-                                        color: ArielColors.secundary,
-                                        fontWeight: Weight.semibold,
-                                      ),
+                              Expanded(
+                                flex: 3,
+                                child: CampoTexto(
+                                  label: 'INTERVALO',
+                                  controller: _bloc.cicloController.intervalo,
+                                  textInputType: TextInputType.number,
+                                  inputPadding: EdgeInsets.only(
+                                    left:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 8,
                                     ),
-                                    CampoTexto(
-                                      rightPadding: 24,
-                                      bottomPadding: 8,
-                                      controller:
-                                          _bloc.cicloController.intervalo,
-                                      textInputType: TextInputType.number,
-                                      label: '',
+                                    right:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 24,
                                     ),
-                                  ],
+                                    bottom:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 8,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -282,84 +269,56 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
-                                padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 24,
-                                        bottom: 8,
-                                      ),
-                                      child: Texto(
-                                        "DOSAGEM",
-                                        size: 12,
-                                        color: ArielColors.secundary,
-                                        fontWeight: Weight.semibold,
-                                      ),
+                              Expanded(
+                                flex: 3,
+                                child: CampoTexto(
+                                  controller: _bloc.cicloController.dosagem,
+                                  label: 'DOSAGEM',
+                                  inputPadding: EdgeInsets.only(
+                                    left:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 24,
                                     ),
-                                    CampoTexto(
-                                      controller: _bloc.cicloController.dosagem,
-                                      label: '',
-                                      leftPadding: 24,
+                                    right:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 8,
                                     ),
-                                  ],
+                                    bottom:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 12,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.35,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 8,
-                                        bottom: 8,
-                                      ),
-                                      child: Texto(
-                                        "APRESENTAÇÃO",
-                                        size: 12,
-                                        color: ArielColors.secundary,
-                                        fontWeight: Weight.semibold,
-                                      ),
-                                    ),
-                                    CampoTexto(
-                                      controller:
-                                          _bloc.cicloController.apresentacao,
-                                      label: '',
-                                    ),
-                                  ],
+                              Expanded(
+                                flex: 4,
+                                child: CampoTexto(
+                                  label: 'APRESENTAÇÃO',
+                                  controller:
+                                      _bloc.cicloController.apresentacao,
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.zero,
-                                width: MediaQuery.of(context).size.width * 0.35,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 24,
-                                        bottom: 8,
-                                      ),
-                                      child: Texto(
-                                        "QTD. POR CICLO",
-                                        size: 12,
-                                        color: ArielColors.secundary,
-                                        fontWeight: Weight.semibold,
-                                      ),
+                              Expanded(
+                                flex: 4,
+                                child: CampoTexto(
+                                  label: "QTD. POR CICLO",
+                                  controller:
+                                      _bloc.cicloController.numAplicacoes,
+                                  textInputType: TextInputType.number,
+                                  inputPadding: EdgeInsets.only(
+                                    left:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 8,
                                     ),
-                                    CampoTexto(
-                                      rightPadding: 24,
-                                      controller:
-                                          _bloc.cicloController.numAplicacoes,
-                                      textInputType: TextInputType.number,
-                                      label: '',
+                                    right:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 24,
                                     ),
-                                  ],
+                                    bottom:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 12,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -371,7 +330,9 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                             child: Texto(
                               "DATA DA ÚLTIMA APLICAÇÃO / TOMADA",
-                              size: 12,
+                              size: SizeConfig.of(context).dynamicScaleSize(
+                                size: 9,
+                              ),
                               color: ArielColors.secundary,
                               fontWeight: Weight.semibold,
                             ),
@@ -397,44 +358,29 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             ),
                           ),
                           const DivisoriaDecorada(cor: ArielColors.secundary),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              bottom: 8,
-                            ),
-                            child: Texto(
-                              "TIPO DE EXAME",
-                              size: 12,
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.semibold,
-                            ),
-                          ),
                           CampoTexto(
                             controller: _bloc.resultExameController.nome,
-                            label: '',
-                            leftPadding: 24,
-                            rightPadding: 24,
+                            label: 'TIPO DE EXAME',
+                            inputPadding: EdgeInsets.only(
+                              left: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              right: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 12,
+                              ),
+                            ),
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.4,
+                              Expanded(
+                                flex: 3,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 24,
-                                        bottom: 8,
-                                      ),
-                                      child: Texto(
-                                        "DOSAGEM SÉRICA",
-                                        size: 12,
-                                        color: ArielColors.secundary,
-                                        fontWeight: Weight.semibold,
-                                      ),
-                                    ),
                                     Row(
                                       children: [
                                         Container(
@@ -447,12 +393,24 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                                   .width *
                                               0.3,
                                           child: CampoTexto(
-                                            bottomPadding: 8,
+                                            label: 'DOSAGEM SÉRICA',
                                             controller: _bloc
                                                 .resultExameController.dosagem,
                                             textInputType: TextInputType.number,
-                                            label: '',
-                                            leftPadding: 0,
+                                            inputPadding: EdgeInsets.only(
+                                              left: SizeConfig.of(context)
+                                                  .dynamicScaleSize(
+                                                size: 0,
+                                              ),
+                                              right: SizeConfig.of(context)
+                                                  .dynamicScaleSize(
+                                                size: 8,
+                                              ),
+                                              bottom: SizeConfig.of(context)
+                                                  .dynamicScaleSize(
+                                                size: 12,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                         Texto(
@@ -466,8 +424,8 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                   ],
                                 ),
                               ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
+                              Expanded(
+                                flex: 4,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
@@ -479,7 +437,10 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                                       ),
                                       child: Texto(
                                         "DATA DO EXAME",
-                                        size: 12,
+                                        size: SizeConfig.of(context)
+                                            .dynamicScaleSize(
+                                          size: 9,
+                                        ),
                                         color: ArielColors.secundary,
                                         fontWeight: Weight.semibold,
                                       ),

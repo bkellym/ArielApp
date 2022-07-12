@@ -2,13 +2,13 @@
 
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
+import 'package:ariel_app/core/util/texto.dart';
 import 'package:flutter/material.dart';
 
 class CampoTexto extends StatefulWidget {
-  final String? label;
-  final double leftPadding;
-  final double rightPadding;
-  final double bottomPadding;
+  final String label;
+  final EdgeInsetsGeometry? inputPadding;
+  final EdgeInsetsGeometry? labelPadding;
   final bool obscureText;
   final int maxLines;
   final Color? color;
@@ -17,15 +17,14 @@ class CampoTexto extends StatefulWidget {
 
   const CampoTexto({
     Key? key,
-    this.label,
-    this.leftPadding = 8,
-    this.rightPadding = 8,
+    required this.label,
     this.controller,
     this.obscureText = false,
-    this.bottomPadding = 16,
     this.maxLines = 1,
     this.textInputType = TextInputType.text,
     this.color,
+    this.inputPadding,
+    this.labelPadding,
   }) : super(key: key);
 
   @override
@@ -36,43 +35,55 @@ class _CampoextoState extends State<CampoTexto> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        left: SizeConfig.of(context).dynamicScaleSize(size: widget.leftPadding),
-        right:
-            SizeConfig.of(context).dynamicScaleSize(size: widget.rightPadding),
-        bottom:
-            SizeConfig.of(context).dynamicScaleSize(size: widget.bottomPadding),
-      ),
-      child: TextFormField(
-        keyboardType: widget.textInputType,
-        maxLines: widget.maxLines,
-        controller: widget.controller,
-        obscureText: widget.obscureText,
-        style: TextStyle(
-          color: ArielColors.textPrimary,
-          fontWeight: FontWeight.normal,
-          fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
-          decoration: TextDecoration.none,
+      padding: widget.inputPadding ??
+          EdgeInsets.only(
+            left: SizeConfig.of(context).dynamicScaleSize(size: 8),
+            right: SizeConfig.of(context).dynamicScaleSize(size: 8),
+            bottom: SizeConfig.of(context).dynamicScaleSize(size: 16),
+          ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Texto(
+          widget.label,
+          color: widget.color ?? ArielColors.secundary,
+          fontWeight: Weight.semibold,
+          size: SizeConfig.of(context).dynamicScaleSize(size: 9),
+          padding: widget.labelPadding ??
+              EdgeInsets.only(
+                bottom: SizeConfig.of(context).dynamicScaleSize(
+                  size: 4,
+                ),
+              ),
         ),
-        decoration: InputDecoration(
-          isDense: true,
-          contentPadding:
-              EdgeInsets.all(SizeConfig.of(context).dynamicScaleSize(size: 10)),
-          hintText: widget.label,
-          hintStyle: const TextStyle(
-            color: ArielColors.baseDark,
+        TextFormField(
+          keyboardType: widget.textInputType,
+          maxLines: widget.maxLines,
+          controller: widget.controller,
+          obscureText: widget.obscureText,
+          style: TextStyle(
+            color: ArielColors.textPrimary,
             fontWeight: FontWeight.normal,
+            fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
             decoration: TextDecoration.none,
           ),
-          fillColor: ArielColors.baseLight,
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(color: ArielColors.baseDark),
+          decoration: InputDecoration(
+            isDense: true,
+            contentPadding: EdgeInsets.all(
+                SizeConfig.of(context).dynamicScaleSize(size: 10)),
+            hintStyle: const TextStyle(
+              color: ArielColors.baseDark,
+              fontWeight: FontWeight.normal,
+              decoration: TextDecoration.none,
+            ),
+            fillColor: ArielColors.baseLight,
+            border: const OutlineInputBorder(
+              borderSide: BorderSide(color: ArielColors.baseDark),
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: widget.color ?? ArielColors.secundary)),
           ),
-          focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: widget.color ?? ArielColors.secundary)),
         ),
-      ),
+      ]),
     );
   }
 }

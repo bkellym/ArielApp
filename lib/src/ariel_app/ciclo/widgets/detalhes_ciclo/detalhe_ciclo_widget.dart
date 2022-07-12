@@ -31,7 +31,7 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
         titulo: "Ciclos",
         subTitulo: const ["detalhes", " do ciclo"],
         imgFundo: Image.asset('assets/images/ciclos.png').image,
-        color: ArielColors.secundary,
+        color: ArielColors.cicloColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

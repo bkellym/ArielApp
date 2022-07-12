@@ -30,7 +30,7 @@ class ListaCiclos extends StatelessWidget {
               top: SizeConfig.of(context).dynamicScaleSize(size: 24),
               left: SizeConfig.of(context).dynamicScaleSize(size: 24)),
         ),
-        const DivisoriaDecorada(cor: ArielColors.cicloColor),
+        const DivisoriaDecorada(cor: ArielColors.cicloColor, padding: EdgeInsets.zero,),
         Column(
           children: lista.map((ciclo) => CicloWidget(model: ciclo)).toList(),
         )

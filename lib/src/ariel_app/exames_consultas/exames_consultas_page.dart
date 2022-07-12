@@ -138,7 +138,10 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                                 left: SizeConfig.of(context)
                                     .dynamicScaleSize(size: 24)),
                           ),
-                          const DivisoriaDecorada(cor: ArielColors.exameColor),
+                          const DivisoriaDecorada(
+                            cor: ArielColors.exameColor,
+                            padding: EdgeInsets.zero,
+                          ),
                           _bloc.listaExames.isNotEmpty
                               ? Column(
                                   children: _bloc.listaExames
@@ -171,7 +174,9 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                                     .dynamicScaleSize(size: 24)),
                           ),
                           const DivisoriaDecorada(
-                              cor: ArielColors.consultaColor),
+                            cor: ArielColors.consultaColor,
+                            padding: EdgeInsets.zero,
+                          ),
                           _bloc.listaConsultas.isNotEmpty
                               ? Column(
                                   children: _bloc.listaConsultas

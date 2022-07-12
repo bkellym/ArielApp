@@ -2,6 +2,7 @@ import 'package:ariel_app/components/botoes/botao_padrao.dart';
 import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/src/login/base_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,9 @@ class _FormAuthCadastroState extends State<_FormAuthCadastro> {
   static final TextEditingController _senha = new TextEditingController();
 
   String get nome => _nome.text;
+
   String get email => _email.text;
+
   String get senha => _senha.text;
 
   void doCadastro(BuildContext context) async {
@@ -75,21 +78,48 @@ class _FormAuthCadastroState extends State<_FormAuthCadastro> {
           CampoTexto(
             controller: _nome,
             label: 'Nome',
-            leftPadding: 24,
-            rightPadding: 24,
+            inputPadding: EdgeInsets.only(
+              left: SizeConfig.of(context).dynamicScaleSize(
+                size: 24,
+              ),
+              right: SizeConfig.of(context).dynamicScaleSize(
+                size: 24,
+              ),
+              bottom: SizeConfig.of(context).dynamicScaleSize(
+                size: 12,
+              ),
+            ),
           ),
           CampoTexto(
             controller: _email,
             label: 'Email',
-            leftPadding: 24,
-            rightPadding: 24,
+            inputPadding: EdgeInsets.only(
+              left: SizeConfig.of(context).dynamicScaleSize(
+                size: 24,
+              ),
+              right: SizeConfig.of(context).dynamicScaleSize(
+                size: 24,
+              ),
+              bottom: SizeConfig.of(context).dynamicScaleSize(
+                size: 12,
+              ),
+            ),
           ),
           CampoTexto(
             controller: _senha,
             obscureText: true,
             label: 'Senha',
-            leftPadding: 24,
-            rightPadding: 24,
+            inputPadding: EdgeInsets.only(
+              left: SizeConfig.of(context).dynamicScaleSize(
+                size: 24,
+              ),
+              right: SizeConfig.of(context).dynamicScaleSize(
+                size: 24,
+              ),
+              bottom: SizeConfig.of(context).dynamicScaleSize(
+                size: 12,
+              ),
+            ),
           ),
           BotaoPadrao(
             onPressed: () {
