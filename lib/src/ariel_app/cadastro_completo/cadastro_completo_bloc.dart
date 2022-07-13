@@ -1,7 +1,7 @@
-import 'package:ariel_app/components/mensagem_erro.dart';
 import 'package:ariel_app/core/controller/ciclo_controller.dart';
 import 'package:ariel_app/core/controller/resultado_exame_controller.dart';
 import 'package:ariel_app/core/controller/user_info_controller.dart';
+import 'package:ariel_app/core/shared/mensagem_erro.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';

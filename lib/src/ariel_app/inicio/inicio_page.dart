@@ -1,9 +1,10 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/models/user_model.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/src/ariel_app/ciclo/widgets/detalhes_ciclo/detalhe_ciclo_widget.dart';
-import 'package:ariel_app/src/ariel_app/ciclo/widgets/registroAplicacao/registro_aplicacao_widget.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/detalhes/detalhe_ciclo_widget.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/registroAplicacao/registro_aplicacao_widget.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/consulta/item_consulta.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/exame/item_exame.dart';
 import 'package:ariel_app/src/ariel_app/inicio/widgets/destaque.dart';
@@ -42,58 +43,55 @@ class _InicioPageState extends State<InicioPage> {
                   nome: _bloc.user.nome,
                   foto: _bloc.getFotoUsuario(),
                 ),
-                _bloc.ciclo != null ?
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    _bloc.proxAplicacao != null
-                        ? GraficoPrincipal(
-                            hormonio: _bloc.ciclo?.medicamento ?? "",
-                            dosagem: _bloc.ciclo?.dosagem ?? "",
-                            proxAplicacao: _bloc.proxAplicacao!,
-                            chartData: _bloc.getCharData(),
-                          )
-                        : const SizedBox.shrink(),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16, top: 32),
-                      child: Column(
+                _bloc.ciclo != null
+                    ? Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Destaque(
-                            titulo: "Fase do Ciclo",
-                            valor: _bloc.getFaseCiclo(),
-                          ),
-                          Destaque(
-                            titulo: "Próxima aplicação",
-                            valor: _bloc.getProxAplic(),
-                          ),
-                          Destaque(
-                            titulo: "Ultima aplicação",
-                            valor: DateFormat("dd/MM/y", "pt_BR").format(
-                                DateTime.parse(
-                                    _bloc.user.dtUltAplicacao ?? "")),
+                          _bloc.proxAplicacao != null
+                              ? GraficoPrincipal(
+                                  hormonio: _bloc.ciclo?.medicamento ?? "",
+                                  dosagem: _bloc.ciclo?.dosagem ?? "",
+                                  proxAplicacao: _bloc.proxAplicacao!,
+                                  chartData: _bloc.getCharData(),
+                                )
+                              : const SizedBox.shrink(),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16, top: 32),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Destaque(
+                                  titulo: "Fase do Ciclo",
+                                  valor: _bloc.getFaseCiclo(),
+                                ),
+                                Destaque(
+                                  titulo: "Próxima aplicação",
+                                  valor: _bloc.getProxAplic(),
+                                ),
+                                Destaque(
+                                  titulo: "Ultima aplicação",
+                                  valor: DateFormat("dd/MM/y", "pt_BR").format(
+                                      DateTime.parse(
+                                          _bloc.user.dtUltAplicacao ?? "")),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
-                      ),
-                    ),
-                  ],
-                ) : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Texto(
-                        "VOCÊ AINDA NÃO POSSUI CICLOS CADASTRADOS",
-                        color: ArielColors.textLight,
-                        fontWeight: Weight.semibold,
-                        padding:
-                        const EdgeInsets.symmetric(vertical: 32),
-                        size: 12,
-                      ),
-                    ]),
-                const Divider(
-                  height: 24,
-                  color: Colors.transparent,
-                ),
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                            Texto(
+                              "VOCÊ AINDA NÃO POSSUI CICLOS CADASTRADOS",
+                              color: ArielColors.textLight,
+                              fontWeight: Weight.semibold,
+                              padding: const EdgeInsets.symmetric(vertical: 32),
+                              size: 12,
+                            ),
+                          ]),
+                const Divisoria(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

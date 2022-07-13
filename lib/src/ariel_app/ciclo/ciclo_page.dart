@@ -1,13 +1,12 @@
-import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
-import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
 import 'package:ariel_app/core/models/user_model.dart';
+import 'package:ariel_app/core/shared/floating_action_capsule.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/ciclo_bloc.dart';
-import 'package:ariel_app/src/ariel_app/ciclo/widgets/cadastroEdicao/cadastro_edicao_widget.dart';
-import 'package:ariel_app/src/ariel_app/ciclo/widgets/item_ciclo/lista_ciclos.dart';
-import 'package:ariel_app/src/ariel_app/ciclo/widgets/registroAplicacao/registro_aplicacao_widget.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/cadastro/cadastro_edicao_widget.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/widgets/lista_ciclos.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/registroAplicacao/registro_aplicacao_widget.dart';
 import 'package:flutter/material.dart';
 
 class CicloPage extends StatefulWidget {
@@ -144,12 +143,14 @@ class _CicloPageState extends State<CicloPage>
                                   ? ListaCiclos(
                                       titulo: "ciclos ativos",
                                       lista: _bloc.ciclosAtuais,
+                                      ativo: true,
                                     )
                                   : const SizedBox.shrink(),
                               _bloc.historicoCiclos.isNotEmpty
                                   ? ListaCiclos(
                                       titulo: "Histórico de ciclos",
                                       lista: _bloc.historicoCiclos,
+                                      ativo: false,
                                     )
                                   : const SizedBox.shrink(),
                             ],

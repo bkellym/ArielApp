@@ -1,9 +1,10 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
-import 'package:ariel_app/components/input/campo_data.dart';
-import 'package:ariel_app/components/input/campo_hora.dart';
-import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:ariel_app/core/models/exame_model.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
+import 'package:ariel_app/core/shared/input/campo_data.dart';
+import 'package:ariel_app/core/shared/input/campo_hora.dart';
+import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -34,7 +35,9 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
           if (snapshot.connectionState == ConnectionState.done) {
             return DetalheWidget(
               titulo: "Exames \ne Consultas",
-              tituloSize: 20,
+              tituloSize: SizeConfig.of(context).dynamicScaleSize(
+                size: 20,
+              ),
               subTitulo: [
                 widget.model == null ? "CADASTRAR" : "EDITAR",
                 " EXAME"
@@ -46,24 +49,21 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Texto(
-                      "TIPO DE EXAME",
+                    CampoTexto(
+                      label: "TIPO DE EXAME",
                       color: ArielColors.exameColor,
-                      fontWeight: Weight.semibold,
-                      size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                      padding: EdgeInsets.only(
+                      controller: _bloc.controller.tipo,
+                      inputPadding: EdgeInsets.only(
+                        right: SizeConfig.of(context).dynamicScaleSize(
+                          size: leftPadding,
+                        ),
                         left: SizeConfig.of(context).dynamicScaleSize(
                           size: leftPadding,
                         ),
                         bottom: SizeConfig.of(context).dynamicScaleSize(
-                          size: 4,
+                          size: 12,
                         ),
                       ),
-                    ),
-                    CampoTexto(
-                      controller: _bloc.controller.tipo,
-                      leftPadding: leftPadding,
-                      rightPadding: leftPadding,
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -130,8 +130,12 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
                                 CampoHora(
                                   controller: _bloc.controller.hora,
                                   color: ArielColors.exameColor,
-                                  padding: const EdgeInsets.only(
+                                  padding: EdgeInsets.only(
                                     left: 12,
+                                    bottom:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 8,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -140,46 +144,40 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
                         ],
                       ),
                     ),
-                    Texto(
-                      "LOCAL",
-                      color: ArielColors.exameColor,
-                      fontWeight: Weight.semibold,
-                      size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                      padding: EdgeInsets.only(
-                        left: SizeConfig.of(context).dynamicScaleSize(
-                          size: leftPadding,
-                        ),
-                        bottom: SizeConfig.of(context).dynamicScaleSize(
-                          size: 4,
-                        ),
-                      ),
-                    ),
                     CampoTexto(
+                      label: "LOCAL",
+                      color: ArielColors.exameColor,
                       controller: _bloc.controller.local,
-                      leftPadding: leftPadding,
-                      rightPadding: leftPadding,
-                    ),
-                    Texto(
-                      "DETALHES E RECOMENDAÇÕES",
-                      color: ArielColors.exameColor,
-                      fontWeight: Weight.semibold,
-                      size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                      padding: EdgeInsets.only(
+                      inputPadding: EdgeInsets.only(
+                        right: SizeConfig.of(context).dynamicScaleSize(
+                          size: leftPadding,
+                        ),
                         left: SizeConfig.of(context).dynamicScaleSize(
                           size: leftPadding,
                         ),
                         bottom: SizeConfig.of(context).dynamicScaleSize(
-                          size: 4,
+                          size: 12,
                         ),
                       ),
                     ),
                     CampoTexto(
+                      label: "DETALHES E RECOMENDAÇÕES",
+                      color: ArielColors.exameColor,
                       controller: _bloc.controller.detalhes,
                       maxLines: 3,
-                      leftPadding: leftPadding,
-                      rightPadding: leftPadding,
+                      inputPadding: EdgeInsets.only(
+                        right: SizeConfig.of(context).dynamicScaleSize(
+                          size: leftPadding,
+                        ),
+                        left: SizeConfig.of(context).dynamicScaleSize(
+                          size: leftPadding,
+                        ),
+                        bottom: SizeConfig.of(context).dynamicScaleSize(
+                          size: 12,
+                        ),
+                      ),
                     ),
-                    const Divider(height: 32, color: Color(0x00FFFFFF)),
+                    const Divisoria(),
                     BotaoPadrao(
                         label: "SALVAR EXAME",
                         height:

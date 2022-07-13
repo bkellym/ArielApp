@@ -1,8 +1,9 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/detalhe/campo_destaque.dart';
-import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
-import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/models/exame_model.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
+import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/exame/cadastro_edicao/cadastro_widget.dart';
@@ -20,10 +21,11 @@ class DetalheExameWidget extends StatefulWidget {
 }
 
 class DetalheExameWidgetState extends State<DetalheExameWidget> {
-  final double leftPadding = 32;
-
   @override
   Widget build(BuildContext context) {
+    final double leftPadding =
+        SizeConfig.of(context).dynamicScaleSize(size: 32);
+
     return DetalheWidget(
       titulo: "exames e\nconsultas",
       subTitulo: const ["detalhes", " do exame"],
@@ -36,21 +38,21 @@ class DetalheExameWidgetState extends State<DetalheExameWidget> {
           CampoDestaque(
               titulo: "exame",
               valor: widget.model.tipo,
-              leftPadding: leftPadding,
+              padding: EdgeInsets.only(left: leftPadding),
               color: ArielColors.exameColor),
           Row(
             children: [
               CampoDetalhe(
                 titulo: "DATA DO EXAME",
                 valor: DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
-                leftPadding: leftPadding,
+                padding: EdgeInsets.only(left: leftPadding),
                 color: ArielColors.exameColor,
                 lineColor: ArielColors.exameColor,
               ),
               CampoDetalhe(
                 titulo: "HORARIO",
                 valor: DateFormat("hh:mm a").format(widget.model.dataHora),
-                leftPadding: leftPadding,
+                padding: EdgeInsets.only(left: leftPadding),
                 color: ArielColors.exameColor,
                 lineColor: ArielColors.exameColor,
               ),
@@ -59,21 +61,18 @@ class DetalheExameWidgetState extends State<DetalheExameWidget> {
           CampoDetalhe(
             titulo: "LOCAL",
             valor: widget.model.local,
-            leftPadding: leftPadding,
+            padding: EdgeInsets.only(left: leftPadding),
             color: ArielColors.exameColor,
             lineColor: ArielColors.exameColor,
           ),
           CampoDetalhe(
             titulo: "RECOMENDAÇÕES",
             valor: widget.model.detalhes,
-            leftPadding: leftPadding,
+            padding: EdgeInsets.only(left: leftPadding),
             color: ArielColors.exameColor,
             lineColor: ArielColors.exameColor,
           ),
-          const Divider(
-            height: 16,
-            color: Color(0x00FFFFFF),
-          ),
+          const Divisoria(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

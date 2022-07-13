@@ -14,19 +14,20 @@ class ArielColors {
   static const Color gradientLight = Color(0xFF1CE8B4);
   static const Color gradientDark = Color(0xFF1CC2EB);
 
-  static const Color disabledGradientLight = Color(0xFFC7C7C7);
+  static const Color disabledGradientLight = Color(0xFFE6E6E6);
   static const Color disabledGradientDark = Color(0xFFA5A5A5);
 
   // Cores bases
   static const Color exameColor = Color(0xFFFFC153);
   static const Color cicloColor = Color(0xFF1DD7D0);
+  static const Color cicloFundoColor = Color(0x121DD7D0);
   static const Color consultaColor = Color(0xFF1DC5E9);
   static const Color textPrimary = Color(0xFF666666);
   static const Color textLight = Color(0xFF999999);
   static const Color secundary = Color(0xFF905CED);
   static const Color baseDark = Color(0xFFCCCCCC);
   static const Color baseLight = Color(0xFFFFFFFF);
-  static const Color disable = Color(0xFFE6E6E6);
+  static const Color disable = Color(0x17999999);
   static const Color arielRed = Color(0xFFFF6D7C);
   static const Color arielGreen = Color(0xFF1CDBC6);
 

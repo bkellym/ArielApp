@@ -1,9 +1,10 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
-import 'package:ariel_app/components/input/campo_data.dart';
-import 'package:ariel_app/components/input/campo_hora.dart';
-import 'package:ariel_app/components/input/campo_texto.dart';
 import 'package:ariel_app/core/models/consulta_model.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
+import 'package:ariel_app/core/shared/input/campo_data.dart';
+import 'package:ariel_app/core/shared/input/campo_hora.dart';
+import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -47,43 +48,35 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Texto(
-                    "MÉDICO",
-                    color: ArielColors.consultaColor,
-                    fontWeight: Weight.semibold,
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                    padding: EdgeInsets.only(
+                  CampoTexto(
+                    label: "MÉDICO",
+                    inputPadding: EdgeInsets.only(
+                      right: SizeConfig.of(context).dynamicScaleSize(
+                        size: leftPadding,
+                      ),
                       left: SizeConfig.of(context).dynamicScaleSize(
                         size: leftPadding,
                       ),
                       bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 4,
+                        size: 12,
                       ),
                     ),
-                  ),
-                  CampoTexto(
-                    leftPadding: leftPadding,
-                    rightPadding: leftPadding,
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.medico,
                   ),
-                  Texto(
-                    "ESPECIALIDADE",
-                    color: ArielColors.consultaColor,
-                    fontWeight: Weight.semibold,
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                    padding: EdgeInsets.only(
+                  CampoTexto(
+                    label: "ESPECIALIDADE",
+                    inputPadding: EdgeInsets.only(
+                      right: SizeConfig.of(context).dynamicScaleSize(
+                        size: leftPadding,
+                      ),
                       left: SizeConfig.of(context).dynamicScaleSize(
                         size: leftPadding,
                       ),
                       bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 4,
+                        size: 12,
                       ),
                     ),
-                  ),
-                  CampoTexto(
-                    leftPadding: leftPadding,
-                    rightPadding: leftPadding,
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.especialidade,
                   ),
@@ -157,48 +150,40 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
                       ],
                     ),
                   ),
-                  Texto(
-                    "LOCAL",
-                    color: ArielColors.consultaColor,
-                    fontWeight: Weight.semibold,
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                    padding: EdgeInsets.only(
+                  CampoTexto(
+                    label: "LOCAL",
+                    inputPadding: EdgeInsets.only(
+                      right: SizeConfig.of(context).dynamicScaleSize(
+                        size: leftPadding,
+                      ),
                       left: SizeConfig.of(context).dynamicScaleSize(
                         size: leftPadding,
                       ),
                       bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 4,
+                        size: 12,
                       ),
                     ),
-                  ),
-                  CampoTexto(
-                    leftPadding: leftPadding,
-                    rightPadding: leftPadding,
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.endereco,
                   ),
-                  Texto(
-                    "RECOMENDAÇÕES",
-                    color: ArielColors.consultaColor,
-                    fontWeight: Weight.semibold,
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                    padding: EdgeInsets.only(
+                  CampoTexto(
+                    label: "RECOMENDAÇÕES",
+                    maxLines: 3,
+                    inputPadding: EdgeInsets.only(
+                      right: SizeConfig.of(context).dynamicScaleSize(
+                        size: leftPadding,
+                      ),
                       left: SizeConfig.of(context).dynamicScaleSize(
                         size: leftPadding,
                       ),
                       bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 4,
+                        size: 12,
                       ),
                     ),
-                  ),
-                  CampoTexto(
-                    maxLines: 3,
-                    leftPadding: leftPadding,
-                    rightPadding: leftPadding,
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.detalhes,
                   ),
-                  const Divider(height: 32, color: Color(0x00FFFFFF)),
+                  const Divisoria(),
                   BotaoPadrao(
                       label: "SALVAR CONSULTA",
                       height: SizeConfig.of(context).dynamicScaleSize(size: 40),

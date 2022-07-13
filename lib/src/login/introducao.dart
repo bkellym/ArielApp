@@ -1,6 +1,6 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/botoes/botao_texto.dart';
-import 'package:ariel_app/components/panels/carrossel_inicial.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/botoes/botao_texto.dart';
+import 'package:ariel_app/core/shared/panels/carrossel_inicial.dart';
 import 'package:flutter/material.dart';
 
 class Introducao extends StatelessWidget {

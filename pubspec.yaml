@@ -27,6 +27,7 @@ dependencies:
   firebase_storage: ^10.0.2
   date_time_picker: ^2.1.0
   bloc_pattern: ^3.0.1
+  fluttericon: ^2.0.0
 
 
 dev_dependencies:
@@ -56,3 +57,6 @@ flutter:
           weight: 700
         - asset: assets/fonts/OpenSans-ExtraBold.ttf
           weight: 800
+    - family: ArielIcons
+      fonts:
+        - asset: assets/fonts/ArielIcons.ttf

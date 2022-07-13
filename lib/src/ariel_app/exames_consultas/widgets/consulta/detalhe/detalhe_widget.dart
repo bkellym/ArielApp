@@ -1,8 +1,9 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/detalhe/campo_destaque.dart';
-import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
-import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/models/consulta_model.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
+import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/consulta/cadastro_edicao/cadastro_edicao_widget.dart';
@@ -19,10 +20,11 @@ class DetalheConsulta extends StatefulWidget {
 }
 
 class _DetalheConsultaState extends State<DetalheConsulta> {
-  final double leftPadding = 32;
-
   @override
   Widget build(BuildContext context) {
+    final double leftPadding =
+        SizeConfig.of(context).dynamicScaleSize(size: 32);
+
     return DetalheWidget(
       titulo: "Exames \ne Consultas",
       tituloSize: 20,
@@ -40,12 +42,12 @@ class _DetalheConsultaState extends State<DetalheConsulta> {
                 CampoDestaque(
                     titulo: "especialista",
                     valor: widget.model.especialidade,
-                    leftPadding: leftPadding,
+                    padding: EdgeInsets.only(left: leftPadding),
                     color: ArielColors.consultaColor),
                 CampoDetalhe(
                   titulo: "MÉDICO",
                   valor: widget.model.medico,
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.consultaColor,
                   lineColor: ArielColors.consultaColor,
                 ),
@@ -56,14 +58,14 @@ class _DetalheConsultaState extends State<DetalheConsulta> {
                 CampoDetalhe(
                   titulo: "DATA DO EXAME",
                   valor: DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.consultaColor,
                   lineColor: ArielColors.consultaColor,
                 ),
                 CampoDetalhe(
                   titulo: "HORARIO",
                   valor: DateFormat("hh:mm a").format(widget.model.dataHora),
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.consultaColor,
                   lineColor: ArielColors.consultaColor,
                 ),
@@ -72,21 +74,18 @@ class _DetalheConsultaState extends State<DetalheConsulta> {
             CampoDetalhe(
               titulo: "LOCAL",
               valor: widget.model.endereco,
-              leftPadding: leftPadding,
+              padding: EdgeInsets.only(left: leftPadding),
               color: ArielColors.consultaColor,
               lineColor: ArielColors.consultaColor,
             ),
             CampoDetalhe(
               titulo: "RECOMENDAÇÕES",
               valor: widget.model.detalhes,
-              leftPadding: leftPadding,
+              padding: EdgeInsets.only(left: leftPadding),
               color: ArielColors.consultaColor,
               lineColor: ArielColors.consultaColor,
             ),
-            const Divider(
-              height: 16,
-              color: Color(0x00FFFFFF),
-            ),
+            const Divisoria(),
             BotaoPadrao(
               label: "EDITAR CONSULTA",
               height: 40,

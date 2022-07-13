@@ -1,7 +1,7 @@
-import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
-import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
-import 'package:ariel_app/components/divisoria_decorada.dart';
 import 'package:ariel_app/core/models/user_model.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
+import 'package:ariel_app/core/shared/divisoria_decorada.dart';
+import 'package:ariel_app/core/shared/floating_action_capsule.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -128,17 +128,11 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                     Expanded(
                       child: ListView(
                         children: [
-                          Texto(
-                            "EXAMES",
-                            size: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 11),
-                            color: ArielColors.exameColor,
-                            fontWeight: Weight.bold,
-                            padding: EdgeInsets.only(
-                                left: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 24)),
+                          const DivisoriaDecorada(
+                            titulo: "EXAMES",
+                            cor: ArielColors.exameColor,
+                            padding: EdgeInsets.zero,
                           ),
-                          const DivisoriaDecorada(cor: ArielColors.exameColor),
                           _bloc.listaExames.isNotEmpty
                               ? Column(
                                   children: _bloc.listaExames
@@ -159,19 +153,12 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                                         size: 12,
                                       ),
                                     ]),
-                          const Divider(height: 24, color: Colors.transparent),
-                          Texto(
-                            "CONSULTAS",
-                            size: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 11),
-                            color: ArielColors.consultaColor,
-                            fontWeight: Weight.bold,
-                            padding: EdgeInsets.only(
-                                left: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 24)),
-                          ),
+                          const Divisoria(),
                           const DivisoriaDecorada(
-                              cor: ArielColors.consultaColor),
+                            titulo: "CONSULTAS",
+                            cor: ArielColors.consultaColor,
+                            padding: EdgeInsets.zero,
+                          ),
                           _bloc.listaConsultas.isNotEmpty
                               ? Column(
                                   children: _bloc.listaConsultas
