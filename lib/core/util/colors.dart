@@ -20,6 +20,7 @@ class ArielColors {
   // Cores bases
   static const Color exameColor = Color(0xFFFFC153);
   static const Color cicloColor = Color(0xFF1DD7D0);
+  static const Color cicloFundoColor = Color(0x121DD7D0);
   static const Color consultaColor = Color(0xFF1DC5E9);
   static const Color textPrimary = Color(0xFF666666);
   static const Color textLight = Color(0xFF999999);

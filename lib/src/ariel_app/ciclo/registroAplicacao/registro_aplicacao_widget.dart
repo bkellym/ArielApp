@@ -9,7 +9,7 @@ import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ariel_app.dart';
-import 'package:ariel_app/src/ariel_app/ciclo/widgets/registroAplicacao/registro_widget_bloc.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/registroAplicacao/registro_widget_bloc.dart';
 import 'package:flutter/material.dart';
 
 class RegistroAplicacaoWidget extends StatefulWidget {
