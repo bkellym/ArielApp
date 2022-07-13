@@ -1,9 +1,9 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/divisoria_decorada.dart';
-import 'package:ariel_app/components/input/campo_data.dart';
-import 'package:ariel_app/components/input/campo_imagem.dart';
-import 'package:ariel_app/components/input/campo_radio.dart';
-import 'package:ariel_app/components/input/campo_texto.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/divisoria_decorada.dart';
+import 'package:ariel_app/core/shared/input/campo_data.dart';
+import 'package:ariel_app/core/shared/input/campo_imagem.dart';
+import 'package:ariel_app/core/shared/input/campo_radio.dart';
+import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';

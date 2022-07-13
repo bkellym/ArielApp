@@ -1,6 +1,6 @@
-import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
-import 'package:ariel_app/components/FloatingActionCapsule/floating_action_capsule.dart';
-import 'package:ariel_app/components/divisoria_decorada.dart';
+import 'package:ariel_app/core/shared/FloatingActionCapsule/capsule.dart';
+import 'package:ariel_app/core/shared/FloatingActionCapsule/floating_action_capsule.dart';
+import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';

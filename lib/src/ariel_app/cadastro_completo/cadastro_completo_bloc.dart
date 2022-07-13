@@ -1,4 +1,4 @@
-import 'package:ariel_app/components/mensagem_erro.dart';
+import 'package:ariel_app/core/shared/mensagem_erro.dart';
 import 'package:ariel_app/core/controller/ciclo_controller.dart';
 import 'package:ariel_app/core/controller/resultado_exame_controller.dart';
 import 'package:ariel_app/core/controller/user_info_controller.dart';

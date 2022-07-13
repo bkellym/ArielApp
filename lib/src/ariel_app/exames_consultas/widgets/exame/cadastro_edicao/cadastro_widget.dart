@@ -1,8 +1,8 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
-import 'package:ariel_app/components/input/campo_data.dart';
-import 'package:ariel_app/components/input/campo_hora.dart';
-import 'package:ariel_app/components/input/campo_texto.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/input/campo_data.dart';
+import 'package:ariel_app/core/shared/input/campo_hora.dart';
+import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/models/exame_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';

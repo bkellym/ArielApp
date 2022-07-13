@@ -1,6 +1,6 @@
-import 'package:ariel_app/components/botoes/botao_texto_icon.dart';
-import 'package:ariel_app/components/detalhe/subtitulo.dart';
-import 'package:ariel_app/components/detalhe/titulo.dart';
+import 'package:ariel_app/core/shared/botoes/botao_texto_icon.dart';
+import 'package:ariel_app/core/shared/detalhe/subtitulo.dart';
+import 'package:ariel_app/core/shared/detalhe/titulo.dart';
 import 'package:flutter/material.dart';
 
 class DetalheWidget extends StatelessWidget {

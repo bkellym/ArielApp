@@ -1,4 +1,4 @@
-import 'package:ariel_app/components/divisoria_decorada.dart';
+import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';

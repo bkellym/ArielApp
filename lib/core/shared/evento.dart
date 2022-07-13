@@ -1,10 +1,10 @@
-import 'package:ariel_app/components/botoes/botao_sec_contorno.dart';
+import 'package:ariel_app/core/shared/botoes/botao_sec_contorno.dart';
 import 'package:ariel_app/core/models/evento_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../components/divisoria.dart';
-import '../core/util/texto.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
+import 'package:ariel_app/core/util/texto.dart';
 import 'botoes/botao_sec_preenchido.dart';
 
 class Evento extends StatelessWidget {

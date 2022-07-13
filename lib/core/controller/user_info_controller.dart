@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:ariel_app/components/mensagem_erro.dart';
+import 'package:ariel_app/core/shared/mensagem_erro.dart';
 import 'package:ariel_app/core/DAO/user_dao.dart';
 import 'package:ariel_app/core/controller/aplicacao_controller.dart';
 import 'package:ariel_app/core/models/user_model.dart';

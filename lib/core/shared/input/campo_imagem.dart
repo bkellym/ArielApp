@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:ariel_app/components/mensagem_erro.dart';
+import 'package:ariel_app/core/shared/mensagem_erro.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';

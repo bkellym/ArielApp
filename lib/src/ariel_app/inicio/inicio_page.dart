@@ -1,4 +1,4 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/texto.dart';

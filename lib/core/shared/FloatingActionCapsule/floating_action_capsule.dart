@@ -1,5 +1,5 @@
-import 'package:ariel_app/components/FloatingActionCapsule/capsule.dart';
-import 'package:ariel_app/components/FloatingActionCapsule/capsule_menu.dart';
+import 'package:ariel_app/core/shared/FloatingActionCapsule/capsule.dart';
+import 'package:ariel_app/core/shared/FloatingActionCapsule/capsule_menu.dart';
 import 'package:flutter/material.dart';
 
 class FloatingActionCapsule extends AnimatedWidget {

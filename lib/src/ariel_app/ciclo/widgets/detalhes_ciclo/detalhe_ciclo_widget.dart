@@ -1,7 +1,7 @@
-import 'package:ariel_app/components/botoes/botao_padrao.dart';
-import 'package:ariel_app/components/detalhe/campo_destaque.dart';
-import 'package:ariel_app/components/detalhe/campo_detalhe.dart';
-import 'package:ariel_app/components/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
+import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
