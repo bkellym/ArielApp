@@ -161,14 +161,14 @@ class _CicloWidget extends StatelessWidget {
                       DoughnutSeries<double, String>(
                         radius: '100%',
                         innerRadius: '84%',
-                        strokeWidth: 1,
+                        strokeWidth: 1.1,
                         strokeColor: ativo ? Colors.white : background,
                         dataSource: model.statusAplicacoes,
                         xValueMapper: (double data, _) => data.toString(),
                         yValueMapper: (double data, _) => 1,
                         pointColorMapper: (double data, _) => data > 0
                             ? ArielColors.arielGreen
-                            : ArielColors.disable,
+                            : ArielColors.disabledGradientLight,
                       ),
                     ],
                   ),
