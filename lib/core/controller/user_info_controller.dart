@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:ariel_app/core/shared/mensagem_erro.dart';
 import 'package:ariel_app/core/DAO/user_dao.dart';
 import 'package:ariel_app/core/controller/aplicacao_controller.dart';
 import 'package:ariel_app/core/models/user_model.dart';
+import 'package:ariel_app/core/shared/mensagem_erro.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';

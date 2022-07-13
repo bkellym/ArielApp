@@ -1,7 +1,6 @@
-import 'package:ariel_app/core/shared/FloatingActionCapsule/capsule.dart';
-import 'package:ariel_app/core/shared/FloatingActionCapsule/floating_action_capsule.dart';
-import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/models/user_model.dart';
+import 'package:ariel_app/core/shared/divisoria_decorada.dart';
+import 'package:ariel_app/core/shared/floating_action_capsule.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -122,21 +121,10 @@ class _PerfilPageState extends State<PerfilPage>
                   ),
                 ),
               ]),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Texto(
-                    "SOBRE VOCÊ",
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                    color: ArielColors.secundary,
-                    fontWeight: Weight.bold,
-                    padding: EdgeInsets.only(
-                      top: SizeConfig.of(context).dynamicScaleSize(size: 24),
-                      left: SizeConfig.of(context).dynamicScaleSize(size: 24),
-                    ),
-                  ),
-                  const DivisoriaDecorada(cor: ArielColors.secundary),
-                ],
+              const DivisoriaDecorada(
+                titulo: "SOBRE VOCÊ",
+                cor: ArielColors.secundary,
+                padding: EdgeInsets.zero,
               ),
               Padding(
                 padding: EdgeInsets.only(
@@ -351,21 +339,10 @@ class _PerfilPageState extends State<PerfilPage>
                   ],
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Texto(
-                    "MINHAS CONQUISTAS",
-                    size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                    color: ArielColors.secundary,
-                    fontWeight: Weight.bold,
-                    padding: EdgeInsets.only(
-                      top: SizeConfig.of(context).dynamicScaleSize(size: 24),
-                      left: SizeConfig.of(context).dynamicScaleSize(size: 24),
-                    ),
-                  ),
-                  const DivisoriaDecorada(cor: ArielColors.secundary),
-                ],
+              const DivisoriaDecorada(
+                titulo: "MINHAS CONQUISTAS",
+                cor: ArielColors.secundary,
+                padding: EdgeInsets.zero,
               ),
               Padding(
                 padding: EdgeInsets.only(

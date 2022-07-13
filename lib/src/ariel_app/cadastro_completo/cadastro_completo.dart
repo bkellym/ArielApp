@@ -82,19 +82,15 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
+                      const DivisoriaDecorada(
+                        titulo: "SOBRE VOCÊ",
+                        cor: ArielColors.secundary,
+                        padding: EdgeInsets.only(
                           top: 16,
+                          bottom: 32,
                           left: 12,
                         ),
-                        child: Texto(
-                          "SOBRE VOCÊ",
-                          size: 12,
-                          color: ArielColors.secundary,
-                          fontWeight: Weight.bold,
-                        ),
                       ),
-                      const DivisoriaDecorada(cor: ArielColors.secundary),
                       CampoImagem(
                         photo: _bloc.userController.foto,
                       ),
@@ -176,19 +172,15 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
+                          const DivisoriaDecorada(
+                            titulo: "SEU CICLO DE TRATAMENTO ATUAL",
+                            cor: ArielColors.secundary,
+                            padding: EdgeInsets.only(
                               top: 16,
+                              bottom: 32,
                               left: 12,
                             ),
-                            child: Texto(
-                              "SEU CICLO DE TRATAMENTO ATUAL",
-                              size: 12,
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.bold,
-                            ),
                           ),
-                          const DivisoriaDecorada(cor: ArielColors.secundary),
                           CampoTexto(
                             controller: _bloc.cicloController.medicamento,
                             label: "MEDICAMENTO UTILIZADO",
@@ -345,19 +337,14 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               bottom: 8,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
+                          const DivisoriaDecorada(
+                            titulo: "DADOS DO SEU ÚLTIMO EXAME",
+                            cor: ArielColors.secundary,
+                            padding: EdgeInsets.only(
                               top: 16,
                               left: 12,
                             ),
-                            child: Texto(
-                              "DADOS DO SEU ÚLTIMO EXAME",
-                              size: 12,
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.bold,
-                            ),
                           ),
-                          const DivisoriaDecorada(cor: ArielColors.secundary),
                           CampoTexto(
                             controller: _bloc.resultExameController.nome,
                             label: 'TIPO DE EXAME',

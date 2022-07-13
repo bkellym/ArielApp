@@ -1,6 +1,5 @@
-import 'package:ariel_app/core/shared/FloatingActionCapsule/capsule.dart';
-import 'package:ariel_app/core/shared/FloatingActionCapsule/floating_action_capsule.dart';
 import 'package:ariel_app/core/models/user_model.dart';
+import 'package:ariel_app/core/shared/floating_action_capsule.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';

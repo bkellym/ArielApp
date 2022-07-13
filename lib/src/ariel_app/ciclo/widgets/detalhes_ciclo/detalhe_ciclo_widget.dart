@@ -1,8 +1,9 @@
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
-import 'package:ariel_app/core/models/ciclo_model.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/widgets/cadastroEdicao/cadastro_edicao_widget.dart';
@@ -23,10 +24,12 @@ class DetalheCicloWidget extends StatefulWidget {
 
 class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
   final DetalheCicloBloc _bloc = DetalheCicloBloc();
-  final double leftPadding = 32;
 
   @override
   Widget build(BuildContext context) {
+    final double leftPadding =
+        SizeConfig.of(context).dynamicScaleSize(size: 32);
+
     return DetalheWidget(
         titulo: "Ciclos",
         subTitulo: const ["detalhes", " do ciclo"],
@@ -45,14 +48,14 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                     CampoDestaque(
                       titulo: "medicamento",
                       valor: widget.model.medicamento,
-                      leftPadding: leftPadding,
+                      padding: EdgeInsets.only(left: leftPadding),
                       color: ArielColors.cicloColor,
                     ),
                     CampoDetalhe(
                       titulo: "qtd por ciclo",
                       valor:
                           "${widget.model.statusAplicacoes.length.toString()} ${widget.model.apresentacao}",
-                      leftPadding: leftPadding,
+                      padding: EdgeInsets.only(left: leftPadding),
                       color: ArielColors.cicloColor,
                       lineColor: ArielColors.cicloColor,
                     ),
@@ -61,7 +64,7 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                       valor: DateFormat("dd/MM/yyyy")
                           .format(DateTime.parse(widget.model.dataIncio))
                           .toString(),
-                      leftPadding: leftPadding,
+                      padding: EdgeInsets.only(left: leftPadding),
                       color: ArielColors.cicloColor,
                       lineColor: ArielColors.cicloColor,
                     ),
@@ -104,14 +107,14 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                   valor: DateFormat("dd/MM/yyyy")
                       .format(widget.model.aplicacoes.first.data)
                       .toString(),
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.cicloColor,
                   lineColor: ArielColors.cicloColor,
                 ),
                 CampoDetalhe(
                   titulo: "fase atual do ciclo",
                   valor: _bloc.getFaseAplicacao(widget.model),
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.cicloColor,
                   lineColor: ArielColors.cicloColor,
                 ),
@@ -126,7 +129,7 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                           _bloc.getProxAplicacao(widget.model) ??
                               DateTime.now())
                       : "Completo",
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.cicloColor,
                   lineColor: ArielColors.cicloColor,
                 ),
@@ -134,7 +137,7 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
                   titulo: "aplicação final",
                   valor: DateFormat("dd/MM/yyyy")
                       .format(widget.model.aplicacoes.last.data),
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.cicloColor,
                   lineColor: ArielColors.cicloColor,
                 ),
@@ -143,14 +146,11 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
             CampoDetalhe(
               titulo: "observações",
               valor: "Heitor, fique atento a sua próxima aplicação.",
-              leftPadding: leftPadding,
+              padding: EdgeInsets.only(left: leftPadding),
               color: ArielColors.cicloColor,
               lineColor: ArielColors.cicloColor,
             ),
-            const Divider(
-              height: 16,
-              color: Color(0x00FFFFFF),
-            ),
+            const Divisoria(),
             widget.model.atual
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

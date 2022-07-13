@@ -1,4 +1,6 @@
 import 'package:ariel_app/core/models/consulta_model.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -23,6 +25,9 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final double leftPadding =
+        SizeConfig.of(context).dynamicScaleSize(size: 32);
+
     return Container(
       padding: EdgeInsets.only(
           top: SizeConfig.of(context).dynamicScaleSize(size: 8)),
@@ -30,118 +35,37 @@ class _ItemConsultaWidgetState extends State<ItemConsultaWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const VerticalDivider(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Texto(
-                        "ESPECIALIDADE",
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: ArielColors.consultaColor,
-                        fontWeight: Weight.bold,
-                        padding: const EdgeInsets.only(left: 16, bottom: 6),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.circle,
-                            size: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 9),
-                            color: ArielColors.consultaColor,
-                          ),
-                          Texto(
-                            widget.model.especialidade,
-                            size: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 11),
-                            fontWeight: Weight.bold,
-                            padding: const EdgeInsets.only(left: 8),
-                          ),
-                        ],
-                      )
-                    ],
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const VerticalDivider(width: 16),
+                CampoDestaque(
+                  titulo: "Especialidade",
+                  valor: widget.model.especialidade,
+                  color: ArielColors.consultaColor,
+                  asIcon: true,
+                ),
+                CampoDetalhe(
+                  titulo: "DATA",
+                  valor: DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
+                  color: ArielColors.consultaColor,
+                  lineColor: ArielColors.consultaColor,
+                  padding: EdgeInsets.only(
+                    top: SizeConfig.of(context).dynamicScaleSize(size: 0),
+                    left: leftPadding,
                   ),
-                  const VerticalDivider(width: 16),
-                  Container(
-                      padding: EdgeInsets.only(
-                          top: SizeConfig.of(context)
-                              .dynamicScaleSize(size: 30)),
-                      height: SizeConfig.of(context).dynamicScaleSize(size: 60),
-                      child: VerticalDivider(
-                          color: ArielColors.consultaColor,
-                          width:
-                              SizeConfig.of(context).dynamicScaleSize(size: 0),
-                          thickness: 1)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Texto(
-                        "DATA",
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: ArielColors.consultaColor,
-                        fontWeight: Weight.bold,
-                        padding: EdgeInsets.only(
-                          bottom:
-                              SizeConfig.of(context).dynamicScaleSize(size: 6),
-                        ),
-                      ),
-                      Texto(
-                        DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                        fontWeight: Weight.medium,
-                        padding: EdgeInsets.only(
-                          left:
-                              SizeConfig.of(context).dynamicScaleSize(size: 8),
-                        ),
-                      ),
-                    ],
+                ),
+                CampoDetalhe(
+                  titulo: "HORÁRIO",
+                  valor: DateFormat("hh:mm a").format(widget.model.dataHora),
+                  color: ArielColors.consultaColor,
+                  lineColor: ArielColors.consultaColor,
+                  padding: EdgeInsets.only(
+                    top: SizeConfig.of(context).dynamicScaleSize(size: 0),
+                    left: leftPadding,
                   ),
-                  const VerticalDivider(width: 16),
-                  Container(
-                      padding: EdgeInsets.only(
-                          top: SizeConfig.of(context)
-                              .dynamicScaleSize(size: 30)),
-                      height: SizeConfig.of(context).dynamicScaleSize(size: 60),
-                      child: VerticalDivider(
-                          color: ArielColors.consultaColor,
-                          width:
-                              SizeConfig.of(context).dynamicScaleSize(size: 0),
-                          thickness: 1)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Texto(
-                        "HORÁRIO",
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: ArielColors.consultaColor,
-                        fontWeight: Weight.bold,
-                        padding: EdgeInsets.only(
-                          bottom:
-                              SizeConfig.of(context).dynamicScaleSize(size: 6),
-                        ),
-                      ),
-                      Texto(
-                        DateFormat("hh:mm a").format(widget.model.dataHora),
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                        fontWeight: Weight.medium,
-                        padding: EdgeInsets.only(
-                          left:
-                              SizeConfig.of(context).dynamicScaleSize(size: 8),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const Divider(height: 4, color: Colors.transparent),
+                ),
+              ]),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

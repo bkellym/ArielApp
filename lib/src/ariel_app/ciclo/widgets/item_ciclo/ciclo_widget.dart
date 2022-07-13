@@ -1,4 +1,6 @@
 import 'package:ariel_app/core/models/ciclo_model.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -32,137 +34,73 @@ class _CicloWidgetState extends State<CicloWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const VerticalDivider(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Texto(
-                        "MEDICAMENTO",
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: ArielColors.cicloColor,
-                        fontWeight: Weight.bold,
-                        padding: const EdgeInsets.only(left: 16, bottom: 6),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.circle,
-                            size: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 9),
-                            color: ArielColors.cicloColor,
-                          ),
-                          Texto(
-                            widget.model.medicamento,
-                            size: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 11),
-                            fontWeight: Weight.bold,
-                            padding: const EdgeInsets.only(left: 8),
-                          ),
-                        ],
-                      )
-                    ],
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const VerticalDivider(width: 8),
+                CampoDestaque(
+                  titulo: "MEDICAMENTO",
+                  valor: widget.model.medicamento,
+                  color: ArielColors.cicloColor,
+                  asIcon: true,
+                ),
+                CampoDetalhe(
+                  titulo: "INÍCIO DO TRATAMENTO",
+                  valor: DateFormat("dd/MM/yyyy")
+                      .format(DateTime.parse(widget.model.dataIncio)),
+                  color: ArielColors.cicloColor,
+                  lineColor: ArielColors.cicloColor,
+                  padding: EdgeInsets.only(
+                    top: SizeConfig.of(context).dynamicScaleSize(size: 0),
+                    left: SizeConfig.of(context).dynamicScaleSize(size: 32),
                   ),
-                  const VerticalDivider(width: 10),
-                  Container(
-                      padding: EdgeInsets.only(
-                          top: SizeConfig.of(context)
-                              .dynamicScaleSize(size: 30)),
-                      height: SizeConfig.of(context).dynamicScaleSize(size: 60),
-                      child: VerticalDivider(
-                          color: ArielColors.cicloColor,
-                          width:
-                              SizeConfig.of(context).dynamicScaleSize(size: 0),
-                          thickness: 1.5)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Texto(
-                        "INÍCIO DO TRATAMENTO",
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                        color: ArielColors.cicloColor,
-                        fontWeight: Weight.bold,
-                        padding: EdgeInsets.only(
-                          bottom:
-                              SizeConfig.of(context).dynamicScaleSize(size: 6),
-                        ),
-                      ),
-                      Texto(
-                        DateFormat("dd/MM/yyyy")
-                            .format(DateTime.parse(widget.model.dataIncio))
-                            .toString(),
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-                        fontWeight: Weight.medium,
-                        padding: EdgeInsets.only(
-                          left:
-                              SizeConfig.of(context).dynamicScaleSize(size: 8),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 32),
-                    child: SizedBox(
-                      height: SizeConfig.of(context).dynamicScaleSize(size: 85),
-                      width: SizeConfig.of(context).dynamicScaleSize(size: 100),
-                      child: SfCircularChart(
-                        annotations: <CircularChartAnnotation>[
-                          CircularChartAnnotation(
-                            widget: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Texto(
-                                  widget.model.statusAplicacoes
-                                      .where((element) => element == 1)
-                                      .length
-                                      .toString(),
-                                  fontWeight: Weight.bold,
-                                  size: SizeConfig.of(context)
-                                      .dynamicScaleSize(size: 20),
-                                ),
-                                Texto(
-                                  "/${widget.model.statusAplicacoes.length}",
-                                  color: ArielColors.cicloColor,
-                                  fontWeight: Weight.bold,
-                                  size: SizeConfig.of(context)
-                                      .dynamicScaleSize(size: 20),
-                                ),
-                              ],
+                ),
+                SizedBox(
+                  height: SizeConfig.of(context).dynamicScaleSize(size: 85),
+                  width: SizeConfig.of(context).dynamicScaleSize(size: 100),
+                  child: SfCircularChart(
+                    annotations: <CircularChartAnnotation>[
+                      CircularChartAnnotation(
+                        widget: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Texto(
+                              widget.model.statusAplicacoes
+                                  .where((element) => element == 1)
+                                  .length
+                                  .toString(),
+                              fontWeight: Weight.bold,
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 20),
                             ),
-                          ),
-                        ],
-                        series: <CircularSeries>[
-                          DoughnutSeries<double, String>(
-                            radius: '100%',
-                            innerRadius: '84%',
-                            strokeWidth: 1,
-                            strokeColor: Colors.white,
-                            dataSource: widget.model.statusAplicacoes,
-                            xValueMapper: (double data, _) => data.toString(),
-                            yValueMapper: (double data, _) => 1,
-                            pointColorMapper: (double data, _) => data > 0
-                                ? ArielColors.arielGreen
-                                : ArielColors.disable,
-                          ),
-                        ],
+                            Texto(
+                              "/${widget.model.statusAplicacoes.length}",
+                              color: ArielColors.cicloColor,
+                              fontWeight: Weight.bold,
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 20),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
+                    ],
+                    series: <CircularSeries>[
+                      DoughnutSeries<double, String>(
+                        radius: '100%',
+                        innerRadius: '84%',
+                        strokeWidth: 1,
+                        strokeColor: Colors.white,
+                        dataSource: widget.model.statusAplicacoes,
+                        xValueMapper: (double data, _) => data.toString(),
+                        yValueMapper: (double data, _) => 1,
+                        pointColorMapper: (double data, _) => data > 0
+                            ? ArielColors.arielGreen
+                            : ArielColors.disable,
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

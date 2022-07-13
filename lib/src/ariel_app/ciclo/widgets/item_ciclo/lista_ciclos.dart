@@ -1,8 +1,6 @@
-import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/models/ciclo_model.dart';
+import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
-import 'package:ariel_app/core/util/size_config.dart';
-import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/widgets/item_ciclo/ciclo_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -21,16 +19,11 @@ class ListaCiclos extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Texto(
-          titulo.toUpperCase(),
-          size: SizeConfig.of(context).dynamicScaleSize(size: 11),
-          color: ArielColors.cicloColor,
-          fontWeight: Weight.bold,
-          padding: EdgeInsets.only(
-              top: SizeConfig.of(context).dynamicScaleSize(size: 24),
-              left: SizeConfig.of(context).dynamicScaleSize(size: 24)),
+        DivisoriaDecorada(
+          titulo: titulo,
+          cor: ArielColors.cicloColor,
+          padding: const EdgeInsets.only(top: 16),
         ),
-        const DivisoriaDecorada(cor: ArielColors.cicloColor, padding: EdgeInsets.zero,),
         Column(
           children: lista.map((ciclo) => CicloWidget(model: ciclo)).toList(),
         )

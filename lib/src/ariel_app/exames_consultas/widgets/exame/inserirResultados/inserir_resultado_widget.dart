@@ -1,9 +1,10 @@
+import 'package:ariel_app/core/models/exame_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/shared/input/campo_texto.dart';
-import 'package:ariel_app/core/models/exame_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -21,12 +22,14 @@ class InserirResultadoWidget extends StatefulWidget {
 }
 
 class _InserirResultadoWidgetState extends State<InserirResultadoWidget> {
-  final double leftPadding = 32;
   final TextEditingController dtInicio = TextEditingController();
   final TextEditingController dtUltimaAplicacao = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final double leftPadding =
+        SizeConfig.of(context).dynamicScaleSize(size: 32);
+
     return DetalheWidget(
       titulo: "EXAMES E\nCONSULTAS",
       subTitulo: const ["resultado", " do exame"],
@@ -41,21 +44,21 @@ class _InserirResultadoWidgetState extends State<InserirResultadoWidget> {
             CampoDestaque(
                 titulo: "Exame",
                 valor: widget.model.tipo,
-                leftPadding: leftPadding,
+                padding: EdgeInsets.only(left: leftPadding),
                 color: ArielColors.exameColor),
             Row(
               children: [
                 CampoDetalhe(
                   titulo: "DATA DO EXAME",
                   valor: DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.exameColor,
                   lineColor: ArielColors.exameColor,
                 ),
                 CampoDetalhe(
                   titulo: "HORÁRIO",
                   valor: DateFormat("hh:mm a").format(widget.model.dataHora),
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.exameColor,
                   lineColor: ArielColors.exameColor,
                 ),
@@ -117,7 +120,7 @@ class _InserirResultadoWidgetState extends State<InserirResultadoWidget> {
                 ],
               ),
             ),
-            const Divider(height: 32, color: Color(0x00FFFFFF)),
+            const Divisoria(),
             BotaoPadrao(
                 label: "SALVAR ALTERAÇÕES",
                 height: SizeConfig.of(context).dynamicScaleSize(size: 40),

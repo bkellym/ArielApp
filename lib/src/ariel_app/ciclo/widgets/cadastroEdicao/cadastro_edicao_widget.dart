@@ -1,8 +1,9 @@
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/shared/input/campo_data.dart';
 import 'package:ariel_app/core/shared/input/campo_texto.dart';
-import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -188,7 +189,7 @@ class CadastroEdicaoCicloState extends State<CadastroEdicaoCiclo> {
                           bottom: 8,
                         ),
                       ),
-                      const Divider(height: 32, color: Color(0x00FFFFFF)),
+                      const Divisoria(),
                       BotaoPadrao(
                           label: "SALVAR ALTERAÇÕES",
                           height:

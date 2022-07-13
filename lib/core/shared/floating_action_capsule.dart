@@ -1,6 +1,22 @@
-import 'package:ariel_app/core/shared/FloatingActionCapsule/capsule.dart';
-import 'package:ariel_app/core/shared/FloatingActionCapsule/capsule_menu.dart';
 import 'package:flutter/material.dart';
+
+class Capsule {
+  const Capsule({
+    required this.icon,
+    required this.iconColor,
+    required this.title,
+    required this.titleStyle,
+    required this.bubbleColor,
+    required this.onPress,
+  });
+
+  final IconData icon;
+  final Color iconColor;
+  final String title;
+  final TextStyle titleStyle;
+  final Color bubbleColor;
+  final void Function() onPress;
+}
 
 class FloatingActionCapsule extends AnimatedWidget {
   const FloatingActionCapsule({
@@ -73,12 +89,6 @@ class FloatingActionCapsule extends AnimatedWidget {
             itemBuilder: buildItem,
           ),
         ),
-
-        /// Creates a circular floating action button.
-        ///
-        /// The [mini] and [clipBehavior] arguments must not be null. Additionally,
-        /// [elevation], [highlightElevation], and [disabledElevation] (if specified)
-        /// must be non-negative.
         FloatingActionButton(
           heroTag: herotag ?? const _DefaultHeroTag(),
           backgroundColor: backGroundColor,
@@ -89,21 +99,47 @@ class FloatingActionCapsule extends AnimatedWidget {
               ? AnimatedIcon(
                   icon: animatedIconData!,
                   progress: _animation,
-                  color: iconColor,
-                )
-              : Icon(
-                  iconData,
-                  color: iconColor,
-                ),
+                  color: iconColor)
+              : Icon(iconData, color: iconColor),
         ),
       ],
     );
   }
 }
 
-/// Creates a Default hero tag for the floating action bubble.
 class _DefaultHeroTag {
   const _DefaultHeroTag();
+
   @override
   String toString() => '<default FloatingActionBubble tag>';
+}
+
+class CapsuleMenu extends StatelessWidget {
+  const CapsuleMenu(this.item, {Key? key}) : super(key: key);
+
+  final Capsule item;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      shape: const StadiumBorder(),
+      padding: const EdgeInsets.only(top: 11, bottom: 13, left: 16, right: 32),
+      color: item.bubbleColor,
+      splashColor: Colors.grey.withOpacity(0.1),
+      highlightColor: Colors.grey.withOpacity(0.1),
+      elevation: 2,
+      highlightElevation: 2,
+      disabledColor: item.bubbleColor,
+      onPressed: item.onPress,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Icon(item.icon, color: item.iconColor, size: 10),
+          const SizedBox(width: 8.0),
+          Text(item.title, style: item.titleStyle),
+        ],
+      ),
+    );
+  }
 }

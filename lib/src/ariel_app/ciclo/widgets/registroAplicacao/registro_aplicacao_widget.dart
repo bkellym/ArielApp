@@ -1,9 +1,10 @@
+import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/shared/input/campo_data.dart';
-import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -23,7 +24,6 @@ class RegistroAplicacaoWidget extends StatefulWidget {
 
 class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
   final RegistroAplicacaoBloc _bloc = RegistroAplicacaoBloc();
-  final double leftPadding = 32;
 
   @override
   void initState() {
@@ -33,6 +33,9 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final double leftPadding =
+        SizeConfig.of(context).dynamicScaleSize(size: 32);
+
     return DetalheWidget(
       titulo: "Ciclos",
       subTitulo: const ["registrar", " aplicação"],
@@ -48,12 +51,11 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
               CampoDestaque(
                   titulo: "medicamento",
                   valor: widget.model.medicamento,
-                  leftPadding: leftPadding,
+                  padding: EdgeInsets.only(left: leftPadding),
                   color: ArielColors.cicloColor),
               CampoDetalhe(
                 titulo: "DOSAGEM",
                 valor: widget.model.dosagem,
-                leftPadding: 0,
                 color: ArielColors.cicloColor,
                 lineColor: ArielColors.cicloColor,
               ),
@@ -62,7 +64,6 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
                 child: CampoDetalhe(
                   titulo: "qtd por ciclo",
                   valor: widget.model.aplicacoes.length.toString(),
-                  leftPadding: 0,
                   color: ArielColors.cicloColor,
                   lineColor: ArielColors.cicloColor,
                 ),
@@ -76,23 +77,22 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
               CampoDetalhe(
                 titulo: "Início do tratamento",
                 valor: widget.model.dataIncio,
-                leftPadding: leftPadding,
+                padding: EdgeInsets.only(left: leftPadding),
                 color: ArielColors.cicloColor,
                 lineColor: ArielColors.cicloColor,
               ),
               Padding(
                 padding: EdgeInsets.only(right: leftPadding),
-                child: const CampoDetalhe(
+                child: CampoDetalhe(
                   titulo: "fase atual do ciclo",
                   valor: "Testando",
-                  leftPadding: 0,
+                  padding: EdgeInsets.only(left: 0, bottom: 4),
                   color: ArielColors.cicloColor,
                   lineColor: ArielColors.cicloColor,
                 ),
               ),
             ],
           ),
-          const Divider(height: 4, color: Color(0x00FFFFFF)),
           Texto(
             "DATA DA APLICAÇÃO",
             color: ArielColors.cicloColor,
@@ -116,7 +116,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
               bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
             ),
           ),
-          const Divider(height: 32, color: Color(0x00FFFFFF)),
+          const Divisoria(),
           BotaoPadrao(
               label: "SALVAR APLICAÇÃO",
               height: SizeConfig.of(context).dynamicScaleSize(size: 40),
