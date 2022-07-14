@@ -25,42 +25,47 @@ class DetalheWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        child: DecoratedBox(
+      body: Stack(children: <Widget>[
+        Container(
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: imgFundo,
-              fit: BoxFit.cover,
+              image: DecorationImage(image: imgFundo, fit: BoxFit.fill)),
+        ),
+        SingleChildScrollView(
+          child: Container(
+            color: Colors.transparent,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Titulo(
+                  titulo,
+                  fontSize: tituloSize,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 48),
+                  child: Container(
+                    color: Colors.white,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BotaoTextoIcon(
+                              icon: Icons.arrow_back_ios_new_rounded,
+                              label: "VOLTAR",
+                              onPressed: () => Navigator.pop(context)),
+                          Subtitulo(subTitulo, color: color),
+                          child,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Titulo(
-                titulo,
-                fontSize: tituloSize,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.8,
-                width: MediaQuery.of(context).size.width * 0.8,
-                color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BotaoTextoIcon(
-                        icon: Icons.arrow_back_ios_new_rounded,
-                        label: "VOLTAR",
-                        onPressed: () => Navigator.pop(context)),
-                    Subtitulo(subTitulo, color: color),
-                    child,
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+        )
+      ]),
     );
   }
 }
