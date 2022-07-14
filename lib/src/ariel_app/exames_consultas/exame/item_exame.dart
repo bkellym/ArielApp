@@ -4,8 +4,8 @@ import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/exame/detalhe/detalhe_widget.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/exame/inserirResultados/inserir_resultado_widget.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/exame/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/exame/inserirResultados/inserir_resultado_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
