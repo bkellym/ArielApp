@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class Capsule {
@@ -83,21 +85,28 @@ class FloatingActionCapsule extends AnimatedWidget {
       children: [
         IgnorePointer(
           ignoring: _animation.value == 0,
-          child: ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            separatorBuilder: (_, __) => const SizedBox(height: 12.0),
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            itemCount: items.length,
-            itemBuilder: buildItem,
-          ),
+          child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: _animation.value, end: _animation.value),
+              duration: const Duration(milliseconds: 100),
+              curve: Curves.easeIn,
+              builder: (_, value, __) {
+                return BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: value * 2, sigmaY: value * 2),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    itemCount: items.length,
+                    itemBuilder: buildItem,
+                  ),
+                );
+              }),
         ),
         FloatingActionButton(
           heroTag: herotag ?? const _DefaultHeroTag(),
           backgroundColor: backGroundColor,
           onPressed: onPress,
-          // iconData is mutually exclusive with animatedIconData
-          // only 1 can be null at the time
           child: iconData == null
               ? AnimatedIcon(
                   icon: animatedIconData!,
@@ -125,7 +134,7 @@ class CapsuleMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: item.onPress,// Handle your callback
+      onTap: item.onPress, // Handle your callback
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
