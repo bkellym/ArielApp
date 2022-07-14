@@ -29,6 +29,8 @@ class UserInfoController {
     dtUltAplicacao = DateTime.now().toString();
   }
 
+  UserInfoController.edicao();
+
   File? get foto {
     return _foto;
   }

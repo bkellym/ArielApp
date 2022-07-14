@@ -72,20 +72,20 @@ class _CampoImagemState extends State<CampoImagem> {
                       widget.photo!,
                       width: 100,
                       height: 100,
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.cover,
                     ),
                   )
                 : Container(
                     decoration: BoxDecoration(
                       color: ArielColors.baseLight,
                       border:
-                          Border.all(color: ArielColors.baseDark, width: 1.5),
+                          Border.all(color: ArielColors.secundary, width: 1.5),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     width: 100,
                     height: 100,
                     child: const Icon(
-                      Icons.camera_alt,
+                      Icons.add_a_photo_outlined,
                       color: ArielColors.secundary,
                     ),
                   ),

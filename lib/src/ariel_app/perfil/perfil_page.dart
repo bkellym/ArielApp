@@ -5,6 +5,7 @@ import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/perfil/conquista/conquista_widget.dart';
+import 'package:ariel_app/src/ariel_app/perfil/editar_perfil/editar_perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -49,34 +50,28 @@ class _PerfilPageState extends State<PerfilPage>
             : _animationController.forward(),
         items: <Capsule>[
           Capsule(
-            icon: Icons.circle,
+            icon: Icons.person_outline_outlined,
             title: "EDITAR PERFIL",
-            iconColor: ArielColors.secundary,
-            bubbleColor: Colors.white,
-            titleStyle:
-                const TextStyle(fontSize: 10, color: ArielColors.secundary),
+            iconColor: Colors.white,
+            bubbleColor: ArielColors.secundary,
+            titleStyle: const TextStyle(fontSize: 10, color: Colors.white),
             onPress: () {
               _animationController.reverse();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => EditarPerfilPage(
+                      user: widget.user,
+                    )),
+              );
             },
           ),
           Capsule(
-            icon: Icons.circle,
-            title: "REDEFINIR SENHA",
-            iconColor: ArielColors.secundary,
-            bubbleColor: Colors.white,
-            titleStyle:
-                const TextStyle(fontSize: 10, color: ArielColors.secundary),
-            onPress: () {
-              _animationController.reverse();
-            },
-          ),
-          Capsule(
-            icon: Icons.circle,
+            icon: Icons.favorite_border_outlined,
             title: "NOVA CONQUISTA",
-            iconColor: ArielColors.secundary,
-            bubbleColor: Colors.white,
-            titleStyle:
-                const TextStyle(fontSize: 10, color: ArielColors.secundary),
+            iconColor: Colors.white,
+            bubbleColor: ArielColors.secundary,
+            titleStyle: const TextStyle(fontSize: 10, color: Colors.white),
             onPress: () {
               _animationController.reverse();
             },
@@ -121,223 +116,130 @@ class _PerfilPageState extends State<PerfilPage>
                   ),
                 ),
               ]),
-              const DivisoriaDecorada(
+              DivisoriaDecorada(
                 titulo: "SOBRE VOCÊ",
                 cor: ArielColors.secundary,
-                padding: EdgeInsets.zero,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: SizeConfig.of(context).dynamicScaleSize(size: 8),
-                  left: SizeConfig.of(context).dynamicScaleSize(
-                      size: MediaQuery.of(context).size.width * 0.25),
-                  right: SizeConfig.of(context).dynamicScaleSize(
-                      size: MediaQuery.of(context).size.width * 0.25),
+                padding: EdgeInsets.symmetric(
+                  vertical: SizeConfig.of(context).dynamicScaleSize(size: 16),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Container(
-                        height: 192,
-                        decoration: BoxDecoration(
-                          color: ArielColors.baseDark,
-                          borderRadius: BorderRadius.circular(16),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: const Center(
-                          child: Icon(Icons.camera_alt),
-                        ),
-                      ),
+              ),
+              Center(
+                child: Container(
+                  height: 192,
+                  width: 192,
+                  decoration: BoxDecoration(
+                    color: ArielColors.baseDark,
+                    borderRadius: BorderRadius.circular(8),
+                    shape: BoxShape.rectangle,
+                  ),
+                  child: const Center(
+                    child: Icon(Icons.camera_alt),
+                  ),
+                ),
+              ),
+              Column(
+                children: [
+                  Texto(
+                    "OLÁ, EU SOU",
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                    fontWeight: Weight.semibold,
+                    color: ArielColors.secundary,
+                    padding: EdgeInsets.only(
+                      top: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                      bottom: SizeConfig.of(context).dynamicScaleSize(size: 4),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Texto(
-                          "NOME",
-                          color: ArielColors.secundary,
-                          fontWeight: Weight.semibold,
-                          size: SizeConfig.of(context).dynamicScaleSize(
-                            size: 10,
-                          ),
-                          padding: EdgeInsets.only(
-                            top: SizeConfig.of(context).dynamicScaleSize(
-                              size: 16,
-                            ),
-                          ),
-                        ),
-                        Texto(
-                          widget.user.nome,
-                          fontWeight: Weight.regular,
-                          size: SizeConfig.of(context).dynamicScaleSize(
-                            size: 20,
-                          ),
-                          padding: EdgeInsets.only(
-                            top: SizeConfig.of(context).dynamicScaleSize(
-                              size: 0,
-                            ),
-                          ),
-                        ),
-                      ],
+                  ),
+                  Texto(
+                    widget.user.nome,
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 24),
+                    fontWeight: Weight.regular,
+                    padding: EdgeInsets.only(
+                      bottom: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                      left: SizeConfig.of(context).dynamicScaleSize(size: 40),
+                      right: SizeConfig.of(context).dynamicScaleSize(size: 40),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            SizeConfig.of(context).dynamicScaleSize(size: 40)),
+                    child: Row(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Expanded(
+                            child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Texto(
+                              "IDADE",
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 10),
+                              fontWeight: Weight.semibold,
+                              color: ArielColors.secundary,
+                              padding: EdgeInsets.only(
+                                  right: SizeConfig.of(context)
+                                      .dynamicScaleSize(size: 8)),
+                            ),
+                            Texto(
+                              "25",
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 10),
+                              fontWeight: Weight.regular,
+                            ),
+                          ],
+                        )),
+                        Expanded(
+                            child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Texto(
                               "GÊNERO",
-                              color: ArielColors.secundary,
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 10),
                               fontWeight: Weight.semibold,
-                              size: SizeConfig.of(context).dynamicScaleSize(
-                                size: 10,
-                              ),
-                              padding: EdgeInsets.only(
-                                top: SizeConfig.of(context).dynamicScaleSize(
-                                  size: 16,
-                                ),
-                              ),
+                              color: ArielColors.secundary,
                             ),
-                            Row(
-                              children: [
-                                const VerticalDivider(
-                                  width: 2,
-                                ),
-                                SizedBox(
-                                    height: SizeConfig.of(context)
-                                        .dynamicScaleSize(size: 25),
-                                    child: VerticalDivider(
-                                        color: ArielColors.secundary,
-                                        width: SizeConfig.of(context)
-                                            .dynamicScaleSize(size: 0),
-                                        thickness: 1)),
-                                const VerticalDivider(
-                                  width: 8,
-                                ),
-                                Texto(
-                                  "MASCULINO",
-                                  fontWeight: Weight.regular,
-                                  size: SizeConfig.of(context).dynamicScaleSize(
-                                    size: 10,
-                                  ),
-                                  padding: EdgeInsets.only(
-                                    top:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 0,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        const VerticalDivider(
-                          width: 16,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
                             Texto(
-                              "DATA DE NASCIMENTO",
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.semibold,
-                              size: SizeConfig.of(context).dynamicScaleSize(
-                                size: 10,
-                              ),
-                              padding: EdgeInsets.only(
-                                top: SizeConfig.of(context).dynamicScaleSize(
-                                  size: 16,
-                                ),
-                              ),
-                            ),
-                            Row(children: [
-                              const VerticalDivider(
-                                width: 2,
-                              ),
-                              SizedBox(
-                                  height: SizeConfig.of(context)
-                                      .dynamicScaleSize(size: 25),
-                                  child: VerticalDivider(
-                                      color: ArielColors.secundary,
-                                      width: SizeConfig.of(context)
-                                          .dynamicScaleSize(size: 0),
-                                      thickness: 1)),
-                              const VerticalDivider(
-                                width: 8,
-                              ),
-                              Texto(
-                                DateFormat("dd 'de' MMMM 'de' yyyy")
-                                    .format(DateTime.parse(
-                                        widget.user.dtNascimento))
-                                    .toUpperCase(),
-                                fontWeight: Weight.regular,
-                                size: SizeConfig.of(context).dynamicScaleSize(
-                                  size: 10,
-                                ),
-                                padding: EdgeInsets.only(
-                                  top: SizeConfig.of(context).dynamicScaleSize(
-                                    size: 0,
-                                  ),
-                                ),
-                              ),
-                            ]),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Texto(
-                          "HISTÓRIA",
-                          color: ArielColors.secundary,
-                          fontWeight: Weight.semibold,
-                          size: SizeConfig.of(context).dynamicScaleSize(
-                            size: 10,
-                          ),
-                          padding: EdgeInsets.only(
-                            top: SizeConfig.of(context).dynamicScaleSize(
-                              size: 16,
-                            ),
-                          ),
-                        ),
-                        Row(children: [
-                          const VerticalDivider(
-                            width: 2,
-                          ),
-                          SizedBox(
-                              height: SizeConfig.of(context)
-                                  .dynamicScaleSize(size: 25),
-                              child: VerticalDivider(
-                                  color: ArielColors.secundary,
-                                  width: SizeConfig.of(context)
-                                      .dynamicScaleSize(size: 0),
-                                  thickness: 1)),
-                          const VerticalDivider(
-                            width: 8,
-                          ),
-                          SizedBox(
-                            width: SizeConfig.of(context).dynamicScaleSize(
-                                size: MediaQuery.of(context).size.width * 0.45),
-                            child: Texto(
-                              widget.user.historia!,
+                              "MASCULINO",
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 10),
                               fontWeight: Weight.regular,
-                              size: SizeConfig.of(context).dynamicScaleSize(
-                                size: 10,
-                              ),
                               padding: EdgeInsets.only(
-                                top: SizeConfig.of(context).dynamicScaleSize(
-                                  size: 0,
-                                ),
-                              ),
+                                  left: SizeConfig.of(context)
+                                      .dynamicScaleSize(size: 8)),
                             ),
-                          ),
-                        ]),
+                          ],
+                        )),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  Texto(
+                    "HISTÓRIA",
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                    fontWeight: Weight.semibold,
+                    color: ArielColors.secundary,
+                    padding: EdgeInsets.only(
+                      top: SizeConfig.of(context).dynamicScaleSize(size: 16),
+                      bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: SizeConfig.of(context).dynamicScaleSize(size: 48),
+                      right: SizeConfig.of(context).dynamicScaleSize(size: 48),
+                    ),
+                    child: Texto(
+                      // widget.user.historia!,
+                      "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsumdolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetueradipiscing elit, Lorem ipsumdolor sit amet, consectetuer adipiscing elit,",
+                      size: SizeConfig.of(context).dynamicScaleSize(size: 10),
+                      textAlign: TextAlign.center,
+                      fontWeight: Weight.regular,
+                      padding: EdgeInsets.only(
+                        bottom:
+                            SizeConfig.of(context).dynamicScaleSize(size: 12),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const DivisoriaDecorada(
                 titulo: "MINHAS CONQUISTAS",
