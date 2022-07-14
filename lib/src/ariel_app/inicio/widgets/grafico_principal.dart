@@ -8,6 +8,7 @@ class GraficoPrincipal extends StatelessWidget {
   final DateTime proxAplicacao;
   final String hormonio;
   final String dosagem;
+  final Function? onPressed;
   late final int daysRemaining;
 
   GraficoPrincipal({
@@ -16,6 +17,7 @@ class GraficoPrincipal extends StatelessWidget {
     required this.chartData,
     required this.hormonio,
     required this.dosagem,
+    this.onPressed,
   }) : super(key: key) {
     daysRemaining = proxAplicacao.difference(now).inDays + 1;
   }
@@ -25,42 +27,23 @@ class GraficoPrincipal extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 8),
       child: SizedBox(
-        height: MediaQuery.of(context).size.width * 0.50,
-        width: MediaQuery.of(context).size.width * 0.50,
+        height: MediaQuery.of(context).size.width * 0.65,
+        width: MediaQuery.of(context).size.width * 0.65,
         child: SfCircularChart(
+          onChartTouchInteractionUp: (ChartTouchInteractionArgs args) {
+            try {
+              onPressed!();
+              print("pressionou");
+            } catch (e) {
+              print(e.toString());
+            }
+          },
           annotations: <CircularChartAnnotation>[
             CircularChartAnnotation(
                 widget: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  hormonio.toUpperCase(),
-                  style: const TextStyle(
-                    color: ArielColors.textLight,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    decoration: TextDecoration.none,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8,
-                  ),
-                  child: Text(
-                    dosagem.toLowerCase(),
-                    style: const TextStyle(
-                      color: ArielColors.textLight,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      decoration: TextDecoration.none,
-                    ),
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                  ),
-                ),
                 Text(
                   (daysRemaining > 1 ? 'Faltam' : 'Falta').toUpperCase(),
                   style: const TextStyle(
@@ -109,8 +92,9 @@ class GraficoPrincipal extends StatelessWidget {
               dataSource: chartData,
               xValueMapper: (double data, _) => data.toString(),
               yValueMapper: (double data, _) => 1,
-              pointColorMapper: (double data, _) =>
-                  data > 0 ? ArielColors.arielGreen : ArielColors.disable,
+              pointColorMapper: (double data, _) => data > 0
+                  ? ArielColors.arielGreen
+                  : ArielColors.disabledGradientLight,
             ),
           ],
         ),

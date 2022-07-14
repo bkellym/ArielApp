@@ -18,6 +18,7 @@ class InicioBloc extends BlocBase {
   ExameModel? exame;
   ConsultaModel? consulta;
   DateTime? proxAplicacao;
+  DateTime? ultAplicacao;
 
   List<double> chartData = [];
   List<AplicacaoModel> aplicacoes = [];
@@ -36,6 +37,7 @@ class InicioBloc extends BlocBase {
     if (cicloUid != null) {
       aplicacoes = (await aplicacaoController.buscar(cicloUid));
       proxAplicacao = (await aplicacaoController.buscarProx(aplicacoes));
+      ultAplicacao = (await aplicacaoController.buscarUlt(aplicacoes));
     }
 
     exame = await exameController.buscarProxima(user.uid);
@@ -65,5 +67,9 @@ class InicioBloc extends BlocBase {
 
   String getProxAplic() {
     return DateFormat("dd/MM/y", "pt_BR").format(proxAplicacao!);
+  }
+
+  String getUltAplic() {
+    return DateFormat("dd/MM/y", "pt_BR").format(ultAplicacao!);
   }
 }

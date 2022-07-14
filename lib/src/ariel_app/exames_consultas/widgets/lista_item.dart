@@ -37,40 +37,16 @@ class ListaItens extends StatelessWidget {
               Column(
                   children: lista
                       .map(
-                        (mapa) => InkWell(
-                            onTap: () {
-                              if (mapa['model'] is ExameModel) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DetalheExameWidget(
-                                            model: mapa['model'],
-                                          )),
-                                );
-                              }
-
-                              if (mapa['model'] is ConsultaModel) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DetalheConsulta(
-                                            model: mapa['model'],
-                                          )),
-                                );
-                              }
-                            },
-                            child: _ItemWidget(
-                              model: mapa['model'],
-                              titulo: mapa['titulo'],
-                              data: mapa['dataHora'],
-                              color: ativo
-                                  ? mapa['color']
-                                  : ArielColors.textPrimary,
-                              iconColor: mapa['color'],
-                              background: ativo
-                                  ? mapa['background']
-                                  : ArielColors.disable,
-                            )),
+                        (mapa) => ItemWidget(
+                          model: mapa['model'],
+                          titulo: mapa['titulo'],
+                          data: mapa['dataHora'],
+                          color:
+                              ativo ? mapa['color'] : ArielColors.textPrimary,
+                          iconColor: mapa['color'],
+                          background:
+                              ativo ? mapa['background'] : ArielColors.disable,
+                        ),
                       )
                       .toList())
             ],
@@ -79,7 +55,7 @@ class ListaItens extends StatelessWidget {
   }
 }
 
-class _ItemWidget extends StatelessWidget {
+class ItemWidget extends StatelessWidget {
   final Object model;
   final String titulo;
   final Color color;
@@ -87,7 +63,7 @@ class _ItemWidget extends StatelessWidget {
   final Color background;
   final DateTime data;
 
-  const _ItemWidget({
+  const ItemWidget({
     Key? key,
     required this.model,
     required this.titulo,
@@ -99,68 +75,91 @@ class _ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          vertical: SizeConfig.of(context).dynamicScaleSize(size: 8)),
-      child: Container(
-        color: background,
+    return InkWell(
+      onTap: () {
+        if (model is ExameModel) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetalheExameWidget(
+                      model: model as ExameModel,
+                    )),
+          );
+        }
+
+        if (model is ConsultaModel) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetalheConsulta(
+                      model: model as ConsultaModel,
+                    )),
+          );
+        }
+      },
+      child: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: SizeConfig.of(context).dynamicScaleSize(size: 16),
-            horizontal: SizeConfig.of(context).dynamicScaleSize(size: 16)),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 3,
-              child: Row(children: [
-                Icon(
-                  Icons.bookmark_border,
-                  color: iconColor,
-                ),
-                Texto(
-                  titulo,
-                  fontWeight: Weight.bold,
-                  size: SizeConfig.of(context).dynamicScaleSize(size: 12),
-                  padding: const EdgeInsets.only(left: 8),
-                ),
-              ]),
-            ),
-            Expanded(
-              flex: 2,
-              child: Row(children: [
-                Texto(
-                  "DATA",
-                  color: color,
-                  fontWeight: Weight.bold,
-                  size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                ),
-                Texto(
-                  DateFormat("dd/MM/yyyy").format(data),
-                  fontWeight: Weight.regular,
-                  size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                  padding: const EdgeInsets.only(left: 8),
-                ),
-              ]),
-            ),
-            Expanded(
-              flex: 2,
-              child: Row(children: [
-                Texto(
-                  "HORA",
-                  color: color,
-                  fontWeight: Weight.bold,
-                  size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                ),
-                Texto(
-                  DateFormat("Hm").format(data),
-                  fontWeight: Weight.regular,
-                  size: SizeConfig.of(context).dynamicScaleSize(size: 10),
-                  padding: const EdgeInsets.only(left: 8),
-                ),
-              ]),
-            ),
-          ],
+            vertical: SizeConfig.of(context).dynamicScaleSize(size: 8)),
+        child: Container(
+          color: background,
+          padding: EdgeInsets.symmetric(
+              vertical: SizeConfig.of(context).dynamicScaleSize(size: 16),
+              horizontal: SizeConfig.of(context).dynamicScaleSize(size: 16)),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 3,
+                child: Row(children: [
+                  Icon(
+                    Icons.bookmark_border,
+                    color: iconColor,
+                  ),
+                  Texto(
+                    titulo,
+                    fontWeight: Weight.bold,
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                    padding: const EdgeInsets.only(left: 8),
+                  ),
+                ]),
+              ),
+              Expanded(
+                flex: 2,
+                child: Row(children: [
+                  Texto(
+                    "DATA",
+                    color: color,
+                    fontWeight: Weight.bold,
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 10),
+                  ),
+                  Texto(
+                    DateFormat("dd/MM/yyyy").format(data),
+                    fontWeight: Weight.regular,
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 10),
+                    padding: const EdgeInsets.only(left: 8),
+                  ),
+                ]),
+              ),
+              Expanded(
+                flex: 2,
+                child: Row(children: [
+                  Texto(
+                    "HORA",
+                    color: color,
+                    fontWeight: Weight.bold,
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 10),
+                  ),
+                  Texto(
+                    DateFormat("Hm").format(data),
+                    fontWeight: Weight.regular,
+                    size: SizeConfig.of(context).dynamicScaleSize(size: 10),
+                    padding: const EdgeInsets.only(left: 8),
+                  ),
+                ]),
+              ),
+            ],
+          ),
         ),
       ),
     );
