@@ -4,6 +4,8 @@ import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/consulta/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/exame/detalhe/detalhe_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -34,14 +36,42 @@ class ListaItens extends StatelessWidget {
               ),
               Column(
                   children: lista
-                      .map((mapa) => _ItemWidget(
-                            ativo: ativo,
-                            model: mapa['model'],
-                            titulo: mapa['titulo'],
-                            data: mapa['dataHora'],
-                            color: ativo ? mapa['color'] : ArielColors.textPrimary,
-                            background: ativo ? mapa['background'] : ArielColors.disable,
-                          ))
+                      .map(
+                        (mapa) => InkWell(
+                            onTap: () {
+                              if (mapa['model'] is ExameModel) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetalheExameWidget(
+                                            model: mapa['model'],
+                                          )),
+                                );
+                              }
+
+                              if (mapa['model'] is ConsultaModel) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetalheConsulta(
+                                        model: mapa['model'],
+                                      )),
+                                );
+                              }
+                            },
+                            child: _ItemWidget(
+                              model: mapa['model'],
+                              titulo: mapa['titulo'],
+                              data: mapa['dataHora'],
+                              color: ativo
+                                  ? mapa['color']
+                                  : ArielColors.textPrimary,
+                              iconColor: mapa['color'],
+                              background: ativo
+                                  ? mapa['background']
+                                  : ArielColors.disable,
+                            )),
+                      )
                       .toList())
             ],
           )
@@ -52,8 +82,8 @@ class ListaItens extends StatelessWidget {
 class _ItemWidget extends StatelessWidget {
   final Object model;
   final String titulo;
-  final bool ativo;
   final Color color;
+  final Color iconColor;
   final Color background;
   final DateTime data;
 
@@ -61,10 +91,9 @@ class _ItemWidget extends StatelessWidget {
     Key? key,
     required this.model,
     required this.titulo,
-    required this.ativo,
     required this.color,
     required this.background,
-    required this.data,
+    required this.data, required this.iconColor,
   }) : super(key: key);
 
   @override
@@ -86,7 +115,7 @@ class _ItemWidget extends StatelessWidget {
               child: Row(children: [
                 Icon(
                   Icons.bookmark_border,
-                  color: color,
+                  color: iconColor,
                 ),
                 Texto(
                   titulo,
