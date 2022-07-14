@@ -4,10 +4,10 @@ import 'package:ariel_app/core/shared/floating_action_capsule.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/src/ariel_app/ciclo/ciclo_bloc.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/cadastro/cadastro_edicao_widget.dart';
-import 'package:ariel_app/src/ariel_app/ciclo/widgets/lista_ciclos.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/ciclo_bloc.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/registroAplicacao/registro_aplicacao_widget.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/widgets/lista_ciclos.dart';
 import 'package:flutter/material.dart';
 
 class CicloPage extends StatefulWidget {

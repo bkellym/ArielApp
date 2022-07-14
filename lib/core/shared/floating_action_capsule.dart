@@ -91,7 +91,8 @@ class FloatingActionCapsule extends AnimatedWidget {
               curve: Curves.easeIn,
               builder: (_, value, __) {
                 return BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: value * 2, sigmaY: value * 2),
+                  filter:
+                      ImageFilter.blur(sigmaX: value * 2, sigmaY: value * 2),
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),

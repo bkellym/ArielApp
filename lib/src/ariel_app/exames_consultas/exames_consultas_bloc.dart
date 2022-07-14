@@ -4,7 +4,6 @@ import 'package:ariel_app/core/models/consulta_model.dart';
 import 'package:ariel_app/core/models/exame_model.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:intl/intl.dart';
 
 class ExameConsultaBloc extends BlocBase {
   List<ExameModel> listaExames = [];

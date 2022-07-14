@@ -39,8 +39,8 @@ class ListaCiclos extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => DetalheCicloWidget(
-                            model: ciclo,
-                          )),
+                                model: ciclo,
+                              )),
                     );
                   }, // Handle your callback
                   child: _CicloWidget(

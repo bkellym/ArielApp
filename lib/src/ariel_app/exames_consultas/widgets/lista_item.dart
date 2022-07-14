@@ -54,8 +54,8 @@ class ListaItens extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => DetalheConsulta(
-                                        model: mapa['model'],
-                                      )),
+                                            model: mapa['model'],
+                                          )),
                                 );
                               }
                             },
@@ -93,7 +93,8 @@ class _ItemWidget extends StatelessWidget {
     required this.titulo,
     required this.color,
     required this.background,
-    required this.data, required this.iconColor,
+    required this.data,
+    required this.iconColor,
   }) : super(key: key);
 
   @override
