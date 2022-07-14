@@ -4,10 +4,10 @@ import 'package:ariel_app/core/shared/floating_action_capsule.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
-import 'package:ariel_app/src/ariel_app/perfil/conquista/conquista_widget.dart';
+import 'package:ariel_app/src/ariel_app/perfil/conquista/cadastro.dart';
 import 'package:ariel_app/src/ariel_app/perfil/editar_perfil/editar_perfil_page.dart';
+import 'package:ariel_app/src/ariel_app/perfil/widget/conquista_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class PerfilPage extends StatefulWidget {
   final UserModel user;
@@ -74,6 +74,13 @@ class _PerfilPageState extends State<PerfilPage>
             titleStyle: const TextStyle(fontSize: 10, color: Colors.white),
             onPress: () {
               _animationController.reverse();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CadastrarConquistaPage(
+                      user: widget.user,
+                    )),
+              );
             },
           ),
         ],
