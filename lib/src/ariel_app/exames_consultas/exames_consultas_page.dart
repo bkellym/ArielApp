@@ -7,7 +7,7 @@ import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/consulta/cadastro_edicao/cadastro_edicao_widget.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/exame/cadastro_edicao/cadastro_widget.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/exames_consultas_bloc.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/item.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/lista_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
