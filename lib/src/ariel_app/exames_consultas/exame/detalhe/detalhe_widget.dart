@@ -6,8 +6,8 @@ import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/exame/cadastro_edicao/cadastro_widget.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/exame/inserirResultados/inserir_resultado_widget.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/exame/cadastro_edicao/cadastro_widget.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/exame/inserirResultados/inserir_resultado_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

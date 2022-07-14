@@ -1,16 +1,15 @@
 import 'package:ariel_app/core/models/user_model.dart';
-import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/shared/floating_action_capsule.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/consulta/cadastro_edicao/cadastro_edicao_widget.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/exame/cadastro_edicao/cadastro_widget.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/exames_consultas_bloc.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/consulta/cadastro_edicao/cadastro_edicao_widget.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/consulta/item_consulta.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/exame/cadastro_edicao/cadastro_widget.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/exame/item_exame.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/item.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ExamesConsultasPage extends StatefulWidget {
   final UserModel user;
@@ -126,61 +125,58 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                       ),
                     ),
                     Expanded(
-                      child: ListView(
-                        children: [
-                          const DivisoriaDecorada(
-                            titulo: "EXAMES",
-                            cor: ArielColors.exameColor,
-                            padding: EdgeInsets.zero,
-                          ),
-                          _bloc.listaExames.isNotEmpty
-                              ? Column(
-                                  children: _bloc.listaExames
-                                      .map((item) => ItemExameWidget(
-                                            model: item,
-                                          ))
-                                      .toList(),
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                      Texto(
-                                        "VOCÊ AINDA NÃO POSSUI EXAMES CADASTRADOS",
-                                        color: ArielColors.textLight,
-                                        fontWeight: Weight.semibold,
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 32),
-                                        size: 12,
-                                      ),
-                                    ]),
-                          const Divisoria(),
-                          const DivisoriaDecorada(
-                            titulo: "CONSULTAS",
-                            cor: ArielColors.consultaColor,
-                            padding: EdgeInsets.zero,
-                          ),
-                          _bloc.listaConsultas.isNotEmpty
-                              ? Column(
-                                  children: _bloc.listaConsultas
-                                      .map((item) => ItemConsultaWidget(
-                                            model: item,
-                                          ))
-                                      .toList(),
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                      Texto(
-                                        "VOCÊ AINDA NÃO POSSUI CONSULTAS CADASTRADAS",
-                                        color: ArielColors.textLight,
-                                        fontWeight: Weight.semibold,
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 32),
-                                        size: 12,
-                                      ),
-                                    ]),
-                        ],
-                      ),
+                      child: _bloc.listaEventos.isNotEmpty
+                          ? ListView(children: [
+                              ListaItens(
+                                titulo:
+                                    "Hoje | ${DateFormat("dd 'de' MMMM 'de' yyyy", "pt_BR").format(DateTime.now())}",
+                                ativo: true,
+                                lista: _bloc.getListHoje(),
+                                color: ArielColors.secundary,
+                              ),
+                              ListaItens(
+                                titulo:
+                                    "Esse mês | ${DateFormat("MMMM 'de' yyyy", "pt_BR").format(
+                                  DateTime(DateTime.now().year,
+                                      DateTime.now().month, 1),
+                                )}",
+                                ativo: true,
+                                lista: _bloc.getListMes(),
+                                color: ArielColors.textPrimary,
+                              ),
+                              ListaItens(
+                                titulo:
+                                    "Próximo Mês | ${DateFormat("MMMM 'de' yyyy", "pt_BR").format(
+                                  DateTime(DateTime.now().year,
+                                      DateTime.now().month + 1, 1),
+                                )}",
+                                ativo: true,
+                                lista: _bloc.getProxMes(),
+                                color: ArielColors.textPrimary,
+                              ),
+                              ListaItens(
+                                titulo: "Próximos",
+                                ativo: true,
+                                lista: _bloc.getFuturo(),
+                                color: ArielColors.textPrimary,
+                              ),
+                              ListaItens(
+                                titulo: "Histórico",
+                                lista: _bloc.getPassados(),
+                                color: ArielColors.textPrimary,
+                              ),
+                            ])
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                  Texto(
+                                    "VOCÊ AINDA NÃO POSSUI EXAMES NEM CONSULTAS CADASTRADOS",
+                                    color: ArielColors.textLight,
+                                    fontWeight: Weight.semibold,
+                                    padding: EdgeInsets.symmetric(vertical: 32),
+                                    size: 12,
+                                  )
+                                ]),
                     ),
                   ]),
                 ),
