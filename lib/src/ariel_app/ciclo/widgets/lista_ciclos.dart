@@ -4,6 +4,7 @@ import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
+import 'package:ariel_app/src/ariel_app/ciclo/detalhes/detalhe_ciclo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -32,7 +33,17 @@ class ListaCiclos extends StatelessWidget {
         ),
         Column(
           children: lista
-              .map((ciclo) => _CicloWidget(
+              .map((ciclo) => InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetalheCicloWidget(
+                            model: ciclo,
+                          )),
+                    );
+                  }, // Handle your callback
+                  child: _CicloWidget(
                     model: ciclo,
                     ativo: ativo,
                     color:
@@ -40,7 +51,7 @@ class ListaCiclos extends StatelessWidget {
                     background: ativo
                         ? ArielColors.cicloFundoColor
                         : ArielColors.disable,
-                  ))
+                  )))
               .toList(),
         )
       ],
