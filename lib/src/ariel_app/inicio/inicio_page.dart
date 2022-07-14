@@ -102,30 +102,47 @@ class _InicioPageState extends State<InicioPage> {
                           ]),
                 const Divisoria(),
                 DivisoriaDecorada(
-                  titulo: "PRÓXIMAS CONSULTAS E EXAMES",
+                  titulo: "Próximos exames e consultas",
                   cor: ArielColors.secundary,
                   padding: EdgeInsets.only(
                       bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
                       top: SizeConfig.of(context).dynamicScaleSize(size: 16)),
                 ),
-                _bloc.exame != null
-                    ? ItemWidget(
-                        model: _bloc.exame!,
-                        titulo: _bloc.exame?.tipo ?? "",
-                        color: ArielColors.exameColor,
-                        background: ArielColors.exameFundoColor,
-                        data: _bloc.exame?.dataHora ?? DateTime.now(),
-                        iconColor: ArielColors.exameColor)
-                    : const SizedBox.shrink(),
-                _bloc.consulta != null
-                    ? ItemWidget(
-                        model: _bloc.consulta!,
-                        titulo: _bloc.consulta?.especialidade ?? "",
-                        color: ArielColors.consultaColor,
-                        background: ArielColors.consultaFundoColor,
-                        data: _bloc.consulta?.dataHora ?? DateTime.now(),
-                        iconColor: ArielColors.consultaColor)
-                    : const SizedBox.shrink(),
+                _bloc.exame != null && _bloc.consulta != null
+                    ? Column(
+                        children: [
+                          _bloc.exame != null
+                              ? ItemWidget(
+                                  model: _bloc.exame!,
+                                  titulo: _bloc.exame?.tipo ?? "",
+                                  color: ArielColors.exameColor,
+                                  background: ArielColors.exameFundoColor,
+                                  data: _bloc.exame?.dataHora ?? DateTime.now(),
+                                  iconColor: ArielColors.exameColor)
+                              : const SizedBox.shrink(),
+                          _bloc.consulta != null
+                              ? ItemWidget(
+                                  model: _bloc.consulta!,
+                                  titulo: _bloc.consulta?.especialidade ?? "",
+                                  color: ArielColors.consultaColor,
+                                  background: ArielColors.consultaFundoColor,
+                                  data: _bloc.consulta?.dataHora ??
+                                      DateTime.now(),
+                                  iconColor: ArielColors.consultaColor)
+                              : const SizedBox.shrink(),
+                        ],
+                      )
+                    : Row(
+                        children: [
+                          const Icon(
+                            Icons.bookmarks_outlined,
+                            color: ArielColors.secundary,
+                          ),
+                          Texto("Nenhum exame ou consulta castrado no momento",
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 11))
+                        ],
+                      ),
               ],
             ),
           );
