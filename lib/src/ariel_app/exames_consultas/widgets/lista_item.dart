@@ -59,7 +59,7 @@ class ListaItens extends StatelessWidget {
                                 );
                               }
                             },
-                            child: _ItemWidget(
+                            child: ItemWidget(
                               model: mapa['model'],
                               titulo: mapa['titulo'],
                               data: mapa['dataHora'],
@@ -79,7 +79,7 @@ class ListaItens extends StatelessWidget {
   }
 }
 
-class _ItemWidget extends StatelessWidget {
+class ItemWidget extends StatelessWidget {
   final Object model;
   final String titulo;
   final Color color;
@@ -87,7 +87,7 @@ class _ItemWidget extends StatelessWidget {
   final Color background;
   final DateTime data;
 
-  const _ItemWidget({
+  const ItemWidget({
     Key? key,
     required this.model,
     required this.titulo,

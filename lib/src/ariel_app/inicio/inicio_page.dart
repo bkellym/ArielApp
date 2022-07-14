@@ -1,12 +1,15 @@
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
+import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
+import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/detalhes/detalhe_ciclo_widget.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/registroAplicacao/registro_aplicacao_widget.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/consulta/item_consulta.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/exame/item_exame.dart';
+import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/lista_item.dart';
 import 'package:ariel_app/src/ariel_app/inicio/widgets/destaque.dart';
 import 'package:ariel_app/src/ariel_app/inicio/widgets/grafico_principal.dart';
 import 'package:ariel_app/src/ariel_app/inicio/widgets/header.dart';
@@ -57,7 +60,11 @@ class _InicioPageState extends State<InicioPage> {
                                 )
                               : const SizedBox.shrink(),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16, top: 32),
+                            padding: EdgeInsets.only(
+                                left: SizeConfig.of(context)
+                                    .dynamicScaleSize(size: 16),
+                                top: SizeConfig.of(context)
+                                    .dynamicScaleSize(size: 32)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -87,46 +94,37 @@ class _InicioPageState extends State<InicioPage> {
                               "VOCÊ AINDA NÃO POSSUI CICLOS CADASTRADOS",
                               color: ArielColors.textLight,
                               fontWeight: Weight.semibold,
-                              padding: const EdgeInsets.symmetric(vertical: 32),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: SizeConfig.of(context)
+                                      .dynamicScaleSize(size: 32)),
                               size: 12,
                             ),
                           ]),
                 const Divisoria(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BotaoPadrao(
-                      label: "NOVA APLICAÇÃO",
-                      height: 38,
-                      padding: const EdgeInsets.only(left: 32),
-                      internalPadding: 6,
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                RegistroAplicacaoWidget(model: _bloc.ciclo!)),
-                      ),
-                    ),
-                    BotaoPadrao(
-                      label: "VER DETALHES",
-                      height: 38,
-                      padding: const EdgeInsets.only(right: 32),
-                      internalPadding: 6,
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                DetalheCicloWidget(model: _bloc.ciclo!)),
-                      ),
-                    )
-                  ],
+                DivisoriaDecorada(
+                  titulo: "PRÓXIMAS CONSULTAS E EXAMES",
+                  cor: ArielColors.secundary,
+                  padding: EdgeInsets.only(
+                      bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
+                      top: SizeConfig.of(context).dynamicScaleSize(size: 16)),
                 ),
-                const Spacer(),
                 _bloc.exame != null
-                    ? ItemExameWidget(model: _bloc.exame!)
+                    ? ItemWidget(
+                        model: _bloc.exame!,
+                        titulo: _bloc.exame?.tipo ?? "",
+                        color: ArielColors.exameColor,
+                        background: ArielColors.exameFundoColor,
+                        data: _bloc.exame?.dataHora ?? DateTime.now(),
+                        iconColor: ArielColors.exameColor)
                     : const SizedBox.shrink(),
                 _bloc.consulta != null
-                    ? ItemConsultaWidget(model: _bloc.consulta!)
+                    ? ItemWidget(
+                        model: _bloc.consulta!,
+                        titulo: _bloc.consulta?.especialidade ?? "",
+                        color: ArielColors.consultaColor,
+                        background: ArielColors.consultaFundoColor,
+                        data: _bloc.consulta?.dataHora ?? DateTime.now(),
+                        iconColor: ArielColors.consultaColor)
                     : const SizedBox.shrink(),
               ],
             ),
