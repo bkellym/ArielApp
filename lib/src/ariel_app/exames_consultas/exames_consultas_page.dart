@@ -57,12 +57,14 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                     : _animationController.forward(),
                 items: <Capsule>[
                   Capsule(
-                      icon: Icons.circle,
+                      icon: Icons.bookmark_border,
                       title: "NOVO EXAME",
-                      iconColor: ArielColors.exameColor,
-                      bubbleColor: Colors.white,
+                      iconColor: Colors.white,
+                      bubbleColor: ArielColors.exameColor,
                       titleStyle: const TextStyle(
-                          fontSize: 10, color: ArielColors.exameColor),
+                          fontSize: 10,
+                          color: Colors.white,
+                          fontWeight: Weight.extrabold),
                       onPress: () {
                         Navigator.push(
                             context,
@@ -72,12 +74,14 @@ class _ExamesConsultasPageState extends State<ExamesConsultasPage>
                                     )));
                       }),
                   Capsule(
-                    icon: Icons.circle,
+                    icon: Icons.bookmark_border,
                     title: "NOVA CONSULTA",
-                    iconColor: ArielColors.consultaColor,
-                    bubbleColor: Colors.white,
+                    iconColor: Colors.white,
+                    bubbleColor: ArielColors.consultaColor,
                     titleStyle: const TextStyle(
-                        fontSize: 10, color: ArielColors.consultaColor),
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontWeight: Weight.extrabold),
                     onPress: () {
                       Navigator.push(
                           context,

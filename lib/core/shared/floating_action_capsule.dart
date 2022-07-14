@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class Capsule {
@@ -62,11 +64,14 @@ class FloatingActionCapsule extends AnimatedWidget {
       alignment: textDirection == TextDirection.ltr
           ? Alignment.centerRight
           : Alignment.centerLeft,
-      child: Transform(
-        transform: transform,
-        child: Opacity(
-          opacity: _animation.value,
-          child: CapsuleMenu(items[index]),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 9),
+        child: Transform(
+          transform: transform,
+          child: Opacity(
+            opacity: _animation.value,
+            child: CapsuleMenu(items[index]),
+          ),
         ),
       ),
     );
@@ -80,21 +85,28 @@ class FloatingActionCapsule extends AnimatedWidget {
       children: [
         IgnorePointer(
           ignoring: _animation.value == 0,
-          child: ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            separatorBuilder: (_, __) => const SizedBox(height: 12.0),
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            itemCount: items.length,
-            itemBuilder: buildItem,
-          ),
+          child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: _animation.value, end: _animation.value),
+              duration: const Duration(milliseconds: 100),
+              curve: Curves.easeIn,
+              builder: (_, value, __) {
+                return BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: value * 2, sigmaY: value * 2),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    itemCount: items.length,
+                    itemBuilder: buildItem,
+                  ),
+                );
+              }),
         ),
         FloatingActionButton(
           heroTag: herotag ?? const _DefaultHeroTag(),
           backgroundColor: backGroundColor,
           onPressed: onPress,
-          // iconData is mutually exclusive with animatedIconData
-          // only 1 can be null at the time
           child: iconData == null
               ? AnimatedIcon(
                   icon: animatedIconData!,
@@ -121,23 +133,40 @@ class CapsuleMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      shape: const StadiumBorder(),
-      padding: const EdgeInsets.only(top: 11, bottom: 13, left: 16, right: 32),
-      color: item.bubbleColor,
-      splashColor: Colors.grey.withOpacity(0.1),
-      highlightColor: Colors.grey.withOpacity(0.1),
-      elevation: 2,
-      highlightElevation: 2,
-      disabledColor: item.bubbleColor,
-      onPressed: item.onPress,
+    return InkWell(
+      onTap: item.onPress, // Handle your callback
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(item.icon, color: item.iconColor, size: 10),
-          const SizedBox(width: 8.0),
-          Text(item.title, style: item.titleStyle),
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: Material(
+              elevation: 2,
+              borderRadius: const BorderRadius.all(Radius.circular(50)),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                decoration: BoxDecoration(
+                  color: item.bubbleColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
+                ),
+                child: Text(item.title, style: item.titleStyle),
+              ),
+            ),
+          ),
+          Material(
+            elevation: 2,
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              decoration: BoxDecoration(
+                color: item.bubbleColor,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(item.icon, color: item.iconColor, size: 20),
+            ),
+          )
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:ariel_app/core/ariel_icons_icons.dart';
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/shared/floating_action_capsule.dart';
 import 'package:ariel_app/core/util/colors.dart';
@@ -56,14 +57,14 @@ class _CicloPageState extends State<CicloPage>
                     : _animationController.forward(),
                 items: <Capsule>[
                   Capsule(
-                      icon: Icons.circle,
-                      title: "NOVO CICLO",
-                      iconColor: ArielColors.cicloColor,
-                      bubbleColor: Colors.white,
+                      icon: Icons.sync_outlined,
+                      title: "ADICIONAR CICLO",
+                      iconColor: Colors.white,
+                      bubbleColor: ArielColors.cicloColor,
                       titleStyle: const TextStyle(
-                          fontSize: 10,
-                          color: ArielColors.cicloColor,
-                          fontWeight: FontWeight.w700),
+                          fontSize: 11,
+                          color: Colors.white,
+                          fontWeight: Weight.extrabold),
                       onPress: () {
                         _animationController.reverse();
                         Navigator.push(
@@ -75,14 +76,14 @@ class _CicloPageState extends State<CicloPage>
                         );
                       }),
                   Capsule(
-                      icon: Icons.circle,
-                      title: "REGISTRAR APLICAÇÃO",
-                      iconColor: ArielColors.cicloColor,
-                      bubbleColor: Colors.white,
+                      icon: ArielIcons.aplicacao,
+                      title: "REGISTRAR DOSE",
+                      iconColor: Colors.white,
+                      bubbleColor: ArielColors.cicloColor,
                       titleStyle: const TextStyle(
-                          fontSize: 10,
-                          color: ArielColors.cicloColor,
-                          fontWeight: FontWeight.w700),
+                          fontSize: 11,
+                          color: Colors.white,
+                          fontWeight: Weight.extrabold),
                       onPress: () {
                         _animationController.reverse();
                         Navigator.push(
