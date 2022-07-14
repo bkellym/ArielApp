@@ -52,8 +52,6 @@ class ExameConsultaBloc extends BlocBase {
   List<Map<String, dynamic>> getListHoje() {
     List<Map<String, dynamic>> lista = listaEventos;
 
-    print(DateTime.now());
-
     lista = lista.where((element) {
       DateTime data = _getData(element['model']);
       DateTime hoje = DateTime.now();

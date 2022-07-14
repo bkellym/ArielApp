@@ -57,7 +57,9 @@ class ExameController {
 
     if (lista.isEmpty) return null;
     lista.sort((a, b) => a.dataHora.compareTo(b.dataHora));
-    lista = lista.where((element) => element.dataHora.isAfter(DateTime.now())).toList();
+    lista = lista
+        .where((element) => element.dataHora.isAfter(DateTime.now()))
+        .toList();
     ExameModel model = lista.first;
     return model;
   }

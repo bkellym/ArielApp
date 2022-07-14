@@ -34,6 +34,19 @@ class AplicacaoController {
     return prox;
   }
 
+  Future<DateTime> buscarUlt(List<AplicacaoModel> listAplicacoes) async {
+    List<AplicacaoModel> filtrado =
+        listAplicacoes.where((element) => element.feito == true).toList();
+    filtrado.sort((a, b) {
+      var adate = a.data; //before -> var adate = a.expiry;
+      var bdate = b.data; //var bdate = b.expiry;
+      return adate.compareTo(bdate);
+    });
+
+    DateTime prox = filtrado.last.data;
+    return prox;
+  }
+
   Future<List<AplicacaoModel>> buscar(String cicloUid) async {
     List<AplicacaoModel> listAplicacoes = [];
     DataSnapshot snapshot = await dao.buscar(cicloUid);
