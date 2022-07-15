@@ -4,13 +4,13 @@ import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
-import 'package:ariel_app/core/shared/input/campo_data.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ariel_app.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/registroAplicacao/registro_widget_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ariel_app/core/inputs.dart';
 
 class RegistroAplicacaoWidget extends StatefulWidget {
   final CicloModel model;
@@ -38,7 +38,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
 
     return DetalheWidget(
       titulo: "Ciclos",
-      subTitulo: const ["registrar", " aplicação"],
+      subTitulo: const ["registrar", " dose"],
       imgFundo: Image.asset('assets/images/ciclos.png').image,
       color: ArielColors.cicloColor,
       child: Material(
@@ -97,20 +97,19 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
             label: "DATA DA APLICAÇÃO",
             controller: _bloc.controller.dataAplicacao,
             color: ArielColors.cicloColor,
-            inputPadding: EdgeInsets.only(
-              left: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
-              right: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
-              bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
-            ),
           ),
+          const Divisoria(),
           BotaoPadrao(
               label: "SALVAR APLICAÇÃO",
-              height: SizeConfig.of(context).dynamicScaleSize(size: 40),
+              height:
+              SizeConfig.of(context).dynamicScaleSize(size: 40),
               padding: const EdgeInsets.all(0),
               textStyle: TextStyle(
-                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                  fontSize: SizeConfig.of(context)
+                      .dynamicScaleSize(size: 12),
                   fontWeight: Weight.bold),
-              internalPadding: SizeConfig.of(context).dynamicScaleSize(size: 8),
+              internalPadding:
+              SizeConfig.of(context).dynamicScaleSize(size: 8),
               onPressed: () {
                 _bloc.registrar(widget.model);
                 Navigator.push(

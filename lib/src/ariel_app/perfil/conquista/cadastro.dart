@@ -1,14 +1,11 @@
 import 'dart:io';
 
-import 'package:ariel_app/core/controller/user_info_controller.dart';
+import 'package:ariel_app/core/inputs.dart';
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/shared/divisoria_decorada.dart';
-import 'package:ariel_app/core/shared/input/campo_data.dart';
-import 'package:ariel_app/core/shared/input/campo_hora.dart';
-import 'package:ariel_app/core/shared/input/campo_imagem.dart';
-import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -40,60 +37,25 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
       child: Material(
         color: Colors.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Padding(
-            padding: EdgeInsets.only(
-              right: SizeConfig.of(context).dynamicScaleSize(
-                size: leftPadding,
-              ),
-              left: SizeConfig.of(context).dynamicScaleSize(
-                size: leftPadding,
-              ),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            CampoImagem(
+              onChange: (foto) {
+                this.foto = foto;
+              },
             ),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  CampoImagem(
-                    onChange: (foto){
-                      this.foto = foto;
-                    },
-                  ),
-              CampoTexto(
-                label: "TÍTULO",
-                color: ArielColors.secundary,
-                inputPadding: EdgeInsets.only(
-                  top: SizeConfig.of(context).dynamicScaleSize(
-                    size: 12,
-                  ),
-                  bottom: SizeConfig.of(context).dynamicScaleSize(
-                    size: 12,
-                  ),
-                ),
-              ),
-              Texto(
-                "DATA",
-                color: ArielColors.secundary,
-                fontWeight: Weight.semibold,
-                size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                padding: EdgeInsets.only(
-                  bottom: SizeConfig.of(context).dynamicScaleSize(
-                    size: 4,
-                  ),
-                ),
-              ),
-              CampoData(
-                label: "DATA",
-              ),
-              CampoTexto(
-                label: "DESCRIÇÃO",
-                maxLines: 4,
-                color: ArielColors.secundary,
-                inputPadding: EdgeInsets.only(
-                  bottom: SizeConfig.of(context).dynamicScaleSize(
-                    size: 12,
-                  ),
-                ),
-              ),
-            ]),
-          ),
+            const CampoTexto(
+              label: "TÍTULO",
+              color: ArielColors.secundary,
+            ),
+            const CampoData(
+              label: "DATA",
+            ),
+            const CampoTexto(
+              label: "DESCRIÇÃO",
+              maxLines: 4,
+              color: ArielColors.secundary,
+            ),
+          ]),
           DivisoriaDecorada(
             titulo: "LEMBRETE",
             cor: ArielColors.secundary,
@@ -101,64 +63,23 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
               vertical: SizeConfig.of(context).dynamicScaleSize(size: 16),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              right: SizeConfig.of(context).dynamicScaleSize(
-                size: leftPadding,
-              ),
-              left: SizeConfig.of(context).dynamicScaleSize(
-                size: leftPadding,
-              ),
-            ),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              CampoTexto(
-                label: "NOTIFICAR A CADA",
-                color: ArielColors.secundary,
-                inputPadding: EdgeInsets.only(
-                  bottom: SizeConfig.of(context).dynamicScaleSize(
-                    size: 12,
-                  ),
-                ),
-              ),
-              Texto(
-                "HORÁRIO DO LEMBRETE",
-                color: ArielColors.secundary,
-                fontWeight: Weight.semibold,
-                size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                padding: EdgeInsets.only(
-                  bottom: SizeConfig.of(context).dynamicScaleSize(
-                    size: 4,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: SizeConfig.of(context).dynamicScaleSize(
-                    size: 24,
-                  ),
-                ),
-                child: CampoHora(
-                  padding: EdgeInsets.only(
-                    bottom: SizeConfig.of(context).dynamicScaleSize(
-                      size: 8,
-                    ),
-                  ),
-                ),
-              ),
-              BotaoPadrao(
-                  label: "SALVAR ALTERAÇÕES",
-                  height: SizeConfig.of(context).dynamicScaleSize(size: 40),
-                  padding: const EdgeInsets.all(0),
-                  textStyle: TextStyle(
-                      fontSize:
-                          SizeConfig.of(context).dynamicScaleSize(size: 12),
-                      fontWeight: Weight.bold),
-                  internalPadding:
-                      SizeConfig.of(context).dynamicScaleSize(size: 8),
-                  onPressed: () {}),
-            ]),
+          const CampoTexto(
+            label: "NOTIFICAR A CADA",
+            color: ArielColors.secundary,
           ),
+          const CampoHora(
+            "HORÁRIO DO LEMBRETE",
+          ),
+          const Divisoria(),
+          BotaoPadrao(
+              label: "SALVAR ALTERAÇÕES",
+              height: SizeConfig.of(context).dynamicScaleSize(size: 40),
+              padding: const EdgeInsets.all(0),
+              textStyle: TextStyle(
+                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                  fontWeight: Weight.bold),
+              internalPadding: SizeConfig.of(context).dynamicScaleSize(size: 8),
+              onPressed: () {}),
         ]),
       ),
     );
