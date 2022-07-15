@@ -11,6 +11,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+const EdgeInsetsGeometry paddingPadrao =
+    EdgeInsets.only(right: 32, left: 32, bottom: 16);
+
 class CampoTexto extends StatefulWidget {
   final String label;
   final EdgeInsetsGeometry? inputPadding;
@@ -136,15 +139,12 @@ class _CampoTextoState extends State<CampoTexto> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.inputPadding ??
-          EdgeInsets.only(
-            bottom: SizeConfig.of(context).dynamicScaleSize(size: 16),
-          ),
+      padding: widget.inputPadding ?? paddingPadrao,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Texto(
           widget.label,
           color: widget.color ?? ArielColors.secundary,
-          fontWeight: Weight.semibold,
+          fontWeight: Weight.bold,
           size: SizeConfig.of(context).dynamicScaleSize(size: 9),
           padding: widget.labelPadding ??
               EdgeInsets.only(
@@ -191,15 +191,12 @@ class _CampoDropdownState extends State<CampoDropdown> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.inputPadding ??
-          EdgeInsets.only(
-            bottom: SizeConfig.of(context).dynamicScaleSize(size: 16),
-          ),
+      padding: widget.inputPadding ?? paddingPadrao,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Texto(
           widget.label,
           color: widget.color ?? ArielColors.secundary,
-          fontWeight: Weight.semibold,
+          fontWeight: Weight.bold,
           size: SizeConfig.of(context).dynamicScaleSize(size: 9),
           padding: widget.labelPadding ??
               EdgeInsets.only(
@@ -257,15 +254,12 @@ class _CampoDataState extends State<CampoData> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.inputPadding ??
-          EdgeInsets.only(
-            bottom: SizeConfig.of(context).dynamicScaleSize(size: 16),
-          ),
+      padding: widget.inputPadding ?? paddingPadrao,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Texto(
           widget.label,
           color: widget.color ?? ArielColors.secundary,
-          fontWeight: Weight.semibold,
+          fontWeight: Weight.bold,
           size: SizeConfig.of(context).dynamicScaleSize(size: 9),
           padding: widget.labelPadding ??
               EdgeInsets.only(
@@ -309,15 +303,12 @@ class _CampoHoraState extends State<CampoHora> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.inputPadding ??
-          EdgeInsets.only(
-            bottom: SizeConfig.of(context).dynamicScaleSize(size: 16),
-          ),
+      padding: widget.inputPadding ?? paddingPadrao,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Texto(
           widget.label,
           color: widget.color ?? ArielColors.secundary,
-          fontWeight: Weight.semibold,
+          fontWeight: Weight.bold,
           size: SizeConfig.of(context).dynamicScaleSize(size: 9),
           padding: widget.labelPadding ??
               EdgeInsets.only(
@@ -419,6 +410,8 @@ class _CampoImagemState extends State<CampoImagem> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: Image.network(widget.imagemAtual!).image,
+                            fit: BoxFit.cover,
+                              opacity: 0.6,
                           ),
                           border: Border.all(
                               color: ArielColors.secundary, width: 1.5),

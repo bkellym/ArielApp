@@ -96,11 +96,6 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
             label: "DATA DA APLICAÇÃO",
             controller: _bloc.controller.dataAplicacao,
             color: ArielColors.cicloColor,
-            inputPadding: EdgeInsets.only(
-              left: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
-              right: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
-              bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
-            ),
           ),
           BotaoPadrao(
               label: "SALVAR APLICAÇÃO",
