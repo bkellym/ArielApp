@@ -138,8 +138,8 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
                     size: 24,
                   ),
                 ),
-                child: CampoHora(
-                  padding: EdgeInsets.only(
+                child: CampoHora("HORÁRIO DO LEMBRETE",
+                  inputPadding: EdgeInsets.only(
                     bottom: SizeConfig.of(context).dynamicScaleSize(
                       size: 8,
                     ),

@@ -107,30 +107,16 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
                         ),
                         Expanded(
                           flex: 3,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Texto("HORÁRIO",
-                                  color: ArielColors.consultaColor,
-                                  fontWeight: Weight.semibold,
-                                  size: SizeConfig.of(context)
-                                      .dynamicScaleSize(size: 9),
-                                  padding: EdgeInsets.only(
-                                      left: 12,
-                                      bottom: SizeConfig.of(context)
-                                          .dynamicScaleSize(
-                                        size: 4,
-                                      ))),
-                              CampoHora(
-                                  color: ArielColors.consultaColor,
-                                  controller: _bloc.controller.hora,
-                                  padding: EdgeInsets.only(
-                                      left: 12,
-                                      bottom: SizeConfig.of(context)
-                                          .dynamicScaleSize(
-                                        size: 8,
-                                      )))
-                            ],
+                          child: CampoHora(
+                            "HORÁRIO",
+                            color: ArielColors.consultaColor,
+                            controller: _bloc.controller.hora,
+                            inputPadding: EdgeInsets.only(
+                              left: 12,
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 8,
+                              ),
+                            ),
                           ),
                         ),
                       ],

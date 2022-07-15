@@ -83,44 +83,25 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
                               color: ArielColors.exameColor,
                               controller: _bloc.controller.data,
                               inputPadding: EdgeInsets.only(
-                                right: 0,
-                                bottom: SizeConfig.of(context).dynamicScaleSize(
-                                  size: 8,
-                                ),
+                                right: SizeConfig.of(context)
+                                    .dynamicScaleSize(size: 8),
+                                bottom: SizeConfig.of(context)
+                                    .dynamicScaleSize(size: 16),
                               ),
                             ),
                           ),
                           Expanded(
                             flex: 3,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Texto(
-                                  "HORÁRIO",
-                                  color: ArielColors.exameColor,
-                                  fontWeight: Weight.semibold,
-                                  size: SizeConfig.of(context)
-                                      .dynamicScaleSize(size: 9),
-                                  padding: EdgeInsets.only(
-                                    left: 12,
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 4,
-                                    ),
-                                  ),
-                                ),
-                                CampoHora(
-                                  controller: _bloc.controller.hora,
-                                  color: ArielColors.exameColor,
-                                  padding: EdgeInsets.only(
-                                    left: 12,
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 8,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            child: CampoHora(
+                              "HORÁRIO",
+                              controller: _bloc.controller.hora,
+                              color: ArielColors.exameColor,
+                              inputPadding: EdgeInsets.only(
+                                left: SizeConfig.of(context)
+                                    .dynamicScaleSize(size: 8),
+                                bottom: SizeConfig.of(context)
+                                    .dynamicScaleSize(size: 16),
+                              ),
                             ),
                           ),
                         ],

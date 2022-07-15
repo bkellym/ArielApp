@@ -37,8 +37,6 @@ class _CampoextoState extends State<CampoTexto> {
     return Padding(
       padding: widget.inputPadding ??
           EdgeInsets.only(
-            left: SizeConfig.of(context).dynamicScaleSize(size: 8),
-            right: SizeConfig.of(context).dynamicScaleSize(size: 8),
             bottom: SizeConfig.of(context).dynamicScaleSize(size: 16),
           ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

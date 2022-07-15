@@ -13,15 +13,16 @@ class CampoData extends StatefulWidget {
   final EdgeInsetsGeometry? labelPadding;
   final TextEditingController? controller;
   final Color? color;
-  DateTime selectedDate = DateTime.now();
+  final String? mascara;
 
-  CampoData({
+  const CampoData({
     Key? key,
     required this.label,
     this.controller,
     this.color = ArielColors.secundary,
     this.inputPadding,
     this.labelPadding,
+    this.mascara,
   }) : super(key: key);
 
   @override
@@ -34,8 +35,6 @@ class _CampoDataState extends State<CampoData> {
     return Padding(
       padding: widget.inputPadding ??
           EdgeInsets.only(
-            left: SizeConfig.of(context).dynamicScaleSize(size: 8),
-            right: SizeConfig.of(context).dynamicScaleSize(size: 8),
             bottom: SizeConfig.of(context).dynamicScaleSize(size: 16),
           ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -51,36 +50,29 @@ class _CampoDataState extends State<CampoData> {
                 ),
               ),
         ),
-        Container(
-          height: 44,
-          child: Padding(
-            padding: EdgeInsets.only(
-              bottom: SizeConfig.of(context).dynamicScaleSize(
-                size: 8,
-              ),
+        SizedBox(
+          height: 36,
+          child: DateTimePicker(
+            locale: myLocale,
+            dateMask: "d 'de' MMMM 'de' yyyy",
+            controller: widget.controller,
+            firstDate: DateTime(1900),
+            lastDate: DateTime(5000),
+            style: const TextStyle(
+              color: ArielColors.textPrimary,
+              fontWeight: FontWeight.normal,
+              fontSize: 12,
+              decoration: TextDecoration.none,
             ),
-            child: DateTimePicker(
-              locale: myLocale,
-              dateMask: "d 'de' MMMM 'de' yyyy",
-              controller: widget.controller,
-              firstDate: DateTime(1900),
-              lastDate: DateTime(5000),
-              style: const TextStyle(
-                color: ArielColors.textPrimary,
-                fontWeight: FontWeight.normal,
-                fontSize: 12,
-                decoration: TextDecoration.none,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(10),
+              fillColor: ArielColors.baseLight,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(color: ArielColors.baseDark),
               ),
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.all(10),
-                fillColor: ArielColors.baseLight,
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: ArielColors.baseDark),
-                ),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: widget.color ?? ArielColors.secundary)),
-              ),
+              focusedBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: widget.color ?? ArielColors.secundary)),
             ),
           ),
         )
