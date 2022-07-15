@@ -7,7 +7,6 @@ import 'package:ariel_app/core/shared/mensagem_erro.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 
 class UserInfoController {
   final AplicacaoController controller = AplicacaoController();
@@ -168,7 +167,6 @@ class UserInfoController {
 
   Future<String?> _uploadFile() async {
     if (foto == null) return null;
-    final fileName = basename(foto!.path);
     final destination = 'files/$uid ?? ${_user?.uid}';
 
     try {

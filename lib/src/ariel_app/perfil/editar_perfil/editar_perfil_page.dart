@@ -96,14 +96,14 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                     BotaoPadrao(
                         label: "SALVAR ALTERAÇÕES",
                         height:
-                        SizeConfig.of(context).dynamicScaleSize(size: 40),
+                            SizeConfig.of(context).dynamicScaleSize(size: 40),
                         padding: const EdgeInsets.all(0),
                         textStyle: TextStyle(
                             fontSize: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 12),
                             fontWeight: Weight.bold),
                         internalPadding:
-                        SizeConfig.of(context).dynamicScaleSize(size: 8),
+                            SizeConfig.of(context).dynamicScaleSize(size: 8),
                         onPressed: () {
                           _bloc.controller.alterar();
                           Navigator.pop(context);

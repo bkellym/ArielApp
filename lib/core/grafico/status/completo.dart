@@ -1,9 +1,10 @@
-import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:flutter/material.dart';
 
 class StatusCompleto extends StatelessWidget {
-  const StatusCompleto({Key? key, required}) : super(key: key);
+  final double fontSize;
+
+  const StatusCompleto({Key? key, required this.fontSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,13 @@ class StatusCompleto extends StatelessWidget {
           "CICLO",
           fontWeight: Weight.bold,
           padding: const EdgeInsets.all(0),
-          size: SizeConfig.of(context).dynamicScaleSize(size: 9),
+          size: fontSize * 0.6,
         ),
         Texto(
           "COMPLETO",
           fontWeight: Weight.bold,
           padding: const EdgeInsets.all(0),
-          size: SizeConfig.of(context).dynamicScaleSize(size: 15),
+          size: fontSize,
         ),
       ],
     );

@@ -411,7 +411,7 @@ class _CampoImagemState extends State<CampoImagem> {
                           image: DecorationImage(
                             image: Image.network(widget.imagemAtual!).image,
                             fit: BoxFit.cover,
-                              opacity: 0.6,
+                            opacity: 0.6,
                           ),
                           border: Border.all(
                               color: ArielColors.secundary, width: 1.5),

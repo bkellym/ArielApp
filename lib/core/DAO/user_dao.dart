@@ -41,7 +41,7 @@ class UserDAO {
     user?.updateDisplayName(model.nome);
 
     DatabaseReference ref =
-    FirebaseDatabase.instance.ref("user_info/${model.uid}");
+        FirebaseDatabase.instance.ref("user_info/${model.uid}");
 
     await ref.update({
       "genero": model.genero,

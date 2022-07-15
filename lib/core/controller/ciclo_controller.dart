@@ -134,10 +134,8 @@ class CicloController {
         ? DateTime.parse(_dataUltAplicacao.text)
         : null;
 
-    if (model.uid != null) {
-      controller.cadastrar(model.uid, int.parse(numAplicacoes.text),
-          int.parse(_intervalo.text), model, ultAplicacao);
-    }
+    controller.cadastrar(model.uid, int.parse(numAplicacoes.text),
+        int.parse(_intervalo.text), model, ultAplicacao);
   }
 
   void registraAplicacao(CicloModel cicloModel) {
