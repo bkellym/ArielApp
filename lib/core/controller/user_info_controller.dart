@@ -13,13 +13,25 @@ class UserInfoController {
   final AplicacaoController controller = AplicacaoController();
   UserDAO dao = UserDAO();
 
+  final Map<String, String> generos = {
+    'M': 'Masculino',
+    'F': 'Feminino',
+    'N': 'Não-Binário'
+  };
+
   User? _user;
   File? _foto;
+  late String uid;
+  late String fotoAtual;
+
   final TextEditingController _nome = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _genero = TextEditingController();
   final TextEditingController _dtNascimento = TextEditingController();
   final TextEditingController _historia = TextEditingController();
+  final TextEditingController _senhaAtual = TextEditingController();
+  final TextEditingController _senhaNova = TextEditingController();
+
   final TextEditingController _dtUltAplicacao = TextEditingController();
 
   UserInfoController(this._user) {
@@ -29,7 +41,13 @@ class UserInfoController {
     dtUltAplicacao = DateTime.now().toString();
   }
 
-  UserInfoController.edicao();
+  UserInfoController.edicao(UserModel model) {
+    nome = model.nome;
+    email = model.email;
+    genero = generos[model.genero];
+    dtNascimento = model.dtNascimento;
+    historia = model.historia;
+  }
 
   File? get foto {
     return _foto;
@@ -57,6 +75,14 @@ class UserInfoController {
 
   TextEditingController get dtUltAplicacao {
     return _dtUltAplicacao;
+  }
+
+  TextEditingController get senhaAtual {
+    return _senhaAtual;
+  }
+
+  TextEditingController get senhaNova {
+    return _senhaNova;
   }
 
   set nome(nome) {
@@ -87,18 +113,55 @@ class UserInfoController {
     _foto = foto;
   }
 
+  set senhaAtual(senhaAtual) {
+    _senhaAtual.text = senhaAtual;
+  }
+
+  set senhaNova(senhaNova) {
+    _senhaNova.text = senhaNova;
+  }
+
   Future<UserModel?> buscar() {
     Future<UserModel?> model = dao.buscar(_user);
     return model;
   }
 
-  void cadastrar(String? fotoString) async {
+  void alterar() async {
+    String? fotoString = await _uploadFile();
+
+    UserModel model = UserModel.edicao(
+      uid: uid,
+      nome: _nome.text,
+      email: _email.text,
+      foto: fotoString ?? fotoAtual,
+      genero: mapGenero(_genero.text),
+      dtNascimento: _dtNascimento.text,
+    );
+    model.historia = _historia.text;
+
+    dao.alterar(model);
+  }
+
+  String mapGenero(String valor) {
+    String chave = "M";
+    generos.forEach((key, value) {
+      if (valor == value) {
+        chave = key;
+      }
+    });
+
+    return chave;
+  }
+
+  void cadastrar() async {
+    String? fotoString = await _uploadFile();
+
     UserModel model = UserModel(_user);
 
+    model.foto = fotoString!;
     model.historia = _historia.text;
-    model.genero = _genero.text;
+    model.genero = mapGenero(_genero.text);
     model.dtNascimento = _dtNascimento.text;
-    model.dtUltAplicacao = _dtUltAplicacao.text;
 
     dao.cadastrar(model, _user);
   }
@@ -106,7 +169,7 @@ class UserInfoController {
   Future<String?> _uploadFile() async {
     if (foto == null) return null;
     final fileName = basename(foto!.path);
-    final destination = 'files/$fileName';
+    final destination = 'files/$uid ?? ${_user?.uid}';
 
     try {
       final ref = firebase_storage.FirebaseStorage.instance
@@ -117,5 +180,7 @@ class UserInfoController {
     } catch (e) {
       MensagemErro(mensagem: 'Não foi possível carregar a imagem');
     }
+
+    return null;
   }
 }

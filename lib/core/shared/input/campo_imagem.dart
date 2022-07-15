@@ -11,15 +11,19 @@ class CampoImagem extends StatefulWidget {
       firebase_storage.FirebaseStorage.instance;
 
   File? photo;
-
+  final String? imagemAtual;
+  final File? imagemNova;
+  final Function onChange;
   final ImagePicker picker = ImagePicker();
+
   CampoImagem({
     Key? key,
-    this.photo,
+    this.imagemAtual,
+    required this.onChange, this.imagemNova,
   }) : super(key: key);
 
   @override
-  _CampoImagemState createState() => _CampoImagemState();
+  State<CampoImagem> createState() => _CampoImagemState();
 }
 
 class _CampoImagemState extends State<CampoImagem> {
@@ -30,6 +34,7 @@ class _CampoImagemState extends State<CampoImagem> {
     setState(() {
       if (pickedFile != null) {
         widget.photo = File(pickedFile.path);
+        widget.onChange(widget.photo);
       } else {
         print('Não foi possível carregar a imagem');
         MensagemErro(mensagem: 'Não foi possível carregar a imagem');
@@ -44,6 +49,7 @@ class _CampoImagemState extends State<CampoImagem> {
     setState(() {
       if (pickedFile != null) {
         widget.photo = File(pickedFile.path);
+        widget.onChange(widget.photo);
       } else {
         print('Não foi possível carregar a imagem');
         MensagemErro(mensagem: 'Não foi possível carregar a imagem');
@@ -65,30 +71,47 @@ class _CampoImagemState extends State<CampoImagem> {
           child: SizedBox(
             width: 128,
             height: 128,
-            child: widget.photo != null
+            child: widget.photo != null || widget.imagemNova != null
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.file(
-                      widget.photo!,
+                      widget.photo ?? widget.imagemNova!,
                       width: 100,
                       height: 100,
                       fit: BoxFit.cover,
                     ),
                   )
-                : Container(
-                    decoration: BoxDecoration(
-                      color: ArielColors.baseLight,
-                      border:
-                          Border.all(color: ArielColors.secundary, width: 1.5),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    width: 100,
-                    height: 100,
-                    child: const Icon(
-                      Icons.add_a_photo_outlined,
-                      color: ArielColors.secundary,
-                    ),
-                  ),
+                : widget.imagemAtual != null
+                    ? Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: Image.network(widget.imagemAtual!).image,
+                          ),
+                          border: Border.all(
+                              color: ArielColors.secundary, width: 1.5),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        width: 100,
+                        height: 100,
+                        child: const Icon(
+                          Icons.add_a_photo_outlined,
+                          color: ArielColors.secundary,
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                          color: ArielColors.baseLight,
+                          border: Border.all(
+                              color: ArielColors.secundary, width: 1.5),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        width: 100,
+                        height: 100,
+                        child: const Icon(
+                          Icons.add_a_photo_outlined,
+                          color: ArielColors.secundary,
+                        ),
+                      ),
           ),
         ),
       ),

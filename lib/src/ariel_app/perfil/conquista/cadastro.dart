@@ -6,6 +6,7 @@ import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/shared/input/campo_data.dart';
+import 'package:ariel_app/core/shared/input/campo_hora.dart';
 import 'package:ariel_app/core/shared/input/campo_imagem.dart';
 import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
@@ -14,7 +15,6 @@ import 'package:ariel_app/core/util/texto.dart';
 import 'package:flutter/material.dart';
 
 class CadastrarConquistaPage extends StatefulWidget {
-  final UserInfoController controller = UserInfoController.edicao();
   final UserModel user;
 
   CadastrarConquistaPage({
@@ -51,12 +51,13 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
             ),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              CampoImagem(
-                photo: foto,
-              ),
+                  CampoImagem(
+                    onChange: (foto){
+                      this.foto = foto;
+                    },
+                  ),
               CampoTexto(
                 label: "TÍTULO",
-                controller: widget.controller.nome,
                 color: ArielColors.secundary,
                 inputPadding: EdgeInsets.only(
                   top: SizeConfig.of(context).dynamicScaleSize(
@@ -79,18 +80,12 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
                 ),
               ),
               CampoData(
-                controller: widget.controller.dtNascimento,
-                padding: EdgeInsets.only(
-                  bottom: SizeConfig.of(context).dynamicScaleSize(
-                    size: 8,
-                  ),
-                ),
+                label: "DATA",
               ),
               CampoTexto(
                 label: "DESCRIÇÃO",
                 maxLines: 4,
                 color: ArielColors.secundary,
-                controller: widget.controller.nome,
                 inputPadding: EdgeInsets.only(
                   bottom: SizeConfig.of(context).dynamicScaleSize(
                     size: 12,
@@ -119,7 +114,6 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               CampoTexto(
                 label: "NOTIFICAR A CADA",
-                controller: widget.controller.nome,
                 color: ArielColors.secundary,
                 inputPadding: EdgeInsets.only(
                   bottom: SizeConfig.of(context).dynamicScaleSize(
@@ -144,8 +138,7 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
                     size: 24,
                   ),
                 ),
-                child: CampoData(
-                  controller: widget.controller.dtNascimento,
+                child: CampoHora(
                   padding: EdgeInsets.only(
                     bottom: SizeConfig.of(context).dynamicScaleSize(
                       size: 8,

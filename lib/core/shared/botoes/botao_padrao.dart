@@ -64,26 +64,30 @@ class BotaoPadrao extends StatefulWidget {
 class _BotaoPadraoState extends State<BotaoPadrao> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: widget.height,
-      alignment: Alignment.center,
-      padding: widget.padding,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: widget.disabled ? widget.disabledgradient : widget.gradient,
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: ElevatedButton(
-          style: widget.buttontheme,
-          onPressed: widget.onPressed,
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: widget.internalPadding,
-              right: widget.internalPadding,
-            ),
-            child: Text(
-              widget.label,
-              style: widget.textStyle,
+    return Padding(
+      padding: widget.padding ?? const EdgeInsets.all(0),
+      child: Container(
+        height: widget.height,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(0),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient:
+                widget.disabled ? widget.disabledgradient : widget.gradient,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: ElevatedButton(
+            style: widget.buttontheme,
+            onPressed: widget.onPressed,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: widget.internalPadding,
+                right: widget.internalPadding,
+              ),
+              child: Text(
+                widget.label,
+                style: widget.textStyle,
+              ),
             ),
           ),
         ),

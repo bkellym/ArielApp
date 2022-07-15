@@ -78,34 +78,16 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
                         children: [
                           Expanded(
                             flex: 6,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Texto(
-                                  "DATA DO EXAME",
-                                  color: ArielColors.exameColor,
-                                  fontWeight: Weight.semibold,
-                                  size: SizeConfig.of(context)
-                                      .dynamicScaleSize(size: 9),
-                                  padding: EdgeInsets.only(
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 4,
-                                    ),
-                                  ),
+                            child: CampoData(
+                              label: "DATA DO EXAME",
+                              color: ArielColors.exameColor,
+                              controller: _bloc.controller.data,
+                              inputPadding: EdgeInsets.only(
+                                right: 0,
+                                bottom: SizeConfig.of(context).dynamicScaleSize(
+                                  size: 8,
                                 ),
-                                CampoData(
-                                  color: ArielColors.exameColor,
-                                  controller: _bloc.controller.data,
-                                  padding: EdgeInsets.only(
-                                    right: 0,
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 8,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                           Expanded(

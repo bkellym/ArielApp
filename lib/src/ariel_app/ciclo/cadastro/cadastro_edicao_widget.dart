@@ -93,14 +93,11 @@ class CadastroEdicaoCicloState extends State<CadastroEdicaoCiclo> {
                                       ),
                                     ),
                                     CampoData(
+                                      label: "DATA DE INÍCIO DO TRATAMENTO",
+                                      inputPadding: const EdgeInsets.only(
+                                          left: 0, right: 8, bottom: 12),
                                       controller: _bloc.controller.dataIncio,
-                                      padding: EdgeInsets.only(
-                                        right: 0,
-                                        bottom: SizeConfig.of(context)
-                                            .dynamicScaleSize(
-                                          size: 8,
-                                        ),
-                                      ),
+
                                     ),
                                   ],
                                 ),
@@ -163,31 +160,11 @@ class CadastroEdicaoCicloState extends State<CadastroEdicaoCiclo> {
                               ),
                             ]),
                       ),
-                      Texto(
-                        "DATA DA ULTIMA APLICAÇÃO",
-                        color: ArielColors.cicloColor,
-                        fontWeight: Weight.semibold,
-                        size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-                        padding: EdgeInsets.only(
-                          left: SizeConfig.of(context).dynamicScaleSize(
-                            size: leftPadding,
-                          ),
-                          bottom: SizeConfig.of(context).dynamicScaleSize(
-                            size: 4,
-                          ),
-                        ),
-                      ),
                       CampoData(
+                        label: "DATA DA ULTIMA APLICAÇÃO",
+                        inputPadding: const EdgeInsets.only(
+                            left: 0, right: 8, bottom: 12),
                         controller: _bloc.controller.dataUltAplicacao,
-                        padding: EdgeInsets.only(
-                          left: SizeConfig.of(context).dynamicScaleSize(
-                            size: leftPadding,
-                          ),
-                          right: SizeConfig.of(context).dynamicScaleSize(
-                            size: leftPadding,
-                          ),
-                          bottom: 8,
-                        ),
                       ),
                       const Divisoria(),
                       BotaoPadrao(

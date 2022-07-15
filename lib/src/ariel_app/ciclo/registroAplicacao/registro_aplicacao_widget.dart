@@ -83,7 +83,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
               ),
               Padding(
                 padding: EdgeInsets.only(right: leftPadding),
-                child: CampoDetalhe(
+                child: const CampoDetalhe(
                   titulo: "fase atual do ciclo",
                   valor: "Testando",
                   padding: EdgeInsets.only(left: 0, bottom: 4),
@@ -93,30 +93,16 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
               ),
             ],
           ),
-          Texto(
-            "DATA DA APLICAÇÃO",
-            color: ArielColors.cicloColor,
-            fontWeight: Weight.semibold,
-            size: SizeConfig.of(context).dynamicScaleSize(size: 9),
-            padding: EdgeInsets.only(
-              left: SizeConfig.of(context).dynamicScaleSize(
-                size: leftPadding,
-              ),
-              bottom: SizeConfig.of(context).dynamicScaleSize(
-                size: 4,
-              ),
-            ),
-          ),
           CampoData(
+            label: "DATA DA APLICAÇÃO",
             controller: _bloc.controller.dataAplicacao,
             color: ArielColors.cicloColor,
-            padding: EdgeInsets.only(
+            inputPadding: EdgeInsets.only(
               left: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
               right: SizeConfig.of(context).dynamicScaleSize(size: leftPadding),
               bottom: SizeConfig.of(context).dynamicScaleSize(size: 8),
             ),
           ),
-          const Divisoria(),
           BotaoPadrao(
               label: "SALVAR APLICAÇÃO",
               height: SizeConfig.of(context).dynamicScaleSize(size: 40),

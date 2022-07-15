@@ -92,33 +92,19 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Expanded(
-                            flex: 6,
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Texto(
-                                    "DATA DA CONSULTA",
-                                    color: ArielColors.consultaColor,
-                                    fontWeight: Weight.semibold,
-                                    size: SizeConfig.of(context)
-                                        .dynamicScaleSize(size: 9),
-                                    padding: EdgeInsets.only(
-                                      bottom: SizeConfig.of(context)
-                                          .dynamicScaleSize(
-                                        size: 4,
-                                      ),
-                                    ),
-                                  ),
-                                  CampoData(
-                                      color: ArielColors.consultaColor,
-                                      controller: _bloc.controller.data,
-                                      padding: EdgeInsets.only(
-                                          right: 0,
-                                          bottom: SizeConfig.of(context)
-                                              .dynamicScaleSize(
-                                            size: 8,
-                                          )))
-                                ])),
+                          flex: 6,
+                          child: CampoData(
+                            label: "DATA DA CONSULTA",
+                            color: ArielColors.consultaColor,
+                            controller: _bloc.controller.data,
+                            inputPadding: EdgeInsets.only(
+                              right: 0,
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 8,
+                              ),
+                            ),
+                          ),
+                        ),
                         Expanded(
                           flex: 3,
                           child: Column(

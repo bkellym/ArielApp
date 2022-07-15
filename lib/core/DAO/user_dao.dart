@@ -16,7 +16,6 @@ class UserDAO {
     model.genero = data['genero'];
     model.dtNascimento = data['data_de_nascimento'];
     model.historia = data['historia'];
-    model.dtUltAplicacao = data['ultima_aplicacao'];
 
     return model;
   }
@@ -32,7 +31,22 @@ class UserDAO {
       "genero": model.genero,
       "data_de_nascimento": model.dtNascimento,
       "historia": model.historia ?? "",
-      "ultima_aplicacao": model.dtUltAplicacao ?? "",
+    });
+  }
+
+  void alterar(UserModel model) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    user?.updatePhotoURL(model.foto);
+    user?.updateEmail(model.email);
+    user?.updateDisplayName(model.nome);
+
+    DatabaseReference ref =
+    FirebaseDatabase.instance.ref("user_info/${model.uid}");
+
+    await ref.update({
+      "genero": model.genero,
+      "data_de_nascimento": model.dtNascimento,
+      "historia": model.historia ?? "",
     });
   }
 }
