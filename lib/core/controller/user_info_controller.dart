@@ -20,7 +20,7 @@ class UserInfoController {
 
   User? _user;
   File? _foto;
-  late String uid;
+  String? uid;
   late String fotoAtual;
 
   final TextEditingController _nome = TextEditingController();
@@ -128,7 +128,7 @@ class UserInfoController {
     String? fotoString = await _uploadFile();
 
     UserModel model = UserModel.edicao(
-      uid: uid,
+      uid: uid!,
       nome: _nome.text,
       email: _email.text,
       foto: fotoString ?? fotoAtual,
@@ -151,7 +151,7 @@ class UserInfoController {
     return chave;
   }
 
-  void cadastrar() async {
+  cadastrar() async {
     String? fotoString = await _uploadFile();
 
     UserModel model = UserModel(_user);
@@ -162,11 +162,13 @@ class UserInfoController {
     model.dtNascimento = _dtNascimento.text;
 
     dao.cadastrar(model, _user);
+
+    return true;
   }
 
   Future<String?> _uploadFile() async {
     if (foto == null) return null;
-    final destination = 'files/$uid ?? ${_user?.uid}';
+    final destination = 'files/${uid ?? _user?.uid}';
 
     try {
       final ref = firebase_storage.FirebaseStorage.instance

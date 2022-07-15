@@ -40,139 +40,159 @@ class _InicioPageState extends State<InicioPage> {
                   nome: _bloc.user.nome,
                   foto: _bloc.getFotoUsuario(),
                 ),
-                Column(
-                  children: [
-                    GraficoCiclo(
-                      ciclo: _bloc.ciclo,
-                      size: MediaQuery.of(context).size.width * 0.65,
-                      chartData: _bloc.getCharData(),
-                      onPressed: () {
-                        print("onPressed");
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetalheCicloWidget(
-                                    model: _bloc.ciclo!,
-                                  )),
-                        );
-                      },
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          flex: 4,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    const Icon(
-                                      ArielIcons.aplicacao,
-                                      color: ArielColors.cicloColor,
-                                    ),
-                                    Texto(
-                                      "${_bloc.ciclo?.medicamento} ${_bloc.ciclo?.dosagem}",
-                                      fontWeight: Weight.bold,
-                                      size: SizeConfig.of(context)
-                                          .dynamicScaleSize(size: 10),
-                                      padding: EdgeInsets.only(
-                                        left: SizeConfig.of(context)
-                                            .dynamicScaleSize(size: 8),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const Padding(
-                                    padding: EdgeInsets.only(top: 12)),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Texto(
-                                      "CICLO",
-                                      color: ArielColors.cicloColor,
-                                      fontWeight: Weight.bold,
-                                      size: SizeConfig.of(context)
-                                          .dynamicScaleSize(size: 10),
-                                    ),
-                                    Texto(
-                                      _bloc.getFaseCiclo(),
-                                      fontWeight: Weight.regular,
-                                      size: SizeConfig.of(context)
-                                          .dynamicScaleSize(size: 10),
-                                      padding: EdgeInsets.only(
-                                        left: SizeConfig.of(context)
-                                            .dynamicScaleSize(size: 16),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                _bloc.ciclo != null
+                    ? Column(
+                        children: [
+                          GraficoCiclo(
+                            ciclo: _bloc.ciclo,
+                            size: MediaQuery.of(context).size.width * 0.65,
+                            chartData: _bloc.getCharData(),
+                            onPressed: () {
+                              print("onPressed");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetalheCicloWidget(
+                                          model: _bloc.ciclo!,
+                                        )),
+                              );
+                            },
                           ),
-                        ),
-                        Expanded(
-                          flex: 5,
-                          child: Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 12),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
-                                      Texto(
-                                        "PRÓXIMA DOSE",
-                                        color: ArielColors.cicloColor,
-                                        fontWeight: Weight.bold,
-                                        size: SizeConfig.of(context)
-                                            .dynamicScaleSize(size: 10),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          const Icon(
+                                            ArielIcons.aplicacao,
+                                            color: ArielColors.cicloColor,
+                                          ),
+                                          Texto(
+                                            "${_bloc.ciclo?.medicamento} ${_bloc.ciclo?.dosagem}",
+                                            fontWeight: Weight.bold,
+                                            size: SizeConfig.of(context)
+                                                .dynamicScaleSize(size: 10),
+                                            padding: EdgeInsets.only(
+                                              left: SizeConfig.of(context)
+                                                  .dynamicScaleSize(size: 8),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Texto(
-                                        _bloc.getProxAplic(),
-                                        fontWeight: Weight.regular,
-                                        size: SizeConfig.of(context)
-                                            .dynamicScaleSize(size: 10),
-                                        padding: EdgeInsets.only(
-                                            left: SizeConfig.of(context)
-                                                .dynamicScaleSize(size: 8)),
-                                      ),
+                                      const Padding(
+                                          padding: EdgeInsets.only(top: 12)),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Texto(
+                                            "CICLO",
+                                            color: ArielColors.cicloColor,
+                                            fontWeight: Weight.bold,
+                                            size: SizeConfig.of(context)
+                                                .dynamicScaleSize(size: 10),
+                                          ),
+                                          Texto(
+                                            _bloc.getFaseCiclo(),
+                                            fontWeight: Weight.regular,
+                                            size: SizeConfig.of(context)
+                                                .dynamicScaleSize(size: 10),
+                                            padding: EdgeInsets.only(
+                                              left: SizeConfig.of(context)
+                                                  .dynamicScaleSize(size: 16),
+                                            ),
+                                          ),
+                                        ],
+                                      )
                                     ],
                                   ),
-                                  const Padding(
-                                      padding: EdgeInsets.only(top: 12)),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Texto(
-                                        "ULTIMA DOSE TOMADA",
-                                        color: ArielColors.cicloColor,
-                                        fontWeight: Weight.bold,
-                                        size: SizeConfig.of(context)
-                                            .dynamicScaleSize(size: 10),
-                                      ),
-                                      Texto(
-                                        _bloc.getUltAplic(),
-                                        fontWeight: Weight.regular,
-                                        size: SizeConfig.of(context)
-                                            .dynamicScaleSize(size: 10),
-                                        padding: EdgeInsets.only(
-                                            left: SizeConfig.of(context)
-                                                .dynamicScaleSize(size: 8)),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              )),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 5,
+                                child: Padding(
+                                    padding: const EdgeInsets.only(left: 12),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Texto(
+                                              "PRÓXIMA DOSE",
+                                              color: ArielColors.cicloColor,
+                                              fontWeight: Weight.bold,
+                                              size: SizeConfig.of(context)
+                                                  .dynamicScaleSize(size: 10),
+                                            ),
+                                            Texto(
+                                              _bloc.getProxAplic(),
+                                              fontWeight: Weight.regular,
+                                              size: SizeConfig.of(context)
+                                                  .dynamicScaleSize(size: 10),
+                                              padding: EdgeInsets.only(
+                                                  left: SizeConfig.of(context)
+                                                      .dynamicScaleSize(
+                                                          size: 8)),
+                                            ),
+                                          ],
+                                        ),
+                                        const Padding(
+                                            padding: EdgeInsets.only(top: 12)),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Texto(
+                                              "ULTIMA DOSE TOMADA",
+                                              color: ArielColors.cicloColor,
+                                              fontWeight: Weight.bold,
+                                              size: SizeConfig.of(context)
+                                                  .dynamicScaleSize(size: 10),
+                                            ),
+                                            Texto(
+                                              _bloc.getUltAplic(),
+                                              fontWeight: Weight.regular,
+                                              size: SizeConfig.of(context)
+                                                  .dynamicScaleSize(size: 10),
+                                              padding: EdgeInsets.only(
+                                                  left: SizeConfig.of(context)
+                                                      .dynamicScaleSize(
+                                                          size: 8)),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    : Row(
+                        children: [
+                          const Icon(
+                            Icons.sync,
+                            color: ArielColors.secundary,
+                          ),
+                          Texto("Nenhum ciclo castrado no momento",
+                              size: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 11))
+                        ],
+                      ),
                 DivisoriaDecorada(
                     titulo: "Próximos exames e consultas",
                     cor: ArielColors.secundary,

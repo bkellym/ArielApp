@@ -93,6 +93,25 @@ class CicloController {
     _dataAplicacao.text = dataAplicacao;
   }
 
+  bool cicloValidado(CicloModel? model) {
+    bool validado = true;
+
+    validado = model?.apresentacao != null &&
+        model?.apresentacao != "" &&
+        model?.dataIncio != null &&
+        model?.dataIncio != "" &&
+        model?.medicamento != null &&
+        model?.medicamento != "" &&
+        model?.dosagem != null &&
+        model?.dosagem != "" &&
+        (model?.apresentacao.length ?? 0) > 3 &&
+        (model?.dataIncio.length ?? 0) > 8 &&
+        (model?.medicamento.length ?? 0) > 3 &&
+        (model?.dosagem.length ?? 0) > 3;
+
+    return validado;
+  }
+
   Future<List<CicloModel>> buscarTodos(String userUid) async {
     List<CicloModel> lista = [];
     DataSnapshot snapshot = await dao.buscarTodos(userUid);
@@ -121,21 +140,26 @@ class CicloController {
     return null;
   }
 
-  void cadastrar() async {
+  cadastrar() async {
     CicloModel model = CicloModel();
     model.atual = true;
     model.apresentacao = _apresentacao.text;
     model.dataIncio = _dataIncio.text;
     model.medicamento = _medicamento.text;
     model.dosagem = _dosagem.text;
-    model.uid = (await dao.cadastrar(model))!;
 
-    DateTime? ultAplicacao = _dataUltAplicacao.text != ""
-        ? DateTime.parse(_dataUltAplicacao.text)
-        : null;
+    if (cicloValidado(model)) {
+      model.uid = (await dao.cadastrar(model))!;
 
-    controller.cadastrar(model.uid, int.parse(numAplicacoes.text),
-        int.parse(_intervalo.text), model, ultAplicacao);
+      DateTime? ultAplicacao = _dataUltAplicacao.text != ""
+          ? DateTime.parse(_dataUltAplicacao.text)
+          : null;
+
+      controller.cadastrar(model.uid, int.parse(numAplicacoes.text),
+          int.parse(_intervalo.text), model, ultAplicacao);
+    }
+
+    return true;
   }
 
   void registraAplicacao(CicloModel cicloModel) {
@@ -170,23 +194,25 @@ class CicloController {
     model.medicamento = _medicamento.text;
     model.dosagem = _dosagem.text;
 
-    dao.alterar(model);
+    if (cicloValidado(model)) {
+      dao.alterar(model);
 
-    DateTime? ultAplicacao = _dataUltAplicacao.text != ""
-        ? DateTime.parse(_dataUltAplicacao.text)
-        : null;
-    controller.alterarAplicacoesCiclo(
-        cicloModel,
-        int.parse(_numAplicacoes.text),
-        int.parse(_intervalo.text),
-        ultAplicacao);
+      DateTime? ultAplicacao = _dataUltAplicacao.text != ""
+          ? DateTime.parse(_dataUltAplicacao.text)
+          : null;
+      controller.alterarAplicacoesCiclo(
+          cicloModel,
+          int.parse(_numAplicacoes.text),
+          int.parse(_intervalo.text),
+          ultAplicacao);
 
-    controller.buscar(model.uid).then((value) {
-      List<AplicacaoModel> restantes =
-          value.where((element) => element.feito == false).toList();
-      if (restantes.isEmpty) {
-        finalizarCiclo(cicloModel);
-      }
-    });
+      controller.buscar(model.uid).then((value) {
+        List<AplicacaoModel> restantes =
+            value.where((element) => element.feito == false).toList();
+        if (restantes.isEmpty) {
+          finalizarCiclo(cicloModel);
+        }
+      });
+    }
   }
 }

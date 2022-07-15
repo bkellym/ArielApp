@@ -32,12 +32,15 @@ class InicioBloc extends BlocBase {
     this.user = user;
     chartData = [];
     ciclo = (await cicloController.buscarCicloAtual());
-    var cicloUid = ciclo?.uid;
 
-    if (cicloUid != null) {
-      aplicacoes = (await aplicacaoController.buscar(cicloUid));
-      proxAplicacao = (await aplicacaoController.buscarProx(aplicacoes));
-      ultAplicacao = (await aplicacaoController.buscarUlt(aplicacoes));
+    if (ciclo != null) {
+      var cicloUid = ciclo?.uid;
+
+      if (cicloUid != null) {
+        aplicacoes = (await aplicacaoController.buscar(cicloUid));
+        proxAplicacao = (await aplicacaoController.buscarProx(aplicacoes));
+        ultAplicacao = (await aplicacaoController.buscarUlt(aplicacoes));
+      }
     }
 
     exame = await exameController.buscarProxima(user.uid);
