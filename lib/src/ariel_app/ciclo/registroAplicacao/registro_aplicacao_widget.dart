@@ -3,6 +3,7 @@ import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -37,7 +38,7 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
 
     return DetalheWidget(
       titulo: "Ciclos",
-      subTitulo: const ["registrar", " aplicação"],
+      subTitulo: const ["registrar", " dose"],
       imgFundo: Image.asset('assets/images/ciclos.png').image,
       color: ArielColors.cicloColor,
       child: Material(
@@ -97,14 +98,18 @@ class RegistroAplicacaoWidgetState extends State<RegistroAplicacaoWidget> {
             controller: _bloc.controller.dataAplicacao,
             color: ArielColors.cicloColor,
           ),
+          const Divisoria(),
           BotaoPadrao(
               label: "SALVAR APLICAÇÃO",
-              height: SizeConfig.of(context).dynamicScaleSize(size: 40),
+              height:
+              SizeConfig.of(context).dynamicScaleSize(size: 40),
               padding: const EdgeInsets.all(0),
               textStyle: TextStyle(
-                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                  fontSize: SizeConfig.of(context)
+                      .dynamicScaleSize(size: 12),
                   fontWeight: Weight.bold),
-              internalPadding: SizeConfig.of(context).dynamicScaleSize(size: 8),
+              internalPadding:
+              SizeConfig.of(context).dynamicScaleSize(size: 8),
               onPressed: () {
                 _bloc.registrar(widget.model);
                 Navigator.push(

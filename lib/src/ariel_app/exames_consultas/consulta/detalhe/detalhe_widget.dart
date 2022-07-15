@@ -6,6 +6,7 @@ import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
+import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/consulta/cadastro_edicao/cadastro_edicao_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -89,6 +90,11 @@ class _DetalheConsultaState extends State<DetalheConsulta> {
             BotaoPadrao(
               label: "EDITAR CONSULTA",
               height: 40,
+              padding: const EdgeInsets.all(0),
+              textStyle: TextStyle(
+                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                  fontWeight: Weight.bold),
+              internalPadding: SizeConfig.of(context).dynamicScaleSize(size: 4),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -99,10 +105,6 @@ class _DetalheConsultaState extends State<DetalheConsulta> {
                           )),
                 );
               },
-              internalPadding: 6,
-              padding: const EdgeInsets.all(0),
-              textStyle: TextStyle(
-                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 9)),
             )
           ],
         ),

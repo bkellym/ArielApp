@@ -45,124 +45,57 @@ class _CadastroExameWidgetState extends State<CadastroExameWidget> {
               child: Material(
                 color: Colors.white,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CampoTexto(
-                      label: "TIPO DE EXAME",
-                      color: ArielColors.exameColor,
-                      controller: _bloc.controller.tipo,
-                      inputPadding: EdgeInsets.only(
-                        right: SizeConfig.of(context).dynamicScaleSize(
-                          size: leftPadding,
-                        ),
-                        left: SizeConfig.of(context).dynamicScaleSize(
-                          size: leftPadding,
-                        ),
-                        bottom: SizeConfig.of(context).dynamicScaleSize(
-                          size: 12,
-                        ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CampoTexto(
+                        label: "TIPO DE EXAME",
+                        color: ArielColors.exameColor,
+                        controller: _bloc.controller.tipo,
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        right: SizeConfig.of(context)
-                            .dynamicScaleSize(size: leftPadding),
-                        left: SizeConfig.of(context)
-                            .dynamicScaleSize(size: leftPadding),
+                      CampoData(
+                        label: "DATA",
+                        color: ArielColors.exameColor,
+                        controller: _bloc.controller.data,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            flex: 6,
-                            child: CampoData(
-                              label: "DATA DO EXAME",
-                              color: ArielColors.exameColor,
-                              controller: _bloc.controller.data,
-                              inputPadding: EdgeInsets.only(
-                                right: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 8),
-                                bottom: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 16),
+                      CampoHora(
+                        "HORÁRIO DO EXAME",
+                        controller: _bloc.controller.hora,
+                        color: ArielColors.exameColor,
+                      ),
+                      CampoTexto(
+                        label: "LOCAL",
+                        color: ArielColors.exameColor,
+                        controller: _bloc.controller.local,
+                      ),
+                      CampoTexto(
+                        label: "OBSERVAÇÕES",
+                        color: ArielColors.exameColor,
+                        controller: _bloc.controller.detalhes,
+                        maxLines: 3,
+                      ),
+                      const Divisoria(),
+                      BotaoPadrao(
+                          label: "SALVAR EXAME",
+                          height: 40,
+                          padding: const EdgeInsets.all(0),
+                          textStyle: TextStyle(
+                              fontSize: SizeConfig.of(context)
+                                  .dynamicScaleSize(size: 12),
+                              fontWeight: Weight.bold),
+                          internalPadding:
+                              SizeConfig.of(context).dynamicScaleSize(size: 4),
+                          onPressed: () {
+                            _bloc.cadastrarEditar(widget.userUid, widget.model);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ArielApp(
+                                  tela: 2,
+                                ),
                               ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: CampoHora(
-                              "HORÁRIO",
-                              controller: _bloc.controller.hora,
-                              color: ArielColors.exameColor,
-                              inputPadding: EdgeInsets.only(
-                                left: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 8),
-                                bottom: SizeConfig.of(context)
-                                    .dynamicScaleSize(size: 16),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    CampoTexto(
-                      label: "LOCAL",
-                      color: ArielColors.exameColor,
-                      controller: _bloc.controller.local,
-                      inputPadding: EdgeInsets.only(
-                        right: SizeConfig.of(context).dynamicScaleSize(
-                          size: leftPadding,
-                        ),
-                        left: SizeConfig.of(context).dynamicScaleSize(
-                          size: leftPadding,
-                        ),
-                        bottom: SizeConfig.of(context).dynamicScaleSize(
-                          size: 12,
-                        ),
-                      ),
-                    ),
-                    CampoTexto(
-                      label: "DETALHES E RECOMENDAÇÕES",
-                      color: ArielColors.exameColor,
-                      controller: _bloc.controller.detalhes,
-                      maxLines: 3,
-                      inputPadding: EdgeInsets.only(
-                        right: SizeConfig.of(context).dynamicScaleSize(
-                          size: leftPadding,
-                        ),
-                        left: SizeConfig.of(context).dynamicScaleSize(
-                          size: leftPadding,
-                        ),
-                        bottom: SizeConfig.of(context).dynamicScaleSize(
-                          size: 12,
-                        ),
-                      ),
-                    ),
-                    const Divisoria(),
-                    BotaoPadrao(
-                        label: "SALVAR EXAME",
-                        height:
-                            SizeConfig.of(context).dynamicScaleSize(size: 40),
-                        padding: const EdgeInsets.all(0),
-                        textStyle: TextStyle(
-                            fontSize: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 12),
-                            fontWeight: Weight.bold),
-                        internalPadding:
-                            SizeConfig.of(context).dynamicScaleSize(size: 8),
-                        onPressed: () {
-                          _bloc.cadastrarEditar(widget.userUid, widget.model);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ArielApp(
-                                tela: 2,
-                              ),
-                            ),
-                          );
-                        }),
-                  ],
-                ),
+                            );
+                          }),
+                    ]),
               ),
             );
           } else {

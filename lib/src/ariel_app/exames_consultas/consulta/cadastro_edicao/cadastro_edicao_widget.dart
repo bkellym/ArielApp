@@ -38,7 +38,7 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
               titulo: "Exames \ne Consultas",
               tituloSize: 20,
               subTitulo: [
-                widget.model != null ? "NOVA" : "EDITAR",
+                widget.model == null ? "NOVA" : "EDITAR",
                 " CONSULTA"
               ],
               imgFundo: Image.asset('assets/images/ciclos.png').image,
@@ -47,109 +47,33 @@ class _CadastroEdicaoConsultaState extends State<CadastroEdicaoConsulta> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CampoTexto(
-                    label: "MÉDICO",
-                    inputPadding: EdgeInsets.only(
-                      right: SizeConfig.of(context).dynamicScaleSize(
-                        size: leftPadding,
-                      ),
-                      left: SizeConfig.of(context).dynamicScaleSize(
-                        size: leftPadding,
-                      ),
-                      bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 12,
-                      ),
-                    ),
-                    color: ArielColors.consultaColor,
-                    controller: _bloc.controller.medico,
-                  ),
-                  CampoTexto(
-                    label: "ESPECIALIDADE",
-                    inputPadding: EdgeInsets.only(
-                      right: SizeConfig.of(context).dynamicScaleSize(
-                        size: leftPadding,
-                      ),
-                      left: SizeConfig.of(context).dynamicScaleSize(
-                        size: leftPadding,
-                      ),
-                      bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 12,
-                      ),
-                    ),
+                    label: "TIPO DE CONSULTA",
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.especialidade,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      right: SizeConfig.of(context)
-                          .dynamicScaleSize(size: leftPadding),
-                      left: SizeConfig.of(context)
-                          .dynamicScaleSize(size: leftPadding),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          flex: 6,
-                          child: CampoData(
-                            label: "DATA DA CONSULTA",
-                            color: ArielColors.consultaColor,
-                            controller: _bloc.controller.data,
-                            inputPadding: EdgeInsets.only(
-                              right: 0,
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 8,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: CampoHora(
-                            "HORÁRIO",
-                            color: ArielColors.consultaColor,
-                            controller: _bloc.controller.hora,
-                            inputPadding: EdgeInsets.only(
-                              left: 12,
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 8,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  CampoTexto(
+                    label: "PROFISSIONAL",
+                    color: ArielColors.consultaColor,
+                    controller: _bloc.controller.medico,
+                  ),
+                  CampoData(
+                    label: "DATA",
+                    color: ArielColors.consultaColor,
+                    controller: _bloc.controller.data,
+                  ),
+                  CampoHora(
+                    "HORA",
+                    color: ArielColors.consultaColor,
+                    controller: _bloc.controller.hora,
                   ),
                   CampoTexto(
                     label: "LOCAL",
-                    inputPadding: EdgeInsets.only(
-                      right: SizeConfig.of(context).dynamicScaleSize(
-                        size: leftPadding,
-                      ),
-                      left: SizeConfig.of(context).dynamicScaleSize(
-                        size: leftPadding,
-                      ),
-                      bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 12,
-                      ),
-                    ),
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.endereco,
                   ),
                   CampoTexto(
                     label: "RECOMENDAÇÕES",
                     maxLines: 3,
-                    inputPadding: EdgeInsets.only(
-                      right: SizeConfig.of(context).dynamicScaleSize(
-                        size: leftPadding,
-                      ),
-                      left: SizeConfig.of(context).dynamicScaleSize(
-                        size: leftPadding,
-                      ),
-                      bottom: SizeConfig.of(context).dynamicScaleSize(
-                        size: 12,
-                      ),
-                    ),
                     color: ArielColors.consultaColor,
                     controller: _bloc.controller.detalhes,
                   ),

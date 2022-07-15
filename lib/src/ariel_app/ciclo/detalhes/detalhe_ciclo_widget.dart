@@ -6,6 +6,7 @@ import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
+import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/cadastro//cadastro_edicao_widget.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/detalhes//detalhe_ciclo_bloc.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/registroAplicacao/registro_aplicacao_widget.dart';
@@ -153,45 +154,63 @@ class _DetalheCicloWidgetState extends State<DetalheCicloWidget> {
             const Divisoria(),
             widget.model.atual
                 ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      BotaoPadrao(
-                        label: "NOVA APLICAÇÃO",
-                        height: 40,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegistroAplicacaoWidget(
-                                    model: widget.model)),
-                          );
-                        },
-                        internalPadding: 6,
-                        padding: const EdgeInsets.only(left: 32),
-                        textStyle: const TextStyle(fontSize: 9),
-                      ),
-                      BotaoPadrao(
-                        label: "EDITAR CICLO",
-                        height: 40,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CadastroEdicaoCiclo(
-                                      userUid: widget.model.userUid,
-                                      cicloUid: widget.model.uid,
-                                      ciclo: widget.model,
-                                    )),
-                          );
-                        },
-                        internalPadding: 6,
-                        padding: EdgeInsets.only(
-                            right: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 32)),
-                        textStyle: TextStyle(
-                            fontSize: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 9)),
-                      )
+                      Expanded(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          BotaoPadrao(
+                            label: "NOVA DOSE",
+                            height:
+                            SizeConfig.of(context).dynamicScaleSize(size: 40),
+                            padding: const EdgeInsets.all(0),
+                            textStyle: TextStyle(
+                                fontSize: SizeConfig.of(context)
+                                    .dynamicScaleSize(size: 11),
+                                fontWeight: Weight.bold),
+                            internalPadding:
+                            SizeConfig.of(context).dynamicScaleSize(size: 8),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        RegistroAplicacaoWidget(
+                                            model: widget.model)),
+                              );
+                            },
+                          ),
+                        ],
+                      )),
+                      Expanded(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          BotaoPadrao(
+                            label: "EDITAR CICLO",
+                            height:
+                            SizeConfig.of(context).dynamicScaleSize(size: 40),
+                            padding: const EdgeInsets.all(0),
+                            textStyle: TextStyle(
+                                fontSize: SizeConfig.of(context)
+                                    .dynamicScaleSize(size: 11),
+                                fontWeight: Weight.bold),
+                            internalPadding:
+                            SizeConfig.of(context).dynamicScaleSize(size: 8),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CadastroEdicaoCiclo(
+                                          userUid: widget.model.userUid,
+                                          cicloUid: widget.model.uid,
+                                          ciclo: widget.model,
+                                        )),
+                              );
+                            },
+                          )
+                        ],
+                      )),
                     ],
                   )
                 : const SizedBox.shrink(),
