@@ -1,7 +1,6 @@
 import 'package:ariel_app/core/inputs.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/divisoria_decorada.dart';
-import 'package:ariel_app/core/shared/input/campo_radio.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -18,414 +17,170 @@ class CadastroCompleto extends StatefulWidget {
 }
 
 class _FormCadastroCompleto extends State<CadastroCompleto> {
+  late final _dadosCarregados;
   final CadastroCompletoBloc _bloc = CadastroCompletoBloc();
 
   @override
+  void initState() {
+    _dadosCarregados = _bloc.init();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Material(
-      color: ArielColors.baseLight,
-      child: ListView(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
+    return FutureBuilder(
+        future: _dadosCarregados,
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Material(
               color: ArielColors.baseLight,
-            ),
-            child: Expanded(
-              child: Column(
+              child: ListView(
                 children: [
-                  DecoratedBox(
+                  Container(
                     decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: <Color>[
-                          Color(0xFF1CE8B4),
-                          Color(0xFF1CC2EB),
-                        ],
-                      ),
+                      color: ArielColors.baseLight,
                     ),
-                    child: SizedBox(
-                      height: 110,
-                      child: Row(
+                    child: Expanded(
+                      child: Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: SizeConfig.of(context)
-                                  .dynamicScaleSize(size: 8),
-                              bottom: SizeConfig.of(context)
-                                  .dynamicScaleSize(size: 24),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Texto(
-                                  "Olá ${_bloc.userController.nome.text}",
-                                  size: 22,
-                                  color: ArielColors.baseLight,
-                                ),
-                                Texto(
-                                  "Vamos Completar seu perfil?".toUpperCase(),
-                                  size: 12,
-                                  color: ArielColors.baseLight,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const DivisoriaDecorada(
-                        titulo: "SOBRE VOCÊ",
-                        cor: ArielColors.secundary,
-                        padding: EdgeInsets.only(
-                          top: 16,
-                          bottom: 32,
-                          left: 12,
-                        ),
-                      ),
-                      CampoImagem(
-                        onChange: (foto) {
-                          _bloc.userController.foto = foto;
-                        },
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CampoTexto(
-                            label: 'NOME',
-                            controller: _bloc.userController.nome,
-                            inputPadding: EdgeInsets.only(
-                              left: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              right: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 12,
+                          DecoratedBox(
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: <Color>[
+                                  Color(0xFF1CE8B4),
+                                  Color(0xFF1CC2EB),
+                                ],
                               ),
                             ),
-                          ),
-                          CampoTexto(
-                            label: 'E-MAIL',
-                            controller: _bloc.userController.email,
-                            inputPadding: EdgeInsets.only(
-                              left: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              right: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 12,
-                              ),
-                            ),
-                          ),
-                          CampoData(
-                            label: 'DATA DE NASCIMENTO',
-                            inputPadding: EdgeInsets.only(
-                              left: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              right: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 12,
-                              ),
-                            ),
-                            controller: _bloc.userController.dtNascimento,
-                          ),
-                          CampoRadio(
-                            valores: _bloc.generos,
-                            onChange: (val) {
-                              _bloc.userController.genero = val!;
-                            },
-                          ),
-                          CampoTexto(
-                            label: "SUA HISTÓRIA",
-                            controller: _bloc.userController.historia,
-                            maxLines: 8,
-                            inputPadding: EdgeInsets.only(
-                              left: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              right: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 12,
-                              ),
-                            ),
-                          ),
-                          const DivisoriaDecorada(
-                            titulo: "SEU CICLO DE TRATAMENTO ATUAL",
-                            cor: ArielColors.secundary,
-                            padding: EdgeInsets.only(
-                              top: 16,
-                              bottom: 32,
-                              left: 12,
-                            ),
-                          ),
-                          CampoTexto(
-                            controller: _bloc.cicloController.medicamento,
-                            label: "MEDICAMENTO UTILIZADO",
-                            inputPadding: EdgeInsets.only(
-                              left: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              right: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 12,
-                              ),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 7,
-                                child: CampoData(
-                                  label: 'DATA DE INÍCIO',
-                                  inputPadding: EdgeInsets.only(
-                                    left:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 24,
+                            child: SizedBox(
+                              height: 110,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: SizeConfig.of(context)
+                                          .dynamicScaleSize(size: 8),
+                                      bottom: SizeConfig.of(context)
+                                          .dynamicScaleSize(size: 24),
                                     ),
-                                    right:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 24,
-                                    ),
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 12,
-                                    ),
-                                  ),
-                                  controller: _bloc.cicloController.dataIncio,
-                                  color: ArielColors.secundary,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: CampoTexto(
-                                  label: 'INTERVALO',
-                                  controller: _bloc.cicloController.intervalo,
-                                  textInputType: TextInputType.number,
-                                  inputPadding: EdgeInsets.only(
-                                    left:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 8,
-                                    ),
-                                    right:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 24,
-                                    ),
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 8,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: CampoTexto(
-                                  controller: _bloc.cicloController.dosagem,
-                                  label: 'DOSAGEM',
-                                  inputPadding: EdgeInsets.only(
-                                    left:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 24,
-                                    ),
-                                    right:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 8,
-                                    ),
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: CampoTexto(
-                                  label: 'APRESENTAÇÃO',
-                                  controller:
-                                      _bloc.cicloController.apresentacao,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: CampoTexto(
-                                  label: "QTD. POR CICLO",
-                                  controller:
-                                      _bloc.cicloController.numAplicacoes,
-                                  textInputType: TextInputType.number,
-                                  inputPadding: EdgeInsets.only(
-                                    left:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 8,
-                                    ),
-                                    right:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 24,
-                                    ),
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          CampoData(
-                            label: 'DATA DA ÚLTIMA APLICAÇÃO / TOMADA',
-                            inputPadding: EdgeInsets.only(
-                              left: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              right: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 12,
-                              ),
-                            ),
-                            controller: _bloc.userController.dtUltAplicacao,
-                          ),
-                          const DivisoriaDecorada(
-                            titulo: "DADOS DO SEU ÚLTIMO EXAME",
-                            cor: ArielColors.secundary,
-                            padding: EdgeInsets.only(
-                              top: 16,
-                              left: 12,
-                            ),
-                          ),
-                          CampoTexto(
-                            controller: _bloc.resultExameController.nome,
-                            label: 'TIPO DE EXAME',
-                            inputPadding: EdgeInsets.only(
-                              left: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              right: SizeConfig.of(context).dynamicScaleSize(
-                                size: 24,
-                              ),
-                              bottom: SizeConfig.of(context).dynamicScaleSize(
-                                size: 12,
-                              ),
-                            ),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                            left: SizeConfig.of(context)
-                                                .dynamicScaleSize(size: 24),
-                                          ),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.3,
-                                          child: CampoTexto(
-                                            label: 'DOSAGEM SÉRICA',
-                                            controller: _bloc
-                                                .resultExameController.dosagem,
-                                            textInputType: TextInputType.number,
-                                            inputPadding: EdgeInsets.only(
-                                              left: SizeConfig.of(context)
-                                                  .dynamicScaleSize(
-                                                size: 0,
-                                              ),
-                                              right: SizeConfig.of(context)
-                                                  .dynamicScaleSize(
-                                                size: 8,
-                                              ),
-                                              bottom: SizeConfig.of(context)
-                                                  .dynamicScaleSize(
-                                                size: 12,
-                                              ),
-                                            ),
-                                          ),
+                                        Texto(
+                                          "Olá ${_bloc.userController.nome.text}",
+                                          size: 22,
+                                          color: ArielColors.baseLight,
                                         ),
                                         Texto(
-                                          "ng/dl",
+                                          "Vamos Completar seu perfil?"
+                                              .toUpperCase(),
                                           size: 12,
-                                          color: ArielColors.secundary,
-                                          fontWeight: Weight.semibold,
+                                          color: ArielColors.baseLight,
                                         ),
                                       ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: CampoData(
-                                  label: 'DATA DO EXAME',
-                                  inputPadding: EdgeInsets.only(
-                                    left:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 24,
-                                    ),
-                                    right:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 24,
-                                    ),
-                                    bottom:
-                                        SizeConfig.of(context).dynamicScaleSize(
-                                      size: 12,
-                                    ),
                                   ),
-                                  controller: _bloc.resultExameController.data,
-                                ),
-                              )
-                            ],
+                                ],
+                              ),
+                            ),
                           ),
-                          BotaoPadrao(
-                            label: "Salvar Perfil",
-                            onPressed: () async {
-                              _bloc.cadastrar();
-                              Navigator.pushNamed(context, '/inicio');
-                            },
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const DivisoriaDecorada(
+                                  titulo: "SOBRE VOCÊ",
+                                  cor: ArielColors.secundary,
+                                  padding: EdgeInsets.symmetric(vertical: 24)),
+                              CampoImagem(
+                                onChange: (foto) {
+                                  _bloc.userController.foto = foto;
+                                },
+                              ),
+                              CampoTexto(
+                                label: 'NOME',
+                                controller: _bloc.userController.nome,
+                              ),
+                              CampoTexto(
+                                label: 'E-MAIL',
+                                controller: _bloc.userController.email,
+                              ),
+                              CampoData(
+                                label: 'DATA DE NASCIMENTO',
+                                controller: _bloc.userController.dtNascimento,
+                              ),
+                              CampoDropdown(
+                                label: "GÊNERO",
+                                items: _bloc.listaGeneros,
+                                controller: _bloc.userController.genero,
+                              ),
+                              CampoTexto(
+                                label: "SUA HISTÓRIA",
+                                controller: _bloc.userController.historia,
+                                maxLines: 4,
+                              ),
+                              const DivisoriaDecorada(
+                                  titulo: "SEU CICLO DE TRATAMENTO ATUAL",
+                                  cor: ArielColors.secundary,
+                                  padding: EdgeInsets.symmetric(vertical: 24)),
+                              CampoTexto(
+                                controller: _bloc.cicloController.medicamento,
+                                label: "MEDICAMENTO",
+                              ),
+                              CampoTexto(
+                                controller: _bloc.cicloController.dosagem,
+                                label: 'DOSAGEM',
+                              ),
+                              CampoTexto(
+                                label: 'APRESENTAÇÃO',
+                                controller: _bloc.cicloController.apresentacao,
+                              ),
+                              CampoData(
+                                label: 'DATA DE INÍCIO',
+                                controller: _bloc.cicloController.dataIncio,
+                                color: ArielColors.secundary,
+                              ),
+                              CampoTexto(
+                                label: "DOSES TOTAIS DO CICLO",
+                                controller: _bloc.cicloController.numAplicacoes,
+                                textInputType: TextInputType.number,
+                              ),
+                              CampoTexto(
+                                label: 'INTERVALO DO CICLO',
+                                controller: _bloc.cicloController.intervalo,
+                                textInputType: TextInputType.number,
+                              ),
+                              CampoData(
+                                label: 'DATA DA ÚLTIMA DOSE',
+                                controller: _bloc.userController.dtUltAplicacao,
+                              ),
+                              BotaoPadrao(
+                                label: "Salvar Perfil",
+                                onPressed: () async {
+                                  _bloc.cadastrar();
+                                  Navigator.pushNamed(context, '/inicio');
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),
-            ),
-          ),
-        ],
-      ),
-    );
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: ArielColors.cicloColor,
+              ),
+            );
+          }
+        });
   }
 }

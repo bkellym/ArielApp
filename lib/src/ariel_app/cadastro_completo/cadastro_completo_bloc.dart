@@ -6,17 +6,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class CadastroCompletoBloc extends BlocBase {
+  List<String> listaGeneros = [];
   final FirebaseStorage storage = FirebaseStorage.instance;
 
   final cicloController = CicloController();
   final userController = UserInfoController(FirebaseAuth.instance.currentUser);
   final resultExameController = ResultadoExameController();
 
-  List<Map> generos = [
-    {'id': 'M', 'titulo': 'Masculino'},
-    {'id': 'F', 'titulo': 'Feminino'},
-    {'id': 'N', 'titulo': 'Não-Binário'},
-  ];
+  init() async {
+    listaGeneros.addAll(userController.generos.values.toList());
+    return true;
+  }
 
   void cadastrar() async {
     userController.cadastrar();

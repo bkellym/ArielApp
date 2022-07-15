@@ -17,7 +17,6 @@ class EditarPerfilBloc extends BlocBase {
     controller.uid = model.uid;
     controller.fotoAtual = model.foto!;
     listaGeneros.addAll(controller.generos.values.toList());
-    print(listaGeneros);
     return true;
   }
 

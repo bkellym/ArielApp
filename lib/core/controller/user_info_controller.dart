@@ -36,8 +36,7 @@ class UserInfoController {
   UserInfoController(this._user) {
     nome = _user?.displayName! ?? "";
     email = _user?.email! ?? "";
-    dtNascimento = DateTime.parse("2000-01-01").toString();
-    dtUltAplicacao = DateTime.now().toString();
+    genero = generos["M"];
   }
 
   UserInfoController.edicao(UserModel model) {
