@@ -1,3 +1,4 @@
+import 'package:ariel_app/core/inputs.dart';
 import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
@@ -9,7 +10,6 @@ import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ariel_app.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/cadastro/cadastro_edicao_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:ariel_app/core/inputs.dart';
 
 class CadastroEdicaoCiclo extends StatefulWidget {
   final String userUid;

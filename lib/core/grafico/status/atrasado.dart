@@ -1,10 +1,12 @@
 import 'package:ariel_app/core/util/colors.dart';
-import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:flutter/material.dart';
 
 class StatusAtrasado extends StatelessWidget {
-  const StatusAtrasado({Key? key, required}) : super(key: key);
+  final double fontSize;
+
+  const StatusAtrasado({Key? key, required, required this.fontSize})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +18,14 @@ class StatusAtrasado extends StatelessWidget {
           fontWeight: Weight.bold,
           color: ArielColors.arielRed,
           padding: const EdgeInsets.all(0),
-          size: SizeConfig.of(context).dynamicScaleSize(size: 9),
+          size: fontSize * 0.6,
         ),
         Texto(
           "ATRASADA",
           fontWeight: Weight.bold,
           color: ArielColors.arielRed,
           padding: const EdgeInsets.all(0),
-          size: SizeConfig.of(context).dynamicScaleSize(size: 15),
+          size: fontSize,
         ),
       ],
     );

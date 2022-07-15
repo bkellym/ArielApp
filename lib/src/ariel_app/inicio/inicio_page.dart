@@ -1,4 +1,5 @@
 import 'package:ariel_app/core/ariel_icons_icons.dart';
+import 'package:ariel_app/core/grafico/grafico_ciclo.dart';
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
@@ -6,7 +7,6 @@ import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/detalhes/detalhe_ciclo_widget.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/widgets/lista_item.dart';
-import 'package:ariel_app/src/ariel_app/inicio/widgets/grafico_principal.dart';
 import 'package:ariel_app/src/ariel_app/inicio/widgets/header.dart';
 import 'package:flutter/material.dart';
 
@@ -42,10 +42,9 @@ class _InicioPageState extends State<InicioPage> {
                 ),
                 Column(
                   children: [
-                    GraficoPrincipal(
-                      hormonio: _bloc.ciclo?.medicamento ?? "",
-                      dosagem: _bloc.ciclo?.dosagem ?? "",
-                      proxAplicacao: _bloc.proxAplicacao!,
+                    GraficoCiclo(
+                      ciclo: _bloc.ciclo,
+                      size: MediaQuery.of(context).size.width * 0.65,
                       chartData: _bloc.getCharData(),
                       onPressed: () {
                         print("onPressed");

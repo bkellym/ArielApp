@@ -8,7 +8,6 @@ import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/exames_consultas/exame/cadastro_edicao/cadastro_widget.dart';
-import 'package:ariel_app/src/ariel_app/exames_consultas/exame/inserirResultados/inserir_resultado_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -76,15 +75,12 @@ class DetalheExameWidgetState extends State<DetalheExameWidget> {
             const Divisoria(),
             BotaoPadrao(
               label: "EDITAR EXAME",
-              height:
-              SizeConfig.of(context).dynamicScaleSize(size: 40),
+              height: SizeConfig.of(context).dynamicScaleSize(size: 40),
               padding: const EdgeInsets.all(0),
               textStyle: TextStyle(
-                  fontSize: SizeConfig.of(context)
-                      .dynamicScaleSize(size: 12),
+                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
                   fontWeight: Weight.bold),
-              internalPadding:
-              SizeConfig.of(context).dynamicScaleSize(size: 8),
+              internalPadding: SizeConfig.of(context).dynamicScaleSize(size: 8),
               onPressed: () {
                 Navigator.push(
                   context,
