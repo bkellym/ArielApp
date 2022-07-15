@@ -2,14 +2,13 @@ import 'package:ariel_app/core/models/ciclo_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
-import 'package:ariel_app/core/shared/input/campo_data.dart';
-import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ariel_app.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/cadastro/cadastro_edicao_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ariel_app/core/inputs.dart';
 
 class CadastroEdicaoCiclo extends StatefulWidget {
   final String userUid;
@@ -97,7 +96,6 @@ class CadastroEdicaoCicloState extends State<CadastroEdicaoCiclo> {
                                       inputPadding: const EdgeInsets.only(
                                           left: 0, right: 8, bottom: 12),
                                       controller: _bloc.controller.dataIncio,
-
                                     ),
                                   ],
                                 ),

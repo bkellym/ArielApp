@@ -1,14 +1,10 @@
 import 'dart:io';
 
-import 'package:ariel_app/core/controller/user_info_controller.dart';
+import 'package:ariel_app/core/inputs.dart';
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria_decorada.dart';
-import 'package:ariel_app/core/shared/input/campo_data.dart';
-import 'package:ariel_app/core/shared/input/campo_hora.dart';
-import 'package:ariel_app/core/shared/input/campo_imagem.dart';
-import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -51,11 +47,11 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
             ),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  CampoImagem(
-                    onChange: (foto){
-                      this.foto = foto;
-                    },
-                  ),
+              CampoImagem(
+                onChange: (foto) {
+                  this.foto = foto;
+                },
+              ),
               CampoTexto(
                 label: "TÍTULO",
                 color: ArielColors.secundary,
@@ -138,7 +134,8 @@ class _CadastrarConquistaPageState extends State<CadastrarConquistaPage> {
                     size: 24,
                   ),
                 ),
-                child: CampoHora("HORÁRIO DO LEMBRETE",
+                child: CampoHora(
+                  "HORÁRIO DO LEMBRETE",
                   inputPadding: EdgeInsets.only(
                     bottom: SizeConfig.of(context).dynamicScaleSize(
                       size: 8,

@@ -3,14 +3,13 @@ import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
-import 'package:ariel_app/core/shared/divisoria.dart';
-import 'package:ariel_app/core/shared/input/campo_data.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
 import 'package:ariel_app/src/ariel_app/ariel_app.dart';
 import 'package:ariel_app/src/ariel_app/ciclo/registroAplicacao/registro_widget_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ariel_app/core/inputs.dart';
 
 class RegistroAplicacaoWidget extends StatefulWidget {
   final CicloModel model;

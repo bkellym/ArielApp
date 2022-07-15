@@ -1,13 +1,8 @@
-import 'dart:io';
-
+import 'package:ariel_app/core/inputs.dart';
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria_decorada.dart';
-import 'package:ariel_app/core/shared/input/campo_data.dart';
-import 'package:ariel_app/core/shared/input/campo_dropdown.dart';
-import 'package:ariel_app/core/shared/input/campo_imagem.dart';
-import 'package:ariel_app/core/shared/input/campo_texto.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -73,7 +68,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                               CampoImagem(
                                 imagemAtual: widget.user.foto,
                                 imagemNova: _bloc.controller.foto,
-                                onChange: (foto){
+                                onChange: (foto) {
                                   _bloc.controller.foto = foto;
                                 },
                               ),

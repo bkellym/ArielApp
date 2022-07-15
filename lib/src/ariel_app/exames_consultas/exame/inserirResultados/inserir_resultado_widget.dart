@@ -4,7 +4,7 @@ import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
 import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
-import 'package:ariel_app/core/shared/input/campo_texto.dart';
+import 'package:ariel_app/core/inputs.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
