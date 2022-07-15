@@ -1,9 +1,10 @@
 import 'package:ariel_app/core/models/exame_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
-import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
-import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_destaque_novo.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_detalhe_novo.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
+import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
 import 'package:ariel_app/core/util/texto.dart';
@@ -36,41 +37,34 @@ class DetalheExameWidgetState extends State<DetalheExameWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CampoDestaque(
-                titulo: "exame",
-                valor: widget.model.tipo,
-                padding: EdgeInsets.only(left: leftPadding),
+                icon: Icons.bookmark_border,
+                titulo: widget.model.tipo,
                 color: ArielColors.exameColor),
-            Row(
-              children: [
-                CampoDetalhe(
-                  titulo: "DATA DO EXAME",
-                  valor: DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
-                  padding: EdgeInsets.only(left: leftPadding),
-                  color: ArielColors.exameColor,
-                  lineColor: ArielColors.exameColor,
-                ),
-                CampoDetalhe(
-                  titulo: "HORARIO",
-                  valor: DateFormat("hh:mm a").format(widget.model.dataHora),
-                  padding: EdgeInsets.only(left: leftPadding),
-                  color: ArielColors.exameColor,
-                  lineColor: ArielColors.exameColor,
-                ),
-              ],
+            DivisoriaDecorada(
+              cor: ArielColors.exameColor,
+              titulo: "SOBRE O EXAME",
+              padding: EdgeInsets.symmetric(
+                  vertical: SizeConfig.of(context).dynamicScaleSize(size: 16)),
+            ),
+            CampoDetalhe(
+              titulo: "DATA DO EXAME",
+              valor: DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
+              color: ArielColors.exameColor,
+            ),
+            CampoDetalhe(
+              titulo: "HORARIO DO EXAME",
+              valor: DateFormat("hh:mm a").format(widget.model.dataHora),
+              color: ArielColors.exameColor,
             ),
             CampoDetalhe(
               titulo: "LOCAL",
               valor: widget.model.local,
-              padding: EdgeInsets.only(left: leftPadding),
               color: ArielColors.exameColor,
-              lineColor: ArielColors.exameColor,
             ),
             CampoDetalhe(
-              titulo: "RECOMENDAÇÕES",
+              titulo: "OBSERVAÇÕES",
               valor: widget.model.detalhes,
-              padding: EdgeInsets.only(left: leftPadding),
               color: ArielColors.exameColor,
-              lineColor: ArielColors.exameColor,
             ),
             const Divisoria(),
             BotaoPadrao(
