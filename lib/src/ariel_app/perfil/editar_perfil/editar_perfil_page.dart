@@ -2,6 +2,7 @@ import 'package:ariel_app/core/inputs.dart';
 import 'package:ariel_app/core/models/user_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
+import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/shared/divisoria_decorada.dart';
 import 'package:ariel_app/core/util/colors.dart';
 import 'package:ariel_app/core/util/size_config.dart';
@@ -91,19 +92,18 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                         obscureText: true,
                         color: ArielColors.secundary,
                         controller: _bloc.controller.senhaNova),
+                    const Divisoria(),
                     BotaoPadrao(
                         label: "SALVAR ALTERAÇÕES",
                         height:
-                            SizeConfig.of(context).dynamicScaleSize(size: 40),
-                        padding: EdgeInsets.only(
-                            top: SizeConfig.of(context)
-                                .dynamicScaleSize(size: 32)),
+                        SizeConfig.of(context).dynamicScaleSize(size: 40),
+                        padding: const EdgeInsets.all(0),
                         textStyle: TextStyle(
                             fontSize: SizeConfig.of(context)
                                 .dynamicScaleSize(size: 12),
                             fontWeight: Weight.bold),
                         internalPadding:
-                            SizeConfig.of(context).dynamicScaleSize(size: 8),
+                        SizeConfig.of(context).dynamicScaleSize(size: 8),
                         onPressed: () {
                           _bloc.controller.alterar();
                           Navigator.pop(context);
