@@ -24,10 +24,12 @@ class CampoDetalhe extends StatelessWidget {
               horizontal: SizeConfig.of(context).dynamicScaleSize(size: 36),
               vertical: SizeConfig.of(context).dynamicScaleSize(size: 8)),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
               flex: 3,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Texto(
@@ -42,18 +44,23 @@ class CampoDetalhe extends StatelessWidget {
                 ],
               )),
           Expanded(
-              flex: 2,
-              child: Row(
-                children: [
-                  Texto(
+            flex: 2,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.22,
+                  child: Texto(
                     valor,
                     size: SizeConfig.of(context).dynamicScaleSize(size: 10),
                     fontWeight: Weight.regular,
                     padding: EdgeInsets.only(
                         left: SizeConfig.of(context).dynamicScaleSize(size: 8)),
-                  )
-                ],
-              ))
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:ariel_app/core/models/consulta_model.dart';
 import 'package:ariel_app/core/shared/botoes/botao_padrao.dart';
-import 'package:ariel_app/core/shared/detalhe/campo_destaque.dart';
-import 'package:ariel_app/core/shared/detalhe/campo_detalhe.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_destaque_novo.dart';
+import 'package:ariel_app/core/shared/detalhe/campo_detalhe_novo.dart';
 import 'package:ariel_app/core/shared/detalhe/detalhe_widget.dart';
 import 'package:ariel_app/core/shared/divisoria.dart';
 import 'package:ariel_app/core/util/colors.dart';
@@ -34,80 +34,64 @@ class _DetalheConsultaState extends State<DetalheConsulta> {
       color: ArielColors.consultaColor,
       child: Material(
         color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CampoDestaque(
-                    titulo: "especialista",
-                    valor: widget.model.especialidade,
-                    padding: EdgeInsets.only(left: leftPadding),
-                    color: ArielColors.consultaColor),
-                CampoDetalhe(
-                  titulo: "MÉDICO",
-                  valor: widget.model.medico,
-                  padding: EdgeInsets.only(left: leftPadding),
-                  color: ArielColors.consultaColor,
-                  lineColor: ArielColors.consultaColor,
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                CampoDetalhe(
-                  titulo: "DATA DO EXAME",
-                  valor: DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
-                  padding: EdgeInsets.only(left: leftPadding),
-                  color: ArielColors.consultaColor,
-                  lineColor: ArielColors.consultaColor,
-                ),
-                CampoDetalhe(
-                  titulo: "HORARIO",
-                  valor: DateFormat("hh:mm a").format(widget.model.dataHora),
-                  padding: EdgeInsets.only(left: leftPadding),
-                  color: ArielColors.consultaColor,
-                  lineColor: ArielColors.consultaColor,
-                ),
-              ],
-            ),
-            CampoDetalhe(
-              titulo: "LOCAL",
-              valor: widget.model.endereco,
-              padding: EdgeInsets.only(left: leftPadding),
-              color: ArielColors.consultaColor,
-              lineColor: ArielColors.consultaColor,
-            ),
-            CampoDetalhe(
-              titulo: "RECOMENDAÇÕES",
-              valor: widget.model.detalhes,
-              padding: EdgeInsets.only(left: leftPadding),
-              color: ArielColors.consultaColor,
-              lineColor: ArielColors.consultaColor,
-            ),
-            const Divisoria(),
-            BotaoPadrao(
-              label: "EDITAR CONSULTA",
-              height: 40,
-              padding: const EdgeInsets.all(0),
-              textStyle: TextStyle(
-                  fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
-                  fontWeight: Weight.bold),
-              internalPadding: SizeConfig.of(context).dynamicScaleSize(size: 4),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CadastroEdicaoConsulta(
-                            userUid: widget.model.userUid,
-                            model: widget.model,
-                          )),
-                );
-              },
-            )
-          ],
-        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CampoDestaque(
+                titulo: widget.model.especialidade,
+                color: ArielColors.consultaColor,
+                icon: Icons.bookmark_border,
+              ),
+              CampoDetalhe(
+                titulo: "DATA DA CONSULTA",
+                valor: DateFormat("dd/MM/yyyy").format(widget.model.dataHora),
+                color: ArielColors.consultaColor,
+              ),
+              CampoDetalhe(
+                titulo: "HORARIO DA CONSULTA",
+                valor: DateFormat("hh:mm a").format(widget.model.dataHora),
+                color: ArielColors.consultaColor,
+              ),
+              CampoDetalhe(
+                titulo: "ESPECIALISTA",
+                valor: widget.model.medico,
+                color: ArielColors.consultaColor,
+              ),
+              CampoDetalhe(
+                titulo: "LOCAL",
+                valor: widget.model.endereco,
+                color: ArielColors.consultaColor,
+              ),
+              CampoDetalhe(
+                titulo: "OBSERVAÇÕES",
+                valor: widget.model.detalhes,
+                color: ArielColors.consultaColor,
+              ),
+              const Divisoria(),
+              BotaoPadrao(
+                label: "EDITAR CONSULTA",
+                height: 40,
+                padding: const EdgeInsets.all(0),
+                textStyle: TextStyle(
+                    fontSize: SizeConfig.of(context).dynamicScaleSize(size: 12),
+                    fontWeight: Weight.bold),
+                internalPadding:
+                    SizeConfig.of(context).dynamicScaleSize(size: 4),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CadastroEdicaoConsulta(
+                              userUid: widget.model.userUid,
+                              model: widget.model,
+                            )),
+                  );
+                },
+              )
+            ],
+          ),
+        ]),
       ),
     );
   }
