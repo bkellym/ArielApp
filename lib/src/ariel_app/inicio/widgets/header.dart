@@ -39,11 +39,14 @@ class Header extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Texto(
-                    nome,
-                    size: 18,
-                    color: ArielColors.baseLight,
-                    fontWeight: Weight.bold,
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.40,
+                    child: Texto(
+                      nome,
+                      size: nome.length > 14 ? 16 : 18,
+                      color: ArielColors.baseLight,
+                      fontWeight: Weight.bold,
+                    ),
                   ),
                 ],
               ),

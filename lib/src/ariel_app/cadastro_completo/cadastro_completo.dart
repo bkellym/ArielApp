@@ -92,7 +92,9 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                         ),
                       ),
                       CampoImagem(
-                        photo: _bloc.userController.foto,
+                        onChange: (foto){
+                          _bloc.userController.foto = foto;
+                        },
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -128,27 +130,20 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              bottom: 8,
-                            ),
-                            child: Texto(
-                              "DATA DE NASCIMENTO",
-                              size: SizeConfig.of(context).dynamicScaleSize(
-                                size: 9,
-                              ),
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.semibold,
-                            ),
-                          ),
                           CampoData(
-                            controller: _bloc.userController.dtNascimento,
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              right: 24,
-                              bottom: 8,
+                            label: 'DATA DE NASCIMENTO',
+                            inputPadding: EdgeInsets.only(
+                              left: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              right: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 12,
+                              ),
                             ),
+                            controller: _bloc.userController.dtNascimento,
                           ),
                           CampoRadio(
                             valores: _bloc.generos,
@@ -202,35 +197,24 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                             children: [
                               Expanded(
                                 flex: 7,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 24,
-                                        bottom: 8,
-                                      ),
-                                      child: Texto(
-                                        "DATA DE INÍCIO",
-                                        size: SizeConfig.of(context)
-                                            .dynamicScaleSize(
-                                          size: 9,
-                                        ),
-                                        color: ArielColors.secundary,
-                                        fontWeight: Weight.semibold,
-                                      ),
+                                child: CampoData(
+                                  label: 'DATA DE INÍCIO',
+                                  inputPadding: EdgeInsets.only(
+                                    left:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 24,
                                     ),
-                                    CampoData(
-                                      controller:
-                                          _bloc.cicloController.dataIncio,
-                                      color: ArielColors.secundary,
-                                      padding: const EdgeInsets.only(
-                                        left: 24,
-                                        right: 8,
-                                        bottom: 8,
-                                      ),
+                                    right:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 24,
                                     ),
-                                  ],
+                                    bottom:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 12,
+                                    ),
+                                  ),
+                                  controller: _bloc.cicloController.dataIncio,
+                                  color: ArielColors.secundary,
                                 ),
                               ),
                               Expanded(
@@ -315,27 +299,20 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              bottom: 8,
-                            ),
-                            child: Texto(
-                              "DATA DA ÚLTIMA APLICAÇÃO / TOMADA",
-                              size: SizeConfig.of(context).dynamicScaleSize(
-                                size: 9,
-                              ),
-                              color: ArielColors.secundary,
-                              fontWeight: Weight.semibold,
-                            ),
-                          ),
                           CampoData(
-                            controller: _bloc.userController.dtUltAplicacao,
-                            padding: const EdgeInsets.only(
-                              left: 24,
-                              right: 24,
-                              bottom: 8,
+                            label: 'DATA DA ÚLTIMA APLICAÇÃO / TOMADA',
+                            inputPadding: EdgeInsets.only(
+                              left: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              right: SizeConfig.of(context).dynamicScaleSize(
+                                size: 24,
+                              ),
+                              bottom: SizeConfig.of(context).dynamicScaleSize(
+                                size: 12,
+                              ),
                             ),
+                            controller: _bloc.userController.dtUltAplicacao,
                           ),
                           const DivisoriaDecorada(
                             titulo: "DADOS DO SEU ÚLTIMO EXAME",
@@ -413,35 +390,23 @@ class _FormCadastroCompleto extends State<CadastroCompleto> {
                               ),
                               Expanded(
                                 flex: 4,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        top: 0,
-                                        right: 24,
-                                        bottom: 8,
-                                      ),
-                                      child: Texto(
-                                        "DATA DO EXAME",
-                                        size: SizeConfig.of(context)
-                                            .dynamicScaleSize(
-                                          size: 9,
-                                        ),
-                                        color: ArielColors.secundary,
-                                        fontWeight: Weight.semibold,
-                                      ),
+                                child: CampoData(
+                                  label: 'DATA DO EXAME',
+                                  inputPadding: EdgeInsets.only(
+                                    left:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 24,
                                     ),
-                                    CampoData(
-                                      padding: const EdgeInsets.only(
-                                        left: 24,
-                                        right: 24,
-                                        bottom: 8,
-                                      ),
-                                      controller:
-                                          _bloc.resultExameController.data,
+                                    right:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 24,
                                     ),
-                                  ],
+                                    bottom:
+                                        SizeConfig.of(context).dynamicScaleSize(
+                                      size: 12,
+                                    ),
+                                  ),
+                                  controller: _bloc.resultExameController.data,
                                 ),
                               )
                             ],

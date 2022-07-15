@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 
 class UserFoto extends StatelessWidget {
   final String? foto;
-  final String inicialNome;
+  final String? inicialNome;
 
   const UserFoto({
     Key? key,
     this.foto,
-    required this.inicialNome,
-  }) : super(key: key);
+    this.inicialNome,
+  })  : assert(foto != null || inicialNome != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class UserFoto extends StatelessWidget {
                 ),
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   image: Image.network(
                     foto!,
                   ).image,
@@ -55,7 +56,7 @@ class UserFoto extends StatelessWidget {
           ),
           child: Center(
             child: Texto(
-              inicialNome,
+              inicialNome!,
               color: ArielColors.baseLight,
               size: 20,
             ),

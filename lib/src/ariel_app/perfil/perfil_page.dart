@@ -61,8 +61,8 @@ class _PerfilPageState extends State<PerfilPage>
                 context,
                 MaterialPageRoute(
                     builder: (context) => EditarPerfilPage(
-                      user: widget.user,
-                    )),
+                          user: widget.user,
+                        )),
               );
             },
           ),
@@ -78,8 +78,8 @@ class _PerfilPageState extends State<PerfilPage>
                 context,
                 MaterialPageRoute(
                     builder: (context) => CadastrarConquistaPage(
-                      user: widget.user,
-                    )),
+                          user: widget.user,
+                        )),
               );
             },
           ),
@@ -131,17 +131,36 @@ class _PerfilPageState extends State<PerfilPage>
                 ),
               ),
               Center(
-                child: Container(
-                  height: 192,
-                  width: 192,
-                  decoration: BoxDecoration(
-                    color: ArielColors.baseDark,
-                    borderRadius: BorderRadius.circular(8),
-                    shape: BoxShape.rectangle,
-                  ),
-                  child: const Center(
-                    child: Icon(Icons.camera_alt),
-                  ),
+                child: SizedBox(
+                  width: 128,
+                  height: 128,
+                  child: widget.user.foto != null
+                      ? Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: Image.network(widget.user.foto!).image,
+                                fit: BoxFit.cover),
+                            border: Border.all(
+                                color: ArielColors.secundary, width: 1.5),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          width: 100,
+                          height: 100,
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                            color: ArielColors.baseLight,
+                            border: Border.all(
+                                color: ArielColors.secundary, width: 1.5),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          width: 100,
+                          height: 100,
+                          child: const Icon(
+                            Icons.add_a_photo_outlined,
+                            color: ArielColors.secundary,
+                          ),
+                        ),
                 ),
               ),
               Column(
@@ -158,6 +177,7 @@ class _PerfilPageState extends State<PerfilPage>
                   ),
                   Texto(
                     widget.user.nome,
+                    textAlign: TextAlign.center,
                     size: SizeConfig.of(context).dynamicScaleSize(size: 24),
                     fontWeight: Weight.regular,
                     padding: EdgeInsets.only(
@@ -235,8 +255,7 @@ class _PerfilPageState extends State<PerfilPage>
                       right: SizeConfig.of(context).dynamicScaleSize(size: 48),
                     ),
                     child: Texto(
-                      // widget.user.historia!,
-                      "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsumdolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetueradipiscing elit, Lorem ipsumdolor sit amet, consectetuer adipiscing elit,",
+                      widget.user.historia!,
                       size: SizeConfig.of(context).dynamicScaleSize(size: 10),
                       textAlign: TextAlign.center,
                       fontWeight: Weight.regular,

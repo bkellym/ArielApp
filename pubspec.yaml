@@ -29,6 +29,7 @@ dependencies:
   bloc_pattern: ^3.0.1
   fluttericon: ^2.0.0
   flutter_calendar_week: ^2.1.1
+  dropdown_button2: ^1.6.3
 
 
 dev_dependencies:
