@@ -5,7 +5,7 @@ class UserModel {
   late final String uid;
   late final String nome;
   late final String email;
-  late final String? foto;
+  String? foto;
   late final String genero;
   late final String dtNascimento;
   late final String _historia;
